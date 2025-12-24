@@ -1,0 +1,157 @@
+% !TEX program = xelatex
+\documentclass[11pt,a4paper]{report}
+
+% --- Paquetes de Idioma y Estética ---
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-nodecimaldot, es-noquoting, es-notilde]{babel}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta}
+\lstset{
+  extendedchars=true,
+  literate={ó}{{\'o}}1 {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1
+}
+% Configuración de colores para código
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize, % Fuente tipo terminal
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    % Números de línea a la izquierda
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+% --- Configuración de Código Python (Estilo Moderno) ---
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.97,0.97,0.98}
+%\usepackage[most]{tcolorbox}
+
+\lstset{
+    language=Python,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\small,
+    breaklines=true,                 
+    captionpos=b,                    
+    showstringspaces=false,
+    frame=single,
+    rulecolor=\color{gray!30}
+}
+
+% --- Cajas para Aplicaciones Multidisciplinarias ---
+\newtcolorbox{appbox}[1]{
+    colback=blue!5!white,
+    colframe=blue!75!black,
+    fonttitle=\bfseries,
+    title=Aplicación: #1
+}
+% --- Definición de Estilo para la Consola de Salida ---
+\definecolor{terminalbg}{rgb}{0.96, 0.96, 0.94} % Gris muy suave/cálido
+\definecolor{terminalframe}{rgb}{0.7, 0.7, 0.7} % Borde gris discreto
+
+% Asegúrate de tener esto arriba: \usepackage[most]{tcolorbox}
+
+% --- Definición de Estilo para la Consola de Salida ---
+\definecolor{terminalbg}{rgb}{0.96, 0.96, 0.94} 
+\definecolor{terminalframe}{rgb}{0.7, 0.7, 0.7} 
+
+% Definición de colores (si no los tienes ya)
+\definecolor{terminalbg}{rgb}{0.96, 0.96, 0.94} 
+\definecolor{terminalframe}{rgb}{0.7, 0.7, 0.7} 
+
+% CAJA ESTÁNDAR (Sin librerías complejas)
+\newtcolorbox{salida}{
+    colback=terminalbg,       
+    colframe=terminalframe,   
+    boxrule=0.5pt,            
+    arc=3pt,                  
+    left=6pt, right=6pt, top=4pt, bottom=4pt, 
+    fontupper=\ttfamily\footnotesize\color{black!85}, 
+    % --- AQUÍ ESTABA EL ERROR ---
+    title=\textbf{\texttt{>\_ Output / Consola}}, % Nota el \_
+    % -----------------------------
+    coltitle=black!80,        
+    colbacktitle=gray!15,     
+    toptitle=2pt, bottomtitle=2pt, 
+}
+\begin{document}
+
+% --- INICIO DE LA PORTADA ---
+\begin{titlepage}
+    \centering
+    \vspace*{1cm}
+    
+    % Título del libro
+    {\Huge\bfseries Matemáticas para la \par}
+    \vspace{0.5cm}
+    {\Huge\bfseries Inteligencia Artificial Agroambiental \par}
+    
+    \vspace{1.5cm}
+    
+    % Subtítulo
+    {\Large\itshape Vectores, Matrices y Tensores con aplicaciones en Python \par}
+    
+    \vspace{2cm}
+    
+    % Autor
+    {\Large \textbf{Autor:} \par}
+    {\Large John Jairo Leal Gómez \par}
+    
+    \vfill % Empuja lo siguiente hacia el fondo de la página
+    
+    % Institución y Fecha
+    {\large Universidad Nacional de Colombia \par}
+    {\large \today \par} % Pone la fecha de hoy automáticamente
+\end{titlepage}
+% --- FIN DE LA PORTADA ---
+
+% --- ESTRUCTURA DEL LIBRO ---
+
+\pagenumbering{roman} % Activa numeración romana (i, ii, iii)
+\tableofcontents      % Genera el índice
+\newpage              % Obliga a saltar de página después del índice
+
+\pagenumbering{arabic} % Reinicia a números normales (1, 2, 3)
+% A partir de aquí van tus capítulos o secciones:
+% \include{estructura-datos}
+
+\chapter{El Motor de la IA: De Escalares a Tensores}
+
+En este capítulo se presentan los conceptos preliminares de álgebra lineal necesarios para el desarrollo de modelos de inteligencia artificial en contextos agro-ambientales, industriales y administrativos.
+
+\include{estructura-datos.tex}
+
+\include{operaciones-estructuras}
+\include{matrices-especiales}
+\end{document}

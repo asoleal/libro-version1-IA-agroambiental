@@ -1,0 +1,95 @@
+\chapter{Matrices especiales}
+\section{Matrices simétricas y definidas positivas}
+
+Una matriz $\mathbf{A} \in \mathbb{R}^{n \times n}$ es:
+\begin{itemize}
+    \item \textbf{Simétrica} si $\mathbf{A} = \mathbf{A}^\top$.
+    \item \textbf{Definida positiva (DP)} si $\mathbf{x}^\top \mathbf{A} \mathbf{x} > 0$ para todo $\mathbf{x} \neq \mathbf{0}$.
+    \item \textbf{Semidefinida positiva (SDP)} si $\mathbf{x}^\top \mathbf{A} \mathbf{x} \geq 0$ para todo $\mathbf{x}$.
+\end{itemize}
+
+\paragraph{Propiedades y conexiones}
+\begin{itemize}
+    \item Toda matriz de covarianza $\mathbf{\Sigma}$ es \textbf{simétrica y SDP}.
+    \item Si $\mathbf{A}$ es SDP, todos sus autovalores son no negativos ($\lambda_i \geq 0$).
+    \item Si $\mathbf{A}$ es DP, entonces $\det(\mathbf{A}) > 0$ y es \textbf{invertible}.
+\end{itemize}
+
+\paragraph{Interpretación en ciencia de datos}
+La condición SDP garantiza que la varianza calculada en cualquier dirección proyectada sea no negativa, lo cual es una \textbf{consistencia estadística fundamental}. En PCA, los autovalores de $\mathbf{\Sigma}$ representan varianzas explicadas; si fueran negativos, el modelo físico estaría roto.
+
+\textbf{Ejemplo.} La matriz $\mathbf{A} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$ es simétrica y DP, ya que su determinante es $3 > 0$ y su traza es $4 > 0$ (criterio rápido para matrices $2 \times 2$).
+\paragraph{Matrices Definidas Positivas}
+
+El concepto de una matriz \textbf{definida positiva} es análogo a la idea de un número real positivo ($a > 0$), pero extendido al álgebra matricial. En ingeniería, estas matrices son fundamentales porque garantizan la estabilidad de los sistemas y la existencia de mínimos únicos en problemas de optimización (costos, energía, error).
+
+
+
+\paragraph{Definición paso a paso}
+Sea $\mathbf{A} \in \mathbb{R}^{n \times n}$ una matriz simétrica. Decimos que $\mathbf{A}$ es definida positiva si satisface la siguiente condición energética:
+\[
+\mathbf{x}^\top \mathbf{A} \mathbf{x} > 0, \quad \text{para todo vector } \mathbf{x} \in \mathbb{R}^n, \mathbf{x} \neq \mathbf{0}.
+\]
+El término escalar $E = \mathbf{x}^\top \mathbf{A} \mathbf{x}$ se conoce como \textit{forma cuadrática}. Geométricamente, si $\mathbf{A}$ es definida positiva, la gráfica de esta función cuadrática tiene forma de ``tazón'' o ``cuenco'' curvado hacia arriba, lo que implica que tiene un fondo (un mínimo global).
+
+\paragraph{Criterios de identificación}
+Para verificar si una matriz es definida positiva sin probar infinitos vectores, utilizamos dos criterios prácticos:
+\begin{enumerate}
+    \item \textbf{Autovalores (Eigenvalues):} Todos los autovalores $\lambda_i$ de $\mathbf{A}$ deben ser estrictamente positivos ($\lambda_i > 0$).
+    \item \textbf{Criterio de Sylvester:} Todos los determinantes de los sub-bloques principales superiores (los menores principales) deben ser positivos.
+\end{enumerate}
+
+\paragraph{Aplicación en Ingeniería Agrícola: Minimización de Costos}
+
+En la optimización de procesos agroindustriales, buscamos minimizar funciones de costo. La condición matemática para asegurar que hemos encontrado un \textbf{costo mínimo} (y no un máximo o un punto de silla) es que la matriz de segundas derivadas (la Matriz Hessiana) sea definida positiva.
+
+\textbf{Ejemplo práctico:}
+Un ingeniero agrícola desea minimizar el costo operativo $C$ de un sistema de fertirriego, el cual depende de dos variables:
+\begin{itemize}
+    \item $w$: Cantidad de agua ($m^3/ha$).
+    \item $f$: Cantidad de fertilizante ($kg/ha$).
+\end{itemize}
+
+Supongamos que el modelo de costos se aproxima localmente mediante una función cuadrática:
+\[
+C(w, f) = 2w^2 + 2wf + 4f^2 - 100w - 200f + 5000.
+\]
+Para verificar si este sistema tiene un costo mínimo estable, analizamos la curvatura de la función mediante su matriz Hessiana $\mathbf{H}$ (la matriz de coeficientes cuadráticos):
+\[
+\mathbf{H} =
+\begin{pmatrix}
+\frac{\partial^2 C}{\partial w^2} & \frac{\partial^2 C}{\partial w \partial f} \\
+\frac{\partial^2 C}{\partial f \partial w} & \frac{\partial^2 C}{\partial f^2}
+\end{pmatrix}
+=
+\begin{pmatrix}
+4 & 2 \\
+2 & 8
+\end{pmatrix}.
+\]
+
+\textbf{Verificación paso a paso:}
+\begin{enumerate}
+    \item \textbf{Simetría:} La matriz es simétrica ($H_{12} = H_{21} = 2$).
+    \item \textbf{Criterio de Autovalores:}
+    Calculamos $\det(\mathbf{H} - \lambda \mathbf{I}) = (4-\lambda)(8-\lambda) - 4 = \lambda^2 - 12\lambda + 28 = 0$.
+    Resolviendo, obtenemos $\lambda_1 \approx 9.4$ y $\lambda_2 \approx 2.6$.
+    \item \textbf{Conclusión:} Como $\lambda_1 > 0$ y $\lambda_2 > 0$, la matriz $\mathbf{H}$ es \textbf{definida positiva}.
+\end{enumerate}
+
+\textbf{Interpretación Ingenieril:}
+Dado que la matriz es definida positiva, la superficie de costos es convexa (tiene forma de tazón). Esto garantiza al ingeniero que existe una única combinación óptima de agua y fertilizante que minimiza los costos operativos, permitiendo el uso de algoritmos de optimización (como el Descenso de Gradiente) con total seguridad de convergencia.
+\section{Conexión integradora: la matriz de covarianza}
+
+En ciencia de datos agro-ambiental, la matriz más omnipresente es la matriz de covarianza muestral:
+\[
+\mathbf{\Sigma} = \frac{1}{m-1} \mathbf{X}_c^\top \mathbf{X}_c,
+\]
+donde $\mathbf{X}_c$ es la matriz de datos centrada (media cero). Esta estructura unifica todos los conceptos anteriores:
+\begin{itemize}
+    \item Es \textbf{cuadrada y simétrica} (propiedad de $\mathbf{A}^\top \mathbf{A}$).
+    \item Es \textbf{semidefinida positiva} (reflejando la naturaleza no negativa de la dispersión de datos).
+    \item \textbf{Invertibilidad y Colinealidad:} Si dos variables son colineales (ej. ``kg de fertilizante'' y ``g de nitrógeno aportado''), las columnas de $\mathbf{X}$ son dependientes, el determinante de $\mathbf{\Sigma}$ cae a 0, y la matriz no se puede invertir. Esto alerta al científico de datos sobre redundancia en el modelo.
+\end{itemize}
+
+Así, el producto, la transpuesta, el determinante y la inversa no son conceptos aislados, sino herramientas coordinadas que permiten modelar, transformar y diagnosticar la calidad de los datos agro-ambientales.

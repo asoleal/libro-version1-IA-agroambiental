@@ -1,0 +1,989 @@
+\chapter{Poniendo el Motor en Marcha: Aritmética Tensorial}
+
+\section{Suma de vectores y Aplicaciones}
+
+La suma combina dos vectores componente a componente. En términos de datos, esta operación representa la acumulación o superposición de efectos provenientes de distintas fuentes.
+
+\textbf{Definición formal.} Sean $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$. La suma $\mathbf{x} + \mathbf{y}$ se define como:
+\[
+\mathbf{x} + \mathbf{y} = 
+\begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} + 
+\begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{pmatrix} = 
+\begin{pmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{pmatrix}.
+\]
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.2, >=Stealth]
+        % --- Configuración de Coordenadas ---
+        % Usamos valores genéricos para que el dibujo se vea claro
+        % (No usamos los valores de emisiones 140 vs 7 porque la escala quedaría mal)
+        \coordinate (O) at (0,0);      % Origen
+        \coordinate (X) at (4, 1);     % Vector x
+        \coordinate (Y) at (1, 3);     % Vector y
+        \coordinate (R) at (5, 4);     % Resultante (4+1, 1+3)
+        
+        % --- Ejes ---
+        \draw[->, gray!50] (-1,0) -- (6,0) node[right, black] {\small Componente $i$};
+        \draw[->, gray!50] (0,-1) -- (0,5) node[above, black] {\small Componente $j$};
+        
+        % --- Líneas del Paralelogramo (Proyecciones) ---
+        \draw[dashed, gray] (X) -- (R);
+        \draw[dashed, gray] (Y) -- (R);
+        
+        % --- Vectores Principales ---
+        % Vector x (Azul)
+        \draw[->, thick, blue] (O) -- (X) node[midway, below right] {$\mathbf{x}$};
+        
+        % Vector y (Rojo)
+        \draw[->, thick, red!80] (O) -- (Y) node[midway, above left] {$\mathbf{y}$};
+        
+        % Vector Resultante (Morado - Más grueso)
+        \draw[->, very thick, violet] (O) -- (R) node[anchor=south west] {$\mathbf{x} + \mathbf{y}$};
+        
+        % --- Vector ''Fantasma'' (Tip-to-Tail) ---
+        % Esto ayuda a entender que sumamos y a x
+        \draw[->, dashed, red!60] (X) -- (R) node[midway, right] {\scriptsize $\mathbf{y}$ (trasladado)};
+        
+        % --- Decoración de ángulo (Opcional) ---
+        \fill[violet] (R) circle (2pt); % Punto final
+        
+    \end{tikzpicture}
+    \caption{Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores $\mathbf{x}$ y $\mathbf{y}$.}
+    \label{fig:suma_vectores}
+\end{figure}
+
+Geométricamente, esto sigue la \textbf{ley del paralelogramo} \ref{fig:suma_vectores}: si colocamos el inicio de $\mathbf{y}$ en la punta final de $\mathbf{x}$, el vector resultante va desde el origen de $\mathbf{x}$ hasta la punta final de $\mathbf{y}$.
+
+\begin{appbox}{Ejemplo Ambiental: Inventario de Emisiones}
+Supongamos que en una zona industrial existen dos fuentes principales de contaminación: una Termoeléctrica ($\mathbf{e}_T$) y una Fábrica de Cemento ($\mathbf{e}_C$).
+Los vectores representan la emisión diaria (en toneladas) de tres contaminantes distintos: $[\text{CO}_2, \text{NO}_x, \text{Material Particulado}]$.
+
+\[
+\mathbf{e}_T = \begin{pmatrix} 100 \\ 5 \\ 0.5 \end{pmatrix}, \quad
+\mathbf{e}_C = \begin{pmatrix} 40 \\ 2 \\ 3.5 \end{pmatrix}
+\]
+
+Para conocer la \textbf{carga total} que recibe la atmósfera en esa zona, realizamos la suma vectorial:
+
+\[
+\mathbf{e}_{total} = \mathbf{e}_T + \mathbf{e}_C = 
+\begin{pmatrix} 100 + 40 \\ 5 + 2 \\ 0.5 + 3.5 \end{pmatrix} = 
+\begin{pmatrix} 140 \\ 7 \\ 4.0 \end{pmatrix}
+\]
+
+\textbf{Interpretación:}
+La suma vectorial garantiza la integridad de las variables: sumamos dióxido de carbono solo con dióxido de carbono ($140$ ton), y partículas solo con partículas ($4.0$ ton). Mezclar componentes (sumar el CO$_2$ de una fábrica con el polvo de otra) carecería de sentido físico.
+\end{appbox}
+
+\paragraph{Aplicaciones sectoriales: Agro y Mecatrónica}
+
+\begin{itemize}
+    \item \textbf{Fusión de sensores (Agro):} 
+    Un nodo IoT registra variables climáticas de dos sensores para redundancia. Si el sensor A entrega el vector de estado $\mathbf{s}_A$ y el sensor B entrega $\mathbf{s}_B$, la suma (o promedio vectorial) permite reducir el ruido aleatorio y obtener una lectura más robusta del ambiente.
+
+    \item \textbf{Acumulación temporal (Ambiental):} 
+    El vector de emisiones diarias de un biodigestor se suma a lo largo de una semana ($t=1 \dots 7$) para obtener el impacto total acumulado:
+    \[ \mathbf{e}_{\text{semanal}} = \mathbf{e}_{\text{lun}} + \mathbf{e}_{\text{mar}} + \dots + \mathbf{e}_{\text{dom}} \]
+    Esto permite reportar totales de $\mathrm{CH}_4$ y $\mathrm{CO}_2$ sin perder la distinción entre gases.
+
+    \item \textbf{Composición de insumos (Agroindustrial):} 
+    En la formulación de alimento balanceado, el vector nutricional final (proteína, energía, fibra) se construye sumando los aportes vectoriales de cada ingrediente (maíz, soya, núcleo vitamínico), lo que permite verificar si la mezcla final cumple con los requerimientos dietarios.
+
+    \item \textbf{Corrección de Trayectoria (Mecatrónica/Robótica):}
+    Un dron de fumigación agrícola debe volar en una ruta ideal representada por el vector de velocidad $\mathbf{v}_{ideal}$. Sin embargo, enfrenta un viento lateral representado por el vector $\mathbf{v}_{viento}$.
+    Para mantener el curso, el sistema de control o la IA debe calcular la velocidad real resultante mediante la suma vectorial:
+    \[ \mathbf{v}_{real} = \mathbf{v}_{ideal} + \mathbf{v}_{viento} \]
+    
+    Si el resultado desvía al dron del cultivo, la IA debe generar un vector de compensación opuesto para anular la perturbación.
+\end{itemize}
+
+En todos estos casos, la suma vectorial permite construir representaciones compuestas que capturan la complejidad de los sistemas físicos, preparándolas para su análisis mediante algoritmos de control o modelos de inteligencia artificial.
+
+\section{Multiplicación por un escalar}
+
+Esta operación modifica la magnitud del vector sin alterar su línea de acción. Matemáticamente, escala todas las componentes por un mismo factor $\alpha$.
+
+\textbf{Definición formal.}  
+Dado un escalar $\alpha \in \mathbb{R}$ y un vector $\mathbf{x} \in \mathbb{R}^n$, el producto $\alpha \mathbf{x}$ se define como:
+\[
+\alpha \mathbf{x} = 
+\alpha \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} = 
+\begin{pmatrix} \alpha x_1 \\ \vdots \\ \alpha x_n \end{pmatrix}.
+\]
+
+\textbf{Interpretación Geométrica:}
+El efecto del escalar $\alpha$ sobre el vector original $\mathbf{x}$ depende de su valor:
+\begin{itemize}
+    \item Si $|\alpha| > 1$, el vector se \textbf{alarga} (dilatación).
+    \item Si $|\alpha| < 1$, el vector se \textbf{contrae} (compresión).
+    \item Si $\alpha < 0$, el vector \textbf{invierte su sentido} ($180^\circ$), aunque mantiene la misma línea de dirección.
+\end{itemize}
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.5, >=Stealth]
+        \coordinate (O) at (0,0);
+        
+        % Eje guía
+        \draw[dotted, gray] (-2, -1) -- (4, 2);
+        
+        % Vector Original
+        \draw[->, very thick, blue] (O) -- (1, 0.5) node[midway, above left] {$\mathbf{x}$};
+        
+        % Vector Escalado (x2) - Desplazado ligeramente para ver mejor
+        \draw[->, thick, violet] (0, -0.2) -- (2, 0.8) node[right] {$\alpha \mathbf{x} \ (\alpha=2)$};
+        
+        % Vector Invertido y Reducido (x -0.5)
+        \draw[->, thick, red] (0, 0.2) -- (-0.5, -0.05) node[left] {$\alpha \mathbf{x} \ (\alpha=-0.5)$};
+        
+        % Punto origen
+        \fill[black] (O) circle (1.5pt) node[below] {$0$};
+    \end{tikzpicture}
+    \caption{Efecto geométrico de la multiplicación escalar. Nótese cómo $\alpha=2$ duplica la longitud, mientras que $\alpha=-0.5$ reduce la longitud a la mitad e invierte el sentido.}
+    \label{fig:escalar_vector}
+\end{figure}
+
+\subsubsection{Aplicaciones: Escalamiento y Control}
+
+\begin{enumerate}
+    \item \textbf{Agro (Proyección de Insumos):} 
+    Suponga que el vector $\mathbf{d}$ representa la dosis de fertilizantes para \textbf{1 hectárea}: $\mathbf{d} = [100, 50, 30]^\top$ (kg de N, P, K).
+    Si un agricultor desea fertilizar un lote de 15 hectáreas, el requerimiento total es simplemente el vector escalado por la superficie:
+    \[ \mathbf{Total} = 15 \cdot \mathbf{d} = \begin{pmatrix} 1500 \\ 750 \\ 450 \end{pmatrix} \text{ kg}. \]
+    
+    \item \textbf{Mecatrónica (Ganancia de Control):}
+    En un sistema de control de un robot, el  ``error'' de posición es un vector $\mathbf{e}$ (diferencia entre dónde está y dónde debería estar). El controlador aplica una corrección proporcional multiplicando ese error por una ganancia $K_p$ (un escalar).
+    \[ \mathbf{u} = K_p \cdot \mathbf{e} \]
+    Si $K_p$ es muy grande, el robot reacciona violentamente (gran vector de fuerza); si es pequeño, reacciona suavemente.
+\end{enumerate}
+
+\section{Producto punto (producto escalar)}
+
+El \textbf{producto punto} es la operación fundamental para conectar la geometría (ángulos, longitudes) con el álgebra. Mide el grado de alineación entre dos vectores: si apuntan en la misma dirección, el valor es grande y positivo; si son perpendiculares, es cero; si apuntan en sentidos opuestos, es negativo.
+
+\textbf{Definición formal.}
+\[
+\cdot : \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}, \quad (\mathbf{x}, \mathbf{y}) \mapsto \mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^{n} x_i y_i.
+\]
+
+\subsubsection{Interpretación Geométrica y Similitud}
+
+Además de la suma algebraica, el producto punto satisface la identidad geométrica:
+\[
+\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos(\theta),
+\]
+donde $\theta$ es el ángulo entre los vectores. De aquí se deduce la \textbf{Similitud Coseno}, métrica clave en IA:
+\[
+\cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert}.
+\]
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.5, >=Stealth]
+        \coordinate (O) at (0,0);
+        \coordinate (A) at (3,1);    % Vector x
+        \coordinate (B) at (1,2.5);  % Vector y
+        
+        % Proyección
+        \coordinate (P) at ($(O)!(B)!(A)$); % Proyección de B sobre A
+        
+        % Vectores
+        \draw[->, thick, blue] (O) -- (A) node[right] {$\mathbf{x}$};
+        \draw[->, thick, red] (O) -- (B) node[above] {$\mathbf{y}$};
+        
+        % Línea de proyección
+        \draw[dashed, gray] (B) -- (P);
+        \draw[thick, violet] (O) -- (P) node[midway, below] {\scriptsize Proyección};
+        
+        % Ángulo
+        \draw[gray] (0.5, 0.16) arc (18.4:68.2:0.5);
+        \node[gray] at (0.7, 0.6) {$\theta$};
+        
+        % Texto explicativo
+        \node[align=left, anchor=west] at (3.5, 2) {
+            \small \textbf{Interpretación:}\\
+            \scriptsize $\mathbf{x} \cdot \mathbf{y} > 0 \to$ Ángulo agudo ($\theta < 90^\circ$)\\
+            \scriptsize $\mathbf{x} \cdot \mathbf{y} = 0 \to$ Ortogonales ($\theta = 90^\circ$)\\
+            \scriptsize $\mathbf{x} \cdot \mathbf{y} < 0 \to$ Ángulo obtuso ($\theta > 90^\circ$)
+        };
+    \end{tikzpicture}
+    \caption{El producto punto relaciona las magnitudes de dos vectores con el coseno del ángulo que forman. La línea violeta representa la ``sombra'' o proyección de $\mathbf{y}$ sobre $\mathbf{x}$.}
+    \label{fig:producto_punto}
+\end{figure}
+
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=1.5, >=Stealth]
+        % Definir coordenadas
+        \coordinate (O) at (0,0);
+        \coordinate (X) at (4,0);    % Vector x a lo largo del eje
+        \coordinate (Y) at (2,2.5);  % Vector y formando un ángulo
+        
+        % Calcular la proyección de Y sobre X
+        % Proyección escalar = |y| * cos(theta) = (x.y) / |x|
+        % x=(4,0), y=(2,2.5). x.y = 8. |x|=4. Proyección = 8/4 = 2.
+        \coordinate (P) at (2,0);    % Punto de proyección
+        
+        % --- Vectores Principales ---
+        \draw[->, very thick, blue] (O) -- (X) node[right] {$\mathbf{x}$};
+        \draw[->, very thick, red] (O) -- (Y) node[above] {$\mathbf{y}$};
+        
+        % --- Elementos de la Proyección ---
+        % Línea punteada perpendicular
+        \draw[dashed, gray, thick] (Y) -- (P);
+        % Vector proyección (sombra)
+        \draw[->, very thick, violet] (O) -- (P);
+        
+        % Marca de ángulo recto
+        \draw[gray] (P) -- ++(0,0.2) -- ++(-0.2,0) -- ++(0,-0.2);
+        
+        % --- Ángulo theta ---
+        \draw[thick, gray] (0.6,0) arc (0:51.34:0.6); % atan(2.5/2) approx 51.34 deg
+        \node[gray] at (0.9, 0.4) {$\theta$};
+        
+        % --- Etiquetas de Magnitud ---
+        % Etiqueta para la proyección
+        \draw[<->, violet, thick] (0,-0.3) -- (2,-0.3) node[midway, below] {$\lVert \mathbf{y} \rVert \cos(\theta)$};
+        % Etiqueta para la norma de x
+        \draw[<->, blue, thick] (0,-0.8) -- (4,-0.8) node[midway, below] {$\lVert \mathbf{x} \rVert$};
+        
+        % --- Texto Explicativo ---
+        \node[anchor=north west, align=left, draw, fill=gray!10, rounded corners] at (3.5, 3.5) {
+            \textbf{Interpretación Geométrica:}\\
+            El producto punto es la magnitud de un vector\\
+            multiplicada por la proyección del otro sobre él.\\[0.5em]
+            $\mathbf{x} \cdot \mathbf{y} = \underbrace{\lVert \mathbf{x} \rVert}_{\text{Longitud de } \mathbf{x}} \cdot \underbrace{(\lVert \mathbf{y} \rVert \cos \theta)}_{\text{Proyección de } \mathbf{y} \text{ en } \mathbf{x}}$
+        };
+        
+    \end{tikzpicture}
+    \caption{Representación geométrica del producto punto. La línea violeta muestra la componente de $\mathbf{y}$ que está ``alineada'' con $\mathbf{x}$. El producto punto es el producto de esta proyección por la longitud total de $\mathbf{x}$.}
+    \label{fig:producto_punto_geo}
+\end{figure}
+
+\paragraph{Aplicaciones en Ingeniería y Agro}
+
+\begin{enumerate}
+    \item \textbf{Agro (Firmas Espectrales):} 
+    En teledetección, una planta sana tiene una ``firma''\ o vector ideal $\mathbf{v}_{sana}$ (valores de reflectancia en distintas bandas). Si el dron mide un vector actual $\mathbf{v}_{medido}$, calculamos el producto punto (normalizado) entre ambos.
+    \begin{itemize}
+        \item Si $\cos(\theta) \approx 1$, la firma es casi idéntica $\to$ Planta Sana.
+        \item Si $\cos(\theta) \ll 1$, la alineación es baja $\to$ Posible estrés hídrico o plaga.
+    \end{itemize}
+
+    \item \textbf{Mecatrónica (Cálculo de Trabajo y Potencia):}
+    Para un robot móvil, el trabajo mecánico $W$ realizado al mover una carga es el producto punto entre el vector de fuerza aplicada $\mathbf{F}$ y el vector de desplazamiento $\mathbf{d}$:
+    \[ W = \mathbf{F} \cdot \mathbf{d} = \lVert \mathbf{F} \rVert \lVert \mathbf{d} \rVert \cos(\theta) \]
+    Si el robot aplica fuerza perpendicular al movimiento ($\theta=90^\circ$), el producto punto es 0 y no se realiza trabajo útil (energía desperdiciada).
+
+    \item \textbf{Administrativo (Sistemas de Puntuación):}
+    Sea $\mathbf{w}$ un vector de ``pesos''\ o importancia para tres criterios (Costo, Calidad, Tiempo) y $\mathbf{x}$ el vector de puntajes de un proveedor. El puntaje total es simplemente:
+    \[ \text{Score} = \mathbf{w} \cdot \mathbf{x} = w_1 x_1 + w_2 x_2 + w_3 x_3 \]
+    Esta es la base de las redes neuronales: una neurona realiza un producto punto entre los datos de entrada y sus pesos sinápticos.
+\end{enumerate}
+
+\subsubsection{Interpretación geométrica del Producto Punto}
+
+El producto punto ($\mathbf{x} \cdot \mathbf{y}$) es mucho más que una suma de productos de componentes: es la operación geométrica fundamental que cuantifica cuánto dos vectores apuntan en la misma dirección. Esta noción de “alineación direccional” es la base de técnicas esenciales en inteligencia artificial, como la similitud coseno, la proyección ortogonal y el Análisis de Componentes Principales (PCA).
+
+La definición geométrica del producto punto para dos vectores $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$ es:
+\[
+\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert \cos(\theta),
+\]
+donde $\lVert \mathbf{x} \rVert$ y $\lVert \mathbf{y} \rVert$ son las longitudes euclidianas de los vectores, y $\theta \in [0, \pi]$ es el ángulo entre ellos.
+
+Esta fórmula revela tres casos clave:
+\begin{itemize}
+    \item Si $\theta = 0^\circ$ (vectores \textbf{paralelos y en la misma dirección}), $\cos(\theta) = 1$ y el producto punto es \textbf{máximo}.
+    \item Si $\theta = 90^\circ$ (vectores \textbf{ortogonales}), $\cos(\theta) = 0$ y el producto punto es \textbf{cero}.
+    \item Si $\theta = 180^\circ$ (vectores \textbf{opuestos}), $\cos(\theta) = -1$ y el producto punto es \textbf{mínimo} (negativo).
+\end{itemize}
+
+\textbf{Conexión con aplicaciones en IA y agro-ambiente.}  
+En el análisis de datos, el producto punto permite:
+\begin{itemize}
+    \item Comparar perfiles de fertilización entre parcelas: si $\theta$ es pequeño, las prácticas son similares.
+    \item Detectar animales atípicos en un hato: un vector fisiológico con $\theta$ grande respecto a la media indica una posible anomalía.
+    \item Calcular la similitud coseno (normalizando las magnitudes): $\frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert} = \cos(\theta)$, que mide \textit{solo} la alineación, ignorando la escala.
+\end{itemize}
+
+Esta interpretación geométrica es el primer paso hacia la comprensión de cómo los algoritmos de IA “ven” y comparan datos en espacios multidimensionales.
+\paragraph{Dependencia de la Proyección}
+El concepto más fundamental es la relación con la proyección ortogonal, como se ilustra en la figura \ref{fig:producto_punto_geometrico_corregido}. El término $\lVert \mathbf{y} \rVert \cos(\theta)$ representa precisamente la longitud de la \textit{componente} del vector $\mathbf{y}$ que está alineada con $\mathbf{x}$ (la proyección, $\mathrm{proj}_{\mathbf{x}} \mathbf{y}$).
+
+Por lo tanto, el producto punto puede reescribirse como:
+\[
+\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \cdot \left( \lVert \mathbf{y} \rVert \cos(\theta) \right) = \lVert \mathbf{x} \rVert \cdot \lVert \mathrm{proj}_{\mathbf{x}} \mathbf{y} \rVert.
+\]
+El producto punto es, en esencia, la magnitud de $\mathbf{x}$ multiplicada por la longitud de la ``sombra'' que $\mathbf{y}$ proyecta sobre $\mathbf{x}$. El signo de $\mathbf{x} \cdot \mathbf{y}$ depende únicamente del $\cos(\theta)$.
+
+\paragraph{Casos Críticos}
+El valor del producto punto está dominado por el coseno del ángulo $\theta$, asumiendo que las magnitudes de los vectores son positivas:
+
+\begin{enumerate}
+    \item \textbf{Alineación Perfecta ($\theta = 0^\circ$):}
+    Si $\mathbf{x}$ y $\mathbf{y}$ apuntan exactamente en la misma dirección, $\cos(0^\circ) = 1$.
+    \[
+    \mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert.
+    \]
+    El producto punto es \textit{máximo y positivo}. En IA, esto indica máxima similitud o máxima compatibilidad direccional.
+
+    \item \textbf{Ortogonalidad ($\theta = 90^\circ$):}
+    Si $\mathbf{x}$ y $\mathbf{y}$ son perpendiculares (ortogonales), $\cos(90^\circ) = 0$.
+    \[
+    \mathbf{x} \cdot \mathbf{y} = 0.
+    \]
+    El producto punto es \textit{cero}, indicando que los vectores no tienen ninguna componente en común y son linealmente independientes, un principio clave en la decorrelación de datos (ej. PCA).
+
+    \item \textbf{Alineación Opuesta ($\theta = 180^\circ$):}
+    Si $\mathbf{x}$ y $\mathbf{y}$ apuntan en direcciones opuestas, $\cos(180^\circ) = -1$.
+    \[
+    \mathbf{x} \cdot \mathbf{y} = -\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert.
+    \]
+    El producto punto es \textit{mínimo y negativo}, indicando la máxima disimilitud o incompatibilidad.
+\end{enumerate}
+    
+
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[scale=1.4]
+
+    % Origen
+    \coordinate (O) at (0,0);
+    \coordinate (X) at (3.5, 1.5);
+    \coordinate (Y) at (1.0, 3.5);
+
+    % Cálculo del ángulo entre X y Y
+    \pgfmathsetmacro{\angleX}{atan2(1.5, 3.5)} % ángulo de x respecto al eje x1
+    \pgfmathsetmacro{\angleY}{atan2(3.5, 1.0)} % ángulo de y respecto al eje x1
+    \pgfmathsetmacro{\angleTheta}{\angleY - \angleX}
+
+    % Ejes
+    \draw[->, gray!50] (-0.5,0) -- (4,0) node[right] {$x_1$};
+    \draw[->, gray!50] (0,-0.5) -- (0,4) node[above] {$x_2$};
+
+    % Vectores
+    \draw[->, blue, very thick] (O) -- (X)
+        node[midway, below right] {$\mathbf{x}$};
+    \draw[->, red, very thick] (O) -- (Y)
+        node[midway, above left] {$\mathbf{y}$};
+
+    % Proyección de y sobre x
+    \pgfmathsetmacro{\scale}{
+        ((3.5)*(1.0) + (1.5)*(3.5)) /
+        ((3.5)*(3.5) + (1.5)*(1.5))
+    }
+    \coordinate (P) at ({\scale*3.5}, {\scale*1.5});
+    \draw[dashed, red!70] (Y) -- (P);
+    \draw[->, red!70, thick] (O) -- (P)
+        node[midway, below] {$\mathrm{proj}_{\mathbf{x}} \mathbf{y}$};
+
+    % Ángulo theta CON FLECHAS EN AMBOS EXTREMOS
+    \draw[
+        purple,
+        thick,
+        ->
+    ]
+    (O) ++({\angleX}:1.0)
+    arc[
+        start angle=\angleX,
+        end angle=\angleY,
+        radius=1.0
+    ];
+
+    \node[purple] at ({\angleX + 0.5*\angleTheta}:1.3) {$\theta$};
+
+\end{tikzpicture}
+\caption{Interpretación geométrica del producto punto. El ángulo $\theta$ está dibujado entre los vectores $\mathbf{x}$ e $\mathbf{y}$. El producto punto es proporcional a la magnitud de la proyección de $\mathbf{y}$ sobre $\mathbf{x}$.}
+\label{fig:producto_punto_geometrico_corregido}
+\end{figure}
+
+\subsubsection{Síntesis y Aplicaciones Contextuales del Producto Punto}
+
+La utilidad del producto punto ($\mathbf{x} \cdot \mathbf{y}$) radica en su capacidad para actuar como una medida de \textit{alineación multidimensional} o \textit{similitud} entre vectores. Su valor es grande cuando las magnitudes y la alineación son altas, reflejando perfiles compatibles. Este concepto es la base de la \textbf{similitud coseno} ($\cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert}$), ampliamente usada en motores de recomendación y clustering.
+
+\vspace{0.3cm}
+
+\paragraph{Ejemplos en Contextos de Modelado Híbrido (Agronómico y Zootécnico)}
+
+\begin{itemize}
+    \item \textbf{Ejemplo Agronómico.}
+    Considere dos parcelas de maíz caracterizadas por el vector de insumos aplicados:
+    \[
+    \mathbf{x} = \begin{pmatrix} 120 \\ 50 \\ 3 \end{pmatrix} \text{ (kg/ha de N, P, K)}, \quad
+    \mathbf{y} = \begin{pmatrix} 100 \\ 60 \\ 4 \end{pmatrix}.
+    \]
+    El producto punto $\mathbf{x} \cdot \mathbf{y} = 12\,000 + 3\,000 + 12 = 15\,012$ es alto, lo que sugiere un perfil de fertilización similar. Esta medida agrupa parcelas con prácticas comparables.
+
+    \item \textbf{Ejemplo Zootécnico.}
+    Considere dos vacas lecheras descritas por su historial productivo en una ventana de control:
+    \[
+    \mathbf{x} = \begin{pmatrix} 28 \\ 4{,}2 \\ 38 \end{pmatrix}, \quad
+    \mathbf{y} = \begin{pmatrix} 30 \\ 4{,}0 \\ 39 \end{pmatrix},
+    \]
+    donde las componentes representan días en lactancia, producción diaria (L/día) y contenido de grasa (\%).
+    El producto punto:
+    \[
+    \mathbf{x} \cdot \mathbf{y} = (28)(30) + (4{,}2)(4{,}0) + (38)(39) = 2338{,}8.
+    \]
+    Este valor alto refleja perfiles productivos similares: producción alta, lactancia avanzada y elevado contenido de grasa. Esta medida es útil en sistemas de segmentación de hatos.
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Otros Contextos Aplicados}
+
+\begin{itemize}
+    \item \textbf{Ambiental:} Dos estaciones de monitoreo registran concentraciones medias (en $\mathrm{\mu g/m^3}$) de $\mathrm{PM_{2.5}}$, $\mathrm{NO_2}$ y $\mathrm{O_3}$: $\mathbf{a}$ y $\mathbf{b}$. Un producto punto alto sugiere un patrón similar de contaminación, útil para agrupar zonas con fuentes emisoras comunes.
+
+    \item \textbf{Administrativo:} Dos propuestas presupuestales $\mathbf{p}$ y $\mathbf{q}$ (para rubros como infraestructura, capacitación, operación) tienen un producto punto que cuantifica la \textit{alineación de prioridades presupuestales}.
+
+    \item \textbf{Diseño (Industrial/Agrícola):} Dos prototipos de invernadero $\mathbf{d}_1$ y $\mathbf{d}_2$ (descritos por área, sensores, consumo energético). Un producto punto elevado indica diseños estructuralmente similares, facilitando la clasificación de alternativas.
+\end{itemize}
+
+En resumen, el producto punto sirve como un indicador fundamental de cuán coherentes o compatibles son dos conjuntos de mediciones o características multidimensionales.
+\section{Laboratorio de Programación: Aritmética Tensorial en la Práctica}
+
+En esta sección, trasladamos las operaciones de suma, escalamiento y producto punto al código. En IA, estas operaciones no se realizan mediante bucles (\textit{for loops}), sino a través de \textbf{operaciones vectorizadas}, las cuales aprovechan el paralelismo del procesador.
+
+\subsection{Implementación de Suma y Escalamiento}
+
+La suma de vectores requiere que ambos tengan la misma dimensión (\textit{shape}). La multiplicación por un escalar, en cambio, utiliza un mecanismo llamado \textbf{Broadcasting}, donde el escalar se ``difunde'' sobre todos los elementos del vector.
+
+\begin{lstlisting}[language=Python, caption=Suma de vectores y multiplicación por escalar]
+import numpy as np
+import torch
+
+# 1. Suma de vectores (Agro: Integración de dosis de fertilizante)
+dosis_neta = np.array([50, 20, 10])  # N, P, K inicial
+suplemento = np.array([10,  5,  5])  # Refuerzo aplicado
+dosis_total = dosis_neta + suplemento
+print(f''Dosis Total (Vector): {dosis_total}'')
+
+# 2. Multiplicación por Escalar (Mecatrónica: Control de Ganancia)
+# Escalar una señal de sensor de torque
+torque_raw = torch.tensor([1.2, 0.8, 1.5])
+ganancia = 2.5
+torque_ajustado = ganancia * torque_raw
+print(f''Torque ajustado: {torque_ajustado}'')
+\end{lstlisting}
+
+\subsection{El Producto Punto: Cuantificando la Afinidad}
+
+El producto punto es la operación más importante en IA. En Python, podemos ejecutarlo usando el operador \texttt{@} (recomendado en versiones modernas) o las funciones específicas de las librerías.
+
+\begin{lstlisting}[language=Python, caption=Cálculo del Producto Punto]
+# Vectores de ejemplo (Administración: Gastos vs Presupuesto)
+unidades = np.array([10, 5, 20])   # Cantidad de productos comprados
+precios = np.array([1.5, 10.0, 0.5]) # Precio unitario por categoría
+
+# Producto punto: Suma de (unidades[i] * precios[i])
+gasto_total = np.dot(unidades, precios)
+# Forma alternativa (estándar en álgebra lineal de Python):
+gasto_total_alt = unidades @ precios
+
+print(f''Gasto total calculado via producto punto: ${gasto_total}'')
+\end{lstlisting}
+
+
+\subsection{Aplicaciones Sectoriales en Código}
+
+\begin{appbox}{Mecatrónica: Resultante de Fuerzas}
+    En un brazo robótico, si dos motores ejercen fuerzas representadas por los vectores $\mathbf{f}_1$ y $\mathbf{f}_2$, la fuerza resultante sobre el efector final es simplemente \texttt{$f_res = f1 + f2$}. La magnitud de esta fuerza se obtiene con \texttt{np.linalg.norm($f_res$)}.
+\end{appbox}
+
+\begin{appbox}{Agroindustrial: Mezclas y Diluciones}
+    Si un vector $\mathbf{v}$ representa la concentración de azúcares y acidez de un lote de jugo, y queremos diluirlo al $50\%$, aplicamos \texttt{$nuevo_lote = 0.5 * v$}. El producto punto se usa para calcular el costo total de la mezcla si tenemos un vector de precios por litro de cada componente.
+\end{appbox}
+
+\subsection*{Resumen de Funciones Clave}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Operación} & \textbf{Sintaxis NumPy} & \textbf{Sintaxis PyTorch} \\ \hline
+Suma               & \texttt{a + b}          & \texttt{a + b}            \\ \hline
+Escalamiento       & \texttt{k * a}          & \texttt{k * a}            \\ \hline
+Producto Punto     & \texttt{np.dot(a, b)}   & \texttt{torch.dot(a, b)}  \\ \hline
+Producto de Matriz & \texttt{a @ b}          & \texttt{torch.matmul(a, b)} \\ \hline
+\end{tabular}
+\caption{Comparativa de funciones para aritmética tensorial.}
+\end{table}
+\section{Multiplicación Matriz-Vector: El Motor de las Redes Neuronales}
+
+Antes de entrar en el formalismo, entendamos la intuición: si un vector representa un dato (ej. una parcela, un animal, una propuesta), multiplicar ese vector por una matriz es equivalente a procesar ese dato a través de un banco de filtros. La matriz toma la información cruda, mezcla sus componentes según ciertas reglas (pesos) y produce una nueva representación más útil para la toma de decisiones.
+
+Esta operación es el corazón de las redes neuronales profundas (Deep Learning).
+
+\paragraph{Definición formal}
+Sea $\mathbf{W} \in \mathbb{R}^{m \times n}$ una matriz y $\mathbf{x} \in \mathbb{R}^n$ un vector de entrada. Su producto es un nuevo vector $\mathbf{z} \in \mathbb{R}^m$ definido por:
+\[
+\mathbf{z} = \mathbf{W} \mathbf{x} =
+\begin{pmatrix}
+\mathbf{fila}_1(\mathbf{W}) \cdot \mathbf{x} \\
+\vdots \\
+\mathbf{fila}_m(\mathbf{W}) \cdot \mathbf{x}
+\end{pmatrix}.
+\]
+Cada entrada $z_i$ es el \textbf{producto punto} entre la fila $i$-ésima de la matriz y el vector $\mathbf{x}$. Para que la operación sea válida, el número de columnas de la matriz ($n$) debe coincidir con la dimensión de entrada del vector.
+
+\paragraph{Ejemplo Teórico: Transformación de Insumos a Nutrientes}
+
+Imaginemos un sistema inteligente para la formulación de raciones en ganado lechero. Queremos calcular el aporte nutricional total a partir de una mezcla de ingredientes.
+
+\textbf{1. El Vector de Entrada ($\mathbf{x}$):}
+Representa la cantidad de materia prima (en kg) que vamos a utilizar en la mezcla.
+\[
+\mathbf{x} = \begin{pmatrix} 10 \\ 5 \end{pmatrix}
+\begin{matrix} \text{(kg de Maíz)} \\ \text{(kg de Soya)} \end{matrix}
+\]
+Aquí, $n=2$ (tenemos 2 ingredientes).
+
+\textbf{2. La Matriz de Pesos ($\mathbf{W}$):}
+Representa el contenido nutricional por cada kg de ingrediente.
+\begin{itemize}
+    \item La \textbf{Fila 1} corresponde a la \textbf{Proteína Cruda} (en kg/kg).
+    \item La \textbf{Fila 2} corresponde a la \textbf{Energía Neta} (en Mcal/kg).
+\end{itemize}
+
+\[
+\mathbf{W} = 
+\begin{pmatrix} 
+0{,}08 & 0{,}45 \\ 
+3{,}20 & 2{,}80 
+\end{pmatrix}
+\begin{matrix} \leftarrow \text{Perfil de Proteína} \\ \leftarrow \text{Perfil de Energía} \end{matrix}
+\]
+Aquí, $m=2$ (tenemos 2 métricas de salida). Note que las columnas ($n=2$) coinciden con los ingredientes (Maíz y Soya).
+
+\textbf{3. El Cálculo ($\mathbf{z} = \mathbf{W}\mathbf{x}$):}
+Aplicamos la definición del producto punto fila por columna:
+
+\[
+\mathbf{z} = 
+\begin{pmatrix}
+(\text{Fila}_1 \cdot \mathbf{x}) \\
+(\text{Fila}_2 \cdot \mathbf{x})
+\end{pmatrix}
+=
+\begin{pmatrix}
+(0{,}08)(10) + (0{,}45)(5) \\
+(3{,}20)(10) + (2{,}80)(5)
+\end{pmatrix}
+\]
+
+\[
+\mathbf{z} = 
+\begin{pmatrix}
+0{,}8 + 2{,}25 \\
+32{,}0 + 14{,}0
+\end{pmatrix}
+=
+\begin{pmatrix}
+3{,}05 \\
+46{,}0
+\end{pmatrix}
+\begin{matrix} \text{kg de Proteína Total} \\ \text{Mcal de Energía Total} \end{matrix}
+\]
+
+\textbf{Interpretación en Inteligencia Artificial:}
+En este ejemplo, la matriz $\mathbf{W}$ codifica el ``conocimiento'' del sistema sobre los alimentos.
+\begin{itemize}
+    \item En una Red Neuronal, $\mathbf{x}$ serían los datos de entrada, $\mathbf{W}$ serían los \textit{pesos sinápticos} aprendidos durante el entrenamiento, y $\mathbf{z}$ sería la activación resultante.
+    \item La operación $\mathbf{W}\mathbf{x}$ transforma el espacio de ``kilos de comida'' al espacio de ``requerimientos nutricionales''.
+\end{itemize}
+
+\paragraph{Enfoque en Redes Neuronales: La Capa Densa}
+
+En el contexto de la inteligencia artificial, esta operación no es solo álgebra; es la definición de una \textbf{capa densa} (fully connected layer). La ecuación fundamental que ejecuta una neurona artificial (antes de la activación no lineal) es:
+\[
+\mathbf{z} = \mathbf{W} \mathbf{x} + \mathbf{b},
+\]
+donde cada elemento cumple un rol biológico-computacional preciso:
+
+\begin{itemize}
+    \item $\mathbf{x}$ (Entradas): Son las señales recibidas (ej. variables del cultivo o píxeles de una imagen).
+    \item $\mathbf{W}$ (Matriz de Pesos): Es la ``memoria'' del modelo. Cada fila de $\mathbf{W}$ representa una neurona, y sus valores indican qué tanto importa cada entrada para esa neurona específica.
+    \item $\mathbf{z}$ (Activaciones): Es la respuesta de las neuronas ante el estímulo $\mathbf{x}$.
+\end{itemize}
+
+\paragraph{Ejemplo aplicado: Neuronas ``Expertas'' en Evaluación Administrativa}
+
+Imagine que una IA administrativa debe evaluar automáticamente propuestas de proyectos. El vector de entrada $\mathbf{x}$ contiene $n=4$ variables presupuestales: $(\text{infraestructura}, \text{capacitación}, \text{operación}, \text{monitoreo})$.
+
+La red neuronal tiene una capa con $m=2$ neuronas, donde cada una se ha especializado (aprendido) para detectar un criterio diferente:
+\begin{enumerate}
+    \item \textbf{Neurona 1:} Evalúa el ``Equilibrio Estratégico''.
+    \item \textbf{Neurona 2:} Evalúa la ``Sostenibilidad Ambiental''.
+\end{enumerate}
+
+La matriz de pesos $\mathbf{W} \in \mathbb{R}^{2 \times 4}$ codifica estas prioridades:
+\[
+\mathbf{W} =
+\begin{pmatrix}
+0{,}3 & 0{,}3 & 0{,}3 & 0{,}1 \\  % Neurona 1: Pondera todo por igual (busca equilibrio)
+0{,}1 & 0{,}2 & 0{,}4 & 0{,}3      % Neurona 2: Prioriza operación y monitoreo (sostenibilidad)
+\end{pmatrix}.
+\]
+
+Si llega una propuesta con el siguiente perfil de inversión (en millones):
+\[
+\mathbf{x} = (300, 80, 220, 75)^\top.
+\]
+
+El paso hacia adelante (\textit{forward pass}) de la red calcula:
+\[
+\mathbf{z} = \mathbf{W} \mathbf{x} =
+\begin{pmatrix}
+(0{,}3)(300) + (0{,}3)(80) + (0{,}3)(220) + (0{,}1)(75) \\
+(0{,}1)(300) + (0{,}2)(80) + (0{,}4)(220) + (0{,}3)(75)
+\end{pmatrix}
+=
+\begin{pmatrix}
+187{,}5 \\
+156{,}5
+\end{pmatrix}.
+\]
+
+\textbf{Interpretación del resultado:}
+El vector de salida $\mathbf{z}$ nos dice que esta propuesta tiene una puntuación alta en equilibrio ($187{,}5$) y moderada en sostenibilidad ($156{,}5$).
+
+\paragraph{Por qué esto es fundamental}
+Este mecanismo permite que una red neuronal transforme datos brutos en conceptos abstractos. En este ejemplo, pasamos de ``dinero en rubros'' (espacio de entrada $\mathbb{R}^4$) a ``calidad estratégica'' (espacio de características $\mathbb{R}^2$). Durante el entrenamiento, el algoritmo de \textit{backpropagation} ajusta los valores de la matriz $\mathbf{W}$ para minimizar el error en la evaluación, ``aprendiendo'' así los pesos ideales para clasificar proyectos correctamente.
+
+\section{Producto de Matrices}
+
+Las matrices son la estructura algebraica central para representar datos tabulares, transformaciones lineales y relaciones entre variables en inteligencia artificial. A continuación, se presentan las operaciones y propiedades más relevantes para el modelado con datos.
+
+La multiplicación de matrices es el motor computacional de la Inteligencia Artificial. No solo generaliza el producto vector-vector, sino que permite realizar múltiples operaciones simultáneamente (procesamiento en lote o \textit{batch}) y componer transformaciones lineales.
+
+\subsubsection{Regla de Dimensiones}
+Para que el producto $\mathbf{A}\mathbf{B}$ exista, las dimensiones internas deben coincidir (``el ancho de la primera igual al alto de la segunda'').
+\[
+\underbrace{\mathbf{A}}_{m \times \mathbf{n}} \quad \times \quad \underbrace{\mathbf{B}}_{\mathbf{n} \times p} \quad = \quad \underbrace{\mathbf{C}}_{m \times p}
+\]
+
+\paragraph{Definición formal}
+Dadas $\mathbf{A} \in \mathbb{R}^{m \times n}$ y $\mathbf{B} \in \mathbb{R}^{n \times p}$, su producto $\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{m \times p}$ se define elemento a elemento como el producto punto entre la fila $i$ de $\mathbf{A}$ y la columna $j$ de $\mathbf{B}$:
+
+\[
+c_{ij} = \mathbf{fila}_i(\mathbf{A}) \cdot \mathbf{columna}_j(\mathbf{B}) = \sum_{k=1}^{n} a_{ik} b_{kj}.
+\]
+
+\begin{figure}[ht]
+    \centering
+    \begin{tikzpicture}[scale=0.8]
+        % Matriz A
+        \draw[thick] (0,0) rectangle (3,4);
+        \node at (1.5, 4.3) {$\mathbf{A} \ (m \times n)$};
+        % Fila i resaltada
+        \fill[blue!20] (0, 2.5) rectangle (3, 3);
+        \draw[thick, blue] (0, 2.5) rectangle (3, 3);
+        \node[blue, right] at (0, 2.75) {\tiny Fila $i$};
+        
+        % Signo multiplicacion
+        \node at (3.5, 2) {$\times$};
+        
+        % Matriz B
+        \draw[thick] (4,1) rectangle (7,4); % (n x p) -> ponemos algo cuadrado visualmente
+        \node at (5.5, 4.3) {$\mathbf{B} \ (n \times p)$};
+        % Columna j resaltada
+        \fill[red!20] (5.5, 1) rectangle (6, 4);
+        \draw[thick, red] (5.5, 1) rectangle (6, 4);
+        \node[red, below] at (5.75, 1) {\tiny Col $j$};
+        
+        % Signo igual
+        \node at (7.5, 2) {$=$};
+        
+        % Matriz C
+        \draw[thick] (8,0) rectangle (11,3); % (m x p)
+        \node at (9.5, 3.3) {$\mathbf{C} \ (m \times p)$};
+        % Celda ij resultante
+        \fill[violet!40] (9.5, 1.5) rectangle (10, 2); % intersección visual relativa
+        \draw[thick, violet] (9.5, 1.5) rectangle (10, 2);
+        \node[violet, right] at (10, 1.75) {\tiny $c_{ij}$};
+        
+        % Flechas de flujo
+        \draw[->, dashed, blue] (3, 2.75) -- (9.5, 1.75);
+        \draw[->, dashed, red] (5.75, 1) -- (9.75, 1.5);
+        
+    \end{tikzpicture}
+    \caption{Lógica del producto matricial: El elemento $c_{ij}$ concentra la interacción entre toda la fila $i$ de la primera matriz y toda la columna $j$ de la segunda.}
+    \label{fig:mult_matrices}
+\end{figure}
+
+\textbf{Propiedades clave:}
+\begin{itemize}
+    \item \textbf{No Conmutatividad:} En general, $\mathbf{A}\mathbf{B} \neq \mathbf{B}\mathbf{A}$. El orden importa: rotar y luego trasladar no es lo mismo que trasladar y luego rotar.
+    \item \textbf{Asociatividad:} $(\mathbf{A}\mathbf{B})\mathbf{C} = \mathbf{A}(\mathbf{B}\mathbf{C})$. Esto es vital en Deep Learning para optimizar el cómputo en capas profundas.
+\end{itemize}
+
+\begin{appbox}{Ejemplo Práctico: Lotes $\times$ Proveedores}
+Imaginemos que queremos calcular costos para diferentes escenarios.
+\begin{itemize}
+    \item $\mathbf{A}$ (Requerimientos): 2 Lotes (filas) necesitan cantidades de 3 insumos (columnas: N, P, K).
+    \item $\mathbf{B}$ (Precios): Esos 3 insumos tienen precios diferentes en 2 Proveedores distintos (columnas).
+\end{itemize}
+\[
+\mathbf{A}_{(2 \times 3)} = 
+\begin{pmatrix} 
+10 & 20 & 5 \\ 
+15 & 10 & 2 
+\end{pmatrix}, \quad
+\mathbf{B}_{(3 \times 2)} = 
+\begin{pmatrix} 
+2 & 3 \\ 
+4 & 4 \\ 
+10 & 8 
+\end{pmatrix}
+\]
+El producto $\mathbf{C} = \mathbf{AB}$ nos dará una matriz de $2 \times 2$ donde cada elemento $c_{ij}$ es el \textbf{costo total} del Lote $i$ comprando al Proveedor $j$.
+
+Realizamos los cálculos para cada celda:
+\begin{align*}
+c_{11} &= (10\cdot 2) + (20 \cdot 4) + (5 \cdot 10) = 20 + 80 + 50 = 150 \\
+c_{12} &= (10\cdot 3) + (20 \cdot 4) + (5 \cdot 8) = 30 + 80 + 40 = 150 \\
+c_{21} &= (15\cdot 2) + (10 \cdot 4) + (2 \cdot 10) = 30 + 40 + 20 = 90 \\
+c_{22} &= (15\cdot 3) + (10 \cdot 4) + (2 \cdot 8) = 45 + 40 + 16 = 101
+\end{align*}
+
+El resultado final es:
+\[
+\mathbf{C} = 
+\begin{pmatrix} 
+150 & 150 \\ 
+90 & 101 
+\end{pmatrix}
+\]
+
+\textbf{Interpretación para toma de decisiones:}
+\begin{itemize}
+    \item Para el \textbf{Lote 1} (Fila 1), ambos proveedores resultan en el mismo costo total (\$150), aunque los precios unitarios sean distintos.
+    \item Para el \textbf{Lote 2} (Fila 2), es más económico comprar al \textbf{Proveedor 1} (\$90) que al Proveedor 2 (\$101).
+\end{itemize}
+Esta operación permite evaluar múltiples escenarios económicos de forma simultánea.
+\end{appbox}
+\section{Escalares asociados: Traza, Determinante y Rango}
+
+Antes de analizar propiedades más complejas, definimos tres escalares que resumen la estructura de una matriz cuadrada $\mathbf{A} \in \mathbb{R}^{n \times n}$:
+
+\begin{itemize}
+    \item \textbf{Traza ($\mathrm{tr}$):} La suma de los elementos de la diagonal principal. En matrices de covarianza, representa la \textit{varianza total} del sistema.
+    \item \textbf{Determinante ($\det$):} Una medida del cambio de volumen que produce la matriz como transformación lineal. Si $\det(\mathbf{A}) = 0$, la matriz ``aplasta'' el espacio y destruye información.
+    \item \textbf{Rango:} El número máximo de filas o columnas linealmente independientes. Indica la cantidad de información no redundante en los datos.
+\end{itemize}
+
+\paragraph{El Determinante}
+
+El \textbf{determinante} es una función escalar que asigna a cada matriz cuadrada $\mathbf{A} \in \mathbb{R}^{n \times n}$ un número real, denotado como $\det(\mathbf{A})$ o $|\mathbf{A}|$. Este valor condensa información crítica sobre la naturaleza geométrica y algebraica de la matriz.
+
+
+
+\paragraph{Interpretación geométrica}
+En el contexto del análisis de datos, el determinante representa el \textbf{factor de escala} del volumen (o área en 2D) cuando la matriz $\mathbf{A}$ actúa como una transformación lineal.
+\begin{itemize}
+    \item Si $|\det(\mathbf{A})| > 1$, la transformación expande el espacio.
+    \item Si $0 < |\det(\mathbf{A})| < 1$, la transformación contrae el espacio.
+    \item Si $\det(\mathbf{A}) = 0$, la transformación ``aplasta'' el volumen hasta convertirlo en una superficie, línea o punto (pérdida de dimensionalidad).
+\end{itemize}
+
+\paragraph{Cálculo en $2 \times 2$}
+Para una matriz de $\mathbb{R}^{2 \times 2}$, la fórmula es:
+\[
+\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc.
+\]
+
+\paragraph{Singularidad e Invertibilidad}
+La propiedad más importante para la inteligencia artificial es su relación con la inversión de matrices:
+\[
+\mathbf{A} \text{ es invertible} \iff \det(\mathbf{A}) \neq 0.
+\]
+Una matriz con determinante cero se llama \textbf{singular}. En términos de datos, esto implica que las filas (o columnas) son linealmente dependientes, es decir, existe redundancia perfecta en la información (colinealidad).
+
+\paragraph{Ejemplo Agro-Ambiental: Detección de Redundancia}
+Suponga que intentamos modelar el crecimiento de un cultivo usando dos variables que creemos distintas: $x_1$ (agua de riego en L) y $x_2$ (tiempo de riego en minutos). Sin embargo, si el sistema de riego tiene un flujo constante, $x_1$ es exactamente proporcional a $x_2$.
+
+La matriz de correlación o covarianza de estos datos tendría la forma:
+\[
+\mathbf{C} = 
+\begin{pmatrix} 
+1 & 1 \\ 
+1 & 1 
+\end{pmatrix}.
+\]
+Calculando el determinante:
+\[
+\det(\mathbf{C}) = (1)(1) - (1)(1) = 0.
+\]
+El determinante nulo nos alerta matemáticamente de que no tenemos dos dimensiones reales de información, sino solo una. Intentar invertir esta matriz para un modelo de regresión lineal generará un error computacional, indicando que debemos eliminar una de las variables redundantes antes de entrenar el modelo.
+
+
+\section{Inversa de una matriz}
+
+La \textbf{inversa} de una matriz cuadrada $\mathbf{A} \in \mathbb{R}^{n \times n}$, denotada $\mathbf{A}^{-1}$, es la matriz única que satisface:
+\[
+\mathbf{A} \mathbf{A}^{-1} = \mathbf{A}^{-1} \mathbf{A} = \mathbf{I}_n,
+\]
+donde $\mathbf{I}_n$ es la matriz identidad (con 1s en la diagonal y 0s fuera).
+
+\paragraph{Condición de existencia}
+Una matriz $\mathbf{A}$ es invertible (o no singular) si y solo si cumple cualquiera de estas condiciones equivalentes:
+\begin{itemize}
+    \item $\det(\mathbf{A}) \neq 0$,
+    \item Su rango es completo ($\mathrm{rango}(\mathbf{A}) = n$),
+    \item Sus columnas son linealmente independientes (no hay redundancia perfecta entre variables).
+\end{itemize}
+
+\paragraph{Relevancia en IA}
+\begin{itemize}
+    \item \textbf{Regresión Lineal:} Los coeficientes óptimos se estiman como $\boldsymbol{\beta} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}$.
+    \item \textbf{Distancia de Mahalanobis:} $\sqrt{(\mathbf{x}-\boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu})}$. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).
+\end{itemize}
+
+\textbf{Ejemplo agronómico.} Para predecir rendimiento ($y$) a partir de N y P ($\mathbf{X}$), necesitamos calcular $(\mathbf{X}^\top \mathbf{X})^{-1}$. Si
+\[
+\mathbf{X}^\top \mathbf{X} = \begin{pmatrix} 5 & 2 \\ 2 & 2 \end{pmatrix} \implies \det = 10 - 4 = 6 \neq 0.
+\]
+Como el determinante es no nulo, la inversa existe y el modelo tiene solución única:
+\[
+(\mathbf{X}^\top \mathbf{X})^{-1} = \frac{1}{6} \begin{pmatrix} 2 & -2 \\ -2 & 5 \end{pmatrix}.
+\]
+
+
+\section{Implementación en Python: El operador @}
+
+En Python científico (NumPy), \textbf{nunca} utilizamos bucles \texttt{for} para multiplicar matrices; eso sería extremadamente lento. En su lugar, utilizamos operaciones vectorizadas altamente optimizadas.
+
+Desde Python 3.5, el operador estándar para el producto matricial es la arroba (\texttt{@}).
+
+\begin{lstlisting}[language=Python, caption=Cálculo de costos (Lotes x Proveedores)]
+import numpy as np
+
+# 1. Definimos las matrices del ejemplo anterior
+# Matriz A: Requerimientos (2 lotes, 3 insumos)
+A = np.array([
+    [10, 20, 5],
+    [15, 10, 2]
+])
+
+# Matriz B: Precios (3 insumos, 2 proveedores)
+B = np.array([
+    [2, 3],
+    [4, 4],
+    [10, 8]
+])
+
+# 2. Realizamos el producto matricial
+# La dimension interna (3) coincide: (2x3) @ (3x2) -> (2x2)
+C = A @ B
+
+print(''Matriz de Costos C:\n'', C)
+
+# --- Salida esperada ---
+# [[150 150]
+#  [ 90 101]]
+\end{lstlisting}
+
+\subsubsection{Errores comunes y buenas prácticas}
+
+\begin{enumerate}
+    \item \textbf{El operador correcto:} 
+    No confunda el operador \texttt{@} con el asterisco \texttt{*}. 
+    \begin{itemize}
+        \item \texttt{A @ B}: Producto matricial (fila por columna).
+        \item \texttt{A * B}: Producto elemento a elemento (requiere mismas dimensiones exactas o broadcasting).
+    \end{itemize}
+    
+    \item \textbf{Gestión de dimensiones:}
+    Si intenta multiplicar matrices incompatibles, NumPy arrojará un error. Es vital verificar siempre \texttt{.shape}.
+    
+\begin{lstlisting}[language=Python]
+# Intentar multiplicar A por sí misma: (2x3) @ (2x3)
+try:
+    Error = A @ A 
+except ValueError as e:
+    print(''Error de dimensión:'', e)
+    
+# Salida:
+# ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0...
+# (size 3 is different from 2)
+\end{lstlisting}
+\end{enumerate}
+
+\begin{tcolorbox}[colback=blue!5, colframe=blue!40, title=Nota de Ingeniería]
+En el código de redes neuronales (como TensorFlow o PyTorch), la operación \texttt{capa\_oculta @ pesos} ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo.
+\end{tcolorbox}
+
+
+
+\section{Operaciones con Tensores en Bioingeniería}
+
+A diferencia de las matrices, donde el producto punto es la estrella, en los tensores operamos frecuentemente con \textbf{filtrado (convolución)}, \textbf{operaciones elemento a elemento} (Hadamard) y \textbf{re-dimensionamiento} (Reshaping).
+
+\begin{appbox}{Caso de Estudio: Detección de Tumores en MRI}
+Una Resonancia Magnética (MRI) del cerebro no es una foto plana; es una volumetría.
+Podemos representarla como un tensor $\mathcal{X}$ de dimensiones $256 \times 256 \times 120$:
+\begin{itemize}
+    \item $256 \times 256$: Resolución de cada ``rebanada'' (slice) de imagen (alto $\times$ ancho).
+    \item $120$: El número de rebanadas tomadas desde la base del cráneo hasta la coronilla (profundidad).
+\end{itemize}
+
+\textbf{Operación 1: Aplicación de una Máscara (Producto Hadamard)}
+Para aislar el cerebro y eliminar el cráneo o el fondo, multiplicamos el tensor de la imagen $\mathcal{X}$ por un tensor binario ``máscara'' $\mathcal{M}$ (donde 1 es tejido cerebral y 0 es hueso/fondo).
+\[
+\mathcal{Y} = \mathcal{X} \odot \mathcal{M} \quad \implies \quad y_{ijk} = x_{ijk} \cdot m_{ijk}
+\]
+Esta operación se realiza simultáneamente en los 7.8 millones de vóxeles (píxeles 3D).
+
+\textbf{Operación 2: Aplanado (Flattening) para Diagnóstico}
+Una red neuronal clásica no puede ``tragar'' un cubo. Debemos convertir el tensor 3D en un vector largo 1D para clasificarlo (ej. ¿Hay tumor? Sí/No).
+\[
+\text{Flatten}(\mathbb{R}^{256 \times 256 \times 120}) \to \mathbb{R}^{7,864,320}
+\]
+Este proceso de reestructurar los datos sin perder información es la base de la arquitectura de redes convolucionales (CNN).
+\end{appbox}
+
+\subsubsection{Implementación: Manipulación de Vóxeles en Python}
+
+En Python, bibliotecas como \texttt{NumPy}, \texttt{TensorFlow} o \texttt{PyTorch} tratan estas estructuras de forma nativa. Nótese que aquí usamos el término \texttt{shape} (forma) para describir las dimensiones del tensor.
+
+\begin{lstlisting}[language=Python, caption=Procesamiento de un tensor volumétrico (MRI Simulado)]
+import numpy as np
+
+# 1. Simular una MRI cerebral (Tensor 3D)
+# Dimensiones: (Alto, Ancho, Profundidad)
+# Valores aleatorios simulando intensidad de señal
+mri_tensor = np.random.rand(256, 256, 120)
+
+print(f''Forma original del tensor: {mri_tensor.shape}'')
+# Salida: (256, 256, 120)
+
+# 2. Operación de Slicing (Rebanado)
+# El médico quiere ver solo la rebanada central (corte axial)
+corte_central = mri_tensor[:, :, 60] 
+
+print(f''Forma del corte 2D: {corte_central.shape}'')
+# Salida: (256, 256) -> Ahora es una matriz clásica
+
+# 3. Operación de Máscara (Thresholding)
+# Queremos resaltar solo tejidos con alta intensidad (posibles anomalías)
+# Creamos una máscara booleana (Tensor de True/False)
+mascara_tejido = mri_tensor > 0.8
+
+# Aplicamos la máscara (Hadamard product implícito)
+tejido_resaltado = mri_tensor * mascara_tejido
+
+# 4. Flattening (Preparar para IA)
+input_vector = mri_tensor.flatten()
+
+print(f''Vector de entrada para la Red Neuronal: {input_vector.shape}'')
+# Salida: (7864320,) -> Un vector gigante
+\end{lstlisting}
+
+\begin{tcolorbox}[colback=red!5, colframe=red!40, title=Advertencia de Memoria]
+El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño ($256^3$) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la \textbf{shape} del tensor es crítico.
+\end{tcolorbox}
+
