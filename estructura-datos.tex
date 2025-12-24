@@ -420,6 +420,59 @@ Su transpuesta es:
 3 & 4
 \end{pmatrix}.
 \]
+
+\subsection{Transposición en Tensores (Permutación)}
+
+Para tensores de rango $N \ge 3$, la noción de transposición se generaliza a la \textbf{permutación de ejes}. No existe una única ``transpuesta'', sino múltiples reordenamientos posibles de las dimensiones.
+
+Dado un tensor $\mathcal{T} \in \mathbb{R}^{d_1 \times d_2 \times d_3}$, con entradas $t_{ijk}$ donde $i$ es el índice del primer eje, $j$ del segundo y $k$ del tercero.
+
+Una permutación común (por ejemplo, invertir el orden de los ejes) genera un nuevo tensor $\mathcal{T}' \in \mathbb{R}^{d_3 \times d_2 \times d_1}$ tal que:
+
+\[
+\mathcal{T}'_{kji} = \mathcal{T}_{ijk}
+\]
+
+En la práctica de visión computacional, la operación más frecuente es intercambiar el eje de \textit{canales} (C) para moverlo del principio al final:
+
+\textbf{Definición práctica (Cambio de Formato):}
+Sea un tensor de imagen $\mathbf{I} \in \mathbb{R}^{C \times H \times W}$ (formato PyTorch). Su versión permutada $\mathbf{I}_{perm} \in \mathbb{R}^{H \times W \times C}$ (formato Matplotlib/OpenCV) se define reordenando los índices $(c, h, w) \to (h, w, c)$:
+
+\[
+\mathbf{I} = 
+\left[ \text{Canales}, \text{Alto}, \text{Ancho} \right]
+\xrightarrow{\text{permute}(1, 2, 0)}
+\mathbf{I}_{perm} = 
+\left[ \text{Alto}, \text{Ancho}, \text{Canales} \right]
+\]
+
+
+
+\begin{lstlisting}[language=Python, caption=Permutación de Ejes en PyTorch]
+import torch
+
+# Tensor 3D: Una imagen RGB simulada (3 canales, 4 alto, 4 ancho)
+# Formato PyTorch: (C, H, W)
+imagen_torch = torch.rand(3, 4, 4)
+print(f"Forma original (C, H, W): {imagen_torch.shape}")
+
+# PROBLEMA: Las librerías de visualización (matplotlib) esperan (H, W, C)
+# SOLUCIÓN: Permutar los ejes.
+# Índice 0->2 (Canales al final)
+# Índice 1->0 (Alto al principio)
+# Índice 2->1 (Ancho al medio)
+imagen_plot = imagen_torch.permute(1, 2, 0)
+
+print(f"Forma permutada (H, W, C): {imagen_plot.shape}")
+
+# Cuidado: .T (transpuesta simple) en PyTorch no siempre funciona intuitivamente en tensores > 2D
+# Es preferible ser explícito con .permute()
+\end{lstlisting}
+
+\begin{salida}
+Forma original (C, H, W): torch.Size([3, 4, 4])
+Forma permutada (H, W, C): torch.Size([4, 4, 3])
+\end{salida}
 \subsection{Igualdad de vectores}
 Dos vectores $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$ se consideran \textbf{iguales} si satisfacen simultáneamente dos condiciones:
 \begin{enumerate}
