@@ -420,6 +420,67 @@ Su transpuesta es:
 3 & 4
 \end{pmatrix}.
 \]
+\subsection{Implementación Computacional y Matices Prácticos}
+
+Aunque la definición matemática es estricta, en librerías como \texttt{NumPy} o \texttt{PyTorch} existe una distinción técnica importante entre un arreglo unidimensional (plano) y un vector columna formal.
+
+\begin{itemize}
+    \item \textbf{Arreglo 1D (Rank-1):} Tiene forma \texttt{(n,)}. Su transpuesta \texttt{.T} no altera nada (sigue siendo plano). Es eficiente en memoria pero peligroso en álgebra lineal estricta.
+    \item \textbf{Vector Columna (Rank-2):} Tiene forma \texttt{(n, 1)}. Su transpuesta cambia la forma a \texttt{(1, n)}, comportándose exactamente como la teoría matemática.
+\end{itemize}
+
+A continuación, implementamos estos conceptos y verificamos la propiedad crítica de la inversión del producto $(\mathbf{AB})^\top = \mathbf{B}^\top \mathbf{A}^\top$.
+
+\begin{lstlisting}[language=Python, caption=Transposición y Verificación de Propiedades en PyTorch]
+import torch
+
+print("--- 1. EL 'ENGAÑO' DE LOS VECTORES 1D ---")
+# Vector plano (común en programación básica)
+v_flat = torch.tensor([1, 2, 3]) 
+print(f"Vector plano: {v_flat.shape}")
+print(f"Transpuesta v.T: {v_flat.T.shape} (¡No cambia!)")
+
+# Vector Matemático (Columna explícita)
+# Usamos .unsqueeze(1) o definimos los corchetes dobles [[...]]
+v_col = v_flat.unsqueeze(1) # Transforma (3) -> (3, 1)
+print(f"Vector Columna:\n{v_col.shape}")
+print(f"Vector Fila (v_col.T):\n{v_col.T.shape}")
+
+print("\n--- 2. MATRICES Y PROPIEDAD (AB)^T ---")
+# A: Matriz de datos (2 muestras, 3 variables)
+A = torch.tensor([[1., 2., 3.], 
+                  [4., 5., 6.]]) # Shape (2, 3)
+
+# B: Matriz de transformación (3 entradas, 2 salidas)
+B = torch.tensor([[0.1, 0.2], 
+                  [0.3, 0.4], 
+                  [0.5, 0.6]])   # Shape (3, 2)
+
+# Operación: Transpuesta del producto
+lhs = torch.matmul(A, B).T   # (AB)^T
+
+# Verificación de la propiedad teórica
+# INCORRECTO: A.T @ B.T (Error de dimensiones o resultado erróneo)
+# CORRECTO: B.T @ A.T (Invirtiendo el orden)
+rhs = torch.matmul(B.T, A.T) 
+
+print(f"Forma de (AB).T: {lhs.shape}")
+print(f"¿Es igual a B.T @ A.T?: {torch.allclose(lhs, rhs)}")
+\end{lstlisting}
+
+\begin{salida}
+--- 1. EL 'ENGAÑO' DE LOS VECTORES 1D ---
+Vector plano: torch.Size([3])
+Transpuesta v.T: torch.Size([3]) (¡No cambia!)
+Vector Columna:
+torch.Size([3, 1])
+Vector Fila (v\_col.T):  % <--- AQUÍ ESTABA EL ERROR (agregué \)
+torch.Size([1, 3])
+
+--- 2. MATRICES Y PROPIEDAD (AB)\^T ---
+Forma de (AB).T: torch.Size([2, 2])
+¿Es igual a B.T @ A.T?: True
+\end{salida}
 
 \subsection{Transposición en Tensores (Permutación)}
 
@@ -545,56 +606,68 @@ El concepto de igualdad se extiende naturalmente a arreglos multidimensionales d
 Una imagen digital a color se representa como un tensor de $\text{Alto} \times \text{Ancho} \times 3$ (Canales: Rojo, Verde, Azul). 
 Si tenemos una imagen original $\mathcal{I}_{\text{orig}}$ y una copia transmitida por internet $\mathcal{I}_{\text{copia}}$, la igualdad $\mathcal{I}_{\text{orig}} = \mathcal{I}_{\text{copia}}$ asegura la integridad de los datos. Basta con que un solo píxel cambie levemente su tono en el canal azul para que $\mathcal{I}_{\text{orig}} \neq \mathcal{I}_{\text{copia}}$, lo cual en criptografía o esteganografía podría indicar que la imagen fue alterada.
 
-\subsection{Verificación computacional con Python}
-En la práctica profesional, rara vez verificamos la igualdad manualmente. En su lugar, utilizamos la biblioteca \texttt{NumPy}, que es el estándar para el cálculo matricial en Inteligencia Artificial.
+\subsection{Igualdad Computacional: El Desafío del Punto Flotante}
 
-Es fundamental distinguir entre dos tipos de comparaciones:
+En la práctica profesional de la Ciencia de Datos, rara vez verificamos la igualdad matemática estricta ($\mathbf{A} = \mathbf{B}$). Esto se debe a que las computadoras utilizan el estándar \textbf{IEEE 754} para representar números decimales (punto flotante), donde operaciones simples introducen errores infinitesimales de redondeo en los bits menos significativos.
+
+Para abordar la comparación de tensores, es fundamental distinguir dos enfoques y una solución técnica:
+
 \begin{enumerate}
-    \item \textbf{Element-wise (Elemento a elemento):} Genera una matriz de valores booleanos (Verdadero/Falso) del mismo tamaño que las matrices originales.
-    \item \textbf{Array-wise (Matriz completa):} Devuelve un único valor booleano indicando si las estructuras son idénticas en su totalidad.
+    \item \textbf{Comparación Element-wise (Elemento a elemento):} Genera una matriz de valores booleanos del mismo tamaño que las originales. Es útil para crear ``máscaras'' y detectar \textit{dónde} difieren los datos.
+    \item \textbf{Comparación Estricta:} Verifica si la estructura es idéntica en su totalidad. Falla frecuentemente con números decimales (floats).
+    \item \textbf{Comparación con Tolerancia (La Solución):} Sustituye la igualdad estricta por la proximidad dentro de un umbral $\epsilon$.
 \end{enumerate}
 
-\begin{lstlisting}[language=Python, caption={Comparación de matrices en NumPy}]
-import numpy as np
+Matemáticamente, definimos la igualdad computacional como:
+\[
+\mathbf{A} \approx \mathbf{B} \iff |a_{ij} - b_{ij}| < \epsilon, \quad \forall i,j
+\]
+Donde $\epsilon$ (epsilon) suele ser un valor muy pequeño (ej. $10^{-5}$ o $10^{-8}$).
 
-# Definimos dos matrices de mediciones (ej. temperatura y humedad)
-A = np.array([[24.5, 60.0], 
-              [25.0, 58.2]])
+\begin{lstlisting}[language=Python, caption={El peligro de la igualdad estricta y la solución con allclose}]
+import torch
 
-B = np.array([[24.5, 60.0], 
-              [25.0, 99.9]]) # Error en la última lectura
+print("--- 1. ELEMENT-WISE VS ESTRUCTURA ---")
+A = torch.tensor([1.0, 2.0])
+B = torch.tensor([1.0, 5.0]) # El segundo elemento difiere
 
-# 1. Comparación elemento a elemento
-# Esto devuelve una matriz de booleanos
-print(A == B)
-# Salida:
-# [[ True  True]
-#  [ True False]]  <-- Detecta dónde está la diferencia
+# Comparación elemento a elemento (Genera máscara)
+print(f"Máscara: {A == B}") 
+# Salida esperada: [True, False]
 
-# 2. Comparación estricta de la estructura completa
-# Devuelve True solo si TODOS los elementos coinciden
-son_iguales = np.array_equal(A, B)
-print(f"¿Son idénticas las matrices?: {son_iguales}")
-# Salida: False
+print("\n--- 2. EL PROBLEMA DEL PUNTO FLOTANTE ---")
+# Matemáticamente: (Raíz de 2) al cuadrado = 2
+raiz = torch.sqrt(torch.tensor(2.0))
+calculado = raiz * raiz
+teorico   = torch.tensor(2.0)
+
+# Mostramos con 10 decimales para revelar el "error fantasma"
+print(f"Valor Teórico:   {teorico.item():.10f}")
+print(f"Valor Calculado: {calculado.item():.10f}")
+
+# Intento 1: Igualdad Estricta (==)
+# Falla porque 2.0000000000 != 2.0000002384
+print(f"¿Igualdad Estricta? {calculado == teorico}")
+
+print("\n--- 3. SOLUCIÓN: TOLERANCIA (ALLCLOSE) ---")
+# Verificamos si la diferencia es despreciable
+# atol = tolerancia absoluta
+es_cercano = torch.allclose(calculado, teorico, atol=1e-05)
+print(f"¿Igualdad con tolerancia (allclose)? {es_cercano}")
 \end{lstlisting}
 
-\paragraph{El problema de la precisión flotante}
-En algoritmos de aprendizaje automático, los cálculos numéricos suelen generar errores infinitesimales de redondeo (por ejemplo, $1.000000001 \neq 1.0$). 
-Por ello, en lugar de buscar una igualdad exacta, se utiliza \texttt{np.allclose}, que verifica si las matrices son "suficientemente cercanas" dentro de una tolerancia aceptable.
+\begin{salida}
+--- 1. ELEMENT-WISE VS ESTRUCTURA ---
+Máscara: tensor([ True, False])
 
-\begin{lstlisting}[language=Python, caption={Igualdad con tolerancia (allclose)}]
-# Matriz teórica vs Matriz calculada por la IA
-Teorica   = np.array([1.0, 2.0])
-Calculada = np.array([0.99999999, 2.00000001])
+--- 2. EL PROBLEMA DEL PUNTO FLOTANTE ---
+Valor Teórico:   2.0000000000
+Valor Calculado: 2.0000002384
+¿Igualdad Estricta? tensor(False)
 
-# La igualdad estricta fallaría
-print(np.array_equal(Teorica, Calculada)) # False
-
-# La igualdad con tolerancia funciona (recomendado en IA)
-print(np.allclose(Teorica, Calculada))    # True
-\end{lstlisting}
-
-
+--- 3. SOLUCIÓN: TOLERANCIA (ALLCLOSE) ---
+¿Igualdad con tolerancia (allclose)? True
+\end{salida}
 \section{Norma euclidiana (magnitud) y dirección}
 
 La \textbf{norma euclidiana} (también llamada longitud o módulo) de un vector $\mathbf{x} = (x_1, \dots, x_n)^\top \in \mathbb{R}^n$ se define como la raíz cuadrada de la suma de sus componentes al cuadrado:
@@ -710,7 +783,88 @@ Analicemos el vector de contaminantes (en $\mu\text{g/m}^3$) de una estación ur
     La componente de Ozono ($\mathrm{O}_3$) tiene el coseno director más alto ($0{,}707$), lo que indica que es el contaminante dominante en este perfil. Esto sugiere un problema de tipo fotoquímico (reacción a la luz solar) más que de emisiones primarias de combustión ($\mathrm{NO}_2$), permitiendo a las autoridades decidir si restringen el tráfico o la industria.
 \end{enumerate}
 \end{appbox}
+\subsection{Implementación Computacional: Normas y Normalización}
 
+En el ecosistema de Python (NumPy y PyTorch), el cálculo de la magnitud y la dirección está altamente optimizado. No es necesario iterar manualmente sobre los elementos sumando cuadrados; las librerías utilizan rutinas de bajo nivel (BLAS/LAPACK) para hacerlo instantáneamente.
+
+\subsubsection{Cálculo de la Norma ($L_2$)}
+Aunque la fórmula es $\sqrt{\sum x_i^2}$, en código utilizamos funciones dedicadas como \texttt{torch.norm} o \texttt{numpy.linalg.norm}. Esto previene errores de desbordamiento numérico (overflow) cuando los números son muy grandes.
+
+\begin{lstlisting}[language=Python, caption=Cálculo de la Magnitud (Norma Euclidiana)]
+import torch
+
+# Ejemplo Administrativo: Presupuesto [Infra, Capa]
+p = torch.tensor([4.0, 3.0])
+
+# FORMA 1: Manual (Solo con fines educativos)
+# Paso a paso: Cuadrado -> Suma -> Raíz
+norma_manual = torch.sqrt(torch.sum(p**2))
+
+# FORMA 2: Profesional (La que usarás siempre)
+# Es más rápida y numéricamente estable
+norma_pro = torch.norm(p)
+
+print(f"Vector p: {p}")
+print(f"Norma Manual: {norma_manual.item()}") # 5.0
+print(f"Norma Pro:    {norma_pro.item()}")    # 5.0
+\end{lstlisting}
+
+\subsubsection{Dirección y Normalización}
+Aquí distinguimos entre 2D y $N$-Dimensiones:
+
+\begin{enumerate}
+    \item \textbf{En 2D (Ángulos):} No usamos $\arctan(y/x)$ porque falla si $x=0$. Usamos la función especial \texttt{atan2(y, x)}, que maneja todos los cuadrantes y la división por cero automáticamente.
+    \item \textbf{En ND (Cosenos Directores = Normalización):} Calcular los cosenos directores equivale a convertir el vector en un \textbf{Vector Unitario} (longitud 1). Esta operación se llama \textbf{Normalización L2} y es vital en redes neuronales.
+\end{enumerate}
+
+\[
+\hat{\mathbf{x}} = \frac{\mathbf{x}}{\lVert \mathbf{x} \rVert} = (\cos \alpha, \cos \beta, \cos \gamma)^\top
+\]
+
+\begin{lstlisting}[language=Python, caption=De la Orientación a la Normalización]
+import torch
+import math
+
+print("--- 1. DIRECCIÓN EN 2D (PRESUPUESTO) ---")
+p = torch.tensor([4.0, 3.0]) # x=4, y=3
+
+# Usamos atan2(y, x). Nota: El orden es (y, x)
+theta_rad = torch.atan2(p[1], p[0])
+
+# Convertimos radianes a grados para humanos
+theta_deg = torch.rad2deg(theta_rad)
+
+print(f"Ángulo (theta): {theta_deg.item():.1f} grados")
+
+
+print("\n--- 2. DIRECCIÓN EN 3D (CALIDAD AIRE) ---")
+# Vector: [PM10, NO2, O3]
+a = torch.tensor([40.0, 30.0, 50.0])
+
+# Calculamos la norma
+magnitud = torch.norm(a)
+
+# Cosenos Directores: Dividimos el vector por su magnitud
+# Esto crea un 'Vector Unitario' (Unit Vector)
+cosenos_directores = a / magnitud
+
+print(f"Magnitud total: {magnitud:.2f}")
+print(f"Cosenos Directores (Dirección):\n{cosenos_directores}")
+
+# Verificación: La norma de los cosenos directores siempre es 1
+print(f"Comprobación (Norma del unitario): {torch.norm(cosenos_directores):.1f}")
+\end{lstlisting}
+
+\begin{salida}
+--- 1. DIRECCIÓN EN 2D (PRESUPUESTO) ---
+Ángulo (theta): 36.9 grados
+
+--- 2. DIRECCIÓN EN 3D (CALIDAD AIRE) ---
+Magnitud total: 70.71
+Cosenos Directores (Dirección):
+tensor([0.5657, 0.4243, 0.7071])
+Comprobación (Norma del unitario): 1.0
+\end{salida}
 \section{Ejercicios propuestos}
 
 \begin{enumerate}
