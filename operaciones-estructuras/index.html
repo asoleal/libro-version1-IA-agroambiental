@@ -1,0 +1,2110 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../estructura-datos/">
+      
+      
+        <link rel="next" href="../matrices-especiales/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Poniendo el Motor en Marcha: Aritmética Tensorial - Libro IA Agroambiental</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#poniendo-el-motor-en-marcha-aritmetica-tensorial" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href=".." title="Libro IA Agroambiental" class="md-header__button md-logo" aria-label="Libro IA Agroambiental" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Libro IA Agroambiental
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Poniendo el Motor en Marcha: Aritmética Tensorial
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Libro IA Agroambiental" class="md-nav__button md-logo" aria-label="Libro IA Agroambiental" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Libro IA Agroambiental
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../estructura-datos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estructuras de datos: escalares, vectores, matrices y tensores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Poniendo el Motor en Marcha: Aritmética Tensorial
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Poniendo el Motor en Marcha: Aritmética Tensorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#suma-de-vectores-y-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suma de vectores y Aplicaciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Suma de vectores y Aplicaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aplicaciones-sectoriales-agro-y-mecatronica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicaciones sectoriales: Agro y Mecatrónica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiplicacion-por-un-escalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiplicación por un escalar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiplicación por un escalar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aplicaciones-escalamiento-y-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicaciones: Escalamiento y Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#producto-punto-producto-escalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Producto punto (producto escalar)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Producto punto (producto escalar)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-geometrica-y-similitud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación Geométrica y Similitud
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interpretación Geométrica y Similitud">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aplicaciones-en-ingenieria-y-agro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicaciones en Ingeniería y Agro
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-geometrica-del-producto-punto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación geométrica del Producto Punto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interpretación geométrica del Producto Punto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencia-de-la-proyeccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencia de la Proyección
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#casos-criticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Casos Críticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sintesis-y-aplicaciones-contextuales-del-producto-punto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Síntesis y Aplicaciones Contextuales del Producto Punto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Síntesis y Aplicaciones Contextuales del Producto Punto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-en-contextos-de-modelado-hibrido-agronomico-y-zootecnico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplos en Contextos de Modelado Híbrido (Agronómico y Zootécnico)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-de-programacion-aritmetica-tensorial-en-la-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio de Programación: Aritmética Tensorial en la Práctica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Laboratorio de Programación: Aritmética Tensorial en la Práctica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-de-suma-y-escalamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación de Suma y Escalamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-producto-punto-cuantificando-la-afinidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El Producto Punto: Cuantificando la Afinidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aplicaciones-sectoriales-en-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicaciones Sectoriales en Código
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-funciones-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen de Funciones Clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiplicacion-matriz-vector-el-motor-de-las-redes-neuronales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiplicación Matriz-Vector: El Motor de las Redes Neuronales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiplicación Matriz-Vector: El Motor de las Redes Neuronales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-formal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición formal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-teorico-transformacion-de-insumos-a-nutrientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo Teórico: Transformación de Insumos a Nutrientes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enfoque-en-redes-neuronales-la-capa-densa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enfoque en Redes Neuronales: La Capa Densa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-aplicado-neuronas-expertas-en-evaluacion-administrativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo aplicado: Neuronas "Expertas" en Evaluación Administrativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-esto-es-fundamental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por qué esto es fundamental
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#producto-de-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Producto de Matrices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Producto de Matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regla-de-dimensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regla de Dimensiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regla de Dimensiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-formal_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición formal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escalares-asociados-traza-determinante-y-rango" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalares asociados: Traza, Determinante y Rango
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Escalares asociados: Traza, Determinante y Rango">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-determinante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El Determinante
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-geometrica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación geométrica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculo-en-2-times-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cálculo en \(2 \times 2\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#singularidad-e-invertibilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Singularidad e Invertibilidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-agro-ambiental-deteccion-de-redundancia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo Agro-Ambiental: Detección de Redundancia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inversa-de-una-matriz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inversa de una matriz
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inversa de una matriz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#condicion-de-existencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condición de existencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementacion-en-python-el-operador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación en Python: El operador @
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementación en Python: El operador @">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#errores-comunes-y-buenas-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errores comunes y buenas prácticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operaciones-con-tensores-en-bioingenieria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operaciones con Tensores en Bioingeniería
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operaciones con Tensores en Bioingeniería">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-manipulacion-de-voxeles-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación: Manipulación de Vóxeles en Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../matrices-especiales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matrices especiales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#suma-de-vectores-y-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Suma de vectores y Aplicaciones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Suma de vectores y Aplicaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aplicaciones-sectoriales-agro-y-mecatronica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicaciones sectoriales: Agro y Mecatrónica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiplicacion-por-un-escalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiplicación por un escalar
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiplicación por un escalar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aplicaciones-escalamiento-y-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicaciones: Escalamiento y Control
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#producto-punto-producto-escalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Producto punto (producto escalar)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Producto punto (producto escalar)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-geometrica-y-similitud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación Geométrica y Similitud
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interpretación Geométrica y Similitud">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aplicaciones-en-ingenieria-y-agro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicaciones en Ingeniería y Agro
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-geometrica-del-producto-punto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación geométrica del Producto Punto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interpretación geométrica del Producto Punto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependencia-de-la-proyeccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dependencia de la Proyección
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#casos-criticos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Casos Críticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sintesis-y-aplicaciones-contextuales-del-producto-punto" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Síntesis y Aplicaciones Contextuales del Producto Punto
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Síntesis y Aplicaciones Contextuales del Producto Punto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-en-contextos-de-modelado-hibrido-agronomico-y-zootecnico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplos en Contextos de Modelado Híbrido (Agronómico y Zootécnico)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#laboratorio-de-programacion-aritmetica-tensorial-en-la-practica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laboratorio de Programación: Aritmética Tensorial en la Práctica
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Laboratorio de Programación: Aritmética Tensorial en la Práctica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-de-suma-y-escalamiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación de Suma y Escalamiento
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-producto-punto-cuantificando-la-afinidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El Producto Punto: Cuantificando la Afinidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aplicaciones-sectoriales-en-codigo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aplicaciones Sectoriales en Código
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resumen-de-funciones-clave" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resumen de Funciones Clave
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multiplicacion-matriz-vector-el-motor-de-las-redes-neuronales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multiplicación Matriz-Vector: El Motor de las Redes Neuronales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Multiplicación Matriz-Vector: El Motor de las Redes Neuronales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-formal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición formal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-teorico-transformacion-de-insumos-a-nutrientes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo Teórico: Transformación de Insumos a Nutrientes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enfoque-en-redes-neuronales-la-capa-densa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enfoque en Redes Neuronales: La Capa Densa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-aplicado-neuronas-expertas-en-evaluacion-administrativa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo aplicado: Neuronas "Expertas" en Evaluación Administrativa
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#por-que-esto-es-fundamental" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Por qué esto es fundamental
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#producto-de-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Producto de Matrices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Producto de Matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#regla-de-dimensiones" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Regla de Dimensiones
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Regla de Dimensiones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-formal_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición formal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escalares-asociados-traza-determinante-y-rango" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalares asociados: Traza, Determinante y Rango
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Escalares asociados: Traza, Determinante y Rango">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#el-determinante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        El Determinante
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-geometrica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación geométrica
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculo-en-2-times-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cálculo en \(2 \times 2\)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#singularidad-e-invertibilidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Singularidad e Invertibilidad
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-agro-ambiental-deteccion-de-redundancia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo Agro-Ambiental: Detección de Redundancia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inversa-de-una-matriz" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inversa de una matriz
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inversa de una matriz">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#condicion-de-existencia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Condición de existencia
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementacion-en-python-el-operador" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación en Python: El operador @
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementación en Python: El operador @">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#errores-comunes-y-buenas-practicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Errores comunes y buenas prácticas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operaciones-con-tensores-en-bioingenieria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operaciones con Tensores en Bioingeniería
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operaciones con Tensores en Bioingeniería">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-manipulacion-de-voxeles-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación: Manipulación de Vóxeles en Python
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="poniendo-el-motor-en-marcha-aritmetica-tensorial">Poniendo el Motor en Marcha: Aritmética Tensorial</h1>
+<h2 id="suma-de-vectores-y-aplicaciones">Suma de vectores y Aplicaciones</h2>
+<p>La suma combina dos vectores componente a componente. En términos de datos, esta operación representa la acumulación o superposición de efectos provenientes de distintas fuentes.</p>
+<p><strong>Definición formal.</strong> Sean <span class="arithmatex">\(\mathbf{x}, \mathbf{y} \in \mathbb{R}^n\)</span>. La suma <span class="arithmatex">\(\mathbf{x} + \mathbf{y}\)</span> se define como:</p>
+<div class="arithmatex">\[\mathbf{x} + \mathbf{y} = 
+\begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} + 
+\begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{pmatrix} = 
+\begin{pmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{pmatrix}.\]</div>
+<figure id="fig:suma_vectores">
+
+<figcaption>Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores <span class="math inline">\(\mathbf{x}\)</span> y <span class="math inline">\(\mathbf{y}\)</span>.</figcaption>
+</figure>
+
+<p>Geométricamente, esto sigue la <strong>ley del paralelogramo</strong> <a href="#fig:suma_vectores">1.1</a>: si colocamos el inicio de <span class="arithmatex">\(\mathbf{y}\)</span> en la punta final de <span class="arithmatex">\(\mathbf{x}\)</span>, el vector resultante va desde el origen de <span class="arithmatex">\(\mathbf{x}\)</span> hasta la punta final de <span class="arithmatex">\(\mathbf{y}\)</span>.</p>
+<blockquote>
+<p>Ejemplo Ambiental: Inventario de Emisiones Supongamos que en una zona industrial existen dos fuentes principales de contaminación: una Termoeléctrica (<span class="arithmatex">\(\mathbf{e}_T\)</span>) y una Fábrica de Cemento (<span class="arithmatex">\(\mathbf{e}_C\)</span>). Los vectores representan la emisión diaria (en toneladas) de tres contaminantes distintos: <span class="arithmatex">\([\text{CO}_2, \text{NO}_x, \text{Material Particulado}]\)</span>.</p>
+<div class="arithmatex">\[\mathbf{e}_T = \begin{pmatrix} 100 \\ 5 \\ 0.5 \end{pmatrix}, \quad
+\mathbf{e}_C = \begin{pmatrix} 40 \\ 2 \\ 3.5 \end{pmatrix}\]</div>
+<p>Para conocer la <strong>carga total</strong> que recibe la atmósfera en esa zona, realizamos la suma vectorial:</p>
+<div class="arithmatex">\[\mathbf{e}_{total} = \mathbf{e}_T + \mathbf{e}_C = 
+\begin{pmatrix} 100 + 40 \\ 5 + 2 \\ 0.5 + 3.5 \end{pmatrix} = 
+\begin{pmatrix} 140 \\ 7 \\ 4.0 \end{pmatrix}\]</div>
+<p><strong>Interpretación:</strong> La suma vectorial garantiza la integridad de las variables: sumamos dióxido de carbono solo con dióxido de carbono (<span class="arithmatex">\(140\)</span> ton), y partículas solo con partículas (<span class="arithmatex">\(4.0\)</span> ton). Mezclar componentes (sumar el CO<span class="arithmatex">\(_2\)</span> de una fábrica con el polvo de otra) carecería de sentido físico.</p>
+</blockquote>
+<h5 id="aplicaciones-sectoriales-agro-y-mecatronica">Aplicaciones sectoriales: Agro y Mecatrónica</h5>
+<ul>
+<li>
+<p><strong>Fusión de sensores (Agro):</strong> Un nodo IoT registra variables climáticas de dos sensores para redundancia. Si el sensor A entrega el vector de estado <span class="arithmatex">\(\mathbf{s}_A\)</span> y el sensor B entrega <span class="arithmatex">\(\mathbf{s}_B\)</span>, la suma (o promedio vectorial) permite reducir el ruido aleatorio y obtener una lectura más robusta del ambiente.</p>
+</li>
+<li>
+<p><strong>Acumulación temporal (Ambiental):</strong> El vector de emisiones diarias de un biodigestor se suma a lo largo de una semana (<span class="arithmatex">\(t=1 \dots 7\)</span>) para obtener el impacto total acumulado:</p>
+<div class="arithmatex">\[\mathbf{e}_{\text{semanal}} = \mathbf{e}_{\text{lun}} + \mathbf{e}_{\text{mar}} + \dots + \mathbf{e}_{\text{dom}}\]</div>
+<p>Esto permite reportar totales de <span class="arithmatex">\(\mathrm{CH}_4\)</span> y <span class="arithmatex">\(\mathrm{CO}_2\)</span> sin perder la distinción entre gases.</p>
+</li>
+<li>
+<p><strong>Composición de insumos (Agroindustrial):</strong> En la formulación de alimento balanceado, el vector nutricional final (proteína, energía, fibra) se construye sumando los aportes vectoriales de cada ingrediente (maíz, soya, núcleo vitamínico), lo que permite verificar si la mezcla final cumple con los requerimientos dietarios.</p>
+</li>
+<li>
+<p><strong>Corrección de Trayectoria (Mecatrónica/Robótica):</strong> Un dron de fumigación agrícola debe volar en una ruta ideal representada por el vector de velocidad <span class="arithmatex">\(\mathbf{v}_{ideal}\)</span>. Sin embargo, enfrenta un viento lateral representado por el vector <span class="arithmatex">\(\mathbf{v}_{viento}\)</span>. Para mantener el curso, el sistema de control o la IA debe calcular la velocidad real resultante mediante la suma vectorial:</p>
+<div class="arithmatex">\[\mathbf{v}_{real} = \mathbf{v}_{ideal} + \mathbf{v}_{viento}\]</div>
+<p>Si el resultado desvía al dron del cultivo, la IA debe generar un vector de compensación opuesto para anular la perturbación.</p>
+</li>
+</ul>
+<p>En todos estos casos, la suma vectorial permite construir representaciones compuestas que capturan la complejidad de los sistemas físicos, preparándolas para su análisis mediante algoritmos de control o modelos de inteligencia artificial.</p>
+<h2 id="multiplicacion-por-un-escalar">Multiplicación por un escalar</h2>
+<p>Esta operación modifica la magnitud del vector sin alterar su línea de acción. Matemáticamente, escala todas las componentes por un mismo factor <span class="arithmatex">\(\alpha\)</span>.</p>
+<p><strong>Definición formal.</strong> Dado un escalar <span class="arithmatex">\(\alpha \in \mathbb{R}\)</span> y un vector <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^n\)</span>, el producto <span class="arithmatex">\(\alpha \mathbf{x}\)</span> se define como:</p>
+<div class="arithmatex">\[\alpha \mathbf{x} = 
+\alpha \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} = 
+\begin{pmatrix} \alpha x_1 \\ \vdots \\ \alpha x_n \end{pmatrix}.\]</div>
+<p><strong>Interpretación Geométrica:</strong> El efecto del escalar <span class="arithmatex">\(\alpha\)</span> sobre el vector original <span class="arithmatex">\(\mathbf{x}\)</span> depende de su valor:</p>
+<ul>
+<li>
+<p>Si <span class="arithmatex">\(|\alpha| &gt; 1\)</span>, el vector se <strong>alarga</strong> (dilatación).</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(|\alpha| &lt; 1\)</span>, el vector se <strong>contrae</strong> (compresión).</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\alpha &lt; 0\)</span>, el vector <strong>invierte su sentido</strong> (<span class="arithmatex">\(180^\circ\)</span>), aunque mantiene la misma línea de dirección.</p>
+</li>
+</ul>
+<figure id="fig:escalar_vector">
+
+<figcaption>Efecto geométrico de la multiplicación escalar. Nótese cómo <span class="math inline">\(\alpha=2\)</span> duplica la longitud, mientras que <span class="math inline">\(\alpha=-0.5\)</span> reduce la longitud a la mitad e invierte el sentido.</figcaption>
+</figure>
+
+<h4 id="aplicaciones-escalamiento-y-control">Aplicaciones: Escalamiento y Control</h4>
+<ol>
+<li>
+<p><strong>Agro (Proyección de Insumos):</strong> Suponga que el vector <span class="arithmatex">\(\mathbf{d}\)</span> representa la dosis de fertilizantes para <strong>1 hectárea</strong>: <span class="arithmatex">\(\mathbf{d} = [100, 50, 30]^\top\)</span> (kg de N, P, K). Si un agricultor desea fertilizar un lote de 15 hectáreas, el requerimiento total es simplemente el vector escalado por la superficie:</p>
+<div class="arithmatex">\[\mathbf{Total} = 15 \cdot \mathbf{d} = \begin{pmatrix} 1500 \\ 750 \\ 450 \end{pmatrix} \text{ kg}.\]</div>
+</li>
+<li>
+<p><strong>Mecatrónica (Ganancia de Control):</strong> En un sistema de control de un robot, el "error" de posición es un vector <span class="arithmatex">\(\mathbf{e}\)</span> (diferencia entre dónde está y dónde debería estar). El controlador aplica una corrección proporcional multiplicando ese error por una ganancia <span class="arithmatex">\(K_p\)</span> (un escalar).</p>
+<div class="arithmatex">\[\mathbf{u} = K_p \cdot \mathbf{e}\]</div>
+<p>Si <span class="arithmatex">\(K_p\)</span> es muy grande, el robot reacciona violentamente (gran vector de fuerza); si es pequeño, reacciona suavemente.</p>
+</li>
+</ol>
+<h2 id="producto-punto-producto-escalar">Producto punto (producto escalar)</h2>
+<p>El <strong>producto punto</strong> es la operación fundamental para conectar la geometría (ángulos, longitudes) con el álgebra. Mide el grado de alineación entre dos vectores: si apuntan en la misma dirección, el valor es grande y positivo; si son perpendiculares, es cero; si apuntan en sentidos opuestos, es negativo.</p>
+<p><strong>Definición formal.</strong></p>
+<div class="arithmatex">\[\cdot : \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}, \quad (\mathbf{x}, \mathbf{y}) \mapsto \mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^{n} x_i y_i.\]</div>
+<h4 id="interpretacion-geometrica-y-similitud">Interpretación Geométrica y Similitud</h4>
+<p>Además de la suma algebraica, el producto punto satisface la identidad geométrica:</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos(\theta),\]</div>
+<p>donde <span class="arithmatex">\(\theta\)</span> es el ángulo entre los vectores. De aquí se deduce la <strong>Similitud Coseno</strong>, métrica clave en IA:</p>
+<div class="arithmatex">\[\cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert}.\]</div>
+<figure id="fig:producto_punto">
+
+<figcaption>El producto punto relaciona las magnitudes de dos vectores con el coseno del ángulo que forman. La línea violeta representa la “sombra” o proyección de <span class="math inline">\(\mathbf{y}\)</span> sobre <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
+</figure>
+
+<figure id="fig:producto_punto_geo">
+
+<figcaption>Representación geométrica del producto punto. La línea violeta muestra la componente de <span class="math inline">\(\mathbf{y}\)</span> que está “alineada” con <span class="math inline">\(\mathbf{x}\)</span>. El producto punto es el producto de esta proyección por la longitud total de <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
+</figure>
+
+<h5 id="aplicaciones-en-ingenieria-y-agro">Aplicaciones en Ingeniería y Agro</h5>
+<ol>
+<li>
+<p><strong>Agro (Firmas Espectrales):</strong> En teledetección, una planta sana tiene una "firma" o vector ideal <span class="arithmatex">\(\mathbf{v}_{sana}\)</span> (valores de reflectancia en distintas bandas). Si el dron mide un vector actual <span class="arithmatex">\(\mathbf{v}_{medido}\)</span>, calculamos el producto punto (normalizado) entre ambos.</p>
+<ul>
+<li>
+<p>Si <span class="arithmatex">\(\cos(\theta) \approx 1\)</span>, la firma es casi idéntica <span class="arithmatex">\(\to\)</span> Planta Sana.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\cos(\theta) \ll 1\)</span>, la alineación es baja <span class="arithmatex">\(\to\)</span> Posible estrés hídrico o plaga.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Mecatrónica (Cálculo de Trabajo y Potencia):</strong> Para un robot móvil, el trabajo mecánico <span class="arithmatex">\(W\)</span> realizado al mover una carga es el producto punto entre el vector de fuerza aplicada <span class="arithmatex">\(\mathbf{F}\)</span> y el vector de desplazamiento <span class="arithmatex">\(\mathbf{d}\)</span>:</p>
+<div class="arithmatex">\[W = \mathbf{F} \cdot \mathbf{d} = \lVert \mathbf{F} \rVert \lVert \mathbf{d} \rVert \cos(\theta)\]</div>
+<p>Si el robot aplica fuerza perpendicular al movimiento (<span class="arithmatex">\(\theta=90^\circ\)</span>), el producto punto es 0 y no se realiza trabajo útil (energía desperdiciada).</p>
+</li>
+<li>
+<p><strong>Administrativo (Sistemas de Puntuación):</strong> Sea <span class="arithmatex">\(\mathbf{w}\)</span> un vector de "pesos" o importancia para tres criterios (Costo, Calidad, Tiempo) y <span class="arithmatex">\(\mathbf{x}\)</span> el vector de puntajes de un proveedor. El puntaje total es simplemente:</p>
+<div class="arithmatex">\[\text{Score} = \mathbf{w} \cdot \mathbf{x} = w_1 x_1 + w_2 x_2 + w_3 x_3\]</div>
+<p>Esta es la base de las redes neuronales: una neurona realiza un producto punto entre los datos de entrada y sus pesos sinápticos.</p>
+</li>
+</ol>
+<h4 id="interpretacion-geometrica-del-producto-punto">Interpretación geométrica del Producto Punto</h4>
+<p>El producto punto (<span class="arithmatex">\(\mathbf{x} \cdot \mathbf{y}\)</span>) es mucho más que una suma de productos de componentes: es la operación geométrica fundamental que cuantifica cuánto dos vectores apuntan en la misma dirección. Esta noción de "alineación direccional" es la base de técnicas esenciales en inteligencia artificial, como la similitud coseno, la proyección ortogonal y el Análisis de Componentes Principales (PCA).</p>
+<p>La definición geométrica del producto punto para dos vectores <span class="arithmatex">\(\mathbf{x}, \mathbf{y} \in \mathbb{R}^n\)</span> es:</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert \cos(\theta),\]</div>
+<p>donde <span class="arithmatex">\(\lVert \mathbf{x} \rVert\)</span> y <span class="arithmatex">\(\lVert \mathbf{y} \rVert\)</span> son las longitudes euclidianas de los vectores, y <span class="arithmatex">\(\theta \in [0, \pi]\)</span> es el ángulo entre ellos.</p>
+<p>Esta fórmula revela tres casos clave:</p>
+<ul>
+<li>
+<p>Si <span class="arithmatex">\(\theta = 0^\circ\)</span> (vectores <strong>paralelos y en la misma dirección</strong>), <span class="arithmatex">\(\cos(\theta) = 1\)</span> y el producto punto es <strong>máximo</strong>.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\theta = 90^\circ\)</span> (vectores <strong>ortogonales</strong>), <span class="arithmatex">\(\cos(\theta) = 0\)</span> y el producto punto es <strong>cero</strong>.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\theta = 180^\circ\)</span> (vectores <strong>opuestos</strong>), <span class="arithmatex">\(\cos(\theta) = -1\)</span> y el producto punto es <strong>mínimo</strong> (negativo).</p>
+</li>
+</ul>
+<p><strong>Conexión con aplicaciones en IA y agro-ambiente.</strong> En el análisis de datos, el producto punto permite:</p>
+<ul>
+<li>
+<p>Comparar perfiles de fertilización entre parcelas: si <span class="arithmatex">\(\theta\)</span> es pequeño, las prácticas son similares.</p>
+</li>
+<li>
+<p>Detectar animales atípicos en un hato: un vector fisiológico con <span class="arithmatex">\(\theta\)</span> grande respecto a la media indica una posible anomalía.</p>
+</li>
+<li>
+<p>Calcular la similitud coseno (normalizando las magnitudes): <span class="arithmatex">\(\frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert} = \cos(\theta)\)</span>, que mide <em>solo</em> la alineación, ignorando la escala.</p>
+</li>
+</ul>
+<p>Esta interpretación geométrica es el primer paso hacia la comprensión de cómo los algoritmos de IA "ven" y comparan datos en espacios multidimensionales.</p>
+<h5 id="dependencia-de-la-proyeccion">Dependencia de la Proyección</h5>
+<p>El concepto más fundamental es la relación con la proyección ortogonal, como se ilustra en la figura <a href="#fig:producto_punto_geometrico_corregido">1.5</a>. El término <span class="arithmatex">\(\lVert \mathbf{y} \rVert \cos(\theta)\)</span> representa precisamente la longitud de la <em>componente</em> del vector <span class="arithmatex">\(\mathbf{y}\)</span> que está alineada con <span class="arithmatex">\(\mathbf{x}\)</span> (la proyección, <span class="arithmatex">\(\mathrm{proj}_{\mathbf{x}} \mathbf{y}\)</span>).</p>
+<p>Por lo tanto, el producto punto puede reescribirse como:</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \cdot \left( \lVert \mathbf{y} \rVert \cos(\theta) \right) = \lVert \mathbf{x} \rVert \cdot \lVert \mathrm{proj}_{\mathbf{x}} \mathbf{y} \rVert.\]</div>
+<p>El producto punto es, en esencia, la magnitud de <span class="arithmatex">\(\mathbf{x}\)</span> multiplicada por la longitud de la "sombra" que <span class="arithmatex">\(\mathbf{y}\)</span> proyecta sobre <span class="arithmatex">\(\mathbf{x}\)</span>. El signo de <span class="arithmatex">\(\mathbf{x} \cdot \mathbf{y}\)</span> depende únicamente del <span class="arithmatex">\(\cos(\theta)\)</span>.</p>
+<h5 id="casos-criticos">Casos Críticos</h5>
+<p>El valor del producto punto está dominado por el coseno del ángulo <span class="arithmatex">\(\theta\)</span>, asumiendo que las magnitudes de los vectores son positivas:</p>
+<ol>
+<li>
+<p><strong>Alineación Perfecta (<span class="arithmatex">\(\theta = 0^\circ\)</span>):</strong> Si <span class="arithmatex">\(\mathbf{x}\)</span> y <span class="arithmatex">\(\mathbf{y}\)</span> apuntan exactamente en la misma dirección, <span class="arithmatex">\(\cos(0^\circ) = 1\)</span>.</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert.\]</div>
+<p>El producto punto es <em>máximo y positivo</em>. En IA, esto indica máxima similitud o máxima compatibilidad direccional.</p>
+</li>
+<li>
+<p><strong>Ortogonalidad (<span class="arithmatex">\(\theta = 90^\circ\)</span>):</strong> Si <span class="arithmatex">\(\mathbf{x}\)</span> y <span class="arithmatex">\(\mathbf{y}\)</span> son perpendiculares (ortogonales), <span class="arithmatex">\(\cos(90^\circ) = 0\)</span>.</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = 0.\]</div>
+<p>El producto punto es <em>cero</em>, indicando que los vectores no tienen ninguna componente en común y son linealmente independientes, un principio clave en la decorrelación de datos (ej. PCA).</p>
+</li>
+<li>
+<p><strong>Alineación Opuesta (<span class="arithmatex">\(\theta = 180^\circ\)</span>):</strong> Si <span class="arithmatex">\(\mathbf{x}\)</span> y <span class="arithmatex">\(\mathbf{y}\)</span> apuntan en direcciones opuestas, <span class="arithmatex">\(\cos(180^\circ) = -1\)</span>.</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = -\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert.\]</div>
+<p>El producto punto es <em>mínimo y negativo</em>, indicando la máxima disimilitud o incompatibilidad.</p>
+</li>
+</ol>
+<figure id="fig:producto_punto_geometrico_corregido">
+
+<figcaption>Interpretación geométrica del producto punto. El ángulo <span class="math inline">\(\theta\)</span> está dibujado entre los vectores <span class="math inline">\(\mathbf{x}\)</span> e <span class="math inline">\(\mathbf{y}\)</span>. El producto punto es proporcional a la magnitud de la proyección de <span class="math inline">\(\mathbf{y}\)</span> sobre <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
+</figure>
+
+<h4 id="sintesis-y-aplicaciones-contextuales-del-producto-punto">Síntesis y Aplicaciones Contextuales del Producto Punto</h4>
+<p>La utilidad del producto punto (<span class="arithmatex">\(\mathbf{x} \cdot \mathbf{y}\)</span>) radica en su capacidad para actuar como una medida de <em>alineación multidimensional</em> o <em>similitud</em> entre vectores. Su valor es grande cuando las magnitudes y la alineación son altas, reflejando perfiles compatibles. Este concepto es la base de la <strong>similitud coseno</strong> (<span class="arithmatex">\(\cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert}\)</span>), ampliamente usada en motores de recomendación y clustering.</p>
+<h5 id="ejemplos-en-contextos-de-modelado-hibrido-agronomico-y-zootecnico">Ejemplos en Contextos de Modelado Híbrido (Agronómico y Zootécnico)</h5>
+<ul>
+<li>
+<p><strong>Ejemplo Agronómico.</strong> Considere dos parcelas de maíz caracterizadas por el vector de insumos aplicados:</p>
+<div class="arithmatex">\[\mathbf{x} = \begin{pmatrix} 120 \\ 50 \\ 3 \end{pmatrix} \text{ (kg/ha de N, P, K)}, \quad
+    \mathbf{y} = \begin{pmatrix} 100 \\ 60 \\ 4 \end{pmatrix}.\]</div>
+<p>El producto punto <span class="arithmatex">\(\mathbf{x} \cdot \mathbf{y} = 12\,000 + 3\,000 + 12 = 15\,012\)</span> es alto, lo que sugiere un perfil de fertilización similar. Esta medida agrupa parcelas con prácticas comparables.</p>
+</li>
+<li>
+<p><strong>Ejemplo Zootécnico.</strong> Considere dos vacas lecheras descritas por su historial productivo en una ventana de control:</p>
+<div class="arithmatex">\[\mathbf{x} = \begin{pmatrix} 28 \\ 4{,}2 \\ 38 \end{pmatrix}, \quad
+    \mathbf{y} = \begin{pmatrix} 30 \\ 4{,}0 \\ 39 \end{pmatrix},\]</div>
+<p>donde las componentes representan días en lactancia, producción diaria (L/día) y contenido de grasa (%). El producto punto:</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = (28)(30) + (4{,}2)(4{,}0) + (38)(39) = 2338{,}8.\]</div>
+<p>Este valor alto refleja perfiles productivos similares: producción alta, lactancia avanzada y elevado contenido de grasa. Esta medida es útil en sistemas de segmentación de hatos.</p>
+</li>
+</ul>
+<p><strong>Otros Contextos Aplicados</strong></p>
+<ul>
+<li>
+<p><strong>Ambiental:</strong> Dos estaciones de monitoreo registran concentraciones medias (en <span class="arithmatex">\(\mathrm{\mu g/m^3}\)</span>) de <span class="arithmatex">\(\mathrm{PM_{2.5}}\)</span>, <span class="arithmatex">\(\mathrm{NO_2}\)</span> y <span class="arithmatex">\(\mathrm{O_3}\)</span>: <span class="arithmatex">\(\mathbf{a}\)</span> y <span class="arithmatex">\(\mathbf{b}\)</span>. Un producto punto alto sugiere un patrón similar de contaminación, útil para agrupar zonas con fuentes emisoras comunes.</p>
+</li>
+<li>
+<p><strong>Administrativo:</strong> Dos propuestas presupuestales <span class="arithmatex">\(\mathbf{p}\)</span> y <span class="arithmatex">\(\mathbf{q}\)</span> (para rubros como infraestructura, capacitación, operación) tienen un producto punto que cuantifica la <em>alineación de prioridades presupuestales</em>.</p>
+</li>
+<li>
+<p><strong>Diseño (Industrial/Agrícola):</strong> Dos prototipos de invernadero <span class="arithmatex">\(\mathbf{d}_1\)</span> y <span class="arithmatex">\(\mathbf{d}_2\)</span> (descritos por área, sensores, consumo energético). Un producto punto elevado indica diseños estructuralmente similares, facilitando la clasificación de alternativas.</p>
+</li>
+</ul>
+<p>En resumen, el producto punto sirve como un indicador fundamental de cuán coherentes o compatibles son dos conjuntos de mediciones o características multidimensionales.</p>
+<h2 id="laboratorio-de-programacion-aritmetica-tensorial-en-la-practica">Laboratorio de Programación: Aritmética Tensorial en la Práctica</h2>
+<p>En esta sección, trasladamos las operaciones de suma, escalamiento y producto punto al código. En IA, estas operaciones no se realizan mediante bucles (<em>for loops</em>), sino a través de <strong>operaciones vectorizadas</strong>, las cuales aprovechan el paralelismo del procesador.</p>
+<h3 id="implementacion-de-suma-y-escalamiento">Implementación de Suma y Escalamiento</h3>
+<p>La suma de vectores requiere que ambos tengan la misma dimensión (<em>shape</em>). La multiplicación por un escalar, en cambio, utiliza un mecanismo llamado <strong>Broadcasting</strong>, donde el escalar se "difunde" sobre todos los elementos del vector.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># 1. Suma de vectores (Agro: Integración de dosis de fertilizante)</span>
+<span class="n">dosis_neta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>  <span class="c1"># N, P, K inicial</span>
+<span class="n">suplemento</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">5</span><span class="p">])</span>  <span class="c1"># Refuerzo aplicado</span>
+<span class="n">dosis_total</span> <span class="o">=</span> <span class="n">dosis_neta</span> <span class="o">+</span> <span class="n">suplemento</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Dosis</span> <span class="n">Total</span> <span class="p">(</span><span class="n">Vector</span><span class="p">):</span> <span class="p">{</span><span class="n">dosis_total</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2. Multiplicación por Escalar (Mecatrónica: Control de Ganancia)</span>
+<span class="c1"># Escalar una señal de sensor de torque</span>
+<span class="n">torque_raw</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
+<span class="n">ganancia</span> <span class="o">=</span> <span class="mf">2.5</span>
+<span class="n">torque_ajustado</span> <span class="o">=</span> <span class="n">ganancia</span> <span class="o">*</span> <span class="n">torque_raw</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Torque</span> <span class="n">ajustado</span><span class="p">:</span> <span class="p">{</span><span class="n">torque_ajustado</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="el-producto-punto-cuantificando-la-afinidad">El Producto Punto: Cuantificando la Afinidad</h3>
+<p>El producto punto es la operación más importante en IA. En Python, podemos ejecutarlo usando el operador <code>@</code> (recomendado en versiones modernas) o las funciones específicas de las librerías.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Vectores de ejemplo (Administración: Gastos vs Presupuesto)</span>
+<span class="n">unidades</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>   <span class="c1"># Cantidad de productos comprados</span>
+<span class="n">precios</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span> <span class="c1"># Precio unitario por categoría</span>
+
+<span class="c1"># Producto punto: Suma de (unidades[i] * precios[i])</span>
+<span class="n">gasto_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">unidades</span><span class="p">,</span> <span class="n">precios</span><span class="p">)</span>
+<span class="c1"># Forma alternativa (estándar en álgebra lineal de Python):</span>
+<span class="n">gasto_total_alt</span> <span class="o">=</span> <span class="n">unidades</span> <span class="o">@</span> <span class="n">precios</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Gasto</span> <span class="n">total</span> <span class="n">calculado</span> <span class="n">via</span> <span class="n">producto</span> <span class="n">punto</span><span class="p">:</span> <span class="err">$</span><span class="p">{</span><span class="n">gasto_total</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="aplicaciones-sectoriales-en-codigo">Aplicaciones Sectoriales en Código</h3>
+<blockquote>
+<p>Mecatrónica: Resultante de Fuerzas En un brazo robótico, si dos motores ejercen fuerzas representadas por los vectores <span class="arithmatex">\(\mathbf{f}_1\)</span> y <span class="arithmatex">\(\mathbf{f}_2\)</span>, la fuerza resultante sobre el efector final es simplemente <span class="arithmatex">\(f_res = f1 + f2\)</span>. La magnitud de esta fuerza se obtiene con <code>np.linalg.norm(</code><span class="arithmatex">\(f_res\)</span><code>)</code>.</p>
+<p>Agroindustrial: Mezclas y Diluciones Si un vector <span class="arithmatex">\(\mathbf{v}\)</span> representa la concentración de azúcares y acidez de un lote de jugo, y queremos diluirlo al <span class="arithmatex">\(50\%\)</span>, aplicamos <span class="arithmatex">\(nuevo_lote = 0.5 * v\)</span>. El producto punto se usa para calcular el costo total de la mezcla si tenemos un vector de precios por litro de cada componente.</p>
+</blockquote>
+<h3 class="unnumbered" id="resumen-de-funciones-clave">Resumen de Funciones Clave</h3>
+<p><strong>Operación</strong>        <strong>Sintaxis NumPy</strong>   <strong>Sintaxis PyTorch</strong></p>
+<hr />
+<p>Suma                 <code>a + b</code>              <code>a + b</code>
+  Escalamiento         <code>k * a</code>              <code>k * a</code>
+  Producto Punto       <code>np.dot(a, b)</code>       <code>torch.dot(a, b)</code>
+  Producto de Matriz   <code>a @ b</code>              <code>torch.matmul(a, b)</code></p>
+<p>: Comparativa de funciones para aritmética tensorial.</p>
+<h2 id="multiplicacion-matriz-vector-el-motor-de-las-redes-neuronales">Multiplicación Matriz-Vector: El Motor de las Redes Neuronales</h2>
+<p>Antes de entrar en el formalismo, entendamos la intuición: si un vector representa un dato (ej. una parcela, un animal, una propuesta), multiplicar ese vector por una matriz es equivalente a procesar ese dato a través de un banco de filtros. La matriz toma la información cruda, mezcla sus componentes según ciertas reglas (pesos) y produce una nueva representación más útil para la toma de decisiones.</p>
+<p>Esta operación es el corazón de las redes neuronales profundas (Deep Learning).</p>
+<h5 id="definicion-formal">Definición formal</h5>
+<p>Sea <span class="arithmatex">\(\mathbf{W} \in \mathbb{R}^{m \times n}\)</span> una matriz y <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^n\)</span> un vector de entrada. Su producto es un nuevo vector <span class="arithmatex">\(\mathbf{z} \in \mathbb{R}^m\)</span> definido por:</p>
+<div class="arithmatex">\[\mathbf{z} = \mathbf{W} \mathbf{x} =
+\begin{pmatrix}
+\mathbf{fila}_1(\mathbf{W}) \cdot \mathbf{x} \\
+\vdots \\
+\mathbf{fila}_m(\mathbf{W}) \cdot \mathbf{x}
+\end{pmatrix}.\]</div>
+<p>Cada entrada <span class="arithmatex">\(z_i\)</span> es el <strong>producto punto</strong> entre la fila <span class="arithmatex">\(i\)</span>-ésima de la matriz y el vector <span class="arithmatex">\(\mathbf{x}\)</span>. Para que la operación sea válida, el número de columnas de la matriz (<span class="arithmatex">\(n\)</span>) debe coincidir con la dimensión de entrada del vector.</p>
+<h5 id="ejemplo-teorico-transformacion-de-insumos-a-nutrientes">Ejemplo Teórico: Transformación de Insumos a Nutrientes</h5>
+<p>Imaginemos un sistema inteligente para la formulación de raciones en ganado lechero. Queremos calcular el aporte nutricional total a partir de una mezcla de ingredientes.</p>
+<p><strong>1. El Vector de Entrada (<span class="arithmatex">\(\mathbf{x}\)</span>):</strong> Representa la cantidad de materia prima (en kg) que vamos a utilizar en la mezcla.</p>
+<div class="arithmatex">\[\mathbf{x} = \begin{pmatrix} 10 \\ 5 \end{pmatrix}
+\begin{matrix} \text{(kg de Maíz)} \\ \text{(kg de Soya)} \end{matrix}\]</div>
+<p>Aquí, <span class="arithmatex">\(n=2\)</span> (tenemos 2 ingredientes).</p>
+<p><strong>2. La Matriz de Pesos (<span class="arithmatex">\(\mathbf{W}\)</span>):</strong> Representa el contenido nutricional por cada kg de ingrediente.</p>
+<ul>
+<li>
+<p>La <strong>Fila 1</strong> corresponde a la <strong>Proteína Cruda</strong> (en kg/kg).</p>
+</li>
+<li>
+<p>La <strong>Fila 2</strong> corresponde a la <strong>Energía Neta</strong> (en Mcal/kg).</p>
+</li>
+</ul>
+<div class="arithmatex">\[\mathbf{W} = 
+\begin{pmatrix} 
+0{,}08 &amp; 0{,}45 \\ 
+3{,}20 &amp; 2{,}80 
+\end{pmatrix}
+\begin{matrix} \leftarrow \text{Perfil de Proteína} \\ \leftarrow \text{Perfil de Energía} \end{matrix}\]</div>
+<p>Aquí, <span class="arithmatex">\(m=2\)</span> (tenemos 2 métricas de salida). Note que las columnas (<span class="arithmatex">\(n=2\)</span>) coinciden con los ingredientes (Maíz y Soya).</p>
+<p><strong>3. El Cálculo (<span class="arithmatex">\(\mathbf{z} = \mathbf{W}\mathbf{x}\)</span>):</strong> Aplicamos la definición del producto punto fila por columna:</p>
+<div class="arithmatex">\[\mathbf{z} = 
+\begin{pmatrix}
+(\text{Fila}_1 \cdot \mathbf{x}) \\
+(\text{Fila}_2 \cdot \mathbf{x})
+\end{pmatrix}
+=
+\begin{pmatrix}
+(0{,}08)(10) + (0{,}45)(5) \\
+(3{,}20)(10) + (2{,}80)(5)
+\end{pmatrix}\]</div>
+<div class="arithmatex">\[\mathbf{z} = 
+\begin{pmatrix}
+0{,}8 + 2{,}25 \\
+32{,}0 + 14{,}0
+\end{pmatrix}
+=
+\begin{pmatrix}
+3{,}05 \\
+46{,}0
+\end{pmatrix}
+\begin{matrix} \text{kg de Proteína Total} \\ \text{Mcal de Energía Total} \end{matrix}\]</div>
+<p><strong>Interpretación en Inteligencia Artificial:</strong> En este ejemplo, la matriz <span class="arithmatex">\(\mathbf{W}\)</span> codifica el "conocimiento" del sistema sobre los alimentos.</p>
+<ul>
+<li>
+<p>En una Red Neuronal, <span class="arithmatex">\(\mathbf{x}\)</span> serían los datos de entrada, <span class="arithmatex">\(\mathbf{W}\)</span> serían los <em>pesos sinápticos</em> aprendidos durante el entrenamiento, y <span class="arithmatex">\(\mathbf{z}\)</span> sería la activación resultante.</p>
+</li>
+<li>
+<p>La operación <span class="arithmatex">\(\mathbf{W}\mathbf{x}\)</span> transforma el espacio de "kilos de comida" al espacio de "requerimientos nutricionales".</p>
+</li>
+</ul>
+<h5 id="enfoque-en-redes-neuronales-la-capa-densa">Enfoque en Redes Neuronales: La Capa Densa</h5>
+<p>En el contexto de la inteligencia artificial, esta operación no es solo álgebra; es la definición de una <strong>capa densa</strong> (fully connected layer). La ecuación fundamental que ejecuta una neurona artificial (antes de la activación no lineal) es:</p>
+<div class="arithmatex">\[\mathbf{z} = \mathbf{W} \mathbf{x} + \mathbf{b},\]</div>
+<p>donde cada elemento cumple un rol biológico-computacional preciso:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\mathbf{x}\)</span> (Entradas): Son las señales recibidas (ej. variables del cultivo o píxeles de una imagen).</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathbf{W}\)</span> (Matriz de Pesos): Es la "memoria" del modelo. Cada fila de <span class="arithmatex">\(\mathbf{W}\)</span> representa una neurona, y sus valores indican qué tanto importa cada entrada para esa neurona específica.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathbf{z}\)</span> (Activaciones): Es la respuesta de las neuronas ante el estímulo <span class="arithmatex">\(\mathbf{x}\)</span>.</p>
+</li>
+</ul>
+<h5 id="ejemplo-aplicado-neuronas-expertas-en-evaluacion-administrativa">Ejemplo aplicado: Neuronas "Expertas" en Evaluación Administrativa</h5>
+<p>Imagine que una IA administrativa debe evaluar automáticamente propuestas de proyectos. El vector de entrada <span class="arithmatex">\(\mathbf{x}\)</span> contiene <span class="arithmatex">\(n=4\)</span> variables presupuestales: <span class="arithmatex">\((\text{infraestructura}, \text{capacitación}, \text{operación}, \text{monitoreo})\)</span>.</p>
+<p>La red neuronal tiene una capa con <span class="arithmatex">\(m=2\)</span> neuronas, donde cada una se ha especializado (aprendido) para detectar un criterio diferente:</p>
+<ol>
+<li>
+<p><strong>Neurona 1:</strong> Evalúa el "Equilibrio Estratégico".</p>
+</li>
+<li>
+<p><strong>Neurona 2:</strong> Evalúa la "Sostenibilidad Ambiental".</p>
+</li>
+</ol>
+<p>La matriz de pesos <span class="arithmatex">\(\mathbf{W} \in \mathbb{R}^{2 \times 4}\)</span> codifica estas prioridades:</p>
+<div class="arithmatex">\[\mathbf{W} =
+\begin{pmatrix}
+0{,}3 &amp; 0{,}3 &amp; 0{,}3 &amp; 0{,}1 \\  % Neurona 1: Pondera todo por igual (busca equilibrio)
+0{,}1 &amp; 0{,}2 &amp; 0{,}4 &amp; 0{,}3      % Neurona 2: Prioriza operación y monitoreo (sostenibilidad)
+\end{pmatrix}.\]</div>
+<p>Si llega una propuesta con el siguiente perfil de inversión (en millones):</p>
+<div class="arithmatex">\[\mathbf{x} = (300, 80, 220, 75)^\top.\]</div>
+<p>El paso hacia adelante (<em>forward pass</em>) de la red calcula:</p>
+<div class="arithmatex">\[\mathbf{z} = \mathbf{W} \mathbf{x} =
+\begin{pmatrix}
+(0{,}3)(300) + (0{,}3)(80) + (0{,}3)(220) + (0{,}1)(75) \\
+(0{,}1)(300) + (0{,}2)(80) + (0{,}4)(220) + (0{,}3)(75)
+\end{pmatrix}
+=
+\begin{pmatrix}
+187{,}5 \\
+156{,}5
+\end{pmatrix}.\]</div>
+<p><strong>Interpretación del resultado:</strong> El vector de salida <span class="arithmatex">\(\mathbf{z}\)</span> nos dice que esta propuesta tiene una puntuación alta en equilibrio (<span class="arithmatex">\(187{,}5\)</span>) y moderada en sostenibilidad (<span class="arithmatex">\(156{,}5\)</span>).</p>
+<h5 id="por-que-esto-es-fundamental">Por qué esto es fundamental</h5>
+<p>Este mecanismo permite que una red neuronal transforme datos brutos en conceptos abstractos. En este ejemplo, pasamos de "dinero en rubros" (espacio de entrada <span class="arithmatex">\(\mathbb{R}^4\)</span>) a "calidad estratégica" (espacio de características <span class="arithmatex">\(\mathbb{R}^2\)</span>). Durante el entrenamiento, el algoritmo de <em>backpropagation</em> ajusta los valores de la matriz <span class="arithmatex">\(\mathbf{W}\)</span> para minimizar el error en la evaluación, "aprendiendo" así los pesos ideales para clasificar proyectos correctamente.</p>
+<h2 id="producto-de-matrices">Producto de Matrices</h2>
+<p>Las matrices son la estructura algebraica central para representar datos tabulares, transformaciones lineales y relaciones entre variables en inteligencia artificial. A continuación, se presentan las operaciones y propiedades más relevantes para el modelado con datos.</p>
+<p>La multiplicación de matrices es el motor computacional de la Inteligencia Artificial. No solo generaliza el producto vector-vector, sino que permite realizar múltiples operaciones simultáneamente (procesamiento en lote o <em>batch</em>) y componer transformaciones lineales.</p>
+<h4 id="regla-de-dimensiones">Regla de Dimensiones</h4>
+<p>Para que el producto <span class="arithmatex">\(\mathbf{A}\mathbf{B}\)</span> exista, las dimensiones internas deben coincidir ("el ancho de la primera igual al alto de la segunda").</p>
+<div class="arithmatex">\[\underbrace{\mathbf{A}}_{m \times \mathbf{n}} \quad \times \quad \underbrace{\mathbf{B}}_{\mathbf{n} \times p} \quad = \quad \underbrace{\mathbf{C}}_{m \times p}\]</div>
+<h5 id="definicion-formal_1">Definición formal</h5>
+<p>Dadas <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> y <span class="arithmatex">\(\mathbf{B} \in \mathbb{R}^{n \times p}\)</span>, su producto <span class="arithmatex">\(\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{m \times p}\)</span> se define elemento a elemento como el producto punto entre la fila <span class="arithmatex">\(i\)</span> de <span class="arithmatex">\(\mathbf{A}\)</span> y la columna <span class="arithmatex">\(j\)</span> de <span class="arithmatex">\(\mathbf{B}\)</span>:</p>
+<div class="arithmatex">\[c_{ij} = \mathbf{fila}_i(\mathbf{A}) \cdot \mathbf{columna}_j(\mathbf{B}) = \sum_{k=1}^{n} a_{ik} b_{kj}.\]</div>
+<figure id="fig:mult_matrices">
+
+<figcaption>Lógica del producto matricial: El elemento <span class="math inline">\(c_{ij}\)</span> concentra la interacción entre toda la fila <span class="math inline">\(i\)</span> de la primera matriz y toda la columna <span class="math inline">\(j\)</span> de la segunda.</figcaption>
+</figure>
+
+<p><strong>Propiedades clave:</strong></p>
+<ul>
+<li>
+<p><strong>No Conmutatividad:</strong> En general, <span class="arithmatex">\(\mathbf{A}\mathbf{B} \neq \mathbf{B}\mathbf{A}\)</span>. El orden importa: rotar y luego trasladar no es lo mismo que trasladar y luego rotar.</p>
+</li>
+<li>
+<p><strong>Asociatividad:</strong> <span class="arithmatex">\((\mathbf{A}\mathbf{B})\mathbf{C} = \mathbf{A}(\mathbf{B}\mathbf{C})\)</span>. Esto es vital en Deep Learning para optimizar el cómputo en capas profundas.</p>
+</li>
+</ul>
+<blockquote>
+<p>Ejemplo Práctico: Lotes <span class="arithmatex">\(\times\)</span> Proveedores Imaginemos que queremos calcular costos para diferentes escenarios.</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\mathbf{A}\)</span> (Requerimientos): 2 Lotes (filas) necesitan cantidades de 3 insumos (columnas: N, P, K).</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathbf{B}\)</span> (Precios): Esos 3 insumos tienen precios diferentes en 2 Proveedores distintos (columnas).</p>
+</li>
+</ul>
+<div class="arithmatex">\[\mathbf{A}_{(2 \times 3)} = 
+\begin{pmatrix} 
+10 &amp; 20 &amp; 5 \\ 
+15 &amp; 10 &amp; 2 
+\end{pmatrix}, \quad
+\mathbf{B}_{(3 \times 2)} = 
+\begin{pmatrix} 
+2 &amp; 3 \\ 
+4 &amp; 4 \\ 
+10 &amp; 8 
+\end{pmatrix}\]</div>
+<p>El producto <span class="arithmatex">\(\mathbf{C} = \mathbf{AB}\)</span> nos dará una matriz de <span class="arithmatex">\(2 \times 2\)</span> donde cada elemento <span class="arithmatex">\(c_{ij}\)</span> es el <strong>costo total</strong> del Lote <span class="arithmatex">\(i\)</span> comprando al Proveedor <span class="arithmatex">\(j\)</span>.</p>
+<p>Realizamos los cálculos para cada celda: <span class="arithmatex">\(<span class="arithmatex">\(\begin{aligned}
+c_{11} &amp;= (10\cdot 2) + (20 \cdot 4) + (5 \cdot 10) = 20 + 80 + 50 = 150 \\
+c_{12} &amp;= (10\cdot 3) + (20 \cdot 4) + (5 \cdot 8) = 30 + 80 + 40 = 150 \\
+c_{21} &amp;= (15\cdot 2) + (10 \cdot 4) + (2 \cdot 10) = 30 + 40 + 20 = 90 \\
+c_{22} &amp;= (15\cdot 3) + (10 \cdot 4) + (2 \cdot 8) = 45 + 40 + 16 = 101
+\end{aligned}\)</span>\)</span></p>
+<p>El resultado final es:</p>
+<div class="arithmatex">\[\mathbf{C} = 
+\begin{pmatrix} 
+150 &amp; 150 \\ 
+90 &amp; 101 
+\end{pmatrix}\]</div>
+<p><strong>Interpretación para toma de decisiones:</strong></p>
+<ul>
+<li>
+<p>Para el <strong>Lote 1</strong> (Fila 1), ambos proveedores resultan en el mismo costo total ($150), aunque los precios unitarios sean distintos.</p>
+</li>
+<li>
+<p>Para el <strong>Lote 2</strong> (Fila 2), es más económico comprar al <strong>Proveedor 1</strong> ($90) que al Proveedor 2 ($101).</p>
+</li>
+</ul>
+<p>Esta operación permite evaluar múltiples escenarios económicos de forma simultánea.</p>
+</blockquote>
+<h2 id="escalares-asociados-traza-determinante-y-rango">Escalares asociados: Traza, Determinante y Rango</h2>
+<p>Antes de analizar propiedades más complejas, definimos tres escalares que resumen la estructura de una matriz cuadrada <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>:</p>
+<ul>
+<li>
+<p><strong>Traza (<span class="arithmatex">\(\mathrm{tr}\)</span>):</strong> La suma de los elementos de la diagonal principal. En matrices de covarianza, representa la <em>varianza total</em> del sistema.</p>
+</li>
+<li>
+<p><strong>Determinante (<span class="arithmatex">\(\det\)</span>):</strong> Una medida del cambio de volumen que produce la matriz como transformación lineal. Si <span class="arithmatex">\(\det(\mathbf{A}) = 0\)</span>, la matriz "aplasta" el espacio y destruye información.</p>
+</li>
+<li>
+<p><strong>Rango:</strong> El número máximo de filas o columnas linealmente independientes. Indica la cantidad de información no redundante en los datos.</p>
+</li>
+</ul>
+<h5 id="el-determinante">El Determinante</h5>
+<p>El <strong>determinante</strong> es una función escalar que asigna a cada matriz cuadrada <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span> un número real, denotado como <span class="arithmatex">\(\det(\mathbf{A})\)</span> o <span class="arithmatex">\(|\mathbf{A}|\)</span>. Este valor condensa información crítica sobre la naturaleza geométrica y algebraica de la matriz.</p>
+<h5 id="interpretacion-geometrica">Interpretación geométrica</h5>
+<p>En el contexto del análisis de datos, el determinante representa el <strong>factor de escala</strong> del volumen (o área en 2D) cuando la matriz <span class="arithmatex">\(\mathbf{A}\)</span> actúa como una transformación lineal.</p>
+<ul>
+<li>
+<p>Si <span class="arithmatex">\(|\det(\mathbf{A})| &gt; 1\)</span>, la transformación expande el espacio.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(0 &lt; |\det(\mathbf{A})| &lt; 1\)</span>, la transformación contrae el espacio.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\det(\mathbf{A}) = 0\)</span>, la transformación "aplasta" el volumen hasta convertirlo en una superficie, línea o punto (pérdida de dimensionalidad).</p>
+</li>
+</ul>
+<h5 id="calculo-en-2-times-2">Cálculo en <span class="arithmatex">\(2 \times 2\)</span></h5>
+<p>Para una matriz de <span class="arithmatex">\(\mathbb{R}^{2 \times 2}\)</span>, la fórmula es:</p>
+<div class="arithmatex">\[\det \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} = ad - bc.\]</div>
+<h5 id="singularidad-e-invertibilidad">Singularidad e Invertibilidad</h5>
+<p>La propiedad más importante para la inteligencia artificial es su relación con la inversión de matrices:</p>
+<div class="arithmatex">\[\mathbf{A} \text{ es invertible} \iff \det(\mathbf{A}) \neq 0.\]</div>
+<p>Una matriz con determinante cero se llama <strong>singular</strong>. En términos de datos, esto implica que las filas (o columnas) son linealmente dependientes, es decir, existe redundancia perfecta en la información (colinealidad).</p>
+<h5 id="ejemplo-agro-ambiental-deteccion-de-redundancia">Ejemplo Agro-Ambiental: Detección de Redundancia</h5>
+<p>Suponga que intentamos modelar el crecimiento de un cultivo usando dos variables que creemos distintas: <span class="arithmatex">\(x_1\)</span> (agua de riego en L) y <span class="arithmatex">\(x_2\)</span> (tiempo de riego en minutos). Sin embargo, si el sistema de riego tiene un flujo constante, <span class="arithmatex">\(x_1\)</span> es exactamente proporcional a <span class="arithmatex">\(x_2\)</span>.</p>
+<p>La matriz de correlación o covarianza de estos datos tendría la forma:</p>
+<div class="arithmatex">\[\mathbf{C} = 
+\begin{pmatrix} 
+1 &amp; 1 \\ 
+1 &amp; 1 
+\end{pmatrix}.\]</div>
+<p>Calculando el determinante:</p>
+<div class="arithmatex">\[\det(\mathbf{C}) = (1)(1) - (1)(1) = 0.\]</div>
+<p>El determinante nulo nos alerta matemáticamente de que no tenemos dos dimensiones reales de información, sino solo una. Intentar invertir esta matriz para un modelo de regresión lineal generará un error computacional, indicando que debemos eliminar una de las variables redundantes antes de entrenar el modelo.</p>
+<h2 id="inversa-de-una-matriz">Inversa de una matriz</h2>
+<p>La <strong>inversa</strong> de una matriz cuadrada <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>, denotada <span class="arithmatex">\(\mathbf{A}^{-1}\)</span>, es la matriz única que satisface:</p>
+<div class="arithmatex">\[\mathbf{A} \mathbf{A}^{-1} = \mathbf{A}^{-1} \mathbf{A} = \mathbf{I}_n,\]</div>
+<p>donde <span class="arithmatex">\(\mathbf{I}_n\)</span> es la matriz identidad (con 1s en la diagonal y 0s fuera).</p>
+<h5 id="condicion-de-existencia">Condición de existencia</h5>
+<p>Una matriz <span class="arithmatex">\(\mathbf{A}\)</span> es invertible (o no singular) si y solo si cumple cualquiera de estas condiciones equivalentes:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\det(\mathbf{A}) \neq 0\)</span>,</p>
+</li>
+<li>
+<p>Su rango es completo (<span class="arithmatex">\(\mathrm{rango}(\mathbf{A}) = n\)</span>),</p>
+</li>
+<li>
+<p>Sus columnas son linealmente independientes (no hay redundancia perfecta entre variables).</p>
+</li>
+</ul>
+<p><strong>Relevancia en IA</strong>\
+<span class="arithmatex">\(\bullet\)</span> <strong>Regresión Lineal:</strong> Los coeficientes óptimos se estiman como <span class="arithmatex">\(\boldsymbol{\beta} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}\)</span>.\
+<span class="arithmatex">\(\bullet\)</span> <strong>Distancia de Mahalanobis:</strong> <span class="arithmatex">\(\sqrt{(\mathbf{x}-\boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu})}\)</span>. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).</p>
+<p><strong>Ejemplo agronómico.</strong> Para predecir rendimiento (<span class="arithmatex">\(y\)</span>) a partir de N y P (<span class="arithmatex">\(\mathbf{X}\)</span>), necesitamos calcular <span class="arithmatex">\((\mathbf{X}^\top \mathbf{X})^{-1}\)</span>. Si</p>
+<div class="arithmatex">\[\mathbf{X}^\top \mathbf{X} = \begin{pmatrix} 5 &amp; 2 \\ 2 &amp; 2 \end{pmatrix} \implies \det = 10 - 4 = 6 \neq 0.\]</div>
+<p>Como el determinante es no nulo, la inversa existe y el modelo tiene solución única:</p>
+<div class="arithmatex">\[(\mathbf{X}^\top \mathbf{X})^{-1} = \frac{1}{6} \begin{pmatrix} 2 &amp; -2 \\ -2 &amp; 5 \end{pmatrix}.\]</div>
+<h2 id="implementacion-en-python-el-operador">Implementación en Python: El operador @</h2>
+<p>En Python científico (NumPy), <strong>nunca</strong> utilizamos bucles <code>for</code> para multiplicar matrices; eso sería extremadamente lento. En su lugar, utilizamos operaciones vectorizadas altamente optimizadas.</p>
+<p>Desde Python 3.5, el operador estándar para el producto matricial es la arroba (<code>@</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># 1. Definimos las matrices del ejemplo anterior</span>
+<span class="c1"># Matriz A: Requerimientos (2 lotes, 3 insumos)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># Matriz B: Precios (3 insumos, 2 proveedores)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># 2. Realizamos el producto matricial</span>
+<span class="c1"># La dimension interna (3) coincide: (2x3) @ (3x2) -&gt; (2x2)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">B</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="n">Matriz</span> <span class="n">de</span> <span class="n">Costos</span> <span class="n">C</span><span class="p">:</span>\<span class="n">n</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+
+<span class="c1"># --- Salida esperada ---</span>
+<span class="c1"># [[150 150]</span>
+<span class="c1">#  [ 90 101]]</span>
+</code></pre></div>
+<h4 id="errores-comunes-y-buenas-practicas">Errores comunes y buenas prácticas</h4>
+<ol>
+<li>
+<p><strong>El operador correcto:</strong> No confunda el operador <code>@</code> con el asterisco <code>*</code>.</p>
+<ul>
+<li>
+<p><code>A @ B</code>: Producto matricial (fila por columna).</p>
+</li>
+<li>
+<p><code>A * B</code>: Producto elemento a elemento (requiere mismas dimensiones exactas o broadcasting).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Gestión de dimensiones:</strong> Si intenta multiplicar matrices incompatibles, NumPy arrojará un error. Es vital verificar siempre <code>.shape</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Intentar multiplicar A por sí misma: (2x3) @ (2x3)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">Error</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">A</span> 
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="n">Error</span> <span class="n">de</span> <span class="n">dimensión</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+<span class="c1"># Salida:</span>
+<span class="c1"># ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0...</span>
+<span class="c1"># (size 3 is different from 2)</span>
+</code></pre></div>
+</li>
+</ol>
+<p>::: tcolorbox
+En el código de redes neuronales (como TensorFlow o PyTorch), la operación <code>capa_oculta @ pesos</code> ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo.
+:::</p>
+<h2 id="operaciones-con-tensores-en-bioingenieria">Operaciones con Tensores en Bioingeniería</h2>
+<p>A diferencia de las matrices, donde el producto punto es la estrella, en los tensores operamos frecuentemente con <strong>filtrado (convolución)</strong>, <strong>operaciones elemento a elemento</strong> (Hadamard) y <strong>re-dimensionamiento</strong> (Reshaping).</p>
+<blockquote>
+<p>Caso de Estudio: Detección de Tumores en MRI Una Resonancia Magnética (MRI) del cerebro no es una foto plana; es una volumetría. Podemos representarla como un tensor <span class="arithmatex">\(\mathcal{X}\)</span> de dimensiones <span class="arithmatex">\(256 \times 256 \times 120\)</span>:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(256 \times 256\)</span>: Resolución de cada "rebanada" (slice) de imagen (alto <span class="arithmatex">\(\times\)</span> ancho).</p>
+</li>
+<li>
+<p><span class="arithmatex">\(120\)</span>: El número de rebanadas tomadas desde la base del cráneo hasta la coronilla (profundidad).</p>
+</li>
+</ul>
+<p><strong>Operación 1: Aplicación de una Máscara (Producto Hadamard)</strong> Para aislar el cerebro y eliminar el cráneo o el fondo, multiplicamos el tensor de la imagen <span class="arithmatex">\(\mathcal{X}\)</span> por un tensor binario "máscara" <span class="arithmatex">\(\mathcal{M}\)</span> (donde 1 es tejido cerebral y 0 es hueso/fondo).</p>
+<div class="arithmatex">\[\mathcal{Y} = \mathcal{X} \odot \mathcal{M} \quad \implies \quad y_{ijk} = x_{ijk} \cdot m_{ijk}\]</div>
+<p>Esta operación se realiza simultáneamente en los 7.8 millones de vóxeles (píxeles 3D).</p>
+<p><strong>Operación 2: Aplanado (Flattening) para Diagnóstico</strong> Una red neuronal clásica no puede "tragar" un cubo. Debemos convertir el tensor 3D en un vector largo 1D para clasificarlo (ej. ¿Hay tumor? Sí/No).</p>
+<div class="arithmatex">\[\text{Flatten}(\mathbb{R}^{256 \times 256 \times 120}) \to \mathbb{R}^{7,864,320}\]</div>
+<p>Este proceso de reestructurar los datos sin perder información es la base de la arquitectura de redes convolucionales (CNN).</p>
+</blockquote>
+<h4 id="implementacion-manipulacion-de-voxeles-en-python">Implementación: Manipulación de Vóxeles en Python</h4>
+<p>En Python, bibliotecas como <code>NumPy</code>, <code>TensorFlow</code> o <code>PyTorch</code> tratan estas estructuras de forma nativa. Nótese que aquí usamos el término <code>shape</code> (forma) para describir las dimensiones del tensor.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># 1. Simular una MRI cerebral (Tensor 3D)</span>
+<span class="c1"># Dimensiones: (Alto, Ancho, Profundidad)</span>
+<span class="c1"># Valores aleatorios simulando intensidad de señal</span>
+<span class="n">mri_tensor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Forma</span> <span class="n">original</span> <span class="k">del</span> <span class="n">tensor</span><span class="p">:</span> <span class="p">{</span><span class="n">mri_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1"># Salida: (256, 256, 120)</span>
+
+<span class="c1"># 2. Operación de Slicing (Rebanado)</span>
+<span class="c1"># El médico quiere ver solo la rebanada central (corte axial)</span>
+<span class="n">corte_central</span> <span class="o">=</span> <span class="n">mri_tensor</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">60</span><span class="p">]</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Forma</span> <span class="k">del</span> <span class="n">corte</span> <span class="mi">2</span><span class="n">D</span><span class="p">:</span> <span class="p">{</span><span class="n">corte_central</span><span class="o">.</span><span class="n">shape</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1"># Salida: (256, 256) -&gt; Ahora es una matriz clásica</span>
+
+<span class="c1"># 3. Operación de Máscara (Thresholding)</span>
+<span class="c1"># Queremos resaltar solo tejidos con alta intensidad (posibles anomalías)</span>
+<span class="c1"># Creamos una máscara booleana (Tensor de True/False)</span>
+<span class="n">mascara_tejido</span> <span class="o">=</span> <span class="n">mri_tensor</span> <span class="o">&gt;</span> <span class="mf">0.8</span>
+
+<span class="c1"># Aplicamos la máscara (Hadamard product implícito)</span>
+<span class="n">tejido_resaltado</span> <span class="o">=</span> <span class="n">mri_tensor</span> <span class="o">*</span> <span class="n">mascara_tejido</span>
+
+<span class="c1"># 4. Flattening (Preparar para IA)</span>
+<span class="n">input_vector</span> <span class="o">=</span> <span class="n">mri_tensor</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Vector</span> <span class="n">de</span> <span class="n">entrada</span> <span class="n">para</span> <span class="n">la</span> <span class="n">Red</span> <span class="n">Neuronal</span><span class="p">:</span> <span class="p">{</span><span class="n">input_vector</span><span class="o">.</span><span class="n">shape</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1"># Salida: (7864320,) -&gt; Un vector gigante</span>
+</code></pre></div>
+<p>::: tcolorbox
+El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño (<span class="arithmatex">\(256^3\)</span>) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la <strong>shape</strong> del tensor es crítico.
+:::</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.code.copy", "navigation.top", "navigation.prev", "navigation.next"], "search": "../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/mathjax-config.js"></script>
+      
+    
+  </body>
+</html>
