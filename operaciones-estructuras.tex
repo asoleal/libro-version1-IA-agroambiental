@@ -5,6 +5,7 @@
 La suma combina dos vectores componente a componente. En términos de datos, esta operación representa la acumulación o superposición de efectos provenientes de distintas fuentes.
 
 \textbf{Definición formal.} Sean $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$. La suma $\mathbf{x} + \mathbf{y}$ se define como:
+
 \[
 \mathbf{x} + \mathbf{y} = 
 \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} + 
@@ -55,7 +56,7 @@ La suma combina dos vectores componente a componente. En términos de datos, est
 
 Geométricamente, esto sigue la \textbf{ley del paralelogramo} \ref{fig:suma_vectores}: si colocamos el inicio de $\mathbf{y}$ en la punta final de $\mathbf{x}$, el vector resultante va desde el origen de $\mathbf{x}$ hasta la punta final de $\mathbf{y}$.
 
-\begin{appbox}{Ejemplo Ambiental: Inventario de Emisiones}
+\begin{quote}{Ejemplo Ambiental: Inventario de Emisiones}
 Supongamos que en una zona industrial existen dos fuentes principales de contaminación: una Termoeléctrica ($\mathbf{e}_T$) y una Fábrica de Cemento ($\mathbf{e}_C$).
 Los vectores representan la emisión diaria (en toneladas) de tres contaminantes distintos: $[\text{CO}_2, \text{NO}_x, \text{Material Particulado}]$.
 
@@ -74,7 +75,7 @@ Para conocer la \textbf{carga total} que recibe la atmósfera en esa zona, reali
 
 \textbf{Interpretación:}
 La suma vectorial garantiza la integridad de las variables: sumamos dióxido de carbono solo con dióxido de carbono ($140$ ton), y partículas solo con partículas ($4.0$ ton). Mezclar componentes (sumar el CO$_2$ de una fábrica con el polvo de otra) carecería de sentido físico.
-\end{appbox}
+\end{quote}
 
 \paragraph{Aplicaciones sectoriales: Agro y Mecatrónica}
 
@@ -84,7 +85,9 @@ La suma vectorial garantiza la integridad de las variables: sumamos dióxido de 
 
     \item \textbf{Acumulación temporal (Ambiental):} 
     El vector de emisiones diarias de un biodigestor se suma a lo largo de una semana ($t=1 \dots 7$) para obtener el impacto total acumulado:
+    
     \[ \mathbf{e}_{\text{semanal}} = \mathbf{e}_{\text{lun}} + \mathbf{e}_{\text{mar}} + \dots + \mathbf{e}_{\text{dom}} \]
+
     Esto permite reportar totales de $\mathrm{CH}_4$ y $\mathrm{CO}_2$ sin perder la distinción entre gases.
 
     \item \textbf{Composición de insumos (Agroindustrial):} 
@@ -93,7 +96,10 @@ La suma vectorial garantiza la integridad de las variables: sumamos dióxido de 
     \item \textbf{Corrección de Trayectoria (Mecatrónica/Robótica):}
     Un dron de fumigación agrícola debe volar en una ruta ideal representada por el vector de velocidad $\mathbf{v}_{ideal}$. Sin embargo, enfrenta un viento lateral representado por el vector $\mathbf{v}_{viento}$.
     Para mantener el curso, el sistema de control o la IA debe calcular la velocidad real resultante mediante la suma vectorial:
-    \[ \mathbf{v}_{real} = \mathbf{v}_{ideal} + \mathbf{v}_{viento} \]
+    
+    \[ 
+    \mathbf{v}_{real} = \mathbf{v}_{ideal} + \mathbf{v}_{viento} 
+    \]
     
     Si el resultado desvía al dron del cultivo, la IA debe generar un vector de compensación opuesto para anular la perturbación.
 \end{itemize}
@@ -106,6 +112,7 @@ Esta operación modifica la magnitud del vector sin alterar su línea de acción
 
 \textbf{Definición formal.}  
 Dado un escalar $\alpha \in \mathbb{R}$ y un vector $\mathbf{x} \in \mathbb{R}^n$, el producto $\alpha \mathbf{x}$ se define como:
+
 \[
 \alpha \mathbf{x} = 
 \alpha \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} = 
@@ -150,11 +157,18 @@ El efecto del escalar $\alpha$ sobre el vector original $\mathbf{x}$ depende de 
     \item \textbf{Agro (Proyección de Insumos):} 
     Suponga que el vector $\mathbf{d}$ representa la dosis de fertilizantes para \textbf{1 hectárea}: $\mathbf{d} = [100, 50, 30]^\top$ (kg de N, P, K).
     Si un agricultor desea fertilizar un lote de 15 hectáreas, el requerimiento total es simplemente el vector escalado por la superficie:
-    \[ \mathbf{Total} = 15 \cdot \mathbf{d} = \begin{pmatrix} 1500 \\ 750 \\ 450 \end{pmatrix} \text{ kg}. \]
+
+    \[ 
+    \mathbf{Total} = 15 \cdot \mathbf{d} = \begin{pmatrix} 1500 \\ 750 \\ 450 \end{pmatrix} \text{ kg}. 
+    \]
     
     \item \textbf{Mecatrónica (Ganancia de Control):}
     En un sistema de control de un robot, el  ``error'' de posición es un vector $\mathbf{e}$ (diferencia entre dónde está y dónde debería estar). El controlador aplica una corrección proporcional multiplicando ese error por una ganancia $K_p$ (un escalar).
-    \[ \mathbf{u} = K_p \cdot \mathbf{e} \]
+
+    \[ 
+    \mathbf{u} = K_p \cdot \mathbf{e} 
+    \]
+
     Si $K_p$ es muy grande, el robot reacciona violentamente (gran vector de fuerza); si es pequeño, reacciona suavemente.
 \end{enumerate}
 
@@ -163,6 +177,7 @@ El efecto del escalar $\alpha$ sobre el vector original $\mathbf{x}$ depende de 
 El \textbf{producto punto} es la operación fundamental para conectar la geometría (ángulos, longitudes) con el álgebra. Mide el grado de alineación entre dos vectores: si apuntan en la misma dirección, el valor es grande y positivo; si son perpendiculares, es cero; si apuntan en sentidos opuestos, es negativo.
 
 \textbf{Definición formal.}
+
 \[
 \cdot : \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}, \quad (\mathbf{x}, \mathbf{y}) \mapsto \mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^{n} x_i y_i.
 \]
@@ -170,10 +185,13 @@ El \textbf{producto punto} es la operación fundamental para conectar la geometr
 \subsubsection{Interpretación Geométrica y Similitud}
 
 Además de la suma algebraica, el producto punto satisface la identidad geométrica:
+
 \[
 \mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos(\theta),
 \]
+
 donde $\theta$ es el ángulo entre los vectores. De aquí se deduce la \textbf{Similitud Coseno}, métrica clave en IA:
+
 \[
 \cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert}.
 \]
@@ -274,12 +292,20 @@ donde $\theta$ es el ángulo entre los vectores. De aquí se deduce la \textbf{S
 
     \item \textbf{Mecatrónica (Cálculo de Trabajo y Potencia):}
     Para un robot móvil, el trabajo mecánico $W$ realizado al mover una carga es el producto punto entre el vector de fuerza aplicada $\mathbf{F}$ y el vector de desplazamiento $\mathbf{d}$:
-    \[ W = \mathbf{F} \cdot \mathbf{d} = \lVert \mathbf{F} \rVert \lVert \mathbf{d} \rVert \cos(\theta) \]
+
+    \[ 
+    W = \mathbf{F} \cdot \mathbf{d} = \lVert \mathbf{F} \rVert \lVert \mathbf{d} \rVert \cos(\theta) 
+    \]
+
     Si el robot aplica fuerza perpendicular al movimiento ($\theta=90^\circ$), el producto punto es 0 y no se realiza trabajo útil (energía desperdiciada).
 
     \item \textbf{Administrativo (Sistemas de Puntuación):}
     Sea $\mathbf{w}$ un vector de ``pesos''\ o importancia para tres criterios (Costo, Calidad, Tiempo) y $\mathbf{x}$ el vector de puntajes de un proveedor. El puntaje total es simplemente:
-    \[ \text{Score} = \mathbf{w} \cdot \mathbf{x} = w_1 x_1 + w_2 x_2 + w_3 x_3 \]
+
+    \[ 
+    \text{Score} = \mathbf{w} \cdot \mathbf{x} = w_1 x_1 + w_2 x_2 + w_3 x_3 
+    \]
+
     Esta es la base de las redes neuronales: una neurona realiza un producto punto entre los datos de entrada y sus pesos sinápticos.
 \end{enumerate}
 
@@ -288,9 +314,11 @@ donde $\theta$ es el ángulo entre los vectores. De aquí se deduce la \textbf{S
 El producto punto ($\mathbf{x} \cdot \mathbf{y}$) es mucho más que una suma de productos de componentes: es la operación geométrica fundamental que cuantifica cuánto dos vectores apuntan en la misma dirección. Esta noción de “alineación direccional” es la base de técnicas esenciales en inteligencia artificial, como la similitud coseno, la proyección ortogonal y el Análisis de Componentes Principales (PCA).
 
 La definición geométrica del producto punto para dos vectores $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$ es:
+
 \[
 \mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert \cos(\theta),
 \]
+
 donde $\lVert \mathbf{x} \rVert$ y $\lVert \mathbf{y} \rVert$ son las longitudes euclidianas de los vectores, y $\theta \in [0, \pi]$ es el ángulo entre ellos.
 
 Esta fórmula revela tres casos clave:
@@ -313,9 +341,11 @@ Esta interpretación geométrica es el primer paso hacia la comprensión de cóm
 El concepto más fundamental es la relación con la proyección ortogonal, como se ilustra en la figura \ref{fig:producto_punto_geometrico_corregido}. El término $\lVert \mathbf{y} \rVert \cos(\theta)$ representa precisamente la longitud de la \textit{componente} del vector $\mathbf{y}$ que está alineada con $\mathbf{x}$ (la proyección, $\mathrm{proj}_{\mathbf{x}} \mathbf{y}$).
 
 Por lo tanto, el producto punto puede reescribirse como:
+
 \[
 \mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \cdot \left( \lVert \mathbf{y} \rVert \cos(\theta) \right) = \lVert \mathbf{x} \rVert \cdot \lVert \mathrm{proj}_{\mathbf{x}} \mathbf{y} \rVert.
 \]
+
 El producto punto es, en esencia, la magnitud de $\mathbf{x}$ multiplicada por la longitud de la ``sombra'' que $\mathbf{y}$ proyecta sobre $\mathbf{x}$. El signo de $\mathbf{x} \cdot \mathbf{y}$ depende únicamente del $\cos(\theta)$.
 
 \paragraph{Casos Críticos}
@@ -324,23 +354,29 @@ El valor del producto punto está dominado por el coseno del ángulo $\theta$, a
 \begin{enumerate}
     \item \textbf{Alineación Perfecta ($\theta = 0^\circ$):}
     Si $\mathbf{x}$ y $\mathbf{y}$ apuntan exactamente en la misma dirección, $\cos(0^\circ) = 1$.
+    
     \[
     \mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert.
     \]
+
     El producto punto es \textit{máximo y positivo}. En IA, esto indica máxima similitud o máxima compatibilidad direccional.
 
     \item \textbf{Ortogonalidad ($\theta = 90^\circ$):}
     Si $\mathbf{x}$ y $\mathbf{y}$ son perpendiculares (ortogonales), $\cos(90^\circ) = 0$.
+
     \[
     \mathbf{x} \cdot \mathbf{y} = 0.
     \]
+
     El producto punto es \textit{cero}, indicando que los vectores no tienen ninguna componente en común y son linealmente independientes, un principio clave en la decorrelación de datos (ej. PCA).
 
     \item \textbf{Alineación Opuesta ($\theta = 180^\circ$):}
     Si $\mathbf{x}$ y $\mathbf{y}$ apuntan en direcciones opuestas, $\cos(180^\circ) = -1$.
+
     \[
     \mathbf{x} \cdot \mathbf{y} = -\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert.
     \]
+
     El producto punto es \textit{mínimo y negativo}, indicando la máxima disimilitud o incompatibilidad.
 \end{enumerate}
     
@@ -411,23 +447,29 @@ La utilidad del producto punto ($\mathbf{x} \cdot \mathbf{y}$) radica en su capa
 \begin{itemize}
     \item \textbf{Ejemplo Agronómico.}
     Considere dos parcelas de maíz caracterizadas por el vector de insumos aplicados:
+
     \[
     \mathbf{x} = \begin{pmatrix} 120 \\ 50 \\ 3 \end{pmatrix} \text{ (kg/ha de N, P, K)}, \quad
     \mathbf{y} = \begin{pmatrix} 100 \\ 60 \\ 4 \end{pmatrix}.
     \]
+
     El producto punto $\mathbf{x} \cdot \mathbf{y} = 12\,000 + 3\,000 + 12 = 15\,012$ es alto, lo que sugiere un perfil de fertilización similar. Esta medida agrupa parcelas con prácticas comparables.
 
     \item \textbf{Ejemplo Zootécnico.}
     Considere dos vacas lecheras descritas por su historial productivo en una ventana de control:
+
     \[
     \mathbf{x} = \begin{pmatrix} 28 \\ 4{,}2 \\ 38 \end{pmatrix}, \quad
     \mathbf{y} = \begin{pmatrix} 30 \\ 4{,}0 \\ 39 \end{pmatrix},
     \]
+
     donde las componentes representan días en lactancia, producción diaria (L/día) y contenido de grasa (\%).
     El producto punto:
+
     \[
     \mathbf{x} \cdot \mathbf{y} = (28)(30) + (4{,}2)(4{,}0) + (38)(39) = 2338{,}8.
     \]
+
     Este valor alto refleja perfiles productivos similares: producción alta, lactancia avanzada y elevado contenido de grasa. Esta medida es útil en sistemas de segmentación de hatos.
 \end{itemize}
 
@@ -490,13 +532,13 @@ print(f''Gasto total calculado via producto punto: ${gasto_total}'')
 
 \subsection{Aplicaciones Sectoriales en Código}
 
-\begin{appbox}{Mecatrónica: Resultante de Fuerzas}
+\begin{quote}{Mecatrónica: Resultante de Fuerzas}
     En un brazo robótico, si dos motores ejercen fuerzas representadas por los vectores $\mathbf{f}_1$ y $\mathbf{f}_2$, la fuerza resultante sobre el efector final es simplemente \texttt{$f_res = f1 + f2$}. La magnitud de esta fuerza se obtiene con \texttt{np.linalg.norm($f_res$)}.
-\end{appbox}
+\end{quote}
 
-\begin{appbox}{Agroindustrial: Mezclas y Diluciones}
+\begin{quote}{Agroindustrial: Mezclas y Diluciones}
     Si un vector $\mathbf{v}$ representa la concentración de azúcares y acidez de un lote de jugo, y queremos diluirlo al $50\%$, aplicamos \texttt{$nuevo_lote = 0.5 * v$}. El producto punto se usa para calcular el costo total de la mezcla si tenemos un vector de precios por litro de cada componente.
-\end{appbox}
+\end{quote}
 
 \subsection*{Resumen de Funciones Clave}
 
@@ -520,6 +562,7 @@ Esta operación es el corazón de las redes neuronales profundas (Deep Learning)
 
 \paragraph{Definición formal}
 Sea $\mathbf{W} \in \mathbb{R}^{m \times n}$ una matriz y $\mathbf{x} \in \mathbb{R}^n$ un vector de entrada. Su producto es un nuevo vector $\mathbf{z} \in \mathbb{R}^m$ definido por:
+
 \[
 \mathbf{z} = \mathbf{W} \mathbf{x} =
 \begin{pmatrix}
@@ -528,6 +571,7 @@ Sea $\mathbf{W} \in \mathbb{R}^{m \times n}$ una matriz y $\mathbf{x} \in \mathb
 \mathbf{fila}_m(\mathbf{W}) \cdot \mathbf{x}
 \end{pmatrix}.
 \]
+
 Cada entrada $z_i$ es el \textbf{producto punto} entre la fila $i$-ésima de la matriz y el vector $\mathbf{x}$. Para que la operación sea válida, el número de columnas de la matriz ($n$) debe coincidir con la dimensión de entrada del vector.
 
 \paragraph{Ejemplo Teórico: Transformación de Insumos a Nutrientes}
@@ -536,10 +580,12 @@ Imaginemos un sistema inteligente para la formulación de raciones en ganado lec
 
 \textbf{1. El Vector de Entrada ($\mathbf{x}$):}
 Representa la cantidad de materia prima (en kg) que vamos a utilizar en la mezcla.
+
 \[
 \mathbf{x} = \begin{pmatrix} 10 \\ 5 \end{pmatrix}
 \begin{matrix} \text{(kg de Maíz)} \\ \text{(kg de Soya)} \end{matrix}
 \]
+
 Aquí, $n=2$ (tenemos 2 ingredientes).
 
 \textbf{2. La Matriz de Pesos ($\mathbf{W}$):}
@@ -557,6 +603,7 @@ Representa el contenido nutricional por cada kg de ingrediente.
 \end{pmatrix}
 \begin{matrix} \leftarrow \text{Perfil de Proteína} \\ \leftarrow \text{Perfil de Energía} \end{matrix}
 \]
+
 Aquí, $m=2$ (tenemos 2 métricas de salida). Note que las columnas ($n=2$) coinciden con los ingredientes (Maíz y Soya).
 
 \textbf{3. El Cálculo ($\mathbf{z} = \mathbf{W}\mathbf{x}$):}
@@ -599,9 +646,11 @@ En este ejemplo, la matriz $\mathbf{W}$ codifica el ``conocimiento'' del sistema
 \paragraph{Enfoque en Redes Neuronales: La Capa Densa}
 
 En el contexto de la inteligencia artificial, esta operación no es solo álgebra; es la definición de una \textbf{capa densa} (fully connected layer). La ecuación fundamental que ejecuta una neurona artificial (antes de la activación no lineal) es:
+
 \[
 \mathbf{z} = \mathbf{W} \mathbf{x} + \mathbf{b},
 \]
+
 donde cada elemento cumple un rol biológico-computacional preciso:
 
 \begin{itemize}
@@ -621,6 +670,7 @@ La red neuronal tiene una capa con $m=2$ neuronas, donde cada una se ha especial
 \end{enumerate}
 
 La matriz de pesos $\mathbf{W} \in \mathbb{R}^{2 \times 4}$ codifica estas prioridades:
+
 \[
 \mathbf{W} =
 \begin{pmatrix}
@@ -630,11 +680,13 @@ La matriz de pesos $\mathbf{W} \in \mathbb{R}^{2 \times 4}$ codifica estas prior
 \]
 
 Si llega una propuesta con el siguiente perfil de inversión (en millones):
+
 \[
 \mathbf{x} = (300, 80, 220, 75)^\top.
 \]
 
 El paso hacia adelante (\textit{forward pass}) de la red calcula:
+
 \[
 \mathbf{z} = \mathbf{W} \mathbf{x} =
 \begin{pmatrix}
@@ -662,6 +714,7 @@ La multiplicación de matrices es el motor computacional de la Inteligencia Arti
 
 \subsubsection{Regla de Dimensiones}
 Para que el producto $\mathbf{A}\mathbf{B}$ exista, las dimensiones internas deben coincidir (``el ancho de la primera igual al alto de la segunda'').
+
 \[
 \underbrace{\mathbf{A}}_{m \times \mathbf{n}} \quad \times \quad \underbrace{\mathbf{B}}_{\mathbf{n} \times p} \quad = \quad \underbrace{\mathbf{C}}_{m \times p}
 \]
@@ -721,12 +774,13 @@ c_{ij} = \mathbf{fila}_i(\mathbf{A}) \cdot \mathbf{columna}_j(\mathbf{B}) = \sum
     \item \textbf{Asociatividad:} $(\mathbf{A}\mathbf{B})\mathbf{C} = \mathbf{A}(\mathbf{B}\mathbf{C})$. Esto es vital en Deep Learning para optimizar el cómputo en capas profundas.
 \end{itemize}
 
-\begin{appbox}{Ejemplo Práctico: Lotes $\times$ Proveedores}
+\begin{quote}{Ejemplo Práctico: Lotes $\times$ Proveedores}
 Imaginemos que queremos calcular costos para diferentes escenarios.
 \begin{itemize}
     \item $\mathbf{A}$ (Requerimientos): 2 Lotes (filas) necesitan cantidades de 3 insumos (columnas: N, P, K).
     \item $\mathbf{B}$ (Precios): Esos 3 insumos tienen precios diferentes en 2 Proveedores distintos (columnas).
 \end{itemize}
+
 \[
 \mathbf{A}_{(2 \times 3)} = 
 \begin{pmatrix} 
@@ -740,6 +794,7 @@ Imaginemos que queremos calcular costos para diferentes escenarios.
 10 & 8 
 \end{pmatrix}
 \]
+
 El producto $\mathbf{C} = \mathbf{AB}$ nos dará una matriz de $2 \times 2$ donde cada elemento $c_{ij}$ es el \textbf{costo total} del Lote $i$ comprando al Proveedor $j$.
 
 Realizamos los cálculos para cada celda:
@@ -751,6 +806,7 @@ c_{22} &= (15\cdot 3) + (10 \cdot 4) + (2 \cdot 8) = 45 + 40 + 16 = 101
 \end{align*}
 
 El resultado final es:
+
 \[
 \mathbf{C} = 
 \begin{pmatrix} 
@@ -765,7 +821,7 @@ El resultado final es:
     \item Para el \textbf{Lote 2} (Fila 2), es más económico comprar al \textbf{Proveedor 1} (\$90) que al Proveedor 2 (\$101).
 \end{itemize}
 Esta operación permite evaluar múltiples escenarios económicos de forma simultánea.
-\end{appbox}
+\end{quote}
 \section{Escalares asociados: Traza, Determinante y Rango}
 
 Antes de analizar propiedades más complejas, definimos tres escalares que resumen la estructura de una matriz cuadrada $\mathbf{A} \in \mathbb{R}^{n \times n}$:
@@ -792,21 +848,25 @@ En el contexto del análisis de datos, el determinante representa el \textbf{fac
 
 \paragraph{Cálculo en $2 \times 2$}
 Para una matriz de $\mathbb{R}^{2 \times 2}$, la fórmula es:
+
 \[
 \det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc.
 \]
 
 \paragraph{Singularidad e Invertibilidad}
 La propiedad más importante para la inteligencia artificial es su relación con la inversión de matrices:
+
 \[
 \mathbf{A} \text{ es invertible} \iff \det(\mathbf{A}) \neq 0.
 \]
+
 Una matriz con determinante cero se llama \textbf{singular}. En términos de datos, esto implica que las filas (o columnas) son linealmente dependientes, es decir, existe redundancia perfecta en la información (colinealidad).
 
 \paragraph{Ejemplo Agro-Ambiental: Detección de Redundancia}
 Suponga que intentamos modelar el crecimiento de un cultivo usando dos variables que creemos distintas: $x_1$ (agua de riego en L) y $x_2$ (tiempo de riego en minutos). Sin embargo, si el sistema de riego tiene un flujo constante, $x_1$ es exactamente proporcional a $x_2$.
 
 La matriz de correlación o covarianza de estos datos tendría la forma:
+
 \[
 \mathbf{C} = 
 \begin{pmatrix} 
@@ -814,19 +874,24 @@ La matriz de correlación o covarianza de estos datos tendría la forma:
 1 & 1 
 \end{pmatrix}.
 \]
+
 Calculando el determinante:
+
 \[
 \det(\mathbf{C}) = (1)(1) - (1)(1) = 0.
 \]
+
 El determinante nulo nos alerta matemáticamente de que no tenemos dos dimensiones reales de información, sino solo una. Intentar invertir esta matriz para un modelo de regresión lineal generará un error computacional, indicando que debemos eliminar una de las variables redundantes antes de entrenar el modelo.
 
 
 \section{Inversa de una matriz}
 
 La \textbf{inversa} de una matriz cuadrada $\mathbf{A} \in \mathbb{R}^{n \times n}$, denotada $\mathbf{A}^{-1}$, es la matriz única que satisface:
+
 \[
 \mathbf{A} \mathbf{A}^{-1} = \mathbf{A}^{-1} \mathbf{A} = \mathbf{I}_n,
 \]
+
 donde $\mathbf{I}_n$ es la matriz identidad (con 1s en la diagonal y 0s fuera).
 
 \paragraph{Condición de existencia}
@@ -844,10 +909,13 @@ Una matriz $\mathbf{A}$ es invertible (o no singular) si y solo si cumple cualqu
 \end{itemize}
 
 \textbf{Ejemplo agronómico.} Para predecir rendimiento ($y$) a partir de N y P ($\mathbf{X}$), necesitamos calcular $(\mathbf{X}^\top \mathbf{X})^{-1}$. Si
+
 \[
 \mathbf{X}^\top \mathbf{X} = \begin{pmatrix} 5 & 2 \\ 2 & 2 \end{pmatrix} \implies \det = 10 - 4 = 6 \neq 0.
 \]
+
 Como el determinante es no nulo, la inversa existe y el modelo tiene solución única:
+
 \[
 (\mathbf{X}^\top \mathbf{X})^{-1} = \frac{1}{6} \begin{pmatrix} 2 & -2 \\ -2 & 5 \end{pmatrix}.
 \]
@@ -923,7 +991,7 @@ En el código de redes neuronales (como TensorFlow o PyTorch), la operación \te
 
 A diferencia de las matrices, donde el producto punto es la estrella, en los tensores operamos frecuentemente con \textbf{filtrado (convolución)}, \textbf{operaciones elemento a elemento} (Hadamard) y \textbf{re-dimensionamiento} (Reshaping).
 
-\begin{appbox}{Caso de Estudio: Detección de Tumores en MRI}
+\begin{quote}{Caso de Estudio: Detección de Tumores en MRI}
 Una Resonancia Magnética (MRI) del cerebro no es una foto plana; es una volumetría.
 Podemos representarla como un tensor $\mathcal{X}$ de dimensiones $256 \times 256 \times 120$:
 \begin{itemize}
@@ -933,18 +1001,22 @@ Podemos representarla como un tensor $\mathcal{X}$ de dimensiones $256 \times 25
 
 \textbf{Operación 1: Aplicación de una Máscara (Producto Hadamard)}
 Para aislar el cerebro y eliminar el cráneo o el fondo, multiplicamos el tensor de la imagen $\mathcal{X}$ por un tensor binario ``máscara'' $\mathcal{M}$ (donde 1 es tejido cerebral y 0 es hueso/fondo).
+
 \[
 \mathcal{Y} = \mathcal{X} \odot \mathcal{M} \quad \implies \quad y_{ijk} = x_{ijk} \cdot m_{ijk}
 \]
+
 Esta operación se realiza simultáneamente en los 7.8 millones de vóxeles (píxeles 3D).
 
 \textbf{Operación 2: Aplanado (Flattening) para Diagnóstico}
 Una red neuronal clásica no puede ``tragar'' un cubo. Debemos convertir el tensor 3D en un vector largo 1D para clasificarlo (ej. ¿Hay tumor? Sí/No).
+
 \[
 \text{Flatten}(\mathbb{R}^{256 \times 256 \times 120}) \to \mathbb{R}^{7,864,320}
 \]
+
 Este proceso de reestructurar los datos sin perder información es la base de la arquitectura de redes convolucionales (CNN).
-\end{appbox}
+\end{quote}
 
 \subsubsection{Implementación: Manipulación de Vóxeles en Python}
 

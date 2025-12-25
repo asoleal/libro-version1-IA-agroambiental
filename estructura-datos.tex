@@ -63,6 +63,7 @@ Para entender las operaciones matriciales en IA, es crucial no ver la matriz com
 
 \paragraph{1. Visión por Columnas (Espacio de Características)}
 Podemos ver a $\mathbf{A}$ como una colección de $n$ vectores columna verticales. Esta visión es útil en álgebra lineal para entender conceptos como \textit{independencia lineal} o \textit{bases}.
+
 \[
 \mathbf{A} = 
 \begin{pmatrix}
@@ -75,6 +76,7 @@ Podemos ver a $\mathbf{A}$ como una colección de $n$ vectores columna verticale
 
 \paragraph{2. Visión por Filas (Espacio de Muestras)}
 Podemos ver a $\mathbf{A}$ como una pila de $m$ vectores fila horizontales. Esta es la visión estándar en \textbf{Data Science}, donde cada fila es un objeto de estudio.
+
 \[
 \mathbf{A} = 
 \begin{pmatrix}
@@ -92,13 +94,13 @@ Considere un estudio de suelos con 100 muestras ($m=100$) y 5 variables química
 
 \[
 \mathbf{X} = 
-\bordermatrix{
- & \text{N} & \text{P} & \text{K} & \text{pH} & \text{M.O.} \cr
-\text{Muestra 1} & 110 & 45 & 2{,}8 & 6{,}1 & 3{,}5 \cr
-\text{Muestra 2} & 130 & 55 & 3{,}1 & 6{,}3 & 4{,}1 \cr
-\vdots & \vdots & \vdots & \vdots & \vdots & \vdots \cr
+\begin{array}{c|ccccc}
+ & \text{N} & \text{P} & \text{K} & \text{pH} & \text{M.O.} \\ \hline
+\text{Muestra 1} & 110 & 45 & 2{,}8 & 6{,}1 & 3{,}5 \\
+\text{Muestra 2} & 130 & 55 & 3{,}1 & 6{,}3 & 4{,}1 \\
+\vdots & \vdots & \vdots & \vdots & \vdots & \vdots \\
 \text{Muestra 100} & 100 & 50 & 2{,}9 & 5{,}9 & 3{,}2
-}
+\end{array}
 \]
 
 En este contexto, el álgebra lineal nos permite operar sobre todo el conjunto de datos simultáneamente (por ejemplo, normalizar la columna del pH para todas las muestras a la vez) mediante una técnica computacional conocida como \textbf{vectorización}, evitando el uso de bucles lentos.
@@ -122,53 +124,63 @@ El \textbf{rango} (u \textit{orden}) de un tensor es el número de índices nece
 
 \textbf{Definición formal.} 
 Un tensor de orden $K$ se define como un elemento de un espacio producto de $K$ dimensiones:
+
 \[
 \mathcal{T} \in \mathbb{R}^{d_1 \times d_2 \times \dots \times d_K}
 \]
+
 donde cada $d_i$ representa la cardinalidad (tamaño) del $i$-ésimo eje. Para acceder a una entrada específica, se requiere una tupla de $K$ índices:
+
 \[
 t_{i_1, i_2, \dots, i_K} = \mathcal{T}(i_1, i_2, \dots, i_K)
 \]
 
 
-\begin{appbox}{Ingeniería Ambiental y Teledetección}
+\begin{quote}{Ingeniería Ambiental y Teledetección}
+
     El uso de tensores de rango 4 permite modelar la \textbf{dispersión espaciotemporal} de contaminantes. Los ejes representan: (1) Tiempo, (2) Latitud, (3) Longitud y (4) Tipo de contaminante ($\mathrm{PM}_{2.5}, \mathrm{O}_3$, etc.). Esta estructura es la entrada para redes neuronales recurrentes-convolucionales (ConvLSTM).
-\end{appbox}
-\begin{figure}[ht]
-    \centering
-    \begin{tikzpicture}[scale=0.8]
-        % Matriz (2D)
-        \begin{scope}[shift={(0,0)}]
-            \draw[thick, fill=blue!10] (0,0) rectangle (2,2);
-            \node at (1, -0.5) {Matriz (2D)};
-            \draw[step=0.5, gray!50, thin] (0,0) grid (2,2);
-        \end{scope}
+\end{quote}
+%\begin{figure}[ht]
+%    \centering
+%    \begin{tikzpicture}[scale=0.8]
+%        % Matriz (2D)
+%        \begin{scope}[shift={(0,0)}]
+%            \draw[thick, fill=blue!10] (0,0) rectangle (2,2);
+%            \node at (1, -0.5) {Matriz (2D)};
+%            \draw[step=0.5, gray!50, thin] (0,0) grid (2,2);
+%        \end{scope}
         
         % Flecha
-        \draw[->, thick, gray] (2.5, 1) -- (3.5, 1);
+%        \draw[->, thick, gray] (2.5, 1) -- (3.5, 1);
         
         % Tensor (3D)
-        \begin{scope}[shift={(4,0)}]
+%        \begin{scope}[shift={(4,0)}]
             % Cara frontal
-            \draw[thick, fill=blue!10] (0,0) rectangle (2,2);
-            \draw[step=0.5, gray!50, thin] (0,0) grid (2,2);
+%            \draw[thick, fill=blue!10] (0,0) rectangle (2,2);
+%            \draw[step=0.5, gray!50, thin] (0,0) grid (2,2);
             
             % Profundidad (Cubo)
-            \draw[thick] (0,2) -- (1,3) -- (3,3) -- (3,1) -- (2,0);
-            \draw[thick] (2,2) -- (3,3);
-            \draw[thick, fill=blue!5, opacity=0.5] (1,3) -- (3,3) -- (3,1) -- (2,0) -- (0,0) -- (0,2) -- cycle;
+%            \draw[thick] (0,2) -- (1,3) -- (3,3) -- (3,1) -- (2,0);
+%            \draw[thick] (2,2) -- (3,3);
+%            \draw[thick, fill=blue!5, opacity=0.5] (1,3) -- (3,3) -- (3,1) -- (2,0) -- (0,0) -- (0,2) -- cycle;
             
             % Capas visibles (slices)
-            \draw[thin, gray] (0.5, 2) -- (1.5, 3);
-            \draw[thin, gray] (1, 2) -- (2, 3);
-            \draw[thin, gray] (1.5, 2) -- (2.5, 3);
+%            \draw[thin, gray] (0.5, 2) -- (1.5, 3);
+%            \draw[thin, gray] (1, 2) -- (2, 3);
+%            \draw[thin, gray] (1.5, 2) -- (2.5, 3);
             
-            \node at (1.5, -0.5) {Tensor (3D)};
-            \node[anchor=west] at (3.2, 2.5) {Profundidad ($k$)};
-        \end{scope}
-    \end{tikzpicture}
-    \caption{Visualización de la evolución de una matriz a un tensor. Mientras la matriz es una hoja de cálculo, un tensor 3D es como un "libro"\ con múltiples hojas.}
-    \label{fig:tensor_vis}
+%            \node at (1.5, -0.5) {Tensor (3D)};
+%            \node[anchor=west] at (3.2, 2.5) {Profundidad ($k$)};
+%        \end{scope}
+%    \end{tikzpicture}
+%    \caption{Visualización de la evolución de una matriz a un tensor. Mientras la matriz es una hoja de cálculo, un tensor 3D es como un "libro"\ con múltiples hojas.}
+%    \label{fig:tensor_vis}
+%\end{figure}
+\begin{figure}[h]
+    \centering
+    % Apuntamos al SVG. Pandoc lo entenderá perfectamente.
+    \includegraphics[width=0.8\textwidth]{imagenes/tensor_diagrama}
+    \caption{Visualización del Tensor}
 \end{figure}
 \subsection*{Ejemplo explícito: tensor de rango 4 en teledetección agrícola}
 
@@ -195,16 +207,18 @@ Cada dimensión (modo) del tensor representa una característica esencial del co
 \end{itemize}
 
 Un elemento genérico del tensor se denota como:
+
 \[
-\mathcal{T}(t, i, j, b) = \text{valor de reflectancia en la fecha } t,
-\text{ píxel } (i,j), \text{ y banda } b,
+\mathcal{T}(t, i, j, b) = \text{valor de reflectancia en la fecha } t, \text{ píxel } (i,j), \text{ y banda } b,
 \]
+
 donde:
+
 \begin{align*}
-t &\in \{1, 2, \dots, 30\}, \\
-i &\in \{1, 2, \dots, 64\}, \\
-j &\in \{1, 2, \dots, 64\}, \\
-b &\in \{1, 2, 3, 4, 5\}.
+    t &\in \{1, 2, \dots, 30\} \\
+    i &\in \{1, 2, \dots, 64\} \\
+    j &\in \{1, 2, \dots, 64\} \\
+    b &\in \{1, 2, 3, 4, 5\}
 \end{align*}
 
 Por ejemplo, el valor $\mathcal{T}(15, 32, 45, 4) = 0.82$ indica que, en la decimoquinta fecha de muestreo, el píxel ubicado en la fila 32 y columna 45 presentó una reflectancia relativa del 82\% en la banda NIR. Este valor alto es típico de vegetación sana y se usa para calcular índices como el NDVI.
@@ -252,9 +266,11 @@ Este tipo de tensor es la entrada estándar para arquitecturas de redes neuronal
     
     Este tensor es la entrada típica para sistemas de \textit{Visual Servoing} o SLAM (Localización y Mapeo Simultáneos), permitiendo al robot distinguir objetos reales de sombras y calcular trayectorias libres de colisiones en entornos dinámicos.
 \end{itemize}
-\begin{appbox}{Teledetección y Medio Ambiente}
+
+\begin{quote}{Teledetección y Medio Ambiente}
+
 Un tensor $\mathcal{T} \in \mathbb{R}^{30 \times 64 \times 64 \times 5}$ permite a una red neuronal convolucional (CNN) detectar estrés hídrico analizando la evolución temporal de la reflectancia en la banda NIR (Infrarrojo Cercano).
-\end{appbox}
+\end{quote}
 
 En la práctica de la inteligencia artificial moderna —dominada por librerías como \texttt{PyTorch} o \texttt{TensorFlow}—, el tensor evoluciona de una abstracción matemática a un \textbf{objeto computacional} de alto rendimiento. Se implementa como un \textit{arreglo multidimensional} optimizado para ejecutarse en aceleradores de hardware (GPU/TPU) y con soporte nativo para la \textit{diferenciación automática}. Esta infraestructura es la base común que permite entrenar modelos complejos en cualquier dominio: desde la visión computacional en agricultura y la navegación robótica, hasta la proyección de escenarios financieros en administración.
 
@@ -343,6 +359,7 @@ En el contexto de la ciencia de datos y la modelación, la transposición no es 
 
 \paragraph{Definición}
 Dado un vector columna $\mathbf{x} \in \mathbb{R}^{n}$ (o $\mathbb{R}^{n\times 1}$), definido explícitamente como:
+
 \[
 \mathbf{x} = 
 \begin{pmatrix}
@@ -352,15 +369,19 @@ x_2 \\
 x_n
 \end{pmatrix}
 \]
+
 Su \textbf{transpuesta}, denotada como $\mathbf{x}^\top$, es el vector fila asociado en $\mathbb{R}^{1 \times n}$:
+
 \[
 \mathbf{x}^\top = 
 \begin{pmatrix}
 x_1 & x_2 & \cdots & x_n
 \end{pmatrix}
 \]
+
 \paragraph{Definición}
 Dada una matriz $\mathbf{A} \in \mathbb{R}^{m \times n}$, expresada explícitamente como:
+
 \[
 \mathbf{A} = 
 \begin{pmatrix}
@@ -370,7 +391,9 @@ a_{21} & a_{22} & \cdots & a_{2n} \\
 a_{m1} & a_{m2} & \cdots & a_{mn}
 \end{pmatrix}_{m\times n}
 \]
+
 Su \textbf{transpuesta} $\mathbf{A}^\top \in \mathbb{R}^{n \times m}$ se construye convirtiendo la fila $i$ de $\mathbf{A}$ en la columna $i$ de $\mathbf{A}^\top$:
+
 \[
 \mathbf{A}^\top = 
 \begin{pmatrix}
@@ -380,17 +403,22 @@ a_{12} & a_{22} & \cdots & a_{m2} \\
 a_{1n} & a_{2n} & \cdots & a_{mn}
 \end{pmatrix}_{n\times m}
 \]
+
 Formalmente, se define por la propiedad de sus entradas:
+
 \[
 (\mathbf{A}^\top)_{ij} = a_{ji}, \quad \text{para todo } i=1,\dots,n,\; j=1,\dots,m.
 \]
-\paragraph{Propiedades clave}
-\begin{enumerate}
-    \item \((\mathbf{A}^\top)^\top = \mathbf{A}\) (involución),
-    \item \((\mathbf{A} + \mathbf{B})^\top = \mathbf{A}^\top + \mathbf{B}^\top\),
-    \item \((\alpha \mathbf{A})^\top = \alpha \mathbf{A}^\top\) para todo \(\alpha \in \mathbb{R}\),
-    \item \((\mathbf{A} \mathbf{B})^\top = \mathbf{B}^\top \mathbf{A}^\top\) (el orden se invierte en el producto).
-\end{enumerate}
+
+
+\textbf{Propiedades clave:}
+
+\begin{align*}
+    (\mathbf{A}^\top)^\top &= \mathbf{A} \\
+    (\mathbf{A} + \mathbf{B})^\top &= \mathbf{A}^\top + \mathbf{B}^\top \\
+    (\alpha \mathbf{A})^\top &= \alpha \mathbf{A}^\top \quad (\text{para todo } \alpha \in \mathbb{R}) \\
+    (\mathbf{A} \mathbf{B})^\top &= \mathbf{B}^\top \mathbf{A}^\top \quad (\text{el orden se invierte})
+\end{align*}
 
 \paragraph{Relevancia en ciencia de datos}
 
@@ -398,12 +426,13 @@ Formalmente, se define por la propiedad de sus entradas:
     \item \textbf{Producto punto:} El producto escalar de dos vectores columna \(\mathbf{x}, \mathbf{y} \in \mathbb{R}^n\) se escribe como \(\mathbf{x}^\top \mathbf{y}\), que resulta en un escalar. Esta notación es la base de la similitud coseno y las proyecciones.
 
     \item \textbf{Matriz de covarianza:} Si \(\mathbf{X} \in \mathbb{R}^{m \times n}\) es una matriz de datos (filas = observaciones, columnas = variables), la matriz de covarianza se calcula como \(\mathbf{\Sigma} = \frac{1}{m-1} \mathbf{X}^\top \mathbf{X}\). La transposición permite alinear correctamente las variables para el cálculo de covarianzas.
+    \item \textbf{Ajuste de modelos:} En regresión lineal, el modelo \(\mathbf{y} = \mathbf{X} \pmb{\beta} + \pmb{\varepsilon}\) requiere que \(\mathbf{X}^\top \mathbf{X}\) sea invertible para estimar \(\pmb{\beta}\), lo que depende directamente de la transposición.
 
-    \item \textbf{Ajuste de modelos:} En regresión lineal, el modelo \(\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}\) requiere que \(\mathbf{X}^\top \mathbf{X}\) sea invertible para estimar \(\boldsymbol{\beta}\), lo que depende directamente de la transposición.
 \end{itemize}
 
 \textbf{Ejemplo numérico.}  
 Considere una matriz de datos de un ensayo agronómico con 2 parcelas y 3 variables (N, P, K):
+
 \[
 \mathbf{X} =
 \begin{pmatrix}
@@ -411,7 +440,9 @@ Considere una matriz de datos de un ensayo agronómico con 2 parcelas y 3 variab
 100 & 60 & 4
 \end{pmatrix}.
 \]
+
 Su transpuesta es:
+
 \[
 \mathbf{X}^\top =
 \begin{pmatrix}
@@ -420,6 +451,7 @@ Su transpuesta es:
 3 & 4
 \end{pmatrix}.
 \]
+
 \subsection{Implementación Computacional y Matices Prácticos}
 
 Aunque la definición matemática es estricta, en librerías como \texttt{NumPy} o \texttt{PyTorch} existe una distinción técnica importante entre un arreglo unidimensional (plano) y un vector columna formal.
@@ -541,6 +573,7 @@ Dos vectores $\mathbf{x}, \mathbf{y} \in \mathbb{R}^n$ se consideran \textbf{igu
     \item Sus componentes correspondientes son idénticas en valor y posición.
 \end{enumerate}
 Formalmente:
+
 \[
 \mathbf{x} = \mathbf{y} \quad \Longleftrightarrow \quad x_i = y_i \quad \text{para todo } i = 1, \dots, n.
 \]
@@ -548,14 +581,17 @@ Formalmente:
 \paragraph{Interpretación Agronómica}
 La igualdad vectorial implica una réplica exacta de condiciones. Por ejemplo, dos lotes de cultivo tienen un manejo nutricional idéntico solo si sus vectores de fertilización $\mathbf{f}_A = (N, P, K, \text{Micro})$ y $\mathbf{f}_B$ son iguales componente a componente. Si $N_A = N_B$ pero $K_A \neq K_B$, entonces $\mathbf{f}_A \neq \mathbf{f}_B$, lo que significa que los tratamientos son agronómicamente distintos.
 
-\begin{appbox}{Administración y Finanzas: Conciliación}
+\begin{quote}{Administración y Finanzas: Conciliación}
+
 La igualdad vectorial es la base de la \textbf{auditoría}. Si definimos un vector de presupuesto planificado $\mathbf{p} \in \mathbb{R}^3$ y un vector de ejecución real $\mathbf{e} \in \mathbb{R}^3$ para tres departamentos (Ventas, I+D, Operaciones):
+
 \[
 \mathbf{p} = \begin{pmatrix} 100 \\ 50 \\ 80 \end{pmatrix}, \quad 
 \mathbf{e} = \begin{pmatrix} 100 \\ 50 \\ 80 \end{pmatrix}
 \]
+
 La condición $\mathbf{p} = \mathbf{e}$ indica un cumplimiento presupuestario perfecto (varianza cero). Si $\mathbf{p} \neq \mathbf{e}$, la diferencia $\mathbf{d} = \mathbf{p} - \mathbf{e}$ generará un vector de desviaciones no nulo que debe ser justificado.
-\end{appbox}
+\end{quote}
 
 \subsection{Igualdad de matrices}
 Dos matrices $\mathbf{A}, \mathbf{B} \in \mathbb{R}^{m \times n}$ se consideran \textbf{iguales} si y solo si satisfacen simultáneamente dos condiciones:
@@ -564,6 +600,7 @@ Dos matrices $\mathbf{A}, \mathbf{B} \in \mathbb{R}^{m \times n}$ se consideran 
     \item Sus entradas correspondientes son idénticas en valor y posición.
 \end{enumerate}
 Formalmente:
+
 \[
 \mathbf{A} = \mathbf{B} \quad \Longleftrightarrow \quad A_{ij} = B_{ij} \quad \text{para todo } i = 1, \dots, m; \; j = 1, \dots, n.
 \]
@@ -574,9 +611,11 @@ La igualdad $\mathbf{M}_{2020} = \mathbf{M}_{2024}$ indicaría una conservación
 
 
 
-\begin{appbox}{Mecatrónica: Control de Robots}
+\begin{quote}{Mecatrónica: Control de Robots}
+
 En robótica, la posición y orientación de un brazo manipulador se describen mediante matrices de transformación homogénea de $4 \times 4$.
 Sea $\mathbf{T}_{\text{obj}}$ la matriz que representa la pose deseada (target) del efector final (la pinza) y $\mathbf{T}_{\text{act}}$ la pose actual leída por los sensores:
+
 \[
 \mathbf{T}_{\text{obj}} = 
 \begin{pmatrix} 
@@ -593,10 +632,13 @@ Sea $\mathbf{T}_{\text{obj}}$ la matriz que representa la pose deseada (target) 
 0 & 0 & 0 & 1
 \end{pmatrix}
 \]
+
 El sistema de control verifica la igualdad. Como $T_{14}$ (posición en $x$) es $10$ en la deseada y $9.8$ en la actual, $\mathbf{T}_{\text{obj}} \neq \mathbf{T}_{\text{act}}$. Esto genera una señal de error que activa los motores para corregir esa diferencia de $0.2$ unidades.
-\end{appbox}
+\end{quote}
+
 \paragraph{Generalización a Tensores}
 El concepto de igualdad se extiende naturalmente a arreglos multidimensionales de orden superior, conocidos como \textbf{tensores}. Sean $\mathcal{A}$ y $\mathcal{B}$ dos tensores de orden 3 (por ejemplo, de dimensiones $m \times n \times p$). Estos se consideran iguales solo si coinciden en cada voxel o celda cúbica:
+
 \[
 \mathcal{A} = \mathbf{B} \quad \Longleftrightarrow \quad A_{ijk} = B_{ijk} \quad \forall i,j,k.
 \]
@@ -619,9 +661,11 @@ Para abordar la comparación de tensores, es fundamental distinguir dos enfoques
 \end{enumerate}
 
 Matemáticamente, definimos la igualdad computacional como:
+
 \[
 \mathbf{A} \approx \mathbf{B} \iff |a_{ij} - b_{ij}| < \epsilon, \quad \forall i,j
 \]
+
 Donde $\epsilon$ (epsilon) suele ser un valor muy pequeño (ej. $10^{-5}$ o $10^{-8}$).
 
 \begin{lstlisting}[language=Python, caption={El peligro de la igualdad estricta y la solución con allclose}]
@@ -671,9 +715,11 @@ Valor Calculado: 2.0000002384
 \section{Norma euclidiana (magnitud) y dirección}
 
 La \textbf{norma euclidiana} (también llamada longitud o módulo) de un vector $\mathbf{x} = (x_1, \dots, x_n)^\top \in \mathbb{R}^n$ se define como la raíz cuadrada de la suma de sus componentes al cuadrado:
+
 \[
 \lVert \mathbf{x} \rVert = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2} .
 \]
+
 Esta medida generaliza el concepto de distancia desde el origen hasta el punto $\mathbf{x}$. En ciencia de datos, es fundamental para normalizar variables (escalar datos), calcular el error cuadrático medio o evaluar la "fuerza" de una señal.
 
 % --- BLOQUE 2D: TEORÍA + GRÁFICO + EJEMPLO ---
@@ -686,50 +732,64 @@ En dos dimensiones, un vector $\mathbf{x} = (x_1, x_2)^\top$ se representa geom�
 
 La Figura \ref{fig:vector_componentes_norma} ilustra cómo las componentes definen tanto la posición final como la orientación del vector.
 
-\begin{figure}[ht]
-    \centering
-    \begin{tikzpicture}[scale=1.4, >=Stealth]
+%\begin{figure}[ht]
+ %   \centering
+ %   \begin{tikzpicture}[scale=1.4, >=Stealth]
         % Coordenadas
-        \coordinate (O) at (0,0);
-        \coordinate (X) at (3,2);
-        
+%        \coordinate (O) at (0,0);
+ %       \coordinate (X) at (3,2);
+ %       
         % Cálculos automáticos para dibujo
-        \pgfmathsetmacro{\angle}{atan2(2,3)}
+%        \pgfmathsetmacro{\angle}{atan2(2,3)}
         
         % Ejes
-        \draw[->, gray!60] (-0.5,0) -- (4,0) node[right] {\small Eje 1 ($x_1$)};
-        \draw[->, gray!60] (0,-0.5) -- (0,3.0) node[above] {\small Eje 2 ($x_2$)};
+%        \draw[->, gray!60] (-0.5,0) -- (4,0) node[right] {\small Eje 1 ($x_1$)};
+%        \draw[->, gray!60] (0,-0.5) -- (0,3.0) node[above] {\small Eje 2 ($x_2$)};
         
         % Proyecciones (líneas punteadas)
-        \draw[dashed, gray] (3,0) -- (X);
-        \draw[dashed, gray] (0,2) -- (X);
+%        \draw[dashed, gray] (3,0) -- (X);
+%        \draw[dashed, gray] (0,2) -- (X);
         
         % Vector principal
-        \draw[->, very thick, blue] (O) -- (X);
+%        \draw[->, very thick, blue] (O) -- (X);
         
         % Componentes sobre los ejes (flechas de color)
-        \draw[->, thick, blue!70] (O) -- (3,0) node[midway, below] {$x_1$};
-        \draw[->, thick, blue!70] (O) -- (0,2) node[midway, left] {$x_2$};
+%        \draw[->, thick, blue!70] (O) -- (3,0) node[midway, below] {$x_1$};
+%        \draw[->, thick, blue!70] (O) -- (0,2) node[midway, left] {$x_2$};
         
         % Ángulo theta
-        \draw[purple, thick, ->] (O) ++(0:0.8) arc[start angle=0, end angle=\angle, radius=0.8];
-        \node[purple, right] at (0.8, 0.4) {$\theta$};
+%        \draw[purple, thick, ->] (O) ++(0:0.8) arc[start angle=0, end angle=\angle, radius=0.8];
+%        \node[purple, right] at (0.8, 0.4) {$\theta$};
         
         % Etiqueta de la norma
-        \node[blue!80, rotate=\angle, anchor=south] at ({\angle}:1.6) {\footnotesize $\lVert \mathbf{x} \rVert= \sqrt{x_1^2+x_2^2}$};
+%        \node[blue!80, rotate=\angle, anchor=south] at ({\angle}:1.6) {\footnotesize $\lVert \mathbf{x} \rVert= \sqrt{x_1^2+x_2^2}$};
         
         % Etiqueta del vector
-        \node[blue] at (X) [above right] {$\mathbf{x}=(x_1,x_2)$};
-    \end{tikzpicture}
-    \caption{Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.}
-    \label{fig:vector_componentes_norma}
-\end{figure}
+%        \node[blue] at (X) [above right] {$\mathbf{x}=(x_1,x_2)$};
+ %   \end{tikzpicture}
+ %   \caption{Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.}
+ %   \label{fig:vector_componentes_norma}
+%\end{figure}
 
-\begin{appbox}{Ejemplo Administrativo: Presupuesto Vectorial}
+\begin{figure}[ht]
+    \centering
+    % Aquí llamamos a la imagen externa. 
+    % Pandoc usará la versión .svg para web, LaTeX usará .pdf para documento.
+    \includegraphics[width=0.7\textwidth]{imagenes/figura_vector} 
+    
+    \caption{Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.}
+    
+    % EL LABEL DEBE IR SIEMPRE DESPUÉS DEL CAPTION
+    \label{fig:vector_componentes_norma} 
+\end{figure}
+\begin{quote}{Ejemplo Administrativo: Presupuesto Vectorial}
+
 Considere una propuesta presupuestaria $\mathbf{p} \in \mathbb{R}^2$ (en millones de pesos) asignada a Infraestructura y Capacitación:
+
 \[
 \mathbf{p} = \begin{pmatrix} 4 \\ 3 \end{pmatrix}
 \]
+
 \begin{itemize}
     \item \textbf{Magnitud (Esfuerzo Total):} 
     $\lVert \mathbf{p} \rVert = \sqrt{4^2 + 3^2} = \sqrt{25} = 5$. El tamaño total de la inversión es 5 millones.
@@ -742,7 +802,7 @@ Considere una propuesta presupuestaria $\mathbf{p} \in \mathbb{R}^2$ (en millone
         \item Con $36{,}9^\circ$, existe un balance inclinado hacia la infraestructura.
     \end{itemize}
 \end{itemize}
-\end{appbox}
+\end{quote}
 
 % --- BLOQUE 3D: TEORÍA + EJEMPLO ---
 \subsubsection{Orientación en el espacio ($\mathbb{R}^3$): Cosenos directores}
@@ -758,8 +818,10 @@ En tres dimensiones, un solo ángulo no basta para definir la dirección. Para u
 
 Estos valores oscilan entre -1 y 1. Un valor cercano a 1 indica que el vector está muy alineado con ese eje específico, dominando el comportamiento de la variable.
 
-\begin{appbox}{Ejemplo Ambiental: Calidad del Aire}
+\begin{quote}{Ejemplo Ambiental: Calidad del Aire}
+
 Analicemos el vector de contaminantes (en $\mu\text{g/m}^3$) de una estación urbana:
+
 \[
 \mathbf{a} = 
 \begin{pmatrix}
@@ -769,20 +831,25 @@ Analicemos el vector de contaminantes (en $\mu\text{g/m}^3$) de una estación ur
 40 \\ 30 \\ 50
 \end{pmatrix}
 \]
+
 \begin{enumerate}
     \item \textbf{Magnitud (Intensidad de Contaminación):}
+
     \[
     \lVert \mathbf{a} \rVert = \sqrt{40^2 + 30^2 + 50^2} = \sqrt{5000} \approx 70{,}71.
     \]
     
     \item \textbf{Análisis de Dominancia (Cosenos Directores):}
+
     \[
     \cos(\gamma)_{\mathrm{O}_3} = \frac{50}{70{,}71} \approx \mathbf{0{,}707}, \quad
     \cos(\alpha)_{\mathrm{PM}_{10}} \approx 0{,}566.
     \]
+
     La componente de Ozono ($\mathrm{O}_3$) tiene el coseno director más alto ($0{,}707$), lo que indica que es el contaminante dominante en este perfil. Esto sugiere un problema de tipo fotoquímico (reacción a la luz solar) más que de emisiones primarias de combustión ($\mathrm{NO}_2$), permitiendo a las autoridades decidir si restringen el tráfico o la industria.
 \end{enumerate}
-\end{appbox}
+\end{quote}
+
 \subsection{Implementación Computacional: Normas y Normalización}
 
 En el ecosistema de Python (NumPy y PyTorch), el cálculo de la magnitud y la dirección está altamente optimizado. No es necesario iterar manualmente sobre los elementos sumando cuadrados; las librerías utilizan rutinas de bajo nivel (BLAS/LAPACK) para hacerlo instantáneamente.
@@ -887,11 +954,13 @@ Comprobación (Norma del unitario): 1.0
 
     \item \textbf{Verificación de Igualdad:}
     Dadas las matrices:
+
     \[
     \mathbf{A} = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}, \quad
     \mathbf{B} = \begin{pmatrix} 1 & 2 & 0 \\ 3 & 4 & 0 \end{pmatrix}, \quad
     \mathbf{C} = \begin{pmatrix} 1 & 2 \\ 3 & 4.00001 \end{pmatrix}
     \]
+
     \begin{enumerate}
         \item ¿Es $\mathbf{A} = \mathbf{B}$? Justifique su respuesta basándose en las dimensiones.
         \item ¿Es $\mathbf{A} = \mathbf{C}$ en términos matemáticos estrictos?
@@ -909,6 +978,7 @@ Comprobación (Norma del unitario): 1.0
 
     \item \textbf{Agronómico (Análisis de Suelos - Transpuesta):} 
     Un laboratorio entrega los resultados de análisis de suelo de 3 lotes diferentes en una matriz $\mathbf{S} \in \mathbb{R}^{3 \times 4}$, donde las filas son los Lotes (A, B, C) y las columnas son los parámetros (pH, M.O., P, K).
+
     \[
     \mathbf{S} = 
     \begin{pmatrix}
@@ -917,6 +987,7 @@ Comprobación (Norma del unitario): 1.0
     5.8 & 2.8 & 12 & 0.5
     \end{pmatrix}
     \]
+
     \begin{enumerate}
         \item Escriba explícitamente la matriz transpuesta $\mathbf{S}^\top$.
         \item Interprete el significado de la \textbf{segunda fila} de la matriz transpuesta. ¿Qué información agrupa?
@@ -931,6 +1002,7 @@ Comprobación (Norma del unitario): 1.0
 
     \item \textbf{Agroindustrial (Control de Calidad - Matrices):}
     Una planta procesadora de jugos produce lotes de 3 sabores (Naranja, Mango, Mora). La matriz $\mathbf{M}_{std}$ define la formulación estándar (kg de fruta, litros de agua, kg de azúcar) y $\mathbf{M}_{lote}$ es la mezcla actual.
+
     \[
     \mathbf{M}_{std} = 
     \begin{pmatrix}
@@ -939,6 +1011,7 @@ Comprobación (Norma del unitario): 1.0
     90 & 60 & 4
     \end{pmatrix}
     \]
+
     Si el sistema de control detecta que $\mathbf{M}_{lote} \neq \mathbf{M}_{std}$, explique qué consecuencias físicas tiene esto para el producto final si la diferencia ocurre en la posición $(2,3)$ (Fila 2, Columna 3).
 
     \item \textbf{Ambiental (Datos Climáticos - Tensores):}
@@ -989,6 +1062,7 @@ Comprobación (Norma del unitario): 1.0
         \item \textbf{Detección de Defectos (Matrices Diferencia):}
         Suponga ahora que llega una nueva pieza $\mathbf{P}_{nueva}$. Para encontrar defectos, el robot calcula la "matriz de error" $\mathbf{E} = \mathbf{P}_{ideal} - \mathbf{P}_{nueva}$.
         Si el resultado es:
+
         \[
         \mathbf{E} = 
         \begin{pmatrix}
@@ -998,6 +1072,7 @@ Comprobación (Norma del unitario): 1.0
         0 & 0 & 0 & 0
         \end{pmatrix}
         \]
+
         Interprete el resultado: ¿Le falta material a la pieza o le sobra? ¿En qué coordenada específica $(i, j)$ está el defecto físico?
 
         \item \textbf{Lógica de Control:}
@@ -1016,7 +1091,11 @@ Estos ejercicios están diseñados para distinguir cuándo un cambio en los dato
 \begin{enumerate}
     \item \textbf{Agronomía: Diagnóstico Nutricional (Colinealidad)}
     Se analizan dos muestras de suelo de lotes vecinos. Los vectores de nutrientes (Nitrógeno, Fósforo) en ppm son:
-    \[ \mathbf{x}_A = \begin{pmatrix} 20 \\ 10 \end{pmatrix}, \quad \mathbf{x}_B = \begin{pmatrix} 60 \\ 30 \end{pmatrix} \]
+
+    \[ 
+    \mathbf{x}_A = \begin{pmatrix} 20 \\ 10 \end{pmatrix}, \quad \mathbf{x}_B = \begin{pmatrix} 60 \\ 30 \end{pmatrix} 
+    \]
+
     \begin{enumerate}
         \item Calcule la magnitud (riqueza total nutricional) de cada lote: $\lVert \mathbf{x}_A \rVert$ y $\lVert \mathbf{x}_B \rVert$.
         \item Calcule la dirección (ángulo $\theta$) de cada vector respecto al eje de Nitrógeno.
@@ -1025,7 +1104,11 @@ Estos ejercicios están diseñados para distinguir cuándo un cambio en los dato
 
     \item \textbf{Finanzas: Perfiles de Riesgo}
     Dos fondos de inversión distribuyen su capital en (Bonos del Estado, Acciones Tecnológicas). Los vectores en millones de USD son:
-    \[ \mathbf{f}_1 = \begin{pmatrix} 8 \\ 2 \end{pmatrix}, \quad \mathbf{f}_2 = \begin{pmatrix} 3 \\ 6 \end{pmatrix} \]
+
+    \[ 
+    \mathbf{f}_1 = \begin{pmatrix} 8 \\ 2 \end{pmatrix}, \quad \mathbf{f}_2 = \begin{pmatrix} 3 \\ 6 \end{pmatrix} 
+    \]
+
     \begin{enumerate}
         \item ¿Qué fondo maneja mayor capital total? (Compare normas).
         \item Calcule el ángulo de cada fondo respecto al eje de "Bonos del Estado" ($x_1$).
