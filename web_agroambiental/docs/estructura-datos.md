@@ -139,8 +139,8 @@ $$t_{i_1, i_2, \dots, i_K} = \mathcal{T}(i_1, i_2, \dots, i_K)$$
 
 
 <figure markdown="span">
-  ![Visualización del Tensor](imagenes/tensor_diagrama){width="80%"}
-  <figcaption>Visualización del Tensor</figcaption>
+  ![Visualización del Tensor](imagenes/tensor_diagrama.svg){width="80%"}
+  <figcaption class="arithmatex">Visualización del Tensor</figcaption>
 </figure>
 
 
@@ -641,8 +641,8 @@ La Figura [1](#fig:vector_componentes_norma) ilustra cómo las componentes defin
 
 
 <figure markdown="span">
-  ![Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.](imagenes/figura_vector){#fig:vector_componentes_norma width="70%"}
-  <figcaption>Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.</figcaption>
+  ![Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.](imagenes/figura_vector.svg){#fig:vector_componentes_norma width="70%"}
+  <figcaption class="arithmatex">Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.</figcaption>
 </figure>
 
 

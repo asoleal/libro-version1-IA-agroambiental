@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # =====================================================
-#   GENERADOR WEB v15 (MATHJAX FULL + LIMPIEZA TOTAL)
-#   Arregla \boldsymbol rojo y textos basura en figuras
+#   GENERADOR WEB v16 (FIX IMÁGENES + MATHJAX)
+#   Corrección crítica: Rutas de imágenes sin extensión
 # =====================================================
 
 # --- 1. CONFIGURACIÓN DE CAPÍTULOS ---
@@ -20,7 +20,7 @@ ORIGEN_IMAGENES="imagenes"
 TEMP_DIR="temp_tex_processing"
 
 echo "========================================"
-echo "   GENERADOR WEB v15: Math Polish"
+echo "   GENERADOR WEB v16: Image Path Fix"
 echo "========================================"
 
 # --- 3. PREPARACIÓN DE ARCHIVOS ---
@@ -103,7 +103,6 @@ for cap in "${ORDEN_CAPITULOS[@]}"; do
 done
 
 # --- 6. CONFIGURACIÓN MATHJAX (SOLUCIÓN BOLDSYMBOL) ---
-# Forzamos la carga de 'boldsymbol' explícitamente en el loader
 cat > "$DOCS/javascripts/mathjax-config.js" <<EOF
 window.MathJax = {
   loader: {load: ['[tex]/boldsymbol', '[tex]/ams']},
@@ -124,7 +123,7 @@ echo ">> Procesando archivos..."
 
 cd "$TEMP_DIR" || exit
 
-# 1. Cajas de texto
+# 1. Cajas de texto (Antes de Pandoc)
 sed -i 's/\\begin{appbox}{\(.*\)}/\n\n<div class="admonition example"><p class="admonition-title">\1<\/p>\n\n/g' *.tex
 sed -i 's/\\end{appbox}/\n\n<\/div>\n\n/g' *.tex
 
@@ -132,32 +131,34 @@ for archivo in *.tex; do
     nombre=$(basename "$archivo" .tex)
     if [ "$nombre" == "main" ]; then TARGET="../$DOCS/index.md"; else TARGET="../$DOCS/$nombre.md"; fi
 
+    echo "   ... Procesando $nombre"
+
     # 2. Conversión Pandoc
     pandoc "$archivo" -f latex -t markdown --mathjax --wrap=none -o "$TARGET"
 
-    # 3. LIMPIEZA AGRESIVA (Post-Procesamiento)
+    # 3. LIMPIEZA Y CORRECCIONES (En orden estricto)
 
-    # Quitar titlepage
-    sed -i '/::: titlepage/d' "$TARGET"
-    # PDF -> SVG
+    # --- FIX 1: Rutas de imágenes sin extensión (CRÍTICO) ---
+    # Busca 'imagenes/nombre' sin punto y agrega '.svg'
+    # Esto debe ocurrir ANTES de convertir a <figure> HTML
+    sed -i -E 's/]\((imagenes\/[^).]+)\)/](\1.svg)/g' "$TARGET"
+
+    # --- FIX 2: Cambiar .pdf por .svg si existe ---
     sed -i 's/\.pdf)/.svg)/g' "$TARGET"
 
-    # Convertir Figuras a HTML
-    perl -0777 -i -pe 's/!\[(.*?)\]\((.*?)\)\s*(\{.*?\})?/\n<figure markdown="span">\n  ![\1](\2)\3\n  <figcaption>\1<\/figcaption>\n<\/figure>\n/gs' "$TARGET"
+    # --- FIX 3: Quitar titlepage ---
+    sed -i '/::: titlepage/d' "$TARGET"
 
-    # --- FIX 1: Eliminar basura de referencias tipo {reference-type...} ---
-    # Esto borra cualquier cosa que se parezca a {reference-type="..." reference="..."}
+    # --- FIX 4: Convertir Figuras a HTML (Estilo Material) ---
+    # Ahora que la ruta tiene .svg, envolvemos en <figure>
+    perl -0777 -i -pe 's/!\[(.*?)\]\((.*?)\)\s*(\{.*?\})?/\n<figure markdown="span">\n  ![\1](\2)\3\n  <figcaption class="arithmatex">\1<\/figcaption>\n<\/figure>\n/gs' "$TARGET"
+    # --- FIX 5: Eliminar basura de referencias de Pandoc ---
     sed -i 's/{reference-type="[^"]*" reference="[^"]*"}//g' "$TARGET"
 
-    # --- FIX 2: Parche de seguridad para \boldsymbol ---
-    # Si por alguna razón MathJax falla en algunos navegadores, esto cambia
-    # \boldsymbol{X} por \mathbf{X} (que siempre funciona) antes de generar la web.
-    # Descomenta la línea de abajo si el error rojo persiste:
-    # sed -i 's/\\boldsymbol/\\mathbf/g' "$TARGET"
 done
 
 cd ..
 rm -rf "$TEMP_DIR"
 
-echo "✅ ¡Web generada (v15)!"
+echo "✅ ¡Web generada (v16)!"
 echo "👉 Ejecuta: mkdocs serve -f web_agroambiental/mkdocs.yml"

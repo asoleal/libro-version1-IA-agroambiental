@@ -1,0 +1,3082 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="estructura-datos/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>Libro IA Agroambiental</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#el-motor-de-la-ia-de-escalares-a-tensores" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="." title="Libro IA Agroambiental" class="md-header__button md-logo" aria-label="Libro IA Agroambiental" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Libro IA Agroambiental
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Inicio
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Libro IA Agroambiental" class="md-nav__button md-logo" aria-label="Libro IA Agroambiental" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Libro IA Agroambiental
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inicio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#estructuras-de-datos-escalares-vectores-matrices-y-tensores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructuras de datos: escalares, vectores, matrices y tensores
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estructuras de datos: escalares, vectores, matrices y tensores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escalar-rango-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalar (Rango 0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector-rango-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector (Rango 1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matriz-rango-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matriz (Rango 2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matriz (Rango 2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-formal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición formal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descomposicion-en-vectores-filas-vs-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descomposición en Vectores: Filas vs. Columnas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Descomposición en Vectores: Filas vs. Columnas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-vision-por-columnas-espacio-de-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Visión por Columnas (Espacio de Características)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-vision-por-filas-espacio-de-muestras" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Visión por Filas (Espacio de Muestras)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-matriz-como-dataset-ejemplo-agronomico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La Matriz como Dataset: Ejemplo Agronómico
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensor-rango-k-generalizacion-multidimensional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tensor: Rango \(k\), Generalización Multidimensional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-explícito-tensor-de-rango-4-en-teledetección-agrícola" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo explícito: tensor de rango 4 en teledetección agrícola
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manejo-de-los-datos-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manejo de los datos en Python
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manejo de los datos en Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#salida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Salida
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conceptos-fundamentales-de-vectores-en-mathbbrn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptos fundamentales de vectores en \(\mathbb{R}^n\)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conceptos fundamentales de vectores en \(\mathbb{R}^n\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transpuesta-de-vectores-y-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transpuesta de vectores y matrices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transpuesta de vectores y matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definicion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relevancia-en-ciencia-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relevancia en ciencia de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-computacional-y-matices-practicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Computacional y Matices Prácticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transposicion-en-tensores-permutacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transposición en Tensores (Permutación)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#igualdad-de-vectores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Igualdad de vectores
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Igualdad de vectores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-agronomica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación Agronómica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#igualdad-de-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Igualdad de matrices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Igualdad de matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-ambiental-deteccion-de-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación Ambiental: Detección de Cambios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generalizacion-a-tensores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generalización a Tensores
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generalización a Tensores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-imagenes-rgb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Imágenes RGB
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#igualdad-computacional-el-desafio-del-punto-flotante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Igualdad Computacional: El Desafío del Punto Flotante
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#norma-euclidiana-magnitud-y-direccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Norma euclidiana (magnitud) y dirección
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Norma euclidiana (magnitud) y dirección">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-en-el-plano-mathbbr2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación en el plano (\(\mathbb{R}^2\))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orientacion-en-el-espacio-mathbbr3-cosenos-directores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orientación en el espacio (\(\mathbb{R}^3\)): Cosenos directores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-computacional-normas-y-normalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Computacional: Normas y Normalización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementación Computacional: Normas y Normalización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculo-de-la-norma-l_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cálculo de la Norma (\(L_2\))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direccion-y-normalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dirección y Normalización
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios-propuestos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios propuestos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicios propuestos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios-de-integracion-magnitud-vs-direccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios de Integración: Magnitud vs. Dirección
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estructura-datos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Estructuras de datos: escalares, vectores, matrices y tensores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="operaciones-estructuras/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Poniendo el Motor en Marcha: Aritmética Tensorial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="matrices-especiales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Matrices especiales
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#estructuras-de-datos-escalares-vectores-matrices-y-tensores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Estructuras de datos: escalares, vectores, matrices y tensores
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Estructuras de datos: escalares, vectores, matrices y tensores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#escalar-rango-0" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Escalar (Rango 0)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector-rango-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector (Rango 1)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matriz-rango-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matriz (Rango 2)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matriz (Rango 2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion-formal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición formal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#descomposicion-en-vectores-filas-vs-columnas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Descomposición en Vectores: Filas vs. Columnas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Descomposición en Vectores: Filas vs. Columnas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-vision-por-columnas-espacio-de-caracteristicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Visión por Columnas (Espacio de Características)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-vision-por-filas-espacio-de-muestras" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Visión por Filas (Espacio de Muestras)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-matriz-como-dataset-ejemplo-agronomico" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La Matriz como Dataset: Ejemplo Agronómico
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tensor-rango-k-generalizacion-multidimensional" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tensor: Rango \(k\), Generalización Multidimensional
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-explícito-tensor-de-rango-4-en-teledetección-agrícola" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo explícito: tensor de rango 4 en teledetección agrícola
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#manejo-de-los-datos-en-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Manejo de los datos en Python
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Manejo de los datos en Python">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#salida" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Salida
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conceptos-fundamentales-de-vectores-en-mathbbrn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conceptos fundamentales de vectores en \(\mathbb{R}^n\)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conceptos fundamentales de vectores en \(\mathbb{R}^n\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transpuesta-de-vectores-y-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transpuesta de vectores y matrices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Transpuesta de vectores y matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#definicion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definicion_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Definición
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relevancia-en-ciencia-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relevancia en ciencia de datos
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-computacional-y-matices-practicos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Computacional y Matices Prácticos
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transposicion-en-tensores-permutacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transposición en Tensores (Permutación)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#igualdad-de-vectores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Igualdad de vectores
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Igualdad de vectores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-agronomica" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación Agronómica
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#igualdad-de-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Igualdad de matrices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Igualdad de matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-ambiental-deteccion-de-cambios" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación Ambiental: Detección de Cambios
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generalizacion-a-tensores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generalización a Tensores
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Generalización a Tensores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-imagenes-rgb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejemplo: Imágenes RGB
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#igualdad-computacional-el-desafio-del-punto-flotante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Igualdad Computacional: El Desafío del Punto Flotante
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#norma-euclidiana-magnitud-y-direccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Norma euclidiana (magnitud) y dirección
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Norma euclidiana (magnitud) y dirección">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpretacion-en-el-plano-mathbbr2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretación en el plano (\(\mathbb{R}^2\))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orientacion-en-el-espacio-mathbbr3-cosenos-directores" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orientación en el espacio (\(\mathbb{R}^3\)): Cosenos directores
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementacion-computacional-normas-y-normalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementación Computacional: Normas y Normalización
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementación Computacional: Normas y Normalización">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculo-de-la-norma-l_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cálculo de la Norma (\(L_2\))
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direccion-y-normalizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dirección y Normalización
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ejercicios-propuestos" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios propuestos
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejercicios propuestos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejercicios-de-integracion-magnitud-vs-direccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ejercicios de Integración: Magnitud vs. Dirección
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><strong>Matemáticas para la</strong></p>
+<p><strong>Inteligencia Artificial Agroambiental</strong></p>
+<p><em>Vectores, Matrices y Tensores con aplicaciones en Python</em></p>
+<p><strong>Autor:</strong></p>
+<p>John Jairo Leal Gómez</p>
+<p>Universidad Nacional de Colombia</p>
+<p>2025-12-25
+:::</p>
+<h1 id="el-motor-de-la-ia-de-escalares-a-tensores">El Motor de la IA: De Escalares a Tensores</h1>
+<p>En este capítulo se presentan los conceptos preliminares de álgebra lineal necesarios para el desarrollo de modelos de inteligencia artificial en contextos agro-ambientales, industriales y administrativos.</p>
+<h2 id="estructuras-de-datos-escalares-vectores-matrices-y-tensores">Estructuras de datos: escalares, vectores, matrices y tensores</h2>
+<h3 id="escalar-rango-0">Escalar (Rango 0)</h3>
+<p>Un <strong>escalar</strong> es un número real que representa una cantidad simple, sin dirección ni estructura interna. En ciencia de datos, los escalares suelen ser hiperparámetros, métricas de desempeño o mediciones puntuales.</p>
+<p><strong>Ejemplos:</strong></p>
+<ul>
+<li>
+<p>La tasa de aprendizaje en un modelo de predicción de rendimiento: <span class="arithmatex">\(\eta = 0{,}01\)</span>,</p>
+</li>
+<li>
+<p>El error cuadrático medio (MSE) de un modelo de predicción de peso animal: <span class="arithmatex">\(\text{MSE} = 4{,}3\)</span>,</p>
+</li>
+<li>
+<p>La humedad del suelo en un punto específico: <span class="arithmatex">\(28{,}5\%\)</span>,</p>
+</li>
+<li>
+<p>La concentración horaria de <span class="arithmatex">\(\mathrm{PM}_{2.5}\)</span> en una estación ambiental: <span class="arithmatex">\(32{,}7\ \mu\text{g/m}^3\)</span>,</p>
+</li>
+<li>
+<p>El presupuesto total asignado a un programa de sostenibilidad: <span class="arithmatex">\(1{,}25\)</span> millones de pesos.</p>
+</li>
+</ul>
+<h3 id="vector-rango-1">Vector (Rango 1)</h3>
+<p>Un <strong>vector</strong> es una lista ordenada de números que describe un objeto o fenómeno mediante múltiples atributos medibles. Cada componente corresponde a una variable relevante en el contexto de análisis.</p>
+<p><strong>Ejemplos:</strong></p>
+<ul>
+<li>
+<p><strong>Agronómico:</strong> <span class="arithmatex">\(\mathbf{x} = (120, 50, 3, 6{,}2)^\top\)</span> → (N, P, K en kg/ha; pH del suelo)[^1],</p>
+</li>
+<li>
+<p><strong>Zootécnico:</strong> <span class="arithmatex">\(\mathbf{x} = (650, 3{,}8, 42, 18)^\top\)</span> → (peso en kg, producción lechera en L/día, % grasa, edad en meses),</p>
+</li>
+<li>
+<p><strong>Agroindustrial:</strong> <span class="arithmatex">\(\mathbf{x} = (85, 120, 0{,}45)^\top\)</span> → (temperatura del horno en °C, tiempo de cocción en min, humedad final del producto),</p>
+</li>
+<li>
+<p><strong>Ambiental:</strong> <span class="arithmatex">\(\mathbf{x} = (45, 28, 32, 65, 1{,}2)^\top\)</span> → (<span class="arithmatex">\(\mathrm{PM}_{10}\)</span>, <span class="arithmatex">\(\mathrm{PM}_{2.5}\)</span>, <span class="arithmatex">\(\mathrm{NO}_2\)</span>, <span class="arithmatex">\(\mathrm{O}_3\)</span>, <span class="arithmatex">\(\mathrm{CO}\)</span> en <span class="arithmatex">\(\mu\text{g/m}^3\)</span>),</p>
+</li>
+<li>
+<p><strong>Administrativo:</strong> <span class="arithmatex">\(\mathbf{x} = (320, 95, 210, 75)^\top\)</span> → (presupuesto en millones de pesos para: infraestructura, capacitación, operación, monitoreo ambiental).</p>
+</li>
+</ul>
+<p>Los vectores son la unidad básica de representación en modelos de aprendizaje automático, ya que permiten tratar cada observación como un punto en un espacio multidimensional.</p>
+<h3 id="matriz-rango-2">Matriz (Rango 2)</h3>
+<p>Una <strong>matriz</strong> es un arreglo rectangular de números reales ordenados en filas y columnas. Si bien visualmente se asemeja a una tabla, en álgebra lineal aplicada y ciencia de datos posee una <strong>dualidad fundamental</strong>:</p>
+<ol>
+<li>
+<p><strong>Como estructura de datos (Estática):</strong> Es un contenedor donde las filas suelen representar observaciones (ej. pacientes, plantas, transacciones) y las columnas variables (ej. edad, altura, costo).</p>
+</li>
+<li>
+<p><strong>Como operador (Dinámica):</strong> Representa una <em>transformación lineal</em> que actúa sobre vectores, capaz de rotar, escalar o proyectar datos en el espacio geométrico.</p>
+</li>
+</ol>
+<h5 id="definicion-formal">Definición formal</h5>
+<p>Una matriz <span class="arithmatex">\(\mathbf{A}\)</span> de dimensiones <span class="arithmatex">\(m \times n\)</span> es un elemento del espacio vectorial <span class="arithmatex">\(\mathbb{R}^{m \times n}\)</span>. Se denota explícitamente como:</p>
+<div class="arithmatex">\[\mathbf{A} = 
+\begin{pmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+\end{pmatrix}_{m\times n}
+\in \mathbb{R}^{m \times n}.\]</div>
+<p>Donde:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(m\)</span> es el número de <strong>filas</strong> (eje 0 en librerías como NumPy o PyTorch).</p>
+</li>
+<li>
+<p><span class="arithmatex">\(n\)</span> es el número de <strong>columnas</strong> (eje 1).</p>
+</li>
+<li>
+<p><span class="arithmatex">\(a_{ij} \in \mathbb{R}\)</span> es la entrada escalar ubicada en la fila <span class="arithmatex">\(i\)</span> y columna <span class="arithmatex">\(j\)</span>.</p>
+</li>
+</ul>
+<h4 id="descomposicion-en-vectores-filas-vs-columnas">Descomposición en Vectores: Filas vs. Columnas</h4>
+<p>Para entender las operaciones matriciales en IA, es crucial no ver la matriz como un bloque sólido, sino como una colección de vectores.</p>
+<h5 id="1-vision-por-columnas-espacio-de-caracteristicas">1. Visión por Columnas (Espacio de Características)</h5>
+<p>Podemos ver a <span class="arithmatex">\(\mathbf{A}\)</span> como una colección de <span class="arithmatex">\(n\)</span> vectores columna verticales. Esta visión es útil en álgebra lineal para entender conceptos como <em>independencia lineal</em> o <em>bases</em>.</p>
+<div class="arithmatex">\[\mathbf{A} = 
+\begin{pmatrix}
+| &amp; | &amp; &amp; | \\
+\mathbf{c}_1 &amp; \mathbf{c}_2 &amp; \cdots &amp; \mathbf{c}_n \\
+| &amp; | &amp; &amp; |
+\end{pmatrix}, 
+\quad \text{donde } \mathbf{c}_j \in \mathbb{R}^m.\]</div>
+<h5 id="2-vision-por-filas-espacio-de-muestras">2. Visión por Filas (Espacio de Muestras)</h5>
+<p>Podemos ver a <span class="arithmatex">\(\mathbf{A}\)</span> como una pila de <span class="arithmatex">\(m\)</span> vectores fila horizontales. Esta es la visión estándar en <strong>Data Science</strong>, donde cada fila es un objeto de estudio.</p>
+<div class="arithmatex">\[\mathbf{A} = 
+\begin{pmatrix}
+\text{---} &amp; \mathbf{r}_1 &amp; \text{---} \\
+\text{---} &amp; \mathbf{r}_2 &amp; \text{---} \\
+ &amp; \vdots &amp; \\
+\text{---} &amp; \mathbf{r}_m &amp; \text{---}
+\end{pmatrix}, 
+\quad \text{donde } \mathbf{r}_i \in \mathbb{R}^{1 \times n}.\]</div>
+<h4 id="la-matriz-como-dataset-ejemplo-agronomico">La Matriz como Dataset: Ejemplo Agronómico</h4>
+<p>Considere un estudio de suelos con 100 muestras (<span class="arithmatex">\(m=100\)</span>) y 5 variables químicas (<span class="arithmatex">\(n=5\)</span>). La matriz de datos <span class="arithmatex">\(\mathbf{X} \in \mathbb{R}^{100 \times 5}\)</span> se estructura de la siguiente forma, donde cada fila es una"foto química" de una parcela distinta:</p>
+<div class="arithmatex">\[\mathbf{X} = 
+\begin{array}{c|ccccc}
+ &amp; \text{N} &amp; \text{P} &amp; \text{K} &amp; \text{pH} &amp; \text{M.O.} \\ \hline
+\text{Muestra 1} &amp; 110 &amp; 45 &amp; 2{,}8 &amp; 6{,}1 &amp; 3{,}5 \\
+\text{Muestra 2} &amp; 130 &amp; 55 &amp; 3{,}1 &amp; 6{,}3 &amp; 4{,}1 \\
+\vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots &amp; \vdots \\
+\text{Muestra 100} &amp; 100 &amp; 50 &amp; 2{,}9 &amp; 5{,}9 &amp; 3{,}2
+\end{array}\]</div>
+<p>En este contexto, el álgebra lineal nos permite operar sobre todo el conjunto de datos simultáneamente (por ejemplo, normalizar la columna del pH para todas las muestras a la vez) mediante una técnica computacional conocida como <strong>vectorización</strong>, evitando el uso de bucles lentos.</p>
+<h3 id="tensor-rango-k-generalizacion-multidimensional">Tensor: Rango <span class="arithmatex">\(k\)</span>, Generalización Multidimensional</h3>
+<p>Un <strong>tensor</strong> es la estructura de datos fundamental en inteligencia artificial. Matemáticamente, representa una generalización de los conceptos de escalar, vector y matriz a un espacio de <span class="arithmatex">\(K\)</span> dimensiones (denominadas <em>modos</em> o <em>ejes</em>).</p>
+<p>El <strong>rango</strong> (u <em>orden</em>) de un tensor es el número de índices necesarios para localizar un elemento de forma unívoca. En términos computacionales, esto coincide con el número de dimensiones del arreglo (propiedad <code>.ndim</code> en Python).</p>
+<p><strong>Jerarquía de Tensores por su Rango:</strong></p>
+<ul>
+<li>
+<p><strong>Rango 0 (Escalar):</strong> Un único número <span class="arithmatex">\(s \in \mathbb{R}\)</span>. Representa una magnitud puntual (ej. la temperatura de un invernadero).</p>
+</li>
+<li>
+<p><strong>Rango 1 (Vector):</strong> Una lista ordenada <span class="arithmatex">\(\mathbf{v} \in \mathbb{R}^{n_1}\)</span>. Representa una línea de datos o un perfil de atributos (ej. parámetros de suelo N, P, K).</p>
+</li>
+<li>
+<p><strong>Rango 2 (Matriz):</strong> Una rejilla bidimensional <span class="arithmatex">\(\mathbf{M} \in \mathbb{R}^{n_1 \times n_2}\)</span>. Estructura estándar para bases de datos tabulares (filas por columnas).</p>
+</li>
+<li>
+<p><strong>Rango 3 (Tensor de 3er orden):</strong> Un "cubo" de números <span class="arithmatex">\(\mathcal{T} \in \mathbb{R}^{n_1 \times n_2 \times n_3}\)</span>. Común en imágenes a color (Alto <span class="arithmatex">\(\times\)</span> Ancho <span class="arithmatex">\(\times\)</span> Canales RGB) como en la figura <a href="#fig:tensor_vis">[fig:tensor_vis]</a>.</p>
+</li>
+<li>
+<p><strong>Rango 4 (Tensor de 4to orden):</strong> Un conjunto de cubos <span class="arithmatex">\(\mathcal{T} \in \mathbb{R}^{n_1 \times n_2 \times n_3 \times n_4}\)</span>. Estructura típica para <em>batches</em> (lotes) de imágenes en redes neuronales o series temporales de mapas satelitales.</p>
+</li>
+</ul>
+<p><strong>Definición formal.</strong> Un tensor de orden <span class="arithmatex">\(K\)</span> se define como un elemento de un espacio producto de <span class="arithmatex">\(K\)</span> dimensiones:</p>
+<div class="arithmatex">\[\mathcal{T} \in \mathbb{R}^{d_1 \times d_2 \times \dots \times d_K}\]</div>
+<p>donde cada <span class="arithmatex">\(d_i\)</span> representa la cardinalidad (tamaño) del <span class="arithmatex">\(i\)</span>-ésimo eje. Para acceder a una entrada específica, se requiere una tupla de <span class="arithmatex">\(K\)</span> índices:</p>
+<div class="arithmatex">\[t_{i_1, i_2, \dots, i_K} = \mathcal{T}(i_1, i_2, \dots, i_K)\]</div>
+<blockquote>
+<p>Ingeniería Ambiental y Teledetección</p>
+<p>El uso de tensores de rango 4 permite modelar la <strong>dispersión espaciotemporal</strong> de contaminantes. Los ejes representan: (1) Tiempo, (2) Latitud, (3) Longitud y (4) Tipo de contaminante (<span class="arithmatex">\(\mathrm{PM}_{2.5}, \mathrm{O}_3\)</span>, etc.). Esta estructura es la entrada para redes neuronales recurrentes-convolucionales (ConvLSTM).</p>
+</blockquote>
+<figure>
+  <img alt="Visualización del Tensor" src="imagenes/tensor_diagrama" width="80%" />
+<br />
+<figcaption>Visualización del Tensor</figcaption>
+</figure>
+<h3 class="unnumbered" id="ejemplo-explícito-tensor-de-rango-4-en-teledetección-agrícola">Ejemplo explícito: tensor de rango 4 en teledetección agrícola</h3>
+<p>Considere un estudio de monitoreo de cultivos en una región agrícola mediante imágenes multiespectrales tomadas por un dron a lo largo de una temporada de crecimiento. Los datos se organizan naturalmente en un <strong>tensor de rango 4</strong>:</p>
+<div class="arithmatex">\[\mathcal{T} \in \mathbb{R}^{30 \times 64 \times 64 \times 5}.\]</div>
+<p>Cada dimensión (modo) del tensor representa una característica esencial del conjunto de datos:</p>
+<ul>
+<li>
+<p><strong>Modo 1 (tiempo):</strong> <span class="arithmatex">\(30\)</span> fechas de vuelo distribuidas a lo largo de la temporada (una imagen cada 3--4 días).</p>
+</li>
+<li>
+<p><strong>Modo 2 (altura):</strong> <span class="arithmatex">\(64\)</span> filas de píxeles en cada imagen (resolución espacial de <span class="arithmatex">\(64 \times 64\)</span> píxeles por parcela).</p>
+</li>
+<li>
+<p><strong>Modo 3 (ancho):</strong> <span class="arithmatex">\(64\)</span> columnas de píxeles.</p>
+</li>
+<li>
+<p><strong>Modo 4 (bandas espectrales):</strong> <span class="arithmatex">\(5\)</span> bandas capturadas por el sensor multiespectral:</p>
+<ol>
+<li>
+<p>Azul (450--515 nm),</p>
+</li>
+<li>
+<p>Verde (515--595 nm),</p>
+</li>
+<li>
+<p>Rojo (600--680 nm),</p>
+</li>
+<li>
+<p>Infrarrojo cercano -- NIR (770--890 nm),</p>
+</li>
+<li>
+<p>Borde rojo -- Red Edge (690--750 nm).</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>Un elemento genérico del tensor se denota como:</p>
+<div class="arithmatex">\[\mathcal{T}(t, i, j, b) = \text{valor de reflectancia en la fecha } t, \text{ píxel } (i,j), \text{ y banda } b,\]</div>
+<p>donde:</p>
+<div class="arithmatex">\[\begin{aligned}
+    t &amp;\in \{1, 2, \dots, 30\} \\
+    i &amp;\in \{1, 2, \dots, 64\} \\
+    j &amp;\in \{1, 2, \dots, 64\} \\
+    b &amp;\in \{1, 2, 3, 4, 5\}
+\end{aligned}\]</div>
+<p>Por ejemplo, el valor <span class="arithmatex">\(\mathcal{T}(15, 32, 45, 4) = 0.82\)</span> indica que, en la decimoquinta fecha de muestreo, el píxel ubicado en la fila 32 y columna 45 presentó una reflectancia relativa del 82% en la banda NIR. Este valor alto es típico de vegetación sana y se usa para calcular índices como el NDVI.</p>
+<p>Este tipo de tensor es la entrada estándar para arquitecturas de redes neuronales convolucionales 3D (3D-CNN) o modelos basados en transformers espaciotemporales, que predicen variables como rendimiento, estrés hídrico o presencia de enfermedades a partir de la dinámica espectral y espacial del cultivo.</p>
+<p><strong>Otros ejemplos prácticos con dimensiones explícitas:</strong></p>
+<ul>
+<li>
+<p><strong>Serie temporal de imágenes satelitales (rango 4):</strong> <span class="arithmatex">\(\mathcal{T} \in \mathbb{R}^{36 \times 512 \times 512 \times 6}\)</span></p>
+<ul>
+<li>
+<p>Eje 1 (36): días de observación (una imagen cada 5 días durante 180 días),</p>
+</li>
+<li>
+<p>Ejes 2--3 (512×512): resolución espacial de la parcela,</p>
+</li>
+<li>
+<p>Eje 4 (6): bandas espectrales disponibles en el satélite (e.g., Sentinel-2).</p>
+</li>
+</ul>
+<p>Este tensor es ideal para redes neuronales recurrentes o 3D-CNN que predicen rendimiento, fenología o presencia de plagas a partir de la dinámica del cultivo.</p>
+</li>
+<li>
+<p><strong>Monitoreo de un hato lechero (rango 3):</strong> <span class="arithmatex">\(\mathcal{T} \in \mathbb{R}^{90 \times 150 \times 4}\)</span></p>
+<ul>
+<li>
+<p>Eje 1 (90): días de seguimiento (3 meses),</p>
+</li>
+<li>
+<p>Eje 2 (150): número de vacas en el hato,</p>
+</li>
+<li>
+<p>Eje 3 (4): variables fisiológicas: temperatura corporal, actividad (pasos), rumia (min/día), producción de leche (L/día).</p>
+</li>
+</ul>
+<p>Este tensor permite detectar brotes de enfermedad (e.g., mastitis) mediante análisis de patrones anómalos en múltiples variables y animales simultáneamente.</p>
+</li>
+<li>
+<p><strong>Ensayo factorial en invernadero (rango 4):</strong> <span class="arithmatex">\(\mathcal{T} \in \mathbb{R}^{5 \times 4 \times 10 \times 8}\)</span></p>
+<ul>
+<li>
+<p>Eje 1 (5): niveles de riego,</p>
+</li>
+<li>
+<p>Eje 2 (4): tipos de fertilizante,</p>
+</li>
+<li>
+<p>Eje 3 (10): repeticiones experimentales (macetas),</p>
+</li>
+<li>
+<p>Eje 4 (8): variables de respuesta: altura, número de hojas, biomasa seca, contenido de nitrógeno, etc.</p>
+</li>
+</ul>
+<p>Este tensor estructura un diseño experimental complejo y facilita el análisis multivariado de interacciones entre factores.</p>
+</li>
+<li>
+<p><strong>Secuencia de video para navegación robótica (rango 4):</strong> <span class="arithmatex">\(\mathcal{T} \in \mathbb{R}^{30 \times 224 \times 224 \times 4}\)</span></p>
+<ul>
+<li>
+<p>Eje 1 (30): fotogramas temporales (1 segundo de video a 30 fps),</p>
+</li>
+<li>
+<p>Ejes 2--3 (224×224): resolución espacial de la cámara del robot (redimensionada para una CNN),</p>
+</li>
+<li>
+<p>Eje 4 (4): canales de información sensorial (R, G, B y <em>Depth</em>/Profundidad).</p>
+</li>
+</ul>
+<p>Este tensor es la entrada típica para sistemas de <em>Visual Servoing</em> o SLAM (Localización y Mapeo Simultáneos), permitiendo al robot distinguir objetos reales de sombras y calcular trayectorias libres de colisiones en entornos dinámicos.</p>
+</li>
+</ul>
+<blockquote>
+<p>Teledetección y Medio Ambiente</p>
+<p>Un tensor <span class="arithmatex">\(\mathcal{T} \in \mathbb{R}^{30 \times 64 \times 64 \times 5}\)</span> permite a una red neuronal convolucional (CNN) detectar estrés hídrico analizando la evolución temporal de la reflectancia en la banda NIR (Infrarrojo Cercano).</p>
+</blockquote>
+<p>En la práctica de la inteligencia artificial moderna ---dominada por librerías como <code>PyTorch</code> o <code>TensorFlow</code>---, el tensor evoluciona de una abstracción matemática a un <strong>objeto computacional</strong> de alto rendimiento. Se implementa como un <em>arreglo multidimensional</em> optimizado para ejecutarse en aceleradores de hardware (GPU/TPU) y con soporte nativo para la <em>diferenciación automática</em>. Esta infraestructura es la base común que permite entrenar modelos complejos en cualquier dominio: desde la visión computacional en agricultura y la navegación robótica, hasta la proyección de escenarios financieros en administración.</p>
+<h2 id="manejo-de-los-datos-en-python">Manejo de los datos en Python</h2>
+<p>A continuación, se presentan las formas para definir los datos en sus diferentes presentaciones:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- BLOQUE 1: CIENCIA DE DATOS (NumPy) ---&quot;</span><span class="p">)</span>
+
+<span class="c1"># 1. Escalar (Rango 0)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mf">28.5</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Escalar (Humedad): </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2"> | Tipo: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Vector (Rango 1): Perfil de suelo [N, P, K, pH]</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">120</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vector: </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2"> | Forma: </span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3. Matriz (Rango 2): Ensayo con 3 parcelas y 2 variables (Rendimiento, pH)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">110</span><span class="p">,</span> <span class="mf">6.1</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">130</span><span class="p">,</span> <span class="mf">6.3</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mf">5.9</span><span class="p">]])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Matriz (Parcelas x Vars):</span><span class="se">\n</span><span class="si">{</span><span class="n">M</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Operación de Slicing (Acceso a datos):</span>
+<span class="c1"># &quot;Deme el pH (columna 1) de la segunda parcela (fila 1)&quot;</span>
+<span class="n">ph_parcela_2</span> <span class="o">=</span> <span class="n">M</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--&gt; pH de la parcela 2: </span><span class="si">{</span><span class="n">ph_parcela_2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- BLOQUE 2: INTELIGENCIA ARTIFICIAL (PyTorch) ---&quot;</span><span class="p">)</span>
+
+<span class="c1"># 4. Tensor Rango 3: Imagen individual para un robot (Canales, Alto, Ancho)</span>
+<span class="c1"># PyTorch prefiere el formato (C, H, W) para procesamiento</span>
+<span class="n">img_robot</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Imagen Robot (C,H,W): </span><span class="si">{</span><span class="n">img_robot</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> | Rango: </span><span class="si">{</span><span class="n">img_robot</span><span class="o">.</span><span class="n">ndim</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 5. Tensor Rango 4: Serie de Tiempo Satelital (Multidimensional)</span>
+<span class="c1"># Dimensiones: (Tiempo/Batch, Canales, Alto, Ancho)</span>
+<span class="c1"># Ejemplo: 10 fechas, 5 bandas espectrales, resolución 64x64</span>
+<span class="n">serie_satelital</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Serie Satelital: </span><span class="si">{</span><span class="n">serie_satelital</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Acceso complejo: </span>
+<span class="c1"># &quot;Valor del pixel central (32,32) en la Banda Roja (índice 0) de la </span>
+<span class="c1"># última fecha (índice -1)&quot;</span>
+<span class="n">pixel_val</span> <span class="o">=</span> <span class="n">serie_satelital</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--&gt; Valor pixel específico: </span><span class="si">{</span><span class="n">pixel_val</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 class="unnumbered" id="salida">Salida</h3>
+<p>::: salida
+--- BLOQUE 1: CIENCIA DE DATOS (NumPy) --- Escalar (Humedad): 28.5 | Tipo: \&lt;class 'float'&gt;</p>
+<p>Vector: [120. 50. 3. 6.2] | Forma: (4,)</p>
+<p>Matriz (Parcelas x Vars): [[110. 6.1] [130. 6.3] [100. 5.9]] --&gt; pH de la parcela 2: 6.3</p>
+<p>--- BLOQUE 2: INTELIGENCIA ARTIFICIAL (PyTorch) --- Imagen Robot (C,H,W): torch.Size([3, 128, 128]) | Rango: 3</p>
+<p>Serie Satelital: torch.Size([10, 5, 64, 64])</p>
+<p>--&gt; Valor pixel específico: -0.4281
+:::</p>
+<h2 id="conceptos-fundamentales-de-vectores-en-mathbbrn">Conceptos fundamentales de vectores en <span class="arithmatex">\(\mathbb{R}^n\)</span></h2>
+<p>Antes de introducir las operaciones entre vectores, es esencial comprender su estructura interna y sus propiedades geométricas. En ciencia de datos agro-ambiental, los vectores en Rn representan observaciones multivariadas, y su análisis requiere comprender cómo se comparan, cómo se mide su tamaño y cómo se orientan en el espacio.</p>
+<h3 id="transpuesta-de-vectores-y-matrices">Transpuesta de vectores y matrices</h3>
+<p>La <strong>transposición</strong> es una operación fundamental que reorganiza la estructura de los datos, invirtiendo sus dimensiones: transforma un arreglo de tamaño <span class="arithmatex">\(m \times n\)</span> en uno de <span class="arithmatex">\(n \times m\)</span>. Geométrica y algebraicamente, esto equivale a reflejar los elementos de la matriz respecto a su diagonal principal.</p>
+<p>En el contexto de la ciencia de datos y la modelación, la transposición no es solo un cambio de formato, sino una herramienta indispensable para la <strong>alineación dimensional</strong>. Es el paso previo necesario para realizar operaciones críticas como el cálculo del producto punto, la proyección de vectores y la construcción de la <strong>matriz de covarianza</strong>, permitiendo así relacionar variables y observaciones de manera coherente.</p>
+<h5 id="definicion">Definición</h5>
+<p>Dado un vector columna <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^{n}\)</span> (o <span class="arithmatex">\(\mathbb{R}^{n\times 1}\)</span>), definido explícitamente como:</p>
+<div class="arithmatex">\[\mathbf{x} = 
+\begin{pmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{pmatrix}\]</div>
+<p>Su <strong>transpuesta</strong>, denotada como <span class="arithmatex">\(\mathbf{x}^\top\)</span>, es el vector fila asociado en <span class="arithmatex">\(\mathbb{R}^{1 \times n}\)</span>:</p>
+<div class="arithmatex">\[\mathbf{x}^\top = 
+\begin{pmatrix}
+x_1 &amp; x_2 &amp; \cdots &amp; x_n
+\end{pmatrix}\]</div>
+<h5 id="definicion_1">Definición</h5>
+<p>Dada una matriz <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span>, expresada explícitamente como:</p>
+<div class="arithmatex">\[\mathbf{A} = 
+\begin{pmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+\end{pmatrix}_{m\times n}\]</div>
+<p>Su <strong>transpuesta</strong> <span class="arithmatex">\(\mathbf{A}^\top \in \mathbb{R}^{n \times m}\)</span> se construye convirtiendo la fila <span class="arithmatex">\(i\)</span> de <span class="arithmatex">\(\mathbf{A}\)</span> en la columna <span class="arithmatex">\(i\)</span> de <span class="arithmatex">\(\mathbf{A}^\top\)</span>:</p>
+<div class="arithmatex">\[\mathbf{A}^\top = 
+\begin{pmatrix}
+a_{11} &amp; a_{21} &amp; \cdots &amp; a_{m1} \\
+a_{12} &amp; a_{22} &amp; \cdots &amp; a_{m2} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{1n} &amp; a_{2n} &amp; \cdots &amp; a_{mn}
+\end{pmatrix}_{n\times m}\]</div>
+<p>Formalmente, se define por la propiedad de sus entradas:</p>
+<div class="arithmatex">\[(\mathbf{A}^\top)_{ij} = a_{ji}, \quad \text{para todo } i=1,\dots,n,\; j=1,\dots,m.\]</div>
+<p><strong>Propiedades clave:</strong></p>
+<div class="arithmatex">\[\begin{aligned}
+    (\mathbf{A}^\top)^\top &amp;= \mathbf{A} \\
+    (\mathbf{A} + \mathbf{B})^\top &amp;= \mathbf{A}^\top + \mathbf{B}^\top \\
+    (\alpha \mathbf{A})^\top &amp;= \alpha \mathbf{A}^\top \quad (\text{para todo } \alpha \in \mathbb{R}) \\
+    (\mathbf{A} \mathbf{B})^\top &amp;= \mathbf{B}^\top \mathbf{A}^\top \quad (\text{el orden se invierte})
+\end{aligned}\]</div>
+<h5 id="relevancia-en-ciencia-de-datos">Relevancia en ciencia de datos</h5>
+<ul>
+<li>
+<p><strong>Producto punto:</strong> El producto escalar de dos vectores columna <span class="arithmatex">\(\mathbf{x}, \mathbf{y} \in \mathbb{R}^n\)</span> se escribe como <span class="arithmatex">\(\mathbf{x}^\top \mathbf{y}\)</span>, que resulta en un escalar. Esta notación es la base de la similitud coseno y las proyecciones.</p>
+</li>
+<li>
+<p><strong>Matriz de covarianza:</strong> Si <span class="arithmatex">\(\mathbf{X} \in \mathbb{R}^{m \times n}\)</span> es una matriz de datos (filas = observaciones, columnas = variables), la matriz de covarianza se calcula como <span class="arithmatex">\(\mathbf{\Sigma} = \frac{1}{m-1} \mathbf{X}^\top \mathbf{X}\)</span>. La transposición permite alinear correctamente las variables para el cálculo de covarianzas.</p>
+</li>
+<li>
+<p><strong>Ajuste de modelos:</strong> En regresión lineal, el modelo <span class="arithmatex">\(\mathbf{y} = \mathbf{X} \pmb{\beta} + \pmb{\varepsilon}\)</span> requiere que <span class="arithmatex">\(\mathbf{X}^\top \mathbf{X}\)</span> sea invertible para estimar <span class="arithmatex">\(\pmb{\beta}\)</span>, lo que depende directamente de la transposición.</p>
+</li>
+</ul>
+<p><strong>Ejemplo numérico.</strong> Considere una matriz de datos de un ensayo agronómico con 2 parcelas y 3 variables (N, P, K):</p>
+<div class="arithmatex">\[\mathbf{X} =
+\begin{pmatrix}
+120 &amp; 50 &amp; 3 \\
+100 &amp; 60 &amp; 4
+\end{pmatrix}.\]</div>
+<p>Su transpuesta es:</p>
+<div class="arithmatex">\[\mathbf{X}^\top =
+\begin{pmatrix}
+120 &amp; 100 \\
+50 &amp; 60 \\
+3 &amp; 4
+\end{pmatrix}.\]</div>
+<h3 id="implementacion-computacional-y-matices-practicos">Implementación Computacional y Matices Prácticos</h3>
+<p>Aunque la definición matemática es estricta, en librerías como <code>NumPy</code> o <code>PyTorch</code> existe una distinción técnica importante entre un arreglo unidimensional (plano) y un vector columna formal.</p>
+<ul>
+<li>
+<p><strong>Arreglo 1D (Rank-1):</strong> Tiene forma <code>(n,)</code>. Su transpuesta <code>.T</code> no altera nada (sigue siendo plano). Es eficiente en memoria pero peligroso en álgebra lineal estricta.</p>
+</li>
+<li>
+<p><strong>Vector Columna (Rank-2):</strong> Tiene forma <code>(n, 1)</code>. Su transpuesta cambia la forma a <code>(1, n)</code>, comportándose exactamente como la teoría matemática.</p>
+</li>
+</ul>
+<p>A continuación, implementamos estos conceptos y verificamos la propiedad crítica de la inversión del producto <span class="arithmatex">\((\mathbf{AB})^\top = \mathbf{B}^\top \mathbf{A}^\top\)</span>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- 1. EL &#39;ENGAÑO&#39; DE LOS VECTORES 1D ---&quot;</span><span class="p">)</span>
+<span class="c1"># Vector plano (común en programación básica)</span>
+<span class="n">v_flat</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span> 
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vector plano: </span><span class="si">{</span><span class="n">v_flat</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Transpuesta v.T: </span><span class="si">{</span><span class="n">v_flat</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2"> (¡No cambia!)&quot;</span><span class="p">)</span>
+
+<span class="c1"># Vector Matemático (Columna explícita)</span>
+<span class="c1"># Usamos .unsqueeze(1) o definimos los corchetes dobles [[...]]</span>
+<span class="n">v_col</span> <span class="o">=</span> <span class="n">v_flat</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Transforma (3) -&gt; (3, 1)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vector Columna:</span><span class="se">\n</span><span class="si">{</span><span class="n">v_col</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vector Fila (v_col.T):</span><span class="se">\n</span><span class="si">{</span><span class="n">v_col</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- 2. MATRICES Y PROPIEDAD (AB)^T ---&quot;</span><span class="p">)</span>
+<span class="c1"># A: Matriz de datos (2 muestras, 3 variables)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">2.</span><span class="p">,</span> <span class="mf">3.</span><span class="p">],</span> 
+                  <span class="p">[</span><span class="mf">4.</span><span class="p">,</span> <span class="mf">5.</span><span class="p">,</span> <span class="mf">6.</span><span class="p">]])</span> <span class="c1"># Shape (2, 3)</span>
+
+<span class="c1"># B: Matriz de transformación (3 entradas, 2 salidas)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> 
+                  <span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">],</span> 
+                  <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]])</span>   <span class="c1"># Shape (3, 2)</span>
+
+<span class="c1"># Operación: Transpuesta del producto</span>
+<span class="n">lhs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>   <span class="c1"># (AB)^T</span>
+
+<span class="c1"># Verificación de la propiedad teórica</span>
+<span class="c1"># INCORRECTO: A.T @ B.T (Error de dimensiones o resultado erróneo)</span>
+<span class="c1"># CORRECTO: B.T @ A.T (Invirtiendo el orden)</span>
+<span class="n">rhs</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">B</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">)</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forma de (AB).T: </span><span class="si">{</span><span class="n">lhs</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Es igual a B.T @ A.T?: </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span><span class="w"> </span><span class="n">rhs</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>::: salida
+--- 1. EL 'ENGAÑO' DE LOS VECTORES 1D --- Vector plano: torch.Size([3]) Transpuesta v.T: torch.Size([3]) (¡No cambia!) Vector Columna: torch.Size([3, 1]) Vector Fila (v_col.T): torch.Size([1, 3])</p>
+<p>--- 2. MATRICES Y PROPIEDAD (AB)T̂ --- Forma de (AB).T: torch.Size([2, 2]) ¿Es igual a B.T @ A.T?: True
+:::</p>
+<h3 id="transposicion-en-tensores-permutacion">Transposición en Tensores (Permutación)</h3>
+<p>Para tensores de rango <span class="arithmatex">\(N \ge 3\)</span>, la noción de transposición se generaliza a la <strong>permutación de ejes</strong>. No existe una única "transpuesta", sino múltiples reordenamientos posibles de las dimensiones.</p>
+<p>Dado un tensor <span class="arithmatex">\(\mathcal{T} \in \mathbb{R}^{d_1 \times d_2 \times d_3}\)</span>, con entradas <span class="arithmatex">\(t_{ijk}\)</span> donde <span class="arithmatex">\(i\)</span> es el índice del primer eje, <span class="arithmatex">\(j\)</span> del segundo y <span class="arithmatex">\(k\)</span> del tercero.</p>
+<p>Una permutación común (por ejemplo, invertir el orden de los ejes) genera un nuevo tensor <span class="arithmatex">\(\mathcal{T}' \in \mathbb{R}^{d_3 \times d_2 \times d_1}\)</span> tal que:</p>
+<div class="arithmatex">\[\mathcal{T}'_{kji} = \mathcal{T}_{ijk}\]</div>
+<p>En la práctica de visión computacional, la operación más frecuente es intercambiar el eje de <em>canales</em> (C) para moverlo del principio al final:</p>
+<p><strong>Definición práctica (Cambio de Formato):</strong> Sea un tensor de imagen <span class="arithmatex">\(\mathbf{I} \in \mathbb{R}^{C \times H \times W}\)</span> (formato PyTorch). Su versión permutada <span class="arithmatex">\(\mathbf{I}_{perm} \in \mathbb{R}^{H \times W \times C}\)</span> (formato Matplotlib/OpenCV) se define reordenando los índices <span class="arithmatex">\((c, h, w) \to (h, w, c)\)</span>:</p>
+<div class="arithmatex">\[\mathbf{I} = 
+\left[ \text{Canales}, \text{Alto}, \text{Ancho} \right]
+\xrightarrow{\text{permute}(1, 2, 0)}
+\mathbf{I}_{perm} = 
+\left[ \text{Alto}, \text{Ancho}, \text{Canales} \right]\]</div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># Tensor 3D: Una imagen RGB simulada (3 canales, 4 alto, 4 ancho)</span>
+<span class="c1"># Formato PyTorch: (C, H, W)</span>
+<span class="n">imagen_torch</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forma original (C, H, W): </span><span class="si">{</span><span class="n">imagen_torch</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># PROBLEMA: Las librerías de visualización (matplotlib) esperan (H, W, C)</span>
+<span class="c1"># SOLUCIÓN: Permutar los ejes.</span>
+<span class="c1"># Índice 0-&gt;2 (Canales al final)</span>
+<span class="c1"># Índice 1-&gt;0 (Alto al principio)</span>
+<span class="c1"># Índice 2-&gt;1 (Ancho al medio)</span>
+<span class="n">imagen_plot</span> <span class="o">=</span> <span class="n">imagen_torch</span><span class="o">.</span><span class="n">permute</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Forma permutada (H, W, C): </span><span class="si">{</span><span class="n">imagen_plot</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Cuidado: .T (transpuesta simple) en PyTorch no siempre funciona intuitivamente en tensores &gt; 2D</span>
+<span class="c1"># Es preferible ser explícito con .permute()</span>
+</code></pre></div>
+<p>::: salida
+Forma original (C, H, W): torch.Size([3, 4, 4]) Forma permutada (H, W, C): torch.Size([4, 4, 3])
+:::</p>
+<h3 id="igualdad-de-vectores">Igualdad de vectores</h3>
+<p>Dos vectores <span class="arithmatex">\(\mathbf{x}, \mathbf{y} \in \mathbb{R}^n\)</span> se consideran <strong>iguales</strong> si satisfacen simultáneamente dos condiciones:</p>
+<ol>
+<li>
+<p>Pertenecen al mismo espacio vectorial (tienen la misma dimensión <span class="arithmatex">\(n\)</span>).</p>
+</li>
+<li>
+<p>Sus componentes correspondientes son idénticas en valor y posición.</p>
+</li>
+</ol>
+<p>Formalmente:</p>
+<div class="arithmatex">\[\mathbf{x} = \mathbf{y} \quad \Longleftrightarrow \quad x_i = y_i \quad \text{para todo } i = 1, \dots, n.\]</div>
+<h5 id="interpretacion-agronomica">Interpretación Agronómica</h5>
+<p>La igualdad vectorial implica una réplica exacta de condiciones. Por ejemplo, dos lotes de cultivo tienen un manejo nutricional idéntico solo si sus vectores de fertilización <span class="arithmatex">\(\mathbf{f}_A = (N, P, K, \text{Micro})\)</span> y <span class="arithmatex">\(\mathbf{f}_B\)</span> son iguales componente a componente. Si <span class="arithmatex">\(N_A = N_B\)</span> pero <span class="arithmatex">\(K_A \neq K_B\)</span>, entonces <span class="arithmatex">\(\mathbf{f}_A \neq \mathbf{f}_B\)</span>, lo que significa que los tratamientos son agronómicamente distintos.</p>
+<blockquote>
+<p>Administración y Finanzas: Conciliación</p>
+<p>La igualdad vectorial es la base de la <strong>auditoría</strong>. Si definimos un vector de presupuesto planificado <span class="arithmatex">\(\mathbf{p} \in \mathbb{R}^3\)</span> y un vector de ejecución real <span class="arithmatex">\(\mathbf{e} \in \mathbb{R}^3\)</span> para tres departamentos (Ventas, I+D, Operaciones):</p>
+<div class="arithmatex">\[\mathbf{p} = \begin{pmatrix} 100 \\ 50 \\ 80 \end{pmatrix}, \quad 
+\mathbf{e} = \begin{pmatrix} 100 \\ 50 \\ 80 \end{pmatrix}\]</div>
+<p>La condición <span class="arithmatex">\(\mathbf{p} = \mathbf{e}\)</span> indica un cumplimiento presupuestario perfecto (varianza cero). Si <span class="arithmatex">\(\mathbf{p} \neq \mathbf{e}\)</span>, la diferencia <span class="arithmatex">\(\mathbf{d} = \mathbf{p} - \mathbf{e}\)</span> generará un vector de desviaciones no nulo que debe ser justificado.</p>
+</blockquote>
+<h3 id="igualdad-de-matrices">Igualdad de matrices</h3>
+<p>Dos matrices <span class="arithmatex">\(\mathbf{A}, \mathbf{B} \in \mathbb{R}^{m \times n}\)</span> se consideran <strong>iguales</strong> si y solo si satisfacen simultáneamente dos condiciones:</p>
+<ol>
+<li>
+<p>Tienen las mismas dimensiones (igual número de filas <span class="arithmatex">\(m\)</span> y columnas <span class="arithmatex">\(n\)</span>).</p>
+</li>
+<li>
+<p>Sus entradas correspondientes son idénticas en valor y posición.</p>
+</li>
+</ol>
+<p>Formalmente:</p>
+<div class="arithmatex">\[\mathbf{A} = \mathbf{B} \quad \Longleftrightarrow \quad A_{ij} = B_{ij} \quad \text{para todo } i = 1, \dots, m; \; j = 1, \dots, n.\]</div>
+<h5 id="interpretacion-ambiental-deteccion-de-cambios">Interpretación Ambiental: Detección de Cambios</h5>
+<p>En monitoreo satelital, una imagen espectral se representa como una matriz numérica donde cada entrada corresponde a un píxel. Sea <span class="arithmatex">\(\mathbf{M}_{2020}\)</span> la matriz de índices de vegetación (NDVI) de una reserva forestal en 2020 y <span class="arithmatex">\(\mathbf{M}_{2024}\)</span> la del año actual. La igualdad <span class="arithmatex">\(\mathbf{M}_{2020} = \mathbf{M}_{2024}\)</span> indicaría una conservación absoluta del ecosistema. En la práctica, los científicos buscan la matriz diferencia <span class="arithmatex">\(\mathbf{D} = \mathbf{M}_{2024} - \mathbf{M}_{2020}\)</span>; si una entrada <span class="arithmatex">\(D_{ij}\)</span> es significativamente distinta de cero (negativa), alerta sobre una posible deforestación en esa coordenada específica.</p>
+<blockquote>
+<p>Mecatrónica: Control de Robots</p>
+<p>En robótica, la posición y orientación de un brazo manipulador se describen mediante matrices de transformación homogénea de <span class="arithmatex">\(4 \times 4\)</span>. Sea <span class="arithmatex">\(\mathbf{T}_{\text{obj}}\)</span> la matriz que representa la pose deseada (target) del efector final (la pinza) y <span class="arithmatex">\(\mathbf{T}_{\text{act}}\)</span> la pose actual leída por los sensores:</p>
+<div class="arithmatex">\[\mathbf{T}_{\text{obj}} = 
+\begin{pmatrix} 
+1 &amp; 0 &amp; 0 &amp; 10 \\ 
+0 &amp; 1 &amp; 0 &amp; 5 \\ 
+0 &amp; 0 &amp; 1 &amp; 20 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}, \quad
+\mathbf{T}_{\text{act}} = 
+\begin{pmatrix} 
+1 &amp; 0 &amp; 0 &amp; 9.8 \\ 
+0 &amp; 1 &amp; 0 &amp; 5 \\ 
+0 &amp; 0 &amp; 1 &amp; 20 \\
+0 &amp; 0 &amp; 0 &amp; 1
+\end{pmatrix}\]</div>
+<p>El sistema de control verifica la igualdad. Como <span class="arithmatex">\(T_{14}\)</span> (posición en <span class="arithmatex">\(x\)</span>) es <span class="arithmatex">\(10\)</span> en la deseada y <span class="arithmatex">\(9.8\)</span> en la actual, <span class="arithmatex">\(\mathbf{T}_{\text{obj}} \neq \mathbf{T}_{\text{act}}\)</span>. Esto genera una señal de error que activa los motores para corregir esa diferencia de <span class="arithmatex">\(0.2\)</span> unidades.</p>
+</blockquote>
+<h5 id="generalizacion-a-tensores">Generalización a Tensores</h5>
+<p>El concepto de igualdad se extiende naturalmente a arreglos multidimensionales de orden superior, conocidos como <strong>tensores</strong>. Sean <span class="arithmatex">\(\mathcal{A}\)</span> y <span class="arithmatex">\(\mathcal{B}\)</span> dos tensores de orden 3 (por ejemplo, de dimensiones <span class="arithmatex">\(m \times n \times p\)</span>). Estos se consideran iguales solo si coinciden en cada voxel o celda cúbica:</p>
+<div class="arithmatex">\[\mathcal{A} = \mathbf{B} \quad \Longleftrightarrow \quad A_{ijk} = B_{ijk} \quad \forall i,j,k.\]</div>
+<h6 id="ejemplo-imagenes-rgb">Ejemplo: Imágenes RGB</h6>
+<p>Una imagen digital a color se representa como un tensor de <span class="arithmatex">\(\text{Alto} \times \text{Ancho} \times 3\)</span> (Canales: Rojo, Verde, Azul). Si tenemos una imagen original <span class="arithmatex">\(\mathcal{I}_{\text{orig}}\)</span> y una copia transmitida por internet <span class="arithmatex">\(\mathcal{I}_{\text{copia}}\)</span>, la igualdad <span class="arithmatex">\(\mathcal{I}_{\text{orig}} = \mathcal{I}_{\text{copia}}\)</span> asegura la integridad de los datos. Basta con que un solo píxel cambie levemente su tono en el canal azul para que <span class="arithmatex">\(\mathcal{I}_{\text{orig}} \neq \mathcal{I}_{\text{copia}}\)</span>, lo cual en criptografía o esteganografía podría indicar que la imagen fue alterada.</p>
+<h3 id="igualdad-computacional-el-desafio-del-punto-flotante">Igualdad Computacional: El Desafío del Punto Flotante</h3>
+<p>En la práctica profesional de la Ciencia de Datos, rara vez verificamos la igualdad matemática estricta (<span class="arithmatex">\(\mathbf{A} = \mathbf{B}\)</span>). Esto se debe a que las computadoras utilizan el estándar <strong>IEEE 754</strong> para representar números decimales (punto flotante), donde operaciones simples introducen errores infinitesimales de redondeo en los bits menos significativos.</p>
+<p>Para abordar la comparación de tensores, es fundamental distinguir dos enfoques y una solución técnica:</p>
+<ol>
+<li>
+<p><strong>Comparación Element-wise (Elemento a elemento):</strong> Genera una matriz de valores booleanos del mismo tamaño que las originales. Es útil para crear "máscaras" y detectar <em>dónde</em> difieren los datos.</p>
+</li>
+<li>
+<p><strong>Comparación Estricta:</strong> Verifica si la estructura es idéntica en su totalidad. Falla frecuentemente con números decimales (floats).</p>
+</li>
+<li>
+<p><strong>Comparación con Tolerancia (La Solución):</strong> Sustituye la igualdad estricta por la proximidad dentro de un umbral <span class="arithmatex">\(\epsilon\)</span>.</p>
+</li>
+</ol>
+<p>Matemáticamente, definimos la igualdad computacional como:</p>
+<div class="arithmatex">\[\mathbf{A} \approx \mathbf{B} \iff |a_{ij} - b_{ij}| &lt; \epsilon, \quad \forall i,j\]</div>
+<p>Donde <span class="arithmatex">\(\epsilon\)</span> (epsilon) suele ser un valor muy pequeño (ej. <span class="arithmatex">\(10^{-5}\)</span> o <span class="arithmatex">\(10^{-8}\)</span>).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- 1. ELEMENT-WISE VS ESTRUCTURA ---&quot;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">])</span> <span class="c1"># El segundo elemento difiere</span>
+
+<span class="c1"># Comparación elemento a elemento (Genera máscara)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Máscara: </span><span class="si">{</span><span class="n">A</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">B</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> 
+<span class="c1"># Salida esperada: [True, False]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- 2. EL PROBLEMA DEL PUNTO FLOTANTE ---&quot;</span><span class="p">)</span>
+<span class="c1"># Matemáticamente: (Raíz de 2) al cuadrado = 2</span>
+<span class="n">raiz</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">2.0</span><span class="p">))</span>
+<span class="n">calculado</span> <span class="o">=</span> <span class="n">raiz</span> <span class="o">*</span> <span class="n">raiz</span>
+<span class="n">teorico</span>   <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="c1"># Mostramos con 10 decimales para revelar el &quot;error fantasma&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Valor Teórico:   </span><span class="si">{</span><span class="n">teorico</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.10f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Valor Calculado: </span><span class="si">{</span><span class="n">calculado</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.10f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Intento 1: Igualdad Estricta (==)</span>
+<span class="c1"># Falla porque 2.0000000000 != 2.0000002384</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Igualdad Estricta? </span><span class="si">{</span><span class="n">calculado</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">teorico</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- 3. SOLUCIÓN: TOLERANCIA (ALLCLOSE) ---&quot;</span><span class="p">)</span>
+<span class="c1"># Verificamos si la diferencia es despreciable</span>
+<span class="c1"># atol = tolerancia absoluta</span>
+<span class="n">es_cercano</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">calculado</span><span class="p">,</span> <span class="n">teorico</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-05</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Igualdad con tolerancia (allclose)? </span><span class="si">{</span><span class="n">es_cercano</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>::: salida
+--- 1. ELEMENT-WISE VS ESTRUCTURA --- Máscara: tensor([ True, False])</p>
+<p>--- 2. EL PROBLEMA DEL PUNTO FLOTANTE --- Valor Teórico: 2.0000000000 Valor Calculado: 2.0000002384 ¿Igualdad Estricta? tensor(False)</p>
+<p>--- 3. SOLUCIÓN: TOLERANCIA (ALLCLOSE) --- ¿Igualdad con tolerancia (allclose)? True
+:::</p>
+<h2 id="norma-euclidiana-magnitud-y-direccion">Norma euclidiana (magnitud) y dirección</h2>
+<p>La <strong>norma euclidiana</strong> (también llamada longitud o módulo) de un vector <span class="arithmatex">\(\mathbf{x} = (x_1, \dots, x_n)^\top \in \mathbb{R}^n\)</span> se define como la raíz cuadrada de la suma de sus componentes al cuadrado:</p>
+<div class="arithmatex">\[\lVert \mathbf{x} \rVert = \sqrt{x_1^2 + x_2^2 + \cdots + x_n^2} .\]</div>
+<p>Esta medida generaliza el concepto de distancia desde el origen hasta el punto <span class="arithmatex">\(\mathbf{x}\)</span>. En ciencia de datos, es fundamental para normalizar variables (escalar datos), calcular el error cuadrático medio o evaluar la \"fuerza\" de una señal.</p>
+<h4 id="interpretacion-en-el-plano-mathbbr2">Interpretación en el plano (<span class="arithmatex">\(\mathbb{R}^2\)</span>)</h4>
+<p>En dos dimensiones, un vector <span class="arithmatex">\(\mathbf{x} = (x_1, x_2)^\top\)</span> se representa geométricamente como una flecha. Sus propiedades fundamentales son:</p>
+<ol>
+<li>
+<p><strong>Magnitud:</strong> La longitud de la flecha, dada por Pitágoras: <span class="arithmatex">\(\lVert \mathbf{x} \rVert = \sqrt{x_1^2 + x_2^2}\)</span>.</p>
+</li>
+<li>
+<p><strong>Dirección:</strong> El ángulo <span class="arithmatex">\(\theta\)</span> respecto al eje horizontal, calculado como <span class="arithmatex">\(\theta = \arctan(x_2 / x_1)\)</span>.</p>
+</li>
+</ol>
+<p>La Figura <a href="#fig:vector_componentes_norma">1.1</a> ilustra cómo las componentes definen tanto la posición final como la orientación del vector.</p>
+<figure>
+  <img alt="Representación geométrica: la norma es la longitud de la hipotenusa y \(\theta\) determina la orientación." id="fig:vector_componentes_norma" src="imagenes/figura_vector" width="70%" />
+<br />
+<figcaption>Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.</figcaption>
+</figure>
+<blockquote>
+<p>Ejemplo Administrativo: Presupuesto Vectorial</p>
+<p>Considere una propuesta presupuestaria <span class="arithmatex">\(\mathbf{p} \in \mathbb{R}^2\)</span> (en millones de pesos) asignada a Infraestructura y Capacitación:</p>
+<div class="arithmatex">\[\mathbf{p} = \begin{pmatrix} 4 \\ 3 \end{pmatrix}\]</div>
+<ul>
+<li>
+<p><strong>Magnitud (Esfuerzo Total):</strong> <span class="arithmatex">\(\lVert \mathbf{p} \rVert = \sqrt{4^2 + 3^2} = \sqrt{25} = 5\)</span>. El tamaño total de la inversión es 5 millones.</p>
+</li>
+<li>
+<p><strong>Dirección (Prioridad Estratégica):</strong> El ángulo respecto a infraestructura es <span class="arithmatex">\(\theta = \arctan(3/4) \approx 36{,}9^\circ\)</span>.</p>
+<ul>
+<li>
+<p>Si <span class="arithmatex">\(\theta \to 0^\circ\)</span>, la prioridad es 100% Infraestructura.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\theta \to 90^\circ\)</span>, la prioridad es 100% Capacitación.</p>
+</li>
+<li>
+<p>Con <span class="arithmatex">\(36{,}9^\circ\)</span>, existe un balance inclinado hacia la infraestructura.</p>
+</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h4 id="orientacion-en-el-espacio-mathbbr3-cosenos-directores">Orientación en el espacio (<span class="arithmatex">\(\mathbb{R}^3\)</span>): Cosenos directores</h4>
+<p>En tres dimensiones, un solo ángulo no basta para definir la dirección. Para un vector <span class="arithmatex">\(\mathbf{x} = (x_1, x_2, x_3)^\top\)</span>, utilizamos los <strong>cosenos directores</strong>, que son los cosenos de los ángulos <span class="arithmatex">\((\alpha, \beta, \gamma)\)</span> que forma el vector con cada uno de los ejes coordenados (<span class="arithmatex">\(x, y, z\)</span> respectivamente):</p>
+<div class="arithmatex">\[\cos(\alpha) = \frac{x_1}{\lVert \mathbf{x} \rVert}, \quad
+\cos(\beta)  = \frac{x_2}{\lVert \mathbf{x} \rVert}, \quad
+\cos(\gamma) = \frac{x_3}{\lVert \mathbf{x} \rVert}.\]</div>
+<p>Estos valores oscilan entre -1 y 1. Un valor cercano a 1 indica que el vector está muy alineado con ese eje específico, dominando el comportamiento de la variable.</p>
+<blockquote>
+<p>Ejemplo Ambiental: Calidad del Aire</p>
+<p>Analicemos el vector de contaminantes (en <span class="arithmatex">\(\mu\text{g/m}^3\)</span>) de una estación urbana:</p>
+<div class="arithmatex">\[\mathbf{a} = 
+\begin{pmatrix}
+\mathrm{PM}_{10} \\ \mathrm{NO}_2 \\ \mathrm{O}_3
+\end{pmatrix} =
+\begin{pmatrix}
+40 \\ 30 \\ 50
+\end{pmatrix}\]</div>
+<ol>
+<li>
+<p><strong>Magnitud (Intensidad de Contaminación):</strong></p>
+<div class="arithmatex">\[\lVert \mathbf{a} \rVert = \sqrt{40^2 + 30^2 + 50^2} = \sqrt{5000} \approx 70{,}71.\]</div>
+</li>
+<li>
+<p><strong>Análisis de Dominancia (Cosenos Directores):</strong></p>
+<div class="arithmatex">\[\cos(\gamma)_{\mathrm{O}_3} = \frac{50}{70{,}71} \approx \mathbf{0{,}707}, \quad
+    \cos(\alpha)_{\mathrm{PM}_{10}} \approx 0{,}566.\]</div>
+<p>La componente de Ozono (<span class="arithmatex">\(\mathrm{O}_3\)</span>) tiene el coseno director más alto (<span class="arithmatex">\(0{,}707\)</span>), lo que indica que es el contaminante dominante en este perfil. Esto sugiere un problema de tipo fotoquímico (reacción a la luz solar) más que de emisiones primarias de combustión (<span class="arithmatex">\(\mathrm{NO}_2\)</span>), permitiendo a las autoridades decidir si restringen el tráfico o la industria.</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="implementacion-computacional-normas-y-normalizacion">Implementación Computacional: Normas y Normalización</h3>
+<p>En el ecosistema de Python (NumPy y PyTorch), el cálculo de la magnitud y la dirección está altamente optimizado. No es necesario iterar manualmente sobre los elementos sumando cuadrados; las librerías utilizan rutinas de bajo nivel (BLAS/LAPACK) para hacerlo instantáneamente.</p>
+<h4 id="calculo-de-la-norma-l_2">Cálculo de la Norma (<span class="arithmatex">\(L_2\)</span>)</h4>
+<p>Aunque la fórmula es <span class="arithmatex">\(\sqrt{\sum x_i^2}\)</span>, en código utilizamos funciones dedicadas como <code>torch.norm</code> o <code>numpy.linalg.norm</code>. Esto previene errores de desbordamiento numérico (overflow) cuando los números son muy grandes.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># Ejemplo Administrativo: Presupuesto [Infra, Capa]</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+
+<span class="c1"># FORMA 1: Manual (Solo con fines educativos)</span>
+<span class="c1"># Paso a paso: Cuadrado -&gt; Suma -&gt; Raíz</span>
+<span class="n">norma_manual</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># FORMA 2: Profesional (La que usarás siempre)</span>
+<span class="c1"># Es más rápida y numéricamente estable</span>
+<span class="n">norma_pro</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vector p: </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Norma Manual: </span><span class="si">{</span><span class="n">norma_manual</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="c1"># 5.0</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Norma Pro:    </span><span class="si">{</span><span class="n">norma_pro</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>    <span class="c1"># 5.0</span>
+</code></pre></div>
+<h4 id="direccion-y-normalizacion">Dirección y Normalización</h4>
+<p>Aquí distinguimos entre 2D y <span class="arithmatex">\(N\)</span>-Dimensiones:</p>
+<ol>
+<li>
+<p><strong>En 2D (Ángulos):</strong> No usamos <span class="arithmatex">\(\arctan(y/x)\)</span> porque falla si <span class="arithmatex">\(x=0\)</span>. Usamos la función especial <code>atan2(y, x)</code>, que maneja todos los cuadrantes y la división por cero automáticamente.</p>
+</li>
+<li>
+<p><strong>En ND (Cosenos Directores = Normalización):</strong> Calcular los cosenos directores equivale a convertir el vector en un <strong>Vector Unitario</strong> (longitud 1). Esta operación se llama <strong>Normalización L2</strong> y es vital en redes neuronales.</p>
+</li>
+</ol>
+<div class="arithmatex">\[\hat{\mathbf{x}} = \frac{\mathbf{x}}{\lVert \mathbf{x} \rVert} = (\cos \alpha, \cos \beta, \cos \gamma)^\top\]</div>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- 1. DIRECCIÓN EN 2D (PRESUPUESTO) ---&quot;</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span> <span class="c1"># x=4, y=3</span>
+
+<span class="c1"># Usamos atan2(y, x). Nota: El orden es (y, x)</span>
+<span class="n">theta_rad</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1"># Convertimos radianes a grados para humanos</span>
+<span class="n">theta_deg</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">theta_rad</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ángulo (theta): </span><span class="si">{</span><span class="n">theta_deg</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> grados&quot;</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- 2. DIRECCIÓN EN 3D (CALIDAD AIRE) ---&quot;</span><span class="p">)</span>
+<span class="c1"># Vector: [PM10, NO2, O3]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">40.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">])</span>
+
+<span class="c1"># Calculamos la norma</span>
+<span class="n">magnitud</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+
+<span class="c1"># Cosenos Directores: Dividimos el vector por su magnitud</span>
+<span class="c1"># Esto crea un &#39;Vector Unitario&#39; (Unit Vector)</span>
+<span class="n">cosenos_directores</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">magnitud</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Magnitud total: </span><span class="si">{</span><span class="n">magnitud</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cosenos Directores (Dirección):</span><span class="se">\n</span><span class="si">{</span><span class="n">cosenos_directores</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Verificación: La norma de los cosenos directores siempre es 1</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Comprobación (Norma del unitario): </span><span class="si">{</span><span class="n">torch</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">cosenos_directores</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>::: salida
+--- 1. DIRECCIÓN EN 2D (PRESUPUESTO) --- Ángulo (theta): 36.9 grados</p>
+<p>--- 2. DIRECCIÓN EN 3D (CALIDAD AIRE) --- Magnitud total: 70.71 Cosenos Directores (Dirección): tensor([0.5657, 0.4243, 0.7071]) Comprobación (Norma del unitario): 1.0
+:::</p>
+<h2 id="ejercicios-propuestos">Ejercicios propuestos</h2>
+<ol>
+<li>
+<p><strong>Clasificación de Estructuras (Rangos):</strong> Identifique el rango (0, 1, 2 o <span class="arithmatex">\(\ge 3\)</span>) y la dimensión matemática aproximada (ej. <span class="arithmatex">\(\mathbb{R}^n\)</span>) de los siguientes objetos de datos agroambientales:</p>
+<ol>
+<li>
+<p>La concentración de nitratos en una muestra de suelo (un solo valor numérico).</p>
+</li>
+<li>
+<p>El perfil de temperatura de un silo medido a 10 alturas diferentes.</p>
+</li>
+<li>
+<p>Una fotografía aérea de un cultivo en escala de grises de <span class="arithmatex">\(1024 \times 768\)</span> píxeles.</p>
+</li>
+<li>
+<p>Un conjunto de datos multitemporal que contiene 5 bandas espectrales, para una imagen de <span class="arithmatex">\(500 \times 500\)</span> píxeles, tomada durante 12 meses consecutivos.</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Interpretación de la Transpuesta:</strong> Sea <span class="arithmatex">\(\mathbf{D} \in \mathbb{R}^{100 \times 5}\)</span> una matriz de datos donde las filas (<span class="arithmatex">\(i=1\dots100\)</span>) representan plantas de maíz individuales y las columnas (<span class="arithmatex">\(j=1\dots5\)</span>) representan variables medidas (Altura, Grosor de tallo, Número de hojas, Clorofila, Rendimiento).</p>
+<ol>
+<li>
+<p>¿Cuáles son las dimensiones de la matriz transpuesta <span class="arithmatex">\(\mathbf{D}^\top\)</span>?</p>
+</li>
+<li>
+<p>En la matriz <span class="arithmatex">\(\mathbf{D}^\top\)</span>, ¿qué representa ahora una fila? ¿Y una columna?</p>
+</li>
+<li>
+<p>¿Por qué podría ser útil calcular la media de las filas de <span class="arithmatex">\(\mathbf{D}^\top\)</span> para un análisis estadístico?</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Verificación de Igualdad:</strong> Dadas las matrices:</p>
+<div class="arithmatex">\[\mathbf{A} = \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{pmatrix}, \quad
+    \mathbf{B} = \begin{pmatrix} 1 &amp; 2 &amp; 0 \\ 3 &amp; 4 &amp; 0 \end{pmatrix}, \quad
+    \mathbf{C} = \begin{pmatrix} 1 &amp; 2 \\ 3 &amp; 4.00001 \end{pmatrix}\]</div>
+<ol>
+<li>
+<p>¿Es <span class="arithmatex">\(\mathbf{A} = \mathbf{B}\)</span>? Justifique su respuesta basándose en las dimensiones.</p>
+</li>
+<li>
+<p>¿Es <span class="arithmatex">\(\mathbf{A} = \mathbf{C}\)</span> en términos matemáticos estrictos?</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\mathbf{C}\)</span> proviene de un sensor digital ruidoso, ¿consideraría estas matrices iguales en un contexto aplicado?</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Laboratorio de Python (NumPy):</strong> Escriba un script en Python que realice lo siguiente:</p>
+<ul>
+<li>
+<p>Cree un vector <span class="arithmatex">\(\mathbf{v}\)</span> con los valores <span class="arithmatex">\([0, 10, 20, 30]\)</span> (representando lecturas ideales de un sensor).</p>
+</li>
+<li>
+<p>Simule un vector de lectura real <span class="arithmatex">\(\mathbf{v}_{ruido}\)</span> sumando un pequeño valor aleatorio (ej. <span class="arithmatex">\(0.005\)</span>) a cada componente.</p>
+</li>
+<li>
+<p>Intente verificar la igualdad con el operador standard <code>==</code> y comente el resultado.</p>
+</li>
+<li>
+<p>Verifique la igualdad correctamente utilizando <code>np.allclose</code> con una tolerancia adecuada.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Agronómico (Análisis de Suelos - Transpuesta):</strong> Un laboratorio entrega los resultados de análisis de suelo de 3 lotes diferentes en una matriz <span class="arithmatex">\(\mathbf{S} \in \mathbb{R}^{3 \times 4}\)</span>, donde las filas son los Lotes (A, B, C) y las columnas son los parámetros (pH, M.O., P, K).</p>
+<div class="arithmatex">\[\mathbf{S} = 
+    \begin{pmatrix}
+    5.5 &amp; 2.1 &amp; 15 &amp; 0.4 \\
+    6.2 &amp; 3.5 &amp; 20 &amp; 0.6 \\
+    5.8 &amp; 2.8 &amp; 12 &amp; 0.5
+    \end{pmatrix}\]</div>
+<ol>
+<li>
+<p>Escriba explícitamente la matriz transpuesta <span class="arithmatex">\(\mathbf{S}^\top\)</span>.</p>
+</li>
+<li>
+<p>Interprete el significado de la <strong>segunda fila</strong> de la matriz transpuesta. ¿Qué información agrupa?</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Agrícola (Monitoreo de Cosecha - Igualdad):</strong> Se tiene un vector de rendimiento estimado <span class="arithmatex">\(\mathbf{r}_{est} = [4.5, 5.0, 4.2]^\top\)</span> (ton/ha) para tres variedades de maíz. Al finalizar la cosecha, el vector real fue <span class="arithmatex">\(\mathbf{r}_{real} = [4.48, 5.01, 3.8]^\top\)</span>.</p>
+<ol>
+<li>
+<p>Si definimos una tolerancia de error de <span class="arithmatex">\(\pm 0.05\)</span> ton/ha, ¿para cuáles variedades se cumple que <span class="arithmatex">\(\mathbf{r}_{est} \approx \mathbf{r}_{real}\)</span>?</p>
+</li>
+<li>
+<p>¿Cómo expresaría esta comparación utilizando la resta vectorial <span class="arithmatex">\(\mathbf{d} = \mathbf{r}_{est} - \mathbf{r}_{real}\)</span>?</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Agroindustrial (Control de Calidad - Matrices):</strong> Una planta procesadora de jugos produce lotes de 3 sabores (Naranja, Mango, Mora). La matriz <span class="arithmatex">\(\mathbf{M}_{std}\)</span> define la formulación estándar (kg de fruta, litros de agua, kg de azúcar) y <span class="arithmatex">\(\mathbf{M}_{lote}\)</span> es la mezcla actual.</p>
+<div class="arithmatex">\[\mathbf{M}_{std} = 
+    \begin{pmatrix}
+    100 &amp; 50 &amp; 5 \\
+    120 &amp; 40 &amp; 6 \\
+    90 &amp; 60 &amp; 4
+    \end{pmatrix}\]</div>
+<p>Si el sistema de control detecta que <span class="arithmatex">\(\mathbf{M}_{lote} \neq \mathbf{M}_{std}\)</span>, explique qué consecuencias físicas tiene esto para el producto final si la diferencia ocurre en la posición <span class="arithmatex">\((2,3)\)</span> (Fila 2, Columna 3).</p>
+</li>
+<li>
+<p><strong>Ambiental (Datos Climáticos - Tensores):</strong> Una estación meteorológica registra datos utilizando un tensor <span class="arithmatex">\(\mathcal{C}\)</span> de dimensiones <span class="arithmatex">\(365 \times 24 \times 3\)</span>.</p>
+<ul>
+<li>
+<p>Dimensión 1: Días del año (<span class="arithmatex">\(1 \dots 365\)</span>).</p>
+</li>
+<li>
+<p>Dimensión 2: Horas del día (<span class="arithmatex">\(0 \dots 23\)</span>).</p>
+</li>
+<li>
+<p>Dimensión 3: Variables (Temperatura, Humedad, Radiación Solar).</p>
+</li>
+<li>
+<p>¿Qué representa una \"rebanada\" (slice) del tensor si fijamos la primera dimensión (ej. día 100) y tomamos todos los datos restantes (<span class="arithmatex">\(100, :, :\)</span>)?</p>
+</li>
+<li>
+<p>Si extraemos el vector <span class="arithmatex">\(\mathbf{v} = \mathcal{C}(:, 12, 0)\)</span>, ¿qué serie de tiempo estamos analizando?</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Administrativo (Inventarios - Dimensión):</strong> Una cooperativa gestiona 2 bodegas. La Bodega Norte tiene un inventario representado por el vector <span class="arithmatex">\(\mathbf{b}_N \in \mathbb{R}^{5}\)</span> (5 tipos de insumos). La Bodega Sur maneja 6 tipos de insumos, representada por <span class="arithmatex">\(\mathbf{b}_S \in \mathbb{R}^{6}\)</span>.</p>
+<ol>
+<li>
+<p>¿Es matemáticamente posible realizar la operación de comparación <span class="arithmatex">\(\mathbf{b}_N = \mathbf{b}_S\)</span>? ¿Por qué?</p>
+</li>
+<li>
+<p>Desde el punto de vista administrativo, ¿qué paso previo (padding o relleno) debería realizarse para poder consolidar ambos inventarios en una sola matriz?</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Mecatrónica (Visión Artificial para Pick-and-Place):</strong> Un brazo robótico utiliza una cámara de baja resolución para identificar piezas defectuosas en una banda transportadora. La imagen ideal de una pieza correcta está representada por la matriz binaria <span class="arithmatex">\(\mathbf{P}_{ideal}\)</span> (donde 1 es metal y 0 es fondo). La cámara captura una imagen <span class="arithmatex">\(\mathbf{P}_{cam}\)</span> de la pieza que pasa actualmente.</p>
+<div class="arithmatex">\[\mathbf{P}_{ideal} = 
+    \begin{pmatrix}
+    0 &amp; 1 &amp; 1 &amp; 0 \\
+    0 &amp; 1 &amp; 1 &amp; 0 \\
+    0 &amp; 1 &amp; 1 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0
+    \end{pmatrix}
+    \quad , \quad
+    \mathbf{P}_{cam} = 
+    \begin{pmatrix}
+    0 &amp; 0 &amp; 0 &amp; 0 \\
+    1 &amp; 1 &amp; 1 &amp; 0 \\
+    1 &amp; 1 &amp; 1 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0
+    \end{pmatrix}\]</div>
+<ol>
+<li>
+<p><strong>Pre-procesamiento (Transposición):</strong> El ingeniero nota que la cámara fue montada girada <span class="arithmatex">\(90^\circ\)</span> respecto al modelo ideal, o la pieza llegó rotada. Calcule <span class="arithmatex">\(\mathbf{P}_{ideal}^\top\)</span>. ¿Se cumple que <span class="arithmatex">\(\mathbf{P}_{ideal}^\top = \mathbf{P}_{cam}\)</span>?</p>
+</li>
+<li>
+<p><strong>Detección de Defectos (Matrices Diferencia):</strong> Suponga ahora que llega una nueva pieza <span class="arithmatex">\(\mathbf{P}_{nueva}\)</span>. Para encontrar defectos, el robot calcula la \"matriz de error\" <span class="arithmatex">\(\mathbf{E} = \mathbf{P}_{ideal} - \mathbf{P}_{nueva}\)</span>. Si el resultado es:</p>
+<div class="arithmatex">\[\mathbf{E} = 
+        \begin{pmatrix}
+        0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 1 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0
+        \end{pmatrix}\]</div>
+<p>Interprete el resultado: ¿Le falta material a la pieza o le sobra? ¿En qué coordenada específica <span class="arithmatex">\((i, j)\)</span> está el defecto físico?</p>
+</li>
+<li>
+<p><strong>Lógica de Control:</strong> En un script de Python para el controlador del robot, ¿por qué la siguiente condición lógica es peligrosa para la producción?</p>
+<div class="highlight"><pre><span></span><code>if imagen_camara != imagen_ideal:
+    detener_linea_produccion()
+</code></pre></div>
+<p><em>Pista: Piense en el ruido eléctrico de los sensores o cambios de iluminación.</em></p>
+</li>
+</ol>
+</li>
+</ol>
+<h5 id="ejercicios-de-integracion-magnitud-vs-direccion">Ejercicios de Integración: Magnitud vs. Dirección</h5>
+<p>Estos ejercicios están diseñados para distinguir cuándo un cambio en los datos es de <em>escala</em> (magnitud) y cuándo es de <em>comportamiento</em> (dirección).</p>
+<ol>
+<li>
+<p><strong>Agronomía: Diagnóstico Nutricional (Colinealidad)</strong> Se analizan dos muestras de suelo de lotes vecinos. Los vectores de nutrientes (Nitrógeno, Fósforo) en ppm son:</p>
+<div class="arithmatex">\[\mathbf{x}_A = \begin{pmatrix} 20 \\ 10 \end{pmatrix}, \quad \mathbf{x}_B = \begin{pmatrix} 60 \\ 30 \end{pmatrix}\]</div>
+<ol>
+<li>
+<p>Calcule la magnitud (riqueza total nutricional) de cada lote: <span class="arithmatex">\(\lVert \mathbf{x}_A \rVert\)</span> y <span class="arithmatex">\(\lVert \mathbf{x}_B \rVert\)</span>.</p>
+</li>
+<li>
+<p>Calcule la dirección (ángulo <span class="arithmatex">\(\theta\)</span>) de cada vector respecto al eje de Nitrógeno.</p>
+</li>
+<li>
+<p><strong>Interpretación:</strong> ¿Puede afirmar que el Lote B tiene un \"balance químico\" diferente al Lote A, o simplemente está \"más concentrado\"? Justifique usando el ángulo.</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Finanzas: Perfiles de Riesgo</strong> Dos fondos de inversión distribuyen su capital en (Bonos del Estado, Acciones Tecnológicas). Los vectores en millones de USD son:</p>
+<div class="arithmatex">\[\mathbf{f}_1 = \begin{pmatrix} 8 \\ 2 \end{pmatrix}, \quad \mathbf{f}_2 = \begin{pmatrix} 3 \\ 6 \end{pmatrix}\]</div>
+<ol>
+<li>
+<p>¿Qué fondo maneja mayor capital total? (Compare normas).</p>
+</li>
+<li>
+<p>Calcule el ángulo de cada fondo respecto al eje de \"Bonos del Estado\" (<span class="arithmatex">\(x_1\)</span>).</p>
+</li>
+<li>
+<p>Si definimos un perfil \"Conservador\" como aquel con <span class="arithmatex">\(\theta &lt; 30^\circ\)</span> y \"Agresivo\" como <span class="arithmatex">\(\theta &gt; 60^\circ\)</span>, clasifique a cada fondo.</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Ingeniería/Mecatrónica: Fuerza Resultante en 3D</strong> Un dron agrícola está sometido a tres fuerzas de viento representadas por el vector <span class="arithmatex">\(\mathbf{v} = (3, 4, 12)\)</span> m/s (componentes en <span class="arithmatex">\(x, y, z\)</span>).</p>
+<ol>
+<li>
+<p>Calcule la velocidad total del viento (la rapidez) hallando <span class="arithmatex">\(\lVert \mathbf{v} \rVert\)</span>. <em>(Pista: <span class="arithmatex">\(3^2+4^2=25\)</span> y <span class="arithmatex">\(12^2=144\)</span>).</em></p>
+</li>
+<li>
+<p>Calcule los cosenos directores. ¿Cuál es la componente dominante?</p>
+</li>
+<li>
+<p>Si el dron solo puede tolerar vientos verticales (<span class="arithmatex">\(z\)</span>) que representen menos del 50% de la fuerza total del viento (es decir, <span class="arithmatex">\(\cos(\gamma) &lt; 0.5\)</span>), ¿es seguro volar?</p>
+</li>
+</ol>
+</li>
+<li>
+<p><strong>Desafío de Python: Normalización de Datos</strong> En Inteligencia Artificial, a menudo necesitamos que los vectores tengan una longitud estándar de 1 (vectores unitarios) para compararlos justamente. Escriba un pequeño script o pseudocódigo que:</p>
+<ul>
+<li>
+<p>Defina el vector <span class="arithmatex">\(\mathbf{v} = [10, 20, 20]\)</span>.</p>
+</li>
+<li>
+<p>Calcule su norma <span class="arithmatex">\(L = \lVert \mathbf{v} \rVert\)</span>.</p>
+</li>
+<li>
+<p>Cree un nuevo vector <span class="arithmatex">\(\mathbf{u} = \mathbf{v} / L\)</span>.</p>
+</li>
+<li>
+<p>Verifique computacionalmente que la norma del nuevo vector <span class="arithmatex">\(\mathbf{u}\)</span> es igual a 1.</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="poniendo-el-motor-en-marcha-aritmetica-tensorial">Poniendo el Motor en Marcha: Aritmética Tensorial</h1>
+<h2 id="suma-de-vectores-y-aplicaciones">Suma de vectores y Aplicaciones</h2>
+<p>La suma combina dos vectores componente a componente. En términos de datos, esta operación representa la acumulación o superposición de efectos provenientes de distintas fuentes.</p>
+<p><strong>Definición formal.</strong> Sean <span class="arithmatex">\(\mathbf{x}, \mathbf{y} \in \mathbb{R}^n\)</span>. La suma <span class="arithmatex">\(\mathbf{x} + \mathbf{y}\)</span> se define como:</p>
+<div class="arithmatex">\[\mathbf{x} + \mathbf{y} = 
+\begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} + 
+\begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{pmatrix} = 
+\begin{pmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{pmatrix}.\]</div>
+<figure id="fig:suma_vectores">
+
+<figcaption>Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores <span class="math inline">\(\mathbf{x}\)</span> y <span class="math inline">\(\mathbf{y}\)</span>.</figcaption>
+</figure>
+
+<p>Geométricamente, esto sigue la <strong>ley del paralelogramo</strong> <a href="#fig:suma_vectores">2.1</a>: si colocamos el inicio de <span class="arithmatex">\(\mathbf{y}\)</span> en la punta final de <span class="arithmatex">\(\mathbf{x}\)</span>, el vector resultante va desde el origen de <span class="arithmatex">\(\mathbf{x}\)</span> hasta la punta final de <span class="arithmatex">\(\mathbf{y}\)</span>.</p>
+<blockquote>
+<p>Ejemplo Ambiental: Inventario de Emisiones Supongamos que en una zona industrial existen dos fuentes principales de contaminación: una Termoeléctrica (<span class="arithmatex">\(\mathbf{e}_T\)</span>) y una Fábrica de Cemento (<span class="arithmatex">\(\mathbf{e}_C\)</span>). Los vectores representan la emisión diaria (en toneladas) de tres contaminantes distintos: <span class="arithmatex">\([\text{CO}_2, \text{NO}_x, \text{Material Particulado}]\)</span>.</p>
+<div class="arithmatex">\[\mathbf{e}_T = \begin{pmatrix} 100 \\ 5 \\ 0.5 \end{pmatrix}, \quad
+\mathbf{e}_C = \begin{pmatrix} 40 \\ 2 \\ 3.5 \end{pmatrix}\]</div>
+<p>Para conocer la <strong>carga total</strong> que recibe la atmósfera en esa zona, realizamos la suma vectorial:</p>
+<div class="arithmatex">\[\mathbf{e}_{total} = \mathbf{e}_T + \mathbf{e}_C = 
+\begin{pmatrix} 100 + 40 \\ 5 + 2 \\ 0.5 + 3.5 \end{pmatrix} = 
+\begin{pmatrix} 140 \\ 7 \\ 4.0 \end{pmatrix}\]</div>
+<p><strong>Interpretación:</strong> La suma vectorial garantiza la integridad de las variables: sumamos dióxido de carbono solo con dióxido de carbono (<span class="arithmatex">\(140\)</span> ton), y partículas solo con partículas (<span class="arithmatex">\(4.0\)</span> ton). Mezclar componentes (sumar el CO<span class="arithmatex">\(_2\)</span> de una fábrica con el polvo de otra) carecería de sentido físico.</p>
+</blockquote>
+<h5 id="aplicaciones-sectoriales-agro-y-mecatronica">Aplicaciones sectoriales: Agro y Mecatrónica</h5>
+<ul>
+<li>
+<p><strong>Fusión de sensores (Agro):</strong> Un nodo IoT registra variables climáticas de dos sensores para redundancia. Si el sensor A entrega el vector de estado <span class="arithmatex">\(\mathbf{s}_A\)</span> y el sensor B entrega <span class="arithmatex">\(\mathbf{s}_B\)</span>, la suma (o promedio vectorial) permite reducir el ruido aleatorio y obtener una lectura más robusta del ambiente.</p>
+</li>
+<li>
+<p><strong>Acumulación temporal (Ambiental):</strong> El vector de emisiones diarias de un biodigestor se suma a lo largo de una semana (<span class="arithmatex">\(t=1 \dots 7\)</span>) para obtener el impacto total acumulado:</p>
+<div class="arithmatex">\[\mathbf{e}_{\text{semanal}} = \mathbf{e}_{\text{lun}} + \mathbf{e}_{\text{mar}} + \dots + \mathbf{e}_{\text{dom}}\]</div>
+<p>Esto permite reportar totales de <span class="arithmatex">\(\mathrm{CH}_4\)</span> y <span class="arithmatex">\(\mathrm{CO}_2\)</span> sin perder la distinción entre gases.</p>
+</li>
+<li>
+<p><strong>Composición de insumos (Agroindustrial):</strong> En la formulación de alimento balanceado, el vector nutricional final (proteína, energía, fibra) se construye sumando los aportes vectoriales de cada ingrediente (maíz, soya, núcleo vitamínico), lo que permite verificar si la mezcla final cumple con los requerimientos dietarios.</p>
+</li>
+<li>
+<p><strong>Corrección de Trayectoria (Mecatrónica/Robótica):</strong> Un dron de fumigación agrícola debe volar en una ruta ideal representada por el vector de velocidad <span class="arithmatex">\(\mathbf{v}_{ideal}\)</span>. Sin embargo, enfrenta un viento lateral representado por el vector <span class="arithmatex">\(\mathbf{v}_{viento}\)</span>. Para mantener el curso, el sistema de control o la IA debe calcular la velocidad real resultante mediante la suma vectorial:</p>
+<div class="arithmatex">\[\mathbf{v}_{real} = \mathbf{v}_{ideal} + \mathbf{v}_{viento}\]</div>
+<p>Si el resultado desvía al dron del cultivo, la IA debe generar un vector de compensación opuesto para anular la perturbación.</p>
+</li>
+</ul>
+<p>En todos estos casos, la suma vectorial permite construir representaciones compuestas que capturan la complejidad de los sistemas físicos, preparándolas para su análisis mediante algoritmos de control o modelos de inteligencia artificial.</p>
+<h2 id="multiplicacion-por-un-escalar">Multiplicación por un escalar</h2>
+<p>Esta operación modifica la magnitud del vector sin alterar su línea de acción. Matemáticamente, escala todas las componentes por un mismo factor <span class="arithmatex">\(\alpha\)</span>.</p>
+<p><strong>Definición formal.</strong> Dado un escalar <span class="arithmatex">\(\alpha \in \mathbb{R}\)</span> y un vector <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^n\)</span>, el producto <span class="arithmatex">\(\alpha \mathbf{x}\)</span> se define como:</p>
+<div class="arithmatex">\[\alpha \mathbf{x} = 
+\alpha \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix} = 
+\begin{pmatrix} \alpha x_1 \\ \vdots \\ \alpha x_n \end{pmatrix}.\]</div>
+<p><strong>Interpretación Geométrica:</strong> El efecto del escalar <span class="arithmatex">\(\alpha\)</span> sobre el vector original <span class="arithmatex">\(\mathbf{x}\)</span> depende de su valor:</p>
+<ul>
+<li>
+<p>Si <span class="arithmatex">\(|\alpha| &gt; 1\)</span>, el vector se <strong>alarga</strong> (dilatación).</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(|\alpha| &lt; 1\)</span>, el vector se <strong>contrae</strong> (compresión).</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\alpha &lt; 0\)</span>, el vector <strong>invierte su sentido</strong> (<span class="arithmatex">\(180^\circ\)</span>), aunque mantiene la misma línea de dirección.</p>
+</li>
+</ul>
+<figure id="fig:escalar_vector">
+
+<figcaption>Efecto geométrico de la multiplicación escalar. Nótese cómo <span class="math inline">\(\alpha=2\)</span> duplica la longitud, mientras que <span class="math inline">\(\alpha=-0.5\)</span> reduce la longitud a la mitad e invierte el sentido.</figcaption>
+</figure>
+
+<h4 id="aplicaciones-escalamiento-y-control">Aplicaciones: Escalamiento y Control</h4>
+<ol>
+<li>
+<p><strong>Agro (Proyección de Insumos):</strong> Suponga que el vector <span class="arithmatex">\(\mathbf{d}\)</span> representa la dosis de fertilizantes para <strong>1 hectárea</strong>: <span class="arithmatex">\(\mathbf{d} = [100, 50, 30]^\top\)</span> (kg de N, P, K). Si un agricultor desea fertilizar un lote de 15 hectáreas, el requerimiento total es simplemente el vector escalado por la superficie:</p>
+<div class="arithmatex">\[\mathbf{Total} = 15 \cdot \mathbf{d} = \begin{pmatrix} 1500 \\ 750 \\ 450 \end{pmatrix} \text{ kg}.\]</div>
+</li>
+<li>
+<p><strong>Mecatrónica (Ganancia de Control):</strong> En un sistema de control de un robot, el "error" de posición es un vector <span class="arithmatex">\(\mathbf{e}\)</span> (diferencia entre dónde está y dónde debería estar). El controlador aplica una corrección proporcional multiplicando ese error por una ganancia <span class="arithmatex">\(K_p\)</span> (un escalar).</p>
+<div class="arithmatex">\[\mathbf{u} = K_p \cdot \mathbf{e}\]</div>
+<p>Si <span class="arithmatex">\(K_p\)</span> es muy grande, el robot reacciona violentamente (gran vector de fuerza); si es pequeño, reacciona suavemente.</p>
+</li>
+</ol>
+<h2 id="producto-punto-producto-escalar">Producto punto (producto escalar)</h2>
+<p>El <strong>producto punto</strong> es la operación fundamental para conectar la geometría (ángulos, longitudes) con el álgebra. Mide el grado de alineación entre dos vectores: si apuntan en la misma dirección, el valor es grande y positivo; si son perpendiculares, es cero; si apuntan en sentidos opuestos, es negativo.</p>
+<p><strong>Definición formal.</strong></p>
+<div class="arithmatex">\[\cdot : \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}, \quad (\mathbf{x}, \mathbf{y}) \mapsto \mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^{n} x_i y_i.\]</div>
+<h4 id="interpretacion-geometrica-y-similitud">Interpretación Geométrica y Similitud</h4>
+<p>Además de la suma algebraica, el producto punto satisface la identidad geométrica:</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos(\theta),\]</div>
+<p>donde <span class="arithmatex">\(\theta\)</span> es el ángulo entre los vectores. De aquí se deduce la <strong>Similitud Coseno</strong>, métrica clave en IA:</p>
+<div class="arithmatex">\[\cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert}.\]</div>
+<figure id="fig:producto_punto">
+
+<figcaption>El producto punto relaciona las magnitudes de dos vectores con el coseno del ángulo que forman. La línea violeta representa la “sombra” o proyección de <span class="math inline">\(\mathbf{y}\)</span> sobre <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
+</figure>
+
+<figure id="fig:producto_punto_geo">
+
+<figcaption>Representación geométrica del producto punto. La línea violeta muestra la componente de <span class="math inline">\(\mathbf{y}\)</span> que está “alineada” con <span class="math inline">\(\mathbf{x}\)</span>. El producto punto es el producto de esta proyección por la longitud total de <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
+</figure>
+
+<h5 id="aplicaciones-en-ingenieria-y-agro">Aplicaciones en Ingeniería y Agro</h5>
+<ol>
+<li>
+<p><strong>Agro (Firmas Espectrales):</strong> En teledetección, una planta sana tiene una "firma" o vector ideal <span class="arithmatex">\(\mathbf{v}_{sana}\)</span> (valores de reflectancia en distintas bandas). Si el dron mide un vector actual <span class="arithmatex">\(\mathbf{v}_{medido}\)</span>, calculamos el producto punto (normalizado) entre ambos.</p>
+<ul>
+<li>
+<p>Si <span class="arithmatex">\(\cos(\theta) \approx 1\)</span>, la firma es casi idéntica <span class="arithmatex">\(\to\)</span> Planta Sana.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\cos(\theta) \ll 1\)</span>, la alineación es baja <span class="arithmatex">\(\to\)</span> Posible estrés hídrico o plaga.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Mecatrónica (Cálculo de Trabajo y Potencia):</strong> Para un robot móvil, el trabajo mecánico <span class="arithmatex">\(W\)</span> realizado al mover una carga es el producto punto entre el vector de fuerza aplicada <span class="arithmatex">\(\mathbf{F}\)</span> y el vector de desplazamiento <span class="arithmatex">\(\mathbf{d}\)</span>:</p>
+<div class="arithmatex">\[W = \mathbf{F} \cdot \mathbf{d} = \lVert \mathbf{F} \rVert \lVert \mathbf{d} \rVert \cos(\theta)\]</div>
+<p>Si el robot aplica fuerza perpendicular al movimiento (<span class="arithmatex">\(\theta=90^\circ\)</span>), el producto punto es 0 y no se realiza trabajo útil (energía desperdiciada).</p>
+</li>
+<li>
+<p><strong>Administrativo (Sistemas de Puntuación):</strong> Sea <span class="arithmatex">\(\mathbf{w}\)</span> un vector de "pesos" o importancia para tres criterios (Costo, Calidad, Tiempo) y <span class="arithmatex">\(\mathbf{x}\)</span> el vector de puntajes de un proveedor. El puntaje total es simplemente:</p>
+<div class="arithmatex">\[\text{Score} = \mathbf{w} \cdot \mathbf{x} = w_1 x_1 + w_2 x_2 + w_3 x_3\]</div>
+<p>Esta es la base de las redes neuronales: una neurona realiza un producto punto entre los datos de entrada y sus pesos sinápticos.</p>
+</li>
+</ol>
+<h4 id="interpretacion-geometrica-del-producto-punto">Interpretación geométrica del Producto Punto</h4>
+<p>El producto punto (<span class="arithmatex">\(\mathbf{x} \cdot \mathbf{y}\)</span>) es mucho más que una suma de productos de componentes: es la operación geométrica fundamental que cuantifica cuánto dos vectores apuntan en la misma dirección. Esta noción de "alineación direccional" es la base de técnicas esenciales en inteligencia artificial, como la similitud coseno, la proyección ortogonal y el Análisis de Componentes Principales (PCA).</p>
+<p>La definición geométrica del producto punto para dos vectores <span class="arithmatex">\(\mathbf{x}, \mathbf{y} \in \mathbb{R}^n\)</span> es:</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \, \lVert \mathbf{y} \rVert \cos(\theta),\]</div>
+<p>donde <span class="arithmatex">\(\lVert \mathbf{x} \rVert\)</span> y <span class="arithmatex">\(\lVert \mathbf{y} \rVert\)</span> son las longitudes euclidianas de los vectores, y <span class="arithmatex">\(\theta \in [0, \pi]\)</span> es el ángulo entre ellos.</p>
+<p>Esta fórmula revela tres casos clave:</p>
+<ul>
+<li>
+<p>Si <span class="arithmatex">\(\theta = 0^\circ\)</span> (vectores <strong>paralelos y en la misma dirección</strong>), <span class="arithmatex">\(\cos(\theta) = 1\)</span> y el producto punto es <strong>máximo</strong>.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\theta = 90^\circ\)</span> (vectores <strong>ortogonales</strong>), <span class="arithmatex">\(\cos(\theta) = 0\)</span> y el producto punto es <strong>cero</strong>.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\theta = 180^\circ\)</span> (vectores <strong>opuestos</strong>), <span class="arithmatex">\(\cos(\theta) = -1\)</span> y el producto punto es <strong>mínimo</strong> (negativo).</p>
+</li>
+</ul>
+<p><strong>Conexión con aplicaciones en IA y agro-ambiente.</strong> En el análisis de datos, el producto punto permite:</p>
+<ul>
+<li>
+<p>Comparar perfiles de fertilización entre parcelas: si <span class="arithmatex">\(\theta\)</span> es pequeño, las prácticas son similares.</p>
+</li>
+<li>
+<p>Detectar animales atípicos en un hato: un vector fisiológico con <span class="arithmatex">\(\theta\)</span> grande respecto a la media indica una posible anomalía.</p>
+</li>
+<li>
+<p>Calcular la similitud coseno (normalizando las magnitudes): <span class="arithmatex">\(\frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert} = \cos(\theta)\)</span>, que mide <em>solo</em> la alineación, ignorando la escala.</p>
+</li>
+</ul>
+<p>Esta interpretación geométrica es el primer paso hacia la comprensión de cómo los algoritmos de IA "ven" y comparan datos en espacios multidimensionales.</p>
+<h5 id="dependencia-de-la-proyeccion">Dependencia de la Proyección</h5>
+<p>El concepto más fundamental es la relación con la proyección ortogonal, como se ilustra en la figura <a href="#fig:producto_punto_geometrico_corregido">2.5</a>. El término <span class="arithmatex">\(\lVert \mathbf{y} \rVert \cos(\theta)\)</span> representa precisamente la longitud de la <em>componente</em> del vector <span class="arithmatex">\(\mathbf{y}\)</span> que está alineada con <span class="arithmatex">\(\mathbf{x}\)</span> (la proyección, <span class="arithmatex">\(\mathrm{proj}_{\mathbf{x}} \mathbf{y}\)</span>).</p>
+<p>Por lo tanto, el producto punto puede reescribirse como:</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \cdot \left( \lVert \mathbf{y} \rVert \cos(\theta) \right) = \lVert \mathbf{x} \rVert \cdot \lVert \mathrm{proj}_{\mathbf{x}} \mathbf{y} \rVert.\]</div>
+<p>El producto punto es, en esencia, la magnitud de <span class="arithmatex">\(\mathbf{x}\)</span> multiplicada por la longitud de la "sombra" que <span class="arithmatex">\(\mathbf{y}\)</span> proyecta sobre <span class="arithmatex">\(\mathbf{x}\)</span>. El signo de <span class="arithmatex">\(\mathbf{x} \cdot \mathbf{y}\)</span> depende únicamente del <span class="arithmatex">\(\cos(\theta)\)</span>.</p>
+<h5 id="casos-criticos">Casos Críticos</h5>
+<p>El valor del producto punto está dominado por el coseno del ángulo <span class="arithmatex">\(\theta\)</span>, asumiendo que las magnitudes de los vectores son positivas:</p>
+<ol>
+<li>
+<p><strong>Alineación Perfecta (<span class="arithmatex">\(\theta = 0^\circ\)</span>):</strong> Si <span class="arithmatex">\(\mathbf{x}\)</span> y <span class="arithmatex">\(\mathbf{y}\)</span> apuntan exactamente en la misma dirección, <span class="arithmatex">\(\cos(0^\circ) = 1\)</span>.</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert.\]</div>
+<p>El producto punto es <em>máximo y positivo</em>. En IA, esto indica máxima similitud o máxima compatibilidad direccional.</p>
+</li>
+<li>
+<p><strong>Ortogonalidad (<span class="arithmatex">\(\theta = 90^\circ\)</span>):</strong> Si <span class="arithmatex">\(\mathbf{x}\)</span> y <span class="arithmatex">\(\mathbf{y}\)</span> son perpendiculares (ortogonales), <span class="arithmatex">\(\cos(90^\circ) = 0\)</span>.</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = 0.\]</div>
+<p>El producto punto es <em>cero</em>, indicando que los vectores no tienen ninguna componente en común y son linealmente independientes, un principio clave en la decorrelación de datos (ej. PCA).</p>
+</li>
+<li>
+<p><strong>Alineación Opuesta (<span class="arithmatex">\(\theta = 180^\circ\)</span>):</strong> Si <span class="arithmatex">\(\mathbf{x}\)</span> y <span class="arithmatex">\(\mathbf{y}\)</span> apuntan en direcciones opuestas, <span class="arithmatex">\(\cos(180^\circ) = -1\)</span>.</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = -\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert.\]</div>
+<p>El producto punto es <em>mínimo y negativo</em>, indicando la máxima disimilitud o incompatibilidad.</p>
+</li>
+</ol>
+<figure id="fig:producto_punto_geometrico_corregido">
+
+<figcaption>Interpretación geométrica del producto punto. El ángulo <span class="math inline">\(\theta\)</span> está dibujado entre los vectores <span class="math inline">\(\mathbf{x}\)</span> e <span class="math inline">\(\mathbf{y}\)</span>. El producto punto es proporcional a la magnitud de la proyección de <span class="math inline">\(\mathbf{y}\)</span> sobre <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
+</figure>
+
+<h4 id="sintesis-y-aplicaciones-contextuales-del-producto-punto">Síntesis y Aplicaciones Contextuales del Producto Punto</h4>
+<p>La utilidad del producto punto (<span class="arithmatex">\(\mathbf{x} \cdot \mathbf{y}\)</span>) radica en su capacidad para actuar como una medida de <em>alineación multidimensional</em> o <em>similitud</em> entre vectores. Su valor es grande cuando las magnitudes y la alineación son altas, reflejando perfiles compatibles. Este concepto es la base de la <strong>similitud coseno</strong> (<span class="arithmatex">\(\cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert}\)</span>), ampliamente usada en motores de recomendación y clustering.</p>
+<h5 id="ejemplos-en-contextos-de-modelado-hibrido-agronomico-y-zootecnico">Ejemplos en Contextos de Modelado Híbrido (Agronómico y Zootécnico)</h5>
+<ul>
+<li>
+<p><strong>Ejemplo Agronómico.</strong> Considere dos parcelas de maíz caracterizadas por el vector de insumos aplicados:</p>
+<div class="arithmatex">\[\mathbf{x} = \begin{pmatrix} 120 \\ 50 \\ 3 \end{pmatrix} \text{ (kg/ha de N, P, K)}, \quad
+    \mathbf{y} = \begin{pmatrix} 100 \\ 60 \\ 4 \end{pmatrix}.\]</div>
+<p>El producto punto <span class="arithmatex">\(\mathbf{x} \cdot \mathbf{y} = 12\,000 + 3\,000 + 12 = 15\,012\)</span> es alto, lo que sugiere un perfil de fertilización similar. Esta medida agrupa parcelas con prácticas comparables.</p>
+</li>
+<li>
+<p><strong>Ejemplo Zootécnico.</strong> Considere dos vacas lecheras descritas por su historial productivo en una ventana de control:</p>
+<div class="arithmatex">\[\mathbf{x} = \begin{pmatrix} 28 \\ 4{,}2 \\ 38 \end{pmatrix}, \quad
+    \mathbf{y} = \begin{pmatrix} 30 \\ 4{,}0 \\ 39 \end{pmatrix},\]</div>
+<p>donde las componentes representan días en lactancia, producción diaria (L/día) y contenido de grasa (%). El producto punto:</p>
+<div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = (28)(30) + (4{,}2)(4{,}0) + (38)(39) = 2338{,}8.\]</div>
+<p>Este valor alto refleja perfiles productivos similares: producción alta, lactancia avanzada y elevado contenido de grasa. Esta medida es útil en sistemas de segmentación de hatos.</p>
+</li>
+</ul>
+<p><strong>Otros Contextos Aplicados</strong></p>
+<ul>
+<li>
+<p><strong>Ambiental:</strong> Dos estaciones de monitoreo registran concentraciones medias (en <span class="arithmatex">\(\mathrm{\mu g/m^3}\)</span>) de <span class="arithmatex">\(\mathrm{PM_{2.5}}\)</span>, <span class="arithmatex">\(\mathrm{NO_2}\)</span> y <span class="arithmatex">\(\mathrm{O_3}\)</span>: <span class="arithmatex">\(\mathbf{a}\)</span> y <span class="arithmatex">\(\mathbf{b}\)</span>. Un producto punto alto sugiere un patrón similar de contaminación, útil para agrupar zonas con fuentes emisoras comunes.</p>
+</li>
+<li>
+<p><strong>Administrativo:</strong> Dos propuestas presupuestales <span class="arithmatex">\(\mathbf{p}\)</span> y <span class="arithmatex">\(\mathbf{q}\)</span> (para rubros como infraestructura, capacitación, operación) tienen un producto punto que cuantifica la <em>alineación de prioridades presupuestales</em>.</p>
+</li>
+<li>
+<p><strong>Diseño (Industrial/Agrícola):</strong> Dos prototipos de invernadero <span class="arithmatex">\(\mathbf{d}_1\)</span> y <span class="arithmatex">\(\mathbf{d}_2\)</span> (descritos por área, sensores, consumo energético). Un producto punto elevado indica diseños estructuralmente similares, facilitando la clasificación de alternativas.</p>
+</li>
+</ul>
+<p>En resumen, el producto punto sirve como un indicador fundamental de cuán coherentes o compatibles son dos conjuntos de mediciones o características multidimensionales.</p>
+<h2 id="laboratorio-de-programacion-aritmetica-tensorial-en-la-practica">Laboratorio de Programación: Aritmética Tensorial en la Práctica</h2>
+<p>En esta sección, trasladamos las operaciones de suma, escalamiento y producto punto al código. En IA, estas operaciones no se realizan mediante bucles (<em>for loops</em>), sino a través de <strong>operaciones vectorizadas</strong>, las cuales aprovechan el paralelismo del procesador.</p>
+<h3 id="implementacion-de-suma-y-escalamiento">Implementación de Suma y Escalamiento</h3>
+<p>La suma de vectores requiere que ambos tengan la misma dimensión (<em>shape</em>). La multiplicación por un escalar, en cambio, utiliza un mecanismo llamado <strong>Broadcasting</strong>, donde el escalar se "difunde" sobre todos los elementos del vector.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># 1. Suma de vectores (Agro: Integración de dosis de fertilizante)</span>
+<span class="n">dosis_neta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>  <span class="c1"># N, P, K inicial</span>
+<span class="n">suplemento</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span>  <span class="mi">5</span><span class="p">,</span>  <span class="mi">5</span><span class="p">])</span>  <span class="c1"># Refuerzo aplicado</span>
+<span class="n">dosis_total</span> <span class="o">=</span> <span class="n">dosis_neta</span> <span class="o">+</span> <span class="n">suplemento</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Dosis</span> <span class="n">Total</span> <span class="p">(</span><span class="n">Vector</span><span class="p">):</span> <span class="p">{</span><span class="n">dosis_total</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="c1"># 2. Multiplicación por Escalar (Mecatrónica: Control de Ganancia)</span>
+<span class="c1"># Escalar una señal de sensor de torque</span>
+<span class="n">torque_raw</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">])</span>
+<span class="n">ganancia</span> <span class="o">=</span> <span class="mf">2.5</span>
+<span class="n">torque_ajustado</span> <span class="o">=</span> <span class="n">ganancia</span> <span class="o">*</span> <span class="n">torque_raw</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Torque</span> <span class="n">ajustado</span><span class="p">:</span> <span class="p">{</span><span class="n">torque_ajustado</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="el-producto-punto-cuantificando-la-afinidad">El Producto Punto: Cuantificando la Afinidad</h3>
+<p>El producto punto es la operación más importante en IA. En Python, podemos ejecutarlo usando el operador <code>@</code> (recomendado en versiones modernas) o las funciones específicas de las librerías.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Vectores de ejemplo (Administración: Gastos vs Presupuesto)</span>
+<span class="n">unidades</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>   <span class="c1"># Cantidad de productos comprados</span>
+<span class="n">precios</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span> <span class="c1"># Precio unitario por categoría</span>
+
+<span class="c1"># Producto punto: Suma de (unidades[i] * precios[i])</span>
+<span class="n">gasto_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">unidades</span><span class="p">,</span> <span class="n">precios</span><span class="p">)</span>
+<span class="c1"># Forma alternativa (estándar en álgebra lineal de Python):</span>
+<span class="n">gasto_total_alt</span> <span class="o">=</span> <span class="n">unidades</span> <span class="o">@</span> <span class="n">precios</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Gasto</span> <span class="n">total</span> <span class="n">calculado</span> <span class="n">via</span> <span class="n">producto</span> <span class="n">punto</span><span class="p">:</span> <span class="err">$</span><span class="p">{</span><span class="n">gasto_total</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="aplicaciones-sectoriales-en-codigo">Aplicaciones Sectoriales en Código</h3>
+<blockquote>
+<p>Mecatrónica: Resultante de Fuerzas En un brazo robótico, si dos motores ejercen fuerzas representadas por los vectores <span class="arithmatex">\(\mathbf{f}_1\)</span> y <span class="arithmatex">\(\mathbf{f}_2\)</span>, la fuerza resultante sobre el efector final es simplemente <span class="arithmatex">\(f_res = f1 + f2\)</span>. La magnitud de esta fuerza se obtiene con <code>np.linalg.norm(</code><span class="arithmatex">\(f_res\)</span><code>)</code>.</p>
+<p>Agroindustrial: Mezclas y Diluciones Si un vector <span class="arithmatex">\(\mathbf{v}\)</span> representa la concentración de azúcares y acidez de un lote de jugo, y queremos diluirlo al <span class="arithmatex">\(50\%\)</span>, aplicamos <span class="arithmatex">\(nuevo_lote = 0.5 * v\)</span>. El producto punto se usa para calcular el costo total de la mezcla si tenemos un vector de precios por litro de cada componente.</p>
+</blockquote>
+<h3 class="unnumbered" id="resumen-de-funciones-clave">Resumen de Funciones Clave</h3>
+<p><strong>Operación</strong>        <strong>Sintaxis NumPy</strong>   <strong>Sintaxis PyTorch</strong></p>
+<hr />
+<p>Suma                 <code>a + b</code>              <code>a + b</code>
+  Escalamiento         <code>k * a</code>              <code>k * a</code>
+  Producto Punto       <code>np.dot(a, b)</code>       <code>torch.dot(a, b)</code>
+  Producto de Matriz   <code>a @ b</code>              <code>torch.matmul(a, b)</code></p>
+<p>: Comparativa de funciones para aritmética tensorial.</p>
+<h2 id="multiplicacion-matriz-vector-el-motor-de-las-redes-neuronales">Multiplicación Matriz-Vector: El Motor de las Redes Neuronales</h2>
+<p>Antes de entrar en el formalismo, entendamos la intuición: si un vector representa un dato (ej. una parcela, un animal, una propuesta), multiplicar ese vector por una matriz es equivalente a procesar ese dato a través de un banco de filtros. La matriz toma la información cruda, mezcla sus componentes según ciertas reglas (pesos) y produce una nueva representación más útil para la toma de decisiones.</p>
+<p>Esta operación es el corazón de las redes neuronales profundas (Deep Learning).</p>
+<h5 id="definicion-formal_1">Definición formal</h5>
+<p>Sea <span class="arithmatex">\(\mathbf{W} \in \mathbb{R}^{m \times n}\)</span> una matriz y <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^n\)</span> un vector de entrada. Su producto es un nuevo vector <span class="arithmatex">\(\mathbf{z} \in \mathbb{R}^m\)</span> definido por:</p>
+<div class="arithmatex">\[\mathbf{z} = \mathbf{W} \mathbf{x} =
+\begin{pmatrix}
+\mathbf{fila}_1(\mathbf{W}) \cdot \mathbf{x} \\
+\vdots \\
+\mathbf{fila}_m(\mathbf{W}) \cdot \mathbf{x}
+\end{pmatrix}.\]</div>
+<p>Cada entrada <span class="arithmatex">\(z_i\)</span> es el <strong>producto punto</strong> entre la fila <span class="arithmatex">\(i\)</span>-ésima de la matriz y el vector <span class="arithmatex">\(\mathbf{x}\)</span>. Para que la operación sea válida, el número de columnas de la matriz (<span class="arithmatex">\(n\)</span>) debe coincidir con la dimensión de entrada del vector.</p>
+<h5 id="ejemplo-teorico-transformacion-de-insumos-a-nutrientes">Ejemplo Teórico: Transformación de Insumos a Nutrientes</h5>
+<p>Imaginemos un sistema inteligente para la formulación de raciones en ganado lechero. Queremos calcular el aporte nutricional total a partir de una mezcla de ingredientes.</p>
+<p><strong>1. El Vector de Entrada (<span class="arithmatex">\(\mathbf{x}\)</span>):</strong> Representa la cantidad de materia prima (en kg) que vamos a utilizar en la mezcla.</p>
+<div class="arithmatex">\[\mathbf{x} = \begin{pmatrix} 10 \\ 5 \end{pmatrix}
+\begin{matrix} \text{(kg de Maíz)} \\ \text{(kg de Soya)} \end{matrix}\]</div>
+<p>Aquí, <span class="arithmatex">\(n=2\)</span> (tenemos 2 ingredientes).</p>
+<p><strong>2. La Matriz de Pesos (<span class="arithmatex">\(\mathbf{W}\)</span>):</strong> Representa el contenido nutricional por cada kg de ingrediente.</p>
+<ul>
+<li>
+<p>La <strong>Fila 1</strong> corresponde a la <strong>Proteína Cruda</strong> (en kg/kg).</p>
+</li>
+<li>
+<p>La <strong>Fila 2</strong> corresponde a la <strong>Energía Neta</strong> (en Mcal/kg).</p>
+</li>
+</ul>
+<div class="arithmatex">\[\mathbf{W} = 
+\begin{pmatrix} 
+0{,}08 &amp; 0{,}45 \\ 
+3{,}20 &amp; 2{,}80 
+\end{pmatrix}
+\begin{matrix} \leftarrow \text{Perfil de Proteína} \\ \leftarrow \text{Perfil de Energía} \end{matrix}\]</div>
+<p>Aquí, <span class="arithmatex">\(m=2\)</span> (tenemos 2 métricas de salida). Note que las columnas (<span class="arithmatex">\(n=2\)</span>) coinciden con los ingredientes (Maíz y Soya).</p>
+<p><strong>3. El Cálculo (<span class="arithmatex">\(\mathbf{z} = \mathbf{W}\mathbf{x}\)</span>):</strong> Aplicamos la definición del producto punto fila por columna:</p>
+<div class="arithmatex">\[\mathbf{z} = 
+\begin{pmatrix}
+(\text{Fila}_1 \cdot \mathbf{x}) \\
+(\text{Fila}_2 \cdot \mathbf{x})
+\end{pmatrix}
+=
+\begin{pmatrix}
+(0{,}08)(10) + (0{,}45)(5) \\
+(3{,}20)(10) + (2{,}80)(5)
+\end{pmatrix}\]</div>
+<div class="arithmatex">\[\mathbf{z} = 
+\begin{pmatrix}
+0{,}8 + 2{,}25 \\
+32{,}0 + 14{,}0
+\end{pmatrix}
+=
+\begin{pmatrix}
+3{,}05 \\
+46{,}0
+\end{pmatrix}
+\begin{matrix} \text{kg de Proteína Total} \\ \text{Mcal de Energía Total} \end{matrix}\]</div>
+<p><strong>Interpretación en Inteligencia Artificial:</strong> En este ejemplo, la matriz <span class="arithmatex">\(\mathbf{W}\)</span> codifica el "conocimiento" del sistema sobre los alimentos.</p>
+<ul>
+<li>
+<p>En una Red Neuronal, <span class="arithmatex">\(\mathbf{x}\)</span> serían los datos de entrada, <span class="arithmatex">\(\mathbf{W}\)</span> serían los <em>pesos sinápticos</em> aprendidos durante el entrenamiento, y <span class="arithmatex">\(\mathbf{z}\)</span> sería la activación resultante.</p>
+</li>
+<li>
+<p>La operación <span class="arithmatex">\(\mathbf{W}\mathbf{x}\)</span> transforma el espacio de "kilos de comida" al espacio de "requerimientos nutricionales".</p>
+</li>
+</ul>
+<h5 id="enfoque-en-redes-neuronales-la-capa-densa">Enfoque en Redes Neuronales: La Capa Densa</h5>
+<p>En el contexto de la inteligencia artificial, esta operación no es solo álgebra; es la definición de una <strong>capa densa</strong> (fully connected layer). La ecuación fundamental que ejecuta una neurona artificial (antes de la activación no lineal) es:</p>
+<div class="arithmatex">\[\mathbf{z} = \mathbf{W} \mathbf{x} + \mathbf{b},\]</div>
+<p>donde cada elemento cumple un rol biológico-computacional preciso:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\mathbf{x}\)</span> (Entradas): Son las señales recibidas (ej. variables del cultivo o píxeles de una imagen).</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathbf{W}\)</span> (Matriz de Pesos): Es la "memoria" del modelo. Cada fila de <span class="arithmatex">\(\mathbf{W}\)</span> representa una neurona, y sus valores indican qué tanto importa cada entrada para esa neurona específica.</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathbf{z}\)</span> (Activaciones): Es la respuesta de las neuronas ante el estímulo <span class="arithmatex">\(\mathbf{x}\)</span>.</p>
+</li>
+</ul>
+<h5 id="ejemplo-aplicado-neuronas-expertas-en-evaluacion-administrativa">Ejemplo aplicado: Neuronas "Expertas" en Evaluación Administrativa</h5>
+<p>Imagine que una IA administrativa debe evaluar automáticamente propuestas de proyectos. El vector de entrada <span class="arithmatex">\(\mathbf{x}\)</span> contiene <span class="arithmatex">\(n=4\)</span> variables presupuestales: <span class="arithmatex">\((\text{infraestructura}, \text{capacitación}, \text{operación}, \text{monitoreo})\)</span>.</p>
+<p>La red neuronal tiene una capa con <span class="arithmatex">\(m=2\)</span> neuronas, donde cada una se ha especializado (aprendido) para detectar un criterio diferente:</p>
+<ol>
+<li>
+<p><strong>Neurona 1:</strong> Evalúa el "Equilibrio Estratégico".</p>
+</li>
+<li>
+<p><strong>Neurona 2:</strong> Evalúa la "Sostenibilidad Ambiental".</p>
+</li>
+</ol>
+<p>La matriz de pesos <span class="arithmatex">\(\mathbf{W} \in \mathbb{R}^{2 \times 4}\)</span> codifica estas prioridades:</p>
+<div class="arithmatex">\[\mathbf{W} =
+\begin{pmatrix}
+0{,}3 &amp; 0{,}3 &amp; 0{,}3 &amp; 0{,}1 \\  % Neurona 1: Pondera todo por igual (busca equilibrio)
+0{,}1 &amp; 0{,}2 &amp; 0{,}4 &amp; 0{,}3      % Neurona 2: Prioriza operación y monitoreo (sostenibilidad)
+\end{pmatrix}.\]</div>
+<p>Si llega una propuesta con el siguiente perfil de inversión (en millones):</p>
+<div class="arithmatex">\[\mathbf{x} = (300, 80, 220, 75)^\top.\]</div>
+<p>El paso hacia adelante (<em>forward pass</em>) de la red calcula:</p>
+<div class="arithmatex">\[\mathbf{z} = \mathbf{W} \mathbf{x} =
+\begin{pmatrix}
+(0{,}3)(300) + (0{,}3)(80) + (0{,}3)(220) + (0{,}1)(75) \\
+(0{,}1)(300) + (0{,}2)(80) + (0{,}4)(220) + (0{,}3)(75)
+\end{pmatrix}
+=
+\begin{pmatrix}
+187{,}5 \\
+156{,}5
+\end{pmatrix}.\]</div>
+<p><strong>Interpretación del resultado:</strong> El vector de salida <span class="arithmatex">\(\mathbf{z}\)</span> nos dice que esta propuesta tiene una puntuación alta en equilibrio (<span class="arithmatex">\(187{,}5\)</span>) y moderada en sostenibilidad (<span class="arithmatex">\(156{,}5\)</span>).</p>
+<h5 id="por-que-esto-es-fundamental">Por qué esto es fundamental</h5>
+<p>Este mecanismo permite que una red neuronal transforme datos brutos en conceptos abstractos. En este ejemplo, pasamos de "dinero en rubros" (espacio de entrada <span class="arithmatex">\(\mathbb{R}^4\)</span>) a "calidad estratégica" (espacio de características <span class="arithmatex">\(\mathbb{R}^2\)</span>). Durante el entrenamiento, el algoritmo de <em>backpropagation</em> ajusta los valores de la matriz <span class="arithmatex">\(\mathbf{W}\)</span> para minimizar el error en la evaluación, "aprendiendo" así los pesos ideales para clasificar proyectos correctamente.</p>
+<h2 id="producto-de-matrices">Producto de Matrices</h2>
+<p>Las matrices son la estructura algebraica central para representar datos tabulares, transformaciones lineales y relaciones entre variables en inteligencia artificial. A continuación, se presentan las operaciones y propiedades más relevantes para el modelado con datos.</p>
+<p>La multiplicación de matrices es el motor computacional de la Inteligencia Artificial. No solo generaliza el producto vector-vector, sino que permite realizar múltiples operaciones simultáneamente (procesamiento en lote o <em>batch</em>) y componer transformaciones lineales.</p>
+<h4 id="regla-de-dimensiones">Regla de Dimensiones</h4>
+<p>Para que el producto <span class="arithmatex">\(\mathbf{A}\mathbf{B}\)</span> exista, las dimensiones internas deben coincidir ("el ancho de la primera igual al alto de la segunda").</p>
+<div class="arithmatex">\[\underbrace{\mathbf{A}}_{m \times \mathbf{n}} \quad \times \quad \underbrace{\mathbf{B}}_{\mathbf{n} \times p} \quad = \quad \underbrace{\mathbf{C}}_{m \times p}\]</div>
+<h5 id="definicion-formal_2">Definición formal</h5>
+<p>Dadas <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> y <span class="arithmatex">\(\mathbf{B} \in \mathbb{R}^{n \times p}\)</span>, su producto <span class="arithmatex">\(\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{m \times p}\)</span> se define elemento a elemento como el producto punto entre la fila <span class="arithmatex">\(i\)</span> de <span class="arithmatex">\(\mathbf{A}\)</span> y la columna <span class="arithmatex">\(j\)</span> de <span class="arithmatex">\(\mathbf{B}\)</span>:</p>
+<div class="arithmatex">\[c_{ij} = \mathbf{fila}_i(\mathbf{A}) \cdot \mathbf{columna}_j(\mathbf{B}) = \sum_{k=1}^{n} a_{ik} b_{kj}.\]</div>
+<figure id="fig:mult_matrices">
+
+<figcaption>Lógica del producto matricial: El elemento <span class="math inline">\(c_{ij}\)</span> concentra la interacción entre toda la fila <span class="math inline">\(i\)</span> de la primera matriz y toda la columna <span class="math inline">\(j\)</span> de la segunda.</figcaption>
+</figure>
+
+<p><strong>Propiedades clave:</strong></p>
+<ul>
+<li>
+<p><strong>No Conmutatividad:</strong> En general, <span class="arithmatex">\(\mathbf{A}\mathbf{B} \neq \mathbf{B}\mathbf{A}\)</span>. El orden importa: rotar y luego trasladar no es lo mismo que trasladar y luego rotar.</p>
+</li>
+<li>
+<p><strong>Asociatividad:</strong> <span class="arithmatex">\((\mathbf{A}\mathbf{B})\mathbf{C} = \mathbf{A}(\mathbf{B}\mathbf{C})\)</span>. Esto es vital en Deep Learning para optimizar el cómputo en capas profundas.</p>
+</li>
+</ul>
+<blockquote>
+<p>Ejemplo Práctico: Lotes <span class="arithmatex">\(\times\)</span> Proveedores Imaginemos que queremos calcular costos para diferentes escenarios.</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\mathbf{A}\)</span> (Requerimientos): 2 Lotes (filas) necesitan cantidades de 3 insumos (columnas: N, P, K).</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathbf{B}\)</span> (Precios): Esos 3 insumos tienen precios diferentes en 2 Proveedores distintos (columnas).</p>
+</li>
+</ul>
+<div class="arithmatex">\[\mathbf{A}_{(2 \times 3)} = 
+\begin{pmatrix} 
+10 &amp; 20 &amp; 5 \\ 
+15 &amp; 10 &amp; 2 
+\end{pmatrix}, \quad
+\mathbf{B}_{(3 \times 2)} = 
+\begin{pmatrix} 
+2 &amp; 3 \\ 
+4 &amp; 4 \\ 
+10 &amp; 8 
+\end{pmatrix}\]</div>
+<p>El producto <span class="arithmatex">\(\mathbf{C} = \mathbf{AB}\)</span> nos dará una matriz de <span class="arithmatex">\(2 \times 2\)</span> donde cada elemento <span class="arithmatex">\(c_{ij}\)</span> es el <strong>costo total</strong> del Lote <span class="arithmatex">\(i\)</span> comprando al Proveedor <span class="arithmatex">\(j\)</span>.</p>
+<p>Realizamos los cálculos para cada celda: <span class="arithmatex">\(<span class="arithmatex">\(\begin{aligned}
+c_{11} &amp;= (10\cdot 2) + (20 \cdot 4) + (5 \cdot 10) = 20 + 80 + 50 = 150 \\
+c_{12} &amp;= (10\cdot 3) + (20 \cdot 4) + (5 \cdot 8) = 30 + 80 + 40 = 150 \\
+c_{21} &amp;= (15\cdot 2) + (10 \cdot 4) + (2 \cdot 10) = 30 + 40 + 20 = 90 \\
+c_{22} &amp;= (15\cdot 3) + (10 \cdot 4) + (2 \cdot 8) = 45 + 40 + 16 = 101
+\end{aligned}\)</span>\)</span></p>
+<p>El resultado final es:</p>
+<div class="arithmatex">\[\mathbf{C} = 
+\begin{pmatrix} 
+150 &amp; 150 \\ 
+90 &amp; 101 
+\end{pmatrix}\]</div>
+<p><strong>Interpretación para toma de decisiones:</strong></p>
+<ul>
+<li>
+<p>Para el <strong>Lote 1</strong> (Fila 1), ambos proveedores resultan en el mismo costo total ($150), aunque los precios unitarios sean distintos.</p>
+</li>
+<li>
+<p>Para el <strong>Lote 2</strong> (Fila 2), es más económico comprar al <strong>Proveedor 1</strong> ($90) que al Proveedor 2 ($101).</p>
+</li>
+</ul>
+<p>Esta operación permite evaluar múltiples escenarios económicos de forma simultánea.</p>
+</blockquote>
+<h2 id="escalares-asociados-traza-determinante-y-rango">Escalares asociados: Traza, Determinante y Rango</h2>
+<p>Antes de analizar propiedades más complejas, definimos tres escalares que resumen la estructura de una matriz cuadrada <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>:</p>
+<ul>
+<li>
+<p><strong>Traza (<span class="arithmatex">\(\mathrm{tr}\)</span>):</strong> La suma de los elementos de la diagonal principal. En matrices de covarianza, representa la <em>varianza total</em> del sistema.</p>
+</li>
+<li>
+<p><strong>Determinante (<span class="arithmatex">\(\det\)</span>):</strong> Una medida del cambio de volumen que produce la matriz como transformación lineal. Si <span class="arithmatex">\(\det(\mathbf{A}) = 0\)</span>, la matriz "aplasta" el espacio y destruye información.</p>
+</li>
+<li>
+<p><strong>Rango:</strong> El número máximo de filas o columnas linealmente independientes. Indica la cantidad de información no redundante en los datos.</p>
+</li>
+</ul>
+<h5 id="el-determinante">El Determinante</h5>
+<p>El <strong>determinante</strong> es una función escalar que asigna a cada matriz cuadrada <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span> un número real, denotado como <span class="arithmatex">\(\det(\mathbf{A})\)</span> o <span class="arithmatex">\(|\mathbf{A}|\)</span>. Este valor condensa información crítica sobre la naturaleza geométrica y algebraica de la matriz.</p>
+<h5 id="interpretacion-geometrica">Interpretación geométrica</h5>
+<p>En el contexto del análisis de datos, el determinante representa el <strong>factor de escala</strong> del volumen (o área en 2D) cuando la matriz <span class="arithmatex">\(\mathbf{A}\)</span> actúa como una transformación lineal.</p>
+<ul>
+<li>
+<p>Si <span class="arithmatex">\(|\det(\mathbf{A})| &gt; 1\)</span>, la transformación expande el espacio.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(0 &lt; |\det(\mathbf{A})| &lt; 1\)</span>, la transformación contrae el espacio.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\det(\mathbf{A}) = 0\)</span>, la transformación "aplasta" el volumen hasta convertirlo en una superficie, línea o punto (pérdida de dimensionalidad).</p>
+</li>
+</ul>
+<h5 id="calculo-en-2-times-2">Cálculo en <span class="arithmatex">\(2 \times 2\)</span></h5>
+<p>Para una matriz de <span class="arithmatex">\(\mathbb{R}^{2 \times 2}\)</span>, la fórmula es:</p>
+<div class="arithmatex">\[\det \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} = ad - bc.\]</div>
+<h5 id="singularidad-e-invertibilidad">Singularidad e Invertibilidad</h5>
+<p>La propiedad más importante para la inteligencia artificial es su relación con la inversión de matrices:</p>
+<div class="arithmatex">\[\mathbf{A} \text{ es invertible} \iff \det(\mathbf{A}) \neq 0.\]</div>
+<p>Una matriz con determinante cero se llama <strong>singular</strong>. En términos de datos, esto implica que las filas (o columnas) son linealmente dependientes, es decir, existe redundancia perfecta en la información (colinealidad).</p>
+<h5 id="ejemplo-agro-ambiental-deteccion-de-redundancia">Ejemplo Agro-Ambiental: Detección de Redundancia</h5>
+<p>Suponga que intentamos modelar el crecimiento de un cultivo usando dos variables que creemos distintas: <span class="arithmatex">\(x_1\)</span> (agua de riego en L) y <span class="arithmatex">\(x_2\)</span> (tiempo de riego en minutos). Sin embargo, si el sistema de riego tiene un flujo constante, <span class="arithmatex">\(x_1\)</span> es exactamente proporcional a <span class="arithmatex">\(x_2\)</span>.</p>
+<p>La matriz de correlación o covarianza de estos datos tendría la forma:</p>
+<div class="arithmatex">\[\mathbf{C} = 
+\begin{pmatrix} 
+1 &amp; 1 \\ 
+1 &amp; 1 
+\end{pmatrix}.\]</div>
+<p>Calculando el determinante:</p>
+<div class="arithmatex">\[\det(\mathbf{C}) = (1)(1) - (1)(1) = 0.\]</div>
+<p>El determinante nulo nos alerta matemáticamente de que no tenemos dos dimensiones reales de información, sino solo una. Intentar invertir esta matriz para un modelo de regresión lineal generará un error computacional, indicando que debemos eliminar una de las variables redundantes antes de entrenar el modelo.</p>
+<h2 id="inversa-de-una-matriz">Inversa de una matriz</h2>
+<p>La <strong>inversa</strong> de una matriz cuadrada <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span>, denotada <span class="arithmatex">\(\mathbf{A}^{-1}\)</span>, es la matriz única que satisface:</p>
+<div class="arithmatex">\[\mathbf{A} \mathbf{A}^{-1} = \mathbf{A}^{-1} \mathbf{A} = \mathbf{I}_n,\]</div>
+<p>donde <span class="arithmatex">\(\mathbf{I}_n\)</span> es la matriz identidad (con 1s en la diagonal y 0s fuera).</p>
+<h5 id="condicion-de-existencia">Condición de existencia</h5>
+<p>Una matriz <span class="arithmatex">\(\mathbf{A}\)</span> es invertible (o no singular) si y solo si cumple cualquiera de estas condiciones equivalentes:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\det(\mathbf{A}) \neq 0\)</span>,</p>
+</li>
+<li>
+<p>Su rango es completo (<span class="arithmatex">\(\mathrm{rango}(\mathbf{A}) = n\)</span>),</p>
+</li>
+<li>
+<p>Sus columnas son linealmente independientes (no hay redundancia perfecta entre variables).</p>
+</li>
+</ul>
+<p><strong>Relevancia en IA</strong>\
+<span class="arithmatex">\(\bullet\)</span> <strong>Regresión Lineal:</strong> Los coeficientes óptimos se estiman como <span class="arithmatex">\(\boldsymbol{\beta} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}\)</span>.\
+<span class="arithmatex">\(\bullet\)</span> <strong>Distancia de Mahalanobis:</strong> <span class="arithmatex">\(\sqrt{(\mathbf{x}-\boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu})}\)</span>. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).</p>
+<p><strong>Ejemplo agronómico.</strong> Para predecir rendimiento (<span class="arithmatex">\(y\)</span>) a partir de N y P (<span class="arithmatex">\(\mathbf{X}\)</span>), necesitamos calcular <span class="arithmatex">\((\mathbf{X}^\top \mathbf{X})^{-1}\)</span>. Si</p>
+<div class="arithmatex">\[\mathbf{X}^\top \mathbf{X} = \begin{pmatrix} 5 &amp; 2 \\ 2 &amp; 2 \end{pmatrix} \implies \det = 10 - 4 = 6 \neq 0.\]</div>
+<p>Como el determinante es no nulo, la inversa existe y el modelo tiene solución única:</p>
+<div class="arithmatex">\[(\mathbf{X}^\top \mathbf{X})^{-1} = \frac{1}{6} \begin{pmatrix} 2 &amp; -2 \\ -2 &amp; 5 \end{pmatrix}.\]</div>
+<h2 id="implementacion-en-python-el-operador">Implementación en Python: El operador @</h2>
+<p>En Python científico (NumPy), <strong>nunca</strong> utilizamos bucles <code>for</code> para multiplicar matrices; eso sería extremadamente lento. En su lugar, utilizamos operaciones vectorizadas altamente optimizadas.</p>
+<p>Desde Python 3.5, el operador estándar para el producto matricial es la arroba (<code>@</code>).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># 1. Definimos las matrices del ejemplo anterior</span>
+<span class="c1"># Matriz A: Requerimientos (2 lotes, 3 insumos)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># Matriz B: Precios (3 insumos, 2 proveedores)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="c1"># 2. Realizamos el producto matricial</span>
+<span class="c1"># La dimension interna (3) coincide: (2x3) @ (3x2) -&gt; (2x2)</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">B</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="n">Matriz</span> <span class="n">de</span> <span class="n">Costos</span> <span class="n">C</span><span class="p">:</span>\<span class="n">n</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+
+<span class="c1"># --- Salida esperada ---</span>
+<span class="c1"># [[150 150]</span>
+<span class="c1">#  [ 90 101]]</span>
+</code></pre></div>
+<h4 id="errores-comunes-y-buenas-practicas">Errores comunes y buenas prácticas</h4>
+<ol>
+<li>
+<p><strong>El operador correcto:</strong> No confunda el operador <code>@</code> con el asterisco <code>*</code>.</p>
+<ul>
+<li>
+<p><code>A @ B</code>: Producto matricial (fila por columna).</p>
+</li>
+<li>
+<p><code>A * B</code>: Producto elemento a elemento (requiere mismas dimensiones exactas o broadcasting).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Gestión de dimensiones:</strong> Si intenta multiplicar matrices incompatibles, NumPy arrojará un error. Es vital verificar siempre <code>.shape</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Intentar multiplicar A por sí misma: (2x3) @ (2x3)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">Error</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">A</span> 
+<span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="n">Error</span> <span class="n">de</span> <span class="n">dimensión</span><span class="p">:</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
+
+<span class="c1"># Salida:</span>
+<span class="c1"># ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0...</span>
+<span class="c1"># (size 3 is different from 2)</span>
+</code></pre></div>
+</li>
+</ol>
+<p>::: tcolorbox
+En el código de redes neuronales (como TensorFlow o PyTorch), la operación <code>capa_oculta @ pesos</code> ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo.
+:::</p>
+<h2 id="operaciones-con-tensores-en-bioingenieria">Operaciones con Tensores en Bioingeniería</h2>
+<p>A diferencia de las matrices, donde el producto punto es la estrella, en los tensores operamos frecuentemente con <strong>filtrado (convolución)</strong>, <strong>operaciones elemento a elemento</strong> (Hadamard) y <strong>re-dimensionamiento</strong> (Reshaping).</p>
+<blockquote>
+<p>Caso de Estudio: Detección de Tumores en MRI Una Resonancia Magnética (MRI) del cerebro no es una foto plana; es una volumetría. Podemos representarla como un tensor <span class="arithmatex">\(\mathcal{X}\)</span> de dimensiones <span class="arithmatex">\(256 \times 256 \times 120\)</span>:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(256 \times 256\)</span>: Resolución de cada "rebanada" (slice) de imagen (alto <span class="arithmatex">\(\times\)</span> ancho).</p>
+</li>
+<li>
+<p><span class="arithmatex">\(120\)</span>: El número de rebanadas tomadas desde la base del cráneo hasta la coronilla (profundidad).</p>
+</li>
+</ul>
+<p><strong>Operación 1: Aplicación de una Máscara (Producto Hadamard)</strong> Para aislar el cerebro y eliminar el cráneo o el fondo, multiplicamos el tensor de la imagen <span class="arithmatex">\(\mathcal{X}\)</span> por un tensor binario "máscara" <span class="arithmatex">\(\mathcal{M}\)</span> (donde 1 es tejido cerebral y 0 es hueso/fondo).</p>
+<div class="arithmatex">\[\mathcal{Y} = \mathcal{X} \odot \mathcal{M} \quad \implies \quad y_{ijk} = x_{ijk} \cdot m_{ijk}\]</div>
+<p>Esta operación se realiza simultáneamente en los 7.8 millones de vóxeles (píxeles 3D).</p>
+<p><strong>Operación 2: Aplanado (Flattening) para Diagnóstico</strong> Una red neuronal clásica no puede "tragar" un cubo. Debemos convertir el tensor 3D en un vector largo 1D para clasificarlo (ej. ¿Hay tumor? Sí/No).</p>
+<div class="arithmatex">\[\text{Flatten}(\mathbb{R}^{256 \times 256 \times 120}) \to \mathbb{R}^{7,864,320}\]</div>
+<p>Este proceso de reestructurar los datos sin perder información es la base de la arquitectura de redes convolucionales (CNN).</p>
+</blockquote>
+<h4 id="implementacion-manipulacion-de-voxeles-en-python">Implementación: Manipulación de Vóxeles en Python</h4>
+<p>En Python, bibliotecas como <code>NumPy</code>, <code>TensorFlow</code> o <code>PyTorch</code> tratan estas estructuras de forma nativa. Nótese que aquí usamos el término <code>shape</code> (forma) para describir las dimensiones del tensor.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># 1. Simular una MRI cerebral (Tensor 3D)</span>
+<span class="c1"># Dimensiones: (Alto, Ancho, Profundidad)</span>
+<span class="c1"># Valores aleatorios simulando intensidad de señal</span>
+<span class="n">mri_tensor</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">120</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Forma</span> <span class="n">original</span> <span class="k">del</span> <span class="n">tensor</span><span class="p">:</span> <span class="p">{</span><span class="n">mri_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1"># Salida: (256, 256, 120)</span>
+
+<span class="c1"># 2. Operación de Slicing (Rebanado)</span>
+<span class="c1"># El médico quiere ver solo la rebanada central (corte axial)</span>
+<span class="n">corte_central</span> <span class="o">=</span> <span class="n">mri_tensor</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">60</span><span class="p">]</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Forma</span> <span class="k">del</span> <span class="n">corte</span> <span class="mi">2</span><span class="n">D</span><span class="p">:</span> <span class="p">{</span><span class="n">corte_central</span><span class="o">.</span><span class="n">shape</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1"># Salida: (256, 256) -&gt; Ahora es una matriz clásica</span>
+
+<span class="c1"># 3. Operación de Máscara (Thresholding)</span>
+<span class="c1"># Queremos resaltar solo tejidos con alta intensidad (posibles anomalías)</span>
+<span class="c1"># Creamos una máscara booleana (Tensor de True/False)</span>
+<span class="n">mascara_tejido</span> <span class="o">=</span> <span class="n">mri_tensor</span> <span class="o">&gt;</span> <span class="mf">0.8</span>
+
+<span class="c1"># Aplicamos la máscara (Hadamard product implícito)</span>
+<span class="n">tejido_resaltado</span> <span class="o">=</span> <span class="n">mri_tensor</span> <span class="o">*</span> <span class="n">mascara_tejido</span>
+
+<span class="c1"># 4. Flattening (Preparar para IA)</span>
+<span class="n">input_vector</span> <span class="o">=</span> <span class="n">mri_tensor</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Vector</span> <span class="n">de</span> <span class="n">entrada</span> <span class="n">para</span> <span class="n">la</span> <span class="n">Red</span> <span class="n">Neuronal</span><span class="p">:</span> <span class="p">{</span><span class="n">input_vector</span><span class="o">.</span><span class="n">shape</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1"># Salida: (7864320,) -&gt; Un vector gigante</span>
+</code></pre></div>
+<p>::: tcolorbox
+El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño (<span class="arithmatex">\(256^3\)</span>) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la <strong>shape</strong> del tensor es crítico.
+:::</p>
+<h1 id="matrices-especiales">Matrices especiales</h1>
+<h2 id="matrices-simetricas-y-definidas-positivas">Matrices simétricas y definidas positivas</h2>
+<p>Una matriz <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span> es:</p>
+<ul>
+<li>
+<p><strong>Simétrica</strong> si <span class="arithmatex">\(\mathbf{A} = \mathbf{A}^\top\)</span>.</p>
+</li>
+<li>
+<p><strong>Definida positiva (DP)</strong> si <span class="arithmatex">\(\mathbf{x}^\top \mathbf{A} \mathbf{x} &gt; 0\)</span> para todo <span class="arithmatex">\(\mathbf{x} \neq \mathbf{0}\)</span>.</p>
+</li>
+<li>
+<p><strong>Semidefinida positiva (SDP)</strong> si <span class="arithmatex">\(\mathbf{x}^\top \mathbf{A} \mathbf{x} \geq 0\)</span> para todo <span class="arithmatex">\(\mathbf{x}\)</span>.</p>
+</li>
+</ul>
+<h5 id="propiedades-y-conexiones">Propiedades y conexiones</h5>
+<ul>
+<li>
+<p>Toda matriz de covarianza <span class="arithmatex">\(\mathbf{\Sigma}\)</span> es <strong>simétrica y SDP</strong>.</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\mathbf{A}\)</span> es SDP, todos sus autovalores son no negativos (<span class="arithmatex">\(\lambda_i \geq 0\)</span>).</p>
+</li>
+<li>
+<p>Si <span class="arithmatex">\(\mathbf{A}\)</span> es DP, entonces <span class="arithmatex">\(\det(\mathbf{A}) &gt; 0\)</span> y es <strong>invertible</strong>.</p>
+</li>
+</ul>
+<h5 id="interpretacion-en-ciencia-de-datos">Interpretación en ciencia de datos</h5>
+<p>La condición SDP garantiza que la varianza calculada en cualquier dirección proyectada sea no negativa, lo cual es una <strong>consistencia estadística fundamental</strong>. En PCA, los autovalores de <span class="arithmatex">\(\mathbf{\Sigma}\)</span> representan varianzas explicadas; si fueran negativos, el modelo físico estaría roto.</p>
+<p><strong>Ejemplo.</strong> La matriz <span class="arithmatex">\(\mathbf{A} = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{pmatrix}\)</span> es simétrica y DP, ya que su determinante es <span class="arithmatex">\(3 &gt; 0\)</span> y su traza es <span class="arithmatex">\(4 &gt; 0\)</span> (criterio rápido para matrices <span class="arithmatex">\(2 \times 2\)</span>).</p>
+<h5 id="matrices-definidas-positivas">Matrices Definidas Positivas</h5>
+<p>El concepto de una matriz <strong>definida positiva</strong> es análogo a la idea de un número real positivo (<span class="arithmatex">\(a &gt; 0\)</span>), pero extendido al álgebra matricial. En ingeniería, estas matrices son fundamentales porque garantizan la estabilidad de los sistemas y la existencia de mínimos únicos en problemas de optimización (costos, energía, error).</p>
+<h5 id="definicion-paso-a-paso">Definición paso a paso</h5>
+<p>Sea <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span> una matriz simétrica. Decimos que <span class="arithmatex">\(\mathbf{A}\)</span> es definida positiva si satisface la siguiente condición energética: <span class="arithmatex">\(<span class="arithmatex">\(\mathbf{x}^\top \mathbf{A} \mathbf{x} &gt; 0, \quad \text{para todo vector } \mathbf{x} \in \mathbb{R}^n, \mathbf{x} \neq \mathbf{0}.\)</span>\)</span> El término escalar <span class="arithmatex">\(E = \mathbf{x}^\top \mathbf{A} \mathbf{x}\)</span> se conoce como <em>forma cuadrática</em>. Geométricamente, si <span class="arithmatex">\(\mathbf{A}\)</span> es definida positiva, la gráfica de esta función cuadrática tiene forma de "tazón" o "cuenco" curvado hacia arriba, lo que implica que tiene un fondo (un mínimo global).</p>
+<h5 id="criterios-de-identificacion">Criterios de identificación</h5>
+<p>Para verificar si una matriz es definida positiva sin probar infinitos vectores, utilizamos dos criterios prácticos:</p>
+<ol>
+<li>
+<p><strong>Autovalores (Eigenvalues):</strong> Todos los autovalores <span class="arithmatex">\(\lambda_i\)</span> de <span class="arithmatex">\(\mathbf{A}\)</span> deben ser estrictamente positivos (<span class="arithmatex">\(\lambda_i &gt; 0\)</span>).</p>
+</li>
+<li>
+<p><strong>Criterio de Sylvester:</strong> Todos los determinantes de los sub-bloques principales superiores (los menores principales) deben ser positivos.</p>
+</li>
+</ol>
+<h5 id="aplicacion-en-ingenieria-agricola-minimizacion-de-costos">Aplicación en Ingeniería Agrícola: Minimización de Costos</h5>
+<p>En la optimización de procesos agroindustriales, buscamos minimizar funciones de costo. La condición matemática para asegurar que hemos encontrado un <strong>costo mínimo</strong> (y no un máximo o un punto de silla) es que la matriz de segundas derivadas (la Matriz Hessiana) sea definida positiva.</p>
+<p><strong>Ejemplo práctico:</strong> Un ingeniero agrícola desea minimizar el costo operativo <span class="arithmatex">\(C\)</span> de un sistema de fertirriego, el cual depende de dos variables:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(w\)</span>: Cantidad de agua (<span class="arithmatex">\(m^3/ha\)</span>).</p>
+</li>
+<li>
+<p><span class="arithmatex">\(f\)</span>: Cantidad de fertilizante (<span class="arithmatex">\(kg/ha\)</span>).</p>
+</li>
+</ul>
+<p>Supongamos que el modelo de costos se aproxima localmente mediante una función cuadrática: <span class="arithmatex">\(<span class="arithmatex">\(C(w, f) = 2w^2 + 2wf + 4f^2 - 100w - 200f + 5000.\)</span>\)</span> Para verificar si este sistema tiene un costo mínimo estable, analizamos la curvatura de la función mediante su matriz Hessiana <span class="arithmatex">\(\mathbf{H}\)</span> (la matriz de coeficientes cuadráticos): <span class="arithmatex">\(<span class="arithmatex">\(\mathbf{H} =
+\begin{pmatrix}
+\frac{\partial^2 C}{\partial w^2} &amp; \frac{\partial^2 C}{\partial w \partial f} \\
+\frac{\partial^2 C}{\partial f \partial w} &amp; \frac{\partial^2 C}{\partial f^2}
+\end{pmatrix}
+=
+\begin{pmatrix}
+4 &amp; 2 \\
+2 &amp; 8
+\end{pmatrix}.\)</span>\)</span></p>
+<p><strong>Verificación paso a paso:</strong></p>
+<ol>
+<li>
+<p><strong>Simetría:</strong> La matriz es simétrica (<span class="arithmatex">\(H_{12} = H_{21} = 2\)</span>).</p>
+</li>
+<li>
+<p><strong>Criterio de Autovalores:</strong> Calculamos <span class="arithmatex">\(\det(\mathbf{H} - \lambda \mathbf{I}) = (4-\lambda)(8-\lambda) - 4 = \lambda^2 - 12\lambda + 28 = 0\)</span>. Resolviendo, obtenemos <span class="arithmatex">\(\lambda_1 \approx 9.4\)</span> y <span class="arithmatex">\(\lambda_2 \approx 2.6\)</span>.</p>
+</li>
+<li>
+<p><strong>Conclusión:</strong> Como <span class="arithmatex">\(\lambda_1 &gt; 0\)</span> y <span class="arithmatex">\(\lambda_2 &gt; 0\)</span>, la matriz <span class="arithmatex">\(\mathbf{H}\)</span> es <strong>definida positiva</strong>.</p>
+</li>
+</ol>
+<p><strong>Interpretación Ingenieril:</strong> Dado que la matriz es definida positiva, la superficie de costos es convexa (tiene forma de tazón). Esto garantiza al ingeniero que existe una única combinación óptima de agua y fertilizante que minimiza los costos operativos, permitiendo el uso de algoritmos de optimización (como el Descenso de Gradiente) con total seguridad de convergencia.</p>
+<h2 id="conexion-integradora-la-matriz-de-covarianza">Conexión integradora: la matriz de covarianza</h2>
+<p>En ciencia de datos agro-ambiental, la matriz más omnipresente es la matriz de covarianza muestral: <span class="arithmatex">\(<span class="arithmatex">\(\mathbf{\Sigma} = \frac{1}{m-1} \mathbf{X}_c^\top \mathbf{X}_c,\)</span>\)</span> donde <span class="arithmatex">\(\mathbf{X}_c\)</span> es la matriz de datos centrada (media cero). Esta estructura unifica todos los conceptos anteriores:</p>
+<ul>
+<li>
+<p>Es <strong>cuadrada y simétrica</strong> (propiedad de <span class="arithmatex">\(\mathbf{A}^\top \mathbf{A}\)</span>).</p>
+</li>
+<li>
+<p>Es <strong>semidefinida positiva</strong> (reflejando la naturaleza no negativa de la dispersión de datos).</p>
+</li>
+<li>
+<p><strong>Invertibilidad y Colinealidad:</strong> Si dos variables son colineales (ej. "kg de fertilizante" y "g de nitrógeno aportado"), las columnas de <span class="arithmatex">\(\mathbf{X}\)</span> son dependientes, el determinante de <span class="arithmatex">\(\mathbf{\Sigma}\)</span> cae a 0, y la matriz no se puede invertir. Esto alerta al científico de datos sobre redundancia en el modelo.</p>
+</li>
+</ul>
+<p>Así, el producto, la transpuesta, el determinante y la inversa no son conceptos aislados, sino herramientas coordinadas que permiten modelar, transformar y diagnosticar la calidad de los datos agro-ambientales.</p>
+<p>[^1]: <span class="arithmatex">\(\mathbf{x} = (120, 50, 3, 6{,}2)^\top\)</span> Significa que el vector es columna, y lo hemos escrito como fila</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["content.code.copy", "navigation.top", "navigation.prev", "navigation.next"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="javascripts/mathjax-config.js"></script>
+      
+    
+  </body>
+</html>

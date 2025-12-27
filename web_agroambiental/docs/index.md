@@ -10,7 +10,7 @@ John Jairo Leal Gómez
 
 Universidad Nacional de Colombia
 
-2025-12-25
+2025-12-27
 :::
 
 # El Motor de la IA: De Escalares a Tensores
@@ -158,8 +158,8 @@ $$t_{i_1, i_2, \dots, i_K} = \mathcal{T}(i_1, i_2, \dots, i_K)$$
 
 
 <figure markdown="span">
-  ![Visualización del Tensor](imagenes/tensor_diagrama){width="80%"}
-  <figcaption>Visualización del Tensor</figcaption>
+  ![Visualización del Tensor](imagenes/tensor_diagrama.svg){width="80%"}
+  <figcaption class="arithmatex">Visualización del Tensor</figcaption>
 </figure>
 
 
@@ -660,8 +660,8 @@ La Figura [1.1](#fig:vector_componentes_norma) ilustra cómo las componentes def
 
 
 <figure markdown="span">
-  ![Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.](imagenes/figura_vector){#fig:vector_componentes_norma width="70%"}
-  <figcaption>Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.</figcaption>
+  ![Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.](imagenes/figura_vector.svg){#fig:vector_componentes_norma width="70%"}
+  <figcaption class="arithmatex">Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.</figcaption>
 </figure>
 
 
@@ -1534,9 +1534,11 @@ Una matriz $\mathbf{A}$ es invertible (o no singular) si y solo si cumple cualqu
 
 -   Sus columnas son linealmente independientes (no hay redundancia perfecta entre variables).
 
-**Relevancia en IA**\
-$\bullet$ **Regresión Lineal:** Los coeficientes óptimos se estiman como $\boldsymbol{\beta} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}$.\
-$\bullet$ **Distancia de Mahalanobis:** $\sqrt{(\mathbf{x}-\boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu})}$. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).
+##### Relevancia en IA
+
+-   **Regresión Lineal:** Los coeficientes óptimos se estiman como $\boldsymbol{\beta} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}$.
+
+-   **Distancia de Mahalanobis:** $\sqrt{(\mathbf{x}-\boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu})}$. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).
 
 **Ejemplo agronómico.** Para predecir rendimiento ($y$) a partir de N y P ($\mathbf{X}$), necesitamos calcular $(\mathbf{X}^\top \mathbf{X})^{-1}$. Si
 
