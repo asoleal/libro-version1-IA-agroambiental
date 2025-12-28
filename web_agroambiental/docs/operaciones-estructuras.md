@@ -246,36 +246,40 @@ En esta sección, trasladamos las operaciones de suma, escalamiento y producto p
 
 La suma de vectores requiere que ambos tengan la misma dimensión (*shape*). La multiplicación por un escalar, en cambio, utiliza un mecanismo llamado **Broadcasting**, donde el escalar se "difunde" sobre todos los elementos del vector.
 
-    import numpy as np
-    import torch
+``` {.python language="Python"}
+import numpy as np
+import torch
 
-    # 1. Suma de vectores (Agro: Integración de dosis de fertilizante)
-    dosis_neta = np.array([50, 20, 10])  # N, P, K inicial
-    suplemento = np.array([10,  5,  5])  # Refuerzo aplicado
-    dosis_total = dosis_neta + suplemento
-    print(f''Dosis Total (Vector): {dosis_total}'')
+# 1. Suma de vectores (Agro: Integración de dosis de fertilizante)
+dosis_neta = np.array([50, 20, 10])  # N, P, K inicial
+suplemento = np.array([10,  5,  5])  # Refuerzo aplicado
+dosis_total = dosis_neta + suplemento
+print(f''Dosis Total (Vector): {dosis_total}'')
 
-    # 2. Multiplicación por Escalar (Mecatrónica: Control de Ganancia)
-    # Escalar una señal de sensor de torque
-    torque_raw = torch.tensor([1.2, 0.8, 1.5])
-    ganancia = 2.5
-    torque_ajustado = ganancia * torque_raw
-    print(f''Torque ajustado: {torque_ajustado}'')
+# 2. Multiplicación por Escalar (Mecatrónica: Control de Ganancia)
+# Escalar una señal de sensor de torque
+torque_raw = torch.tensor([1.2, 0.8, 1.5])
+ganancia = 2.5
+torque_ajustado = ganancia * torque_raw
+print(f''Torque ajustado: {torque_ajustado}'')
+```
 
 ### El Producto Punto: Cuantificando la Afinidad
 
 El producto punto es la operación más importante en IA. En Python, podemos ejecutarlo usando el operador `@` (recomendado en versiones modernas) o las funciones específicas de las librerías.
 
-    # Vectores de ejemplo (Administración: Gastos vs Presupuesto)
-    unidades = np.array([10, 5, 20])   # Cantidad de productos comprados
-    precios = np.array([1.5, 10.0, 0.5]) # Precio unitario por categoría
+``` {.python language="Python"}
+# Vectores de ejemplo (Administración: Gastos vs Presupuesto)
+unidades = np.array([10, 5, 20])   # Cantidad de productos comprados
+precios = np.array([1.5, 10.0, 0.5]) # Precio unitario por categoría
 
-    # Producto punto: Suma de (unidades[i] * precios[i])
-    gasto_total = np.dot(unidades, precios)
-    # Forma alternativa (estándar en álgebra lineal de Python):
-    gasto_total_alt = unidades @ precios
+# Producto punto: Suma de (unidades[i] * precios[i])
+gasto_total = np.dot(unidades, precios)
+# Forma alternativa (estándar en álgebra lineal de Python):
+gasto_total_alt = unidades @ precios
 
-    print(f''Gasto total calculado via producto punto: ${gasto_total}'')
+print(f''Gasto total calculado via producto punto: ${gasto_total}'')
+```
 
 ### Aplicaciones Sectoriales en Código
 
@@ -602,46 +606,48 @@ Desde Python 3.5, el estándar para la multiplicación de matrices es el operado
 
 Para operaciones más avanzadas como determinantes, trazas e inversas, utilizamos el submódulo de álgebra lineal. A continuación, se presenta una implementación completa.
 
-    import numpy as np
+``` {.python language="Python"}
+import numpy as np
 
-    # --- 1. PRODUCTO MATRICIAL (@) ---
-    # Matriz A (2x3) y B (3x2)
-    A = np.array([[10, 20, 5], 
-                  [15, 10, 2]])
-    B = np.array([[2, 3], 
-                  [4, 4], 
-                  [10, 8]])
+# --- 1. PRODUCTO MATRICIAL (@) ---
+# Matriz A (2x3) y B (3x2)
+A = np.array([[10, 20, 5], 
+              [15, 10, 2]])
+B = np.array([[2, 3], 
+              [4, 4], 
+              [10, 8]])
 
-    # Producto punto generalizado
-    C = A @ B
-    print(f"Producto C (2x2):\n{C}\n")
+# Producto punto generalizado
+C = A @ B
+print(f"Producto C (2x2):\n{C}\n")
 
-    # --- 2. PROPIEDADES ---
-    # Ejemplo A: Matriz 2x2
-    M_2x2 = np.array([[4, 1],
-                      [2, 3]])
+# --- 2. PROPIEDADES ---
+# Ejemplo A: Matriz 2x2
+M_2x2 = np.array([[4, 1],
+                  [2, 3]])
 
-    # Traza (suma diagonal) y Determinante
-    traza_2 = np.trace(M_2x2)       
-    det_2   = np.linalg.det(M_2x2)  
+# Traza (suma diagonal) y Determinante
+traza_2 = np.trace(M_2x2)       
+det_2   = np.linalg.det(M_2x2)  
 
-    print(f"Matriz 2x2 -> Traza: {traza_2}, Det: {det_2:.2f}")
+print(f"Matriz 2x2 -> Traza: {traza_2}, Det: {det_2:.2f}")
 
-    # --- 3. INVERSA Y VERIFICACIÓN ---
-    M_3x3 = np.array([[1, 0, 2], [0, 3, 1], [2, 1, 0]])
-    det_3 = np.linalg.det(M_3x3)
+# --- 3. INVERSA Y VERIFICACIÓN ---
+M_3x3 = np.array([[1, 0, 2], [0, 3, 1], [2, 1, 0]])
+det_3 = np.linalg.det(M_3x3)
 
-    if det_3 != 0:
-        M_inv = np.linalg.inv(M_3x3)
-        
-        # VERIFICACIÓN: A @ A_inv = Identidad
-        # Usamos allclose por precisión flotante
-        identidad_calc = M_3x3 @ M_inv
-        es_identidad = np.allclose(identidad_calc, np.eye(3))
-        
-        print(f"¿Es Identidad? {es_identidad}")
-    else:
-        print("Matriz singular.")
+if det_3 != 0:
+    M_inv = np.linalg.inv(M_3x3)
+    
+    # VERIFICACIÓN: A @ A_inv = Identidad
+    # Usamos allclose por precisión flotante
+    identidad_calc = M_3x3 @ M_inv
+    es_identidad = np.allclose(identidad_calc, np.eye(3))
+    
+    print(f"¿Es Identidad? {es_identidad}")
+else:
+    print("Matriz singular.")
+```
 
 <div class="admonition info"><p class="admonition-title">Nota sobre Punto Flotante</p> Al calcular la inversa, es común obtener números como `0.9999999` en lugar de `1.0` debido a la precisión finita de las computadoras. Por eso, en lugar de comparar con `==`, utilizamos `np.allclose()` para verificar si el resultado es matemáticamente correcto dentro de una tolerancia aceptable. </div>
 
@@ -655,15 +661,17 @@ Para operaciones más avanzadas como determinantes, trazas e inversas, utilizamo
 
 2.  **Gestión de dimensiones:** Si intenta multiplicar matrices incompatibles, NumPy arrojará un error. Es vital verificar siempre `.shape`.
 
-        # Intentar multiplicar A por sí misma: (2x3) @ (2x3)
-        try:
-            Error = A @ A 
-        except ValueError as e:
-            print(''Error de dimensión:'', e)
-            
-        # Salida:
-        # ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0...
-        # (size 3 is different from 2)
+    ``` {.python language="Python"}
+    # Intentar multiplicar A por sí misma: (2x3) @ (2x3)
+    try:
+        Error = A @ A 
+    except ValueError as e:
+        print(''Error de dimensión:'', e)
+        
+    # Salida:
+    # ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0...
+    # (size 3 is different from 2)
+    ```
 
 <div class="admonition warning"> En el código de redes neuronales (como TensorFlow o PyTorch), la operación `capa_oculta @ pesos` ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo. </div>
 
@@ -693,35 +701,37 @@ A diferencia de las matrices, donde el producto punto es la estrella, en los ten
 
 En Python, bibliotecas como `NumPy`, `TensorFlow` o `PyTorch` tratan estas estructuras de forma nativa. Nótese que aquí usamos el término `shape` (forma) para describir las dimensiones del tensor.
 
-    import numpy as np
+``` {.python language="Python"}
+import numpy as np
 
-    # 1. Simular una MRI cerebral (Tensor 3D)
-    # Dimensiones: (Alto, Ancho, Profundidad)
-    # Valores aleatorios simulando intensidad de señal
-    mri_tensor = np.random.rand(256, 256, 120)
+# 1. Simular una MRI cerebral (Tensor 3D)
+# Dimensiones: (Alto, Ancho, Profundidad)
+# Valores aleatorios simulando intensidad de señal
+mri_tensor = np.random.rand(256, 256, 120)
 
-    print(f''Forma original del tensor: {mri_tensor.shape}'')
-    # Salida: (256, 256, 120)
+print(f''Forma original del tensor: {mri_tensor.shape}'')
+# Salida: (256, 256, 120)
 
-    # 2. Operación de Slicing (Rebanado)
-    # El médico quiere ver solo la rebanada central (corte axial)
-    corte_central = mri_tensor[:, :, 60] 
+# 2. Operación de Slicing (Rebanado)
+# El médico quiere ver solo la rebanada central (corte axial)
+corte_central = mri_tensor[:, :, 60] 
 
-    print(f''Forma del corte 2D: {corte_central.shape}'')
-    # Salida: (256, 256) -> Ahora es una matriz clásica
+print(f''Forma del corte 2D: {corte_central.shape}'')
+# Salida: (256, 256) -> Ahora es una matriz clásica
 
-    # 3. Operación de Máscara (Thresholding)
-    # Queremos resaltar solo tejidos con alta intensidad (posibles anomalías)
-    # Creamos una máscara booleana (Tensor de True/False)
-    mascara_tejido = mri_tensor > 0.8
+# 3. Operación de Máscara (Thresholding)
+# Queremos resaltar solo tejidos con alta intensidad (posibles anomalías)
+# Creamos una máscara booleana (Tensor de True/False)
+mascara_tejido = mri_tensor > 0.8
 
-    # Aplicamos la máscara (Hadamard product implícito)
-    tejido_resaltado = mri_tensor * mascara_tejido
+# Aplicamos la máscara (Hadamard product implícito)
+tejido_resaltado = mri_tensor * mascara_tejido
 
-    # 4. Flattening (Preparar para IA)
-    input_vector = mri_tensor.flatten()
+# 4. Flattening (Preparar para IA)
+input_vector = mri_tensor.flatten()
 
-    print(f''Vector de entrada para la Red Neuronal: {input_vector.shape}'')
-    # Salida: (7864320,) -> Un vector gigante
+print(f''Vector de entrada para la Red Neuronal: {input_vector.shape}'')
+# Salida: (7864320,) -> Un vector gigante
+```
 
 <div class="admonition warning"> El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño ($256^3$) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la **shape** del tensor es crítico. </div>

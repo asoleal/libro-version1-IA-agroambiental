@@ -241,50 +241,52 @@ En la práctica de la inteligencia artificial moderna ---dominada por librerías
 
 A continuación, se presentan las formas para definir los datos en sus diferentes presentaciones:
 
-    import numpy as np
-    import torch
+``` {.python language="Python"}
+import numpy as np
+import torch
 
-    print("--- BLOQUE 1: CIENCIA DE DATOS (NumPy) ---")
+print("--- BLOQUE 1: CIENCIA DE DATOS (NumPy) ---")
 
-    # 1. Escalar (Rango 0)
-    s = 28.5 
-    print(f"Escalar (Humedad): {s} | Tipo: {type(s)}")
+# 1. Escalar (Rango 0)
+s = 28.5 
+print(f"Escalar (Humedad): {s} | Tipo: {type(s)}")
 
-    # 2. Vector (Rango 1): Perfil de suelo [N, P, K, pH]
-    v = np.array([120, 50, 3, 6.2])
-    print(f"Vector: {v} | Forma: {v.shape}")
+# 2. Vector (Rango 1): Perfil de suelo [N, P, K, pH]
+v = np.array([120, 50, 3, 6.2])
+print(f"Vector: {v} | Forma: {v.shape}")
 
-    # 3. Matriz (Rango 2): Ensayo con 3 parcelas y 2 variables (Rendimiento, pH)
-    M = np.array([[110, 6.1], 
-                  [130, 6.3], 
-                  [100, 5.9]])
-    print(f"Matriz (Parcelas x Vars):\n{M}")
+# 3. Matriz (Rango 2): Ensayo con 3 parcelas y 2 variables (Rendimiento, pH)
+M = np.array([[110, 6.1], 
+              [130, 6.3], 
+              [100, 5.9]])
+print(f"Matriz (Parcelas x Vars):\n{M}")
 
-    # Operación de Slicing (Acceso a datos):
-    # "Deme el pH (columna 1) de la segunda parcela (fila 1)"
-    ph_parcela_2 = M[1, 1] 
-    print(f"--> pH de la parcela 2: {ph_parcela_2}")
+# Operación de Slicing (Acceso a datos):
+# "Deme el pH (columna 1) de la segunda parcela (fila 1)"
+ph_parcela_2 = M[1, 1] 
+print(f"--> pH de la parcela 2: {ph_parcela_2}")
 
 
-    print("\n--- BLOQUE 2: INTELIGENCIA ARTIFICIAL (PyTorch) ---")
+print("\n--- BLOQUE 2: INTELIGENCIA ARTIFICIAL (PyTorch) ---")
 
-    # 4. Tensor Rango 3: Imagen individual para un robot (Canales, Alto, Ancho)
-    # PyTorch prefiere el formato (C, H, W) para procesamiento
-    img_robot = torch.rand(3, 128, 128) 
-    print(f"Imagen Robot (C,H,W): {img_robot.shape} | Rango: {img_robot.ndim}")
+# 4. Tensor Rango 3: Imagen individual para un robot (Canales, Alto, Ancho)
+# PyTorch prefiere el formato (C, H, W) para procesamiento
+img_robot = torch.rand(3, 128, 128) 
+print(f"Imagen Robot (C,H,W): {img_robot.shape} | Rango: {img_robot.ndim}")
 
-    # 5. Tensor Rango 4: Serie de Tiempo Satelital (Multidimensional)
-    # Dimensiones: (Tiempo/Batch, Canales, Alto, Ancho)
-    # Ejemplo: 10 fechas, 5 bandas espectrales, resolución 64x64
-    serie_satelital = torch.randn(10, 5, 64, 64)
+# 5. Tensor Rango 4: Serie de Tiempo Satelital (Multidimensional)
+# Dimensiones: (Tiempo/Batch, Canales, Alto, Ancho)
+# Ejemplo: 10 fechas, 5 bandas espectrales, resolución 64x64
+serie_satelital = torch.randn(10, 5, 64, 64)
 
-    print(f"Serie Satelital: {serie_satelital.shape}")
+print(f"Serie Satelital: {serie_satelital.shape}")
 
-    # Acceso complejo: 
-    # "Valor del pixel central (32,32) en la Banda Roja (índice 0) de la 
-    # última fecha (índice -1)"
-    pixel_val = serie_satelital[-1, 0, 32, 32]
-    print(f"--> Valor pixel específico: {pixel_val:.4f}")
+# Acceso complejo: 
+# "Valor del pixel central (32,32) en la Banda Roja (índice 0) de la 
+# última fecha (índice -1)"
+pixel_val = serie_satelital[-1, 0, 32, 32]
+print(f"--> Valor pixel específico: {pixel_val:.4f}")
+```
 
 ## Salida {#salida .unnumbered}
 
@@ -401,40 +403,42 @@ Aunque la definición matemática es estricta, en librerías como `NumPy` o `PyT
 
 A continuación, implementamos estos conceptos y verificamos la propiedad crítica de la inversión del producto $(\mathbf{AB})^\top = \mathbf{B}^\top \mathbf{A}^\top$.
 
-    import torch
+``` {.python language="Python"}
+import torch
 
-    print("--- 1. EL 'ENGAÑO' DE LOS VECTORES 1D ---")
-    # Vector plano (común en programación básica)
-    v_flat = torch.tensor([1, 2, 3]) 
-    print(f"Vector plano: {v_flat.shape}")
-    print(f"Transpuesta v.T: {v_flat.T.shape} (¡No cambia!)")
+print("--- 1. EL 'ENGAÑO' DE LOS VECTORES 1D ---")
+# Vector plano (común en programación básica)
+v_flat = torch.tensor([1, 2, 3]) 
+print(f"Vector plano: {v_flat.shape}")
+print(f"Transpuesta v.T: {v_flat.T.shape} (¡No cambia!)")
 
-    # Vector Matemático (Columna explícita)
-    # Usamos .unsqueeze(1) o definimos los corchetes dobles [[...]]
-    v_col = v_flat.unsqueeze(1) # Transforma (3) -> (3, 1)
-    print(f"Vector Columna:\n{v_col.shape}")
-    print(f"Vector Fila (v_col.T):\n{v_col.T.shape}")
+# Vector Matemático (Columna explícita)
+# Usamos .unsqueeze(1) o definimos los corchetes dobles [[...]]
+v_col = v_flat.unsqueeze(1) # Transforma (3) -> (3, 1)
+print(f"Vector Columna:\n{v_col.shape}")
+print(f"Vector Fila (v_col.T):\n{v_col.T.shape}")
 
-    print("\n--- 2. MATRICES Y PROPIEDAD (AB)^T ---")
-    # A: Matriz de datos (2 muestras, 3 variables)
-    A = torch.tensor([[1., 2., 3.], 
-                      [4., 5., 6.]]) # Shape (2, 3)
+print("\n--- 2. MATRICES Y PROPIEDAD (AB)^T ---")
+# A: Matriz de datos (2 muestras, 3 variables)
+A = torch.tensor([[1., 2., 3.], 
+                  [4., 5., 6.]]) # Shape (2, 3)
 
-    # B: Matriz de transformación (3 entradas, 2 salidas)
-    B = torch.tensor([[0.1, 0.2], 
-                      [0.3, 0.4], 
-                      [0.5, 0.6]])   # Shape (3, 2)
+# B: Matriz de transformación (3 entradas, 2 salidas)
+B = torch.tensor([[0.1, 0.2], 
+                  [0.3, 0.4], 
+                  [0.5, 0.6]])   # Shape (3, 2)
 
-    # Operación: Transpuesta del producto
-    lhs = torch.matmul(A, B).T   # (AB)^T
+# Operación: Transpuesta del producto
+lhs = torch.matmul(A, B).T   # (AB)^T
 
-    # Verificación de la propiedad teórica
-    # INCORRECTO: A.T @ B.T (Error de dimensiones o resultado erróneo)
-    # CORRECTO: B.T @ A.T (Invirtiendo el orden)
-    rhs = torch.matmul(B.T, A.T) 
+# Verificación de la propiedad teórica
+# INCORRECTO: A.T @ B.T (Error de dimensiones o resultado erróneo)
+# CORRECTO: B.T @ A.T (Invirtiendo el orden)
+rhs = torch.matmul(B.T, A.T) 
 
-    print(f"Forma de (AB).T: {lhs.shape}")
-    print(f"¿Es igual a B.T @ A.T?: {torch.allclose(lhs, rhs)}")
+print(f"Forma de (AB).T: {lhs.shape}")
+print(f"¿Es igual a B.T @ A.T?: {torch.allclose(lhs, rhs)}")
+```
 
 ::: salida
 --- 1. EL 'ENGAÑO' DE LOS VECTORES 1D --- Vector plano: torch.Size(\[3\]) Transpuesta v.T: torch.Size(\[3\]) (¡No cambia!) Vector Columna: torch.Size(\[3, 1\]) Vector Fila (v_col.T): torch.Size(\[1, 3\])
@@ -462,24 +466,26 @@ $$\mathbf{I} =
 \mathbf{I}_{perm} = 
 \left[ \text{Alto}, \text{Ancho}, \text{Canales} \right]$$
 
-    import torch
+``` {.python language="Python"}
+import torch
 
-    # Tensor 3D: Una imagen RGB simulada (3 canales, 4 alto, 4 ancho)
-    # Formato PyTorch: (C, H, W)
-    imagen_torch = torch.rand(3, 4, 4)
-    print(f"Forma original (C, H, W): {imagen_torch.shape}")
+# Tensor 3D: Una imagen RGB simulada (3 canales, 4 alto, 4 ancho)
+# Formato PyTorch: (C, H, W)
+imagen_torch = torch.rand(3, 4, 4)
+print(f"Forma original (C, H, W): {imagen_torch.shape}")
 
-    # PROBLEMA: Las librerías de visualización (matplotlib) esperan (H, W, C)
-    # SOLUCIÓN: Permutar los ejes.
-    # Índice 0->2 (Canales al final)
-    # Índice 1->0 (Alto al principio)
-    # Índice 2->1 (Ancho al medio)
-    imagen_plot = imagen_torch.permute(1, 2, 0)
+# PROBLEMA: Las librerías de visualización (matplotlib) esperan (H, W, C)
+# SOLUCIÓN: Permutar los ejes.
+# Índice 0->2 (Canales al final)
+# Índice 1->0 (Alto al principio)
+# Índice 2->1 (Ancho al medio)
+imagen_plot = imagen_torch.permute(1, 2, 0)
 
-    print(f"Forma permutada (H, W, C): {imagen_plot.shape}")
+print(f"Forma permutada (H, W, C): {imagen_plot.shape}")
 
-    # Cuidado: .T (transpuesta simple) en PyTorch no siempre funciona intuitivamente en tensores > 2D
-    # Es preferible ser explícito con .permute()
+# Cuidado: .T (transpuesta simple) en PyTorch no siempre funciona intuitivamente en tensores > 2D
+# Es preferible ser explícito con .permute()
+```
 
 ::: salida
 Forma original (C, H, W): torch.Size(\[3, 4, 4\]) Forma permutada (H, W, C): torch.Size(\[4, 4, 3\])
@@ -575,35 +581,37 @@ $$\mathbf{A} \approx \mathbf{B} \iff |a_{ij} - b_{ij}| < \epsilon, \quad \forall
 
 Donde $\epsilon$ (epsilon) suele ser un valor muy pequeño (ej. $10^{-5}$ o $10^{-8}$).
 
-    import torch
+``` {.python language="Python"}
+import torch
 
-    print("--- 1. ELEMENT-WISE VS ESTRUCTURA ---")
-    A = torch.tensor([1.0, 2.0])
-    B = torch.tensor([1.0, 5.0]) # El segundo elemento difiere
+print("--- 1. ELEMENT-WISE VS ESTRUCTURA ---")
+A = torch.tensor([1.0, 2.0])
+B = torch.tensor([1.0, 5.0]) # El segundo elemento difiere
 
-    # Comparación elemento a elemento (Genera máscara)
-    print(f"Máscara: {A == B}") 
-    # Salida esperada: [True, False]
+# Comparación elemento a elemento (Genera máscara)
+print(f"Máscara: {A == B}") 
+# Salida esperada: [True, False]
 
-    print("\n--- 2. EL PROBLEMA DEL PUNTO FLOTANTE ---")
-    # Matemáticamente: (Raíz de 2) al cuadrado = 2
-    raiz = torch.sqrt(torch.tensor(2.0))
-    calculado = raiz * raiz
-    teorico   = torch.tensor(2.0)
+print("\n--- 2. EL PROBLEMA DEL PUNTO FLOTANTE ---")
+# Matemáticamente: (Raíz de 2) al cuadrado = 2
+raiz = torch.sqrt(torch.tensor(2.0))
+calculado = raiz * raiz
+teorico   = torch.tensor(2.0)
 
-    # Mostramos con 10 decimales para revelar el "error fantasma"
-    print(f"Valor Teórico:   {teorico.item():.10f}")
-    print(f"Valor Calculado: {calculado.item():.10f}")
+# Mostramos con 10 decimales para revelar el "error fantasma"
+print(f"Valor Teórico:   {teorico.item():.10f}")
+print(f"Valor Calculado: {calculado.item():.10f}")
 
-    # Intento 1: Igualdad Estricta (==)
-    # Falla porque 2.0000000000 != 2.0000002384
-    print(f"¿Igualdad Estricta? {calculado == teorico}")
+# Intento 1: Igualdad Estricta (==)
+# Falla porque 2.0000000000 != 2.0000002384
+print(f"¿Igualdad Estricta? {calculado == teorico}")
 
-    print("\n--- 3. SOLUCIÓN: TOLERANCIA (ALLCLOSE) ---")
-    # Verificamos si la diferencia es despreciable
-    # atol = tolerancia absoluta
-    es_cercano = torch.allclose(calculado, teorico, atol=1e-05)
-    print(f"¿Igualdad con tolerancia (allclose)? {es_cercano}")
+print("\n--- 3. SOLUCIÓN: TOLERANCIA (ALLCLOSE) ---")
+# Verificamos si la diferencia es despreciable
+# atol = tolerancia absoluta
+es_cercano = torch.allclose(calculado, teorico, atol=1e-05)
+print(f"¿Igualdad con tolerancia (allclose)? {es_cercano}")
+```
 
 ::: salida
 --- 1. ELEMENT-WISE VS ESTRUCTURA --- Máscara: tensor(\[ True, False\])
@@ -695,22 +703,24 @@ En el ecosistema de Python (NumPy y PyTorch), el cálculo de la magnitud y la di
 
 Aunque la fórmula es $\sqrt{\sum x_i^2}$, en código utilizamos funciones dedicadas como `torch.norm` o `numpy.linalg.norm`. Esto previene errores de desbordamiento numérico (overflow) cuando los números son muy grandes.
 
-    import torch
+``` {.python language="Python"}
+import torch
 
-    # Ejemplo Administrativo: Presupuesto [Infra, Capa]
-    p = torch.tensor([4.0, 3.0])
+# Ejemplo Administrativo: Presupuesto [Infra, Capa]
+p = torch.tensor([4.0, 3.0])
 
-    # FORMA 1: Manual (Solo con fines educativos)
-    # Paso a paso: Cuadrado -> Suma -> Raíz
-    norma_manual = torch.sqrt(torch.sum(p**2))
+# FORMA 1: Manual (Solo con fines educativos)
+# Paso a paso: Cuadrado -> Suma -> Raíz
+norma_manual = torch.sqrt(torch.sum(p**2))
 
-    # FORMA 2: Profesional (La que usarás siempre)
-    # Es más rápida y numéricamente estable
-    norma_pro = torch.norm(p)
+# FORMA 2: Profesional (La que usarás siempre)
+# Es más rápida y numéricamente estable
+norma_pro = torch.norm(p)
 
-    print(f"Vector p: {p}")
-    print(f"Norma Manual: {norma_manual.item()}") # 5.0
-    print(f"Norma Pro:    {norma_pro.item()}")    # 5.0
+print(f"Vector p: {p}")
+print(f"Norma Manual: {norma_manual.item()}") # 5.0
+print(f"Norma Pro:    {norma_pro.item()}")    # 5.0
+```
 
 ### Dirección y Normalización
 
@@ -722,37 +732,39 @@ Aquí distinguimos entre 2D y $N$-Dimensiones:
 
 $$\hat{\mathbf{x}} = \frac{\mathbf{x}}{\lVert \mathbf{x} \rVert} = (\cos \alpha, \cos \beta, \cos \gamma)^\top$$
 
-    import torch
-    import math
+``` {.python language="Python"}
+import torch
+import math
 
-    print("--- 1. DIRECCIÓN EN 2D (PRESUPUESTO) ---")
-    p = torch.tensor([4.0, 3.0]) # x=4, y=3
+print("--- 1. DIRECCIÓN EN 2D (PRESUPUESTO) ---")
+p = torch.tensor([4.0, 3.0]) # x=4, y=3
 
-    # Usamos atan2(y, x). Nota: El orden es (y, x)
-    theta_rad = torch.atan2(p[1], p[0])
+# Usamos atan2(y, x). Nota: El orden es (y, x)
+theta_rad = torch.atan2(p[1], p[0])
 
-    # Convertimos radianes a grados para humanos
-    theta_deg = torch.rad2deg(theta_rad)
+# Convertimos radianes a grados para humanos
+theta_deg = torch.rad2deg(theta_rad)
 
-    print(f"Ángulo (theta): {theta_deg.item():.1f} grados")
+print(f"Ángulo (theta): {theta_deg.item():.1f} grados")
 
 
-    print("\n--- 2. DIRECCIÓN EN 3D (CALIDAD AIRE) ---")
-    # Vector: [PM10, NO2, O3]
-    a = torch.tensor([40.0, 30.0, 50.0])
+print("\n--- 2. DIRECCIÓN EN 3D (CALIDAD AIRE) ---")
+# Vector: [PM10, NO2, O3]
+a = torch.tensor([40.0, 30.0, 50.0])
 
-    # Calculamos la norma
-    magnitud = torch.norm(a)
+# Calculamos la norma
+magnitud = torch.norm(a)
 
-    # Cosenos Directores: Dividimos el vector por su magnitud
-    # Esto crea un 'Vector Unitario' (Unit Vector)
-    cosenos_directores = a / magnitud
+# Cosenos Directores: Dividimos el vector por su magnitud
+# Esto crea un 'Vector Unitario' (Unit Vector)
+cosenos_directores = a / magnitud
 
-    print(f"Magnitud total: {magnitud:.2f}")
-    print(f"Cosenos Directores (Dirección):\n{cosenos_directores}")
+print(f"Magnitud total: {magnitud:.2f}")
+print(f"Cosenos Directores (Dirección):\n{cosenos_directores}")
 
-    # Verificación: La norma de los cosenos directores siempre es 1
-    print(f"Comprobación (Norma del unitario): {torch.norm(cosenos_directores):.1f}")
+# Verificación: La norma de los cosenos directores siempre es 1
+print(f"Comprobación (Norma del unitario): {torch.norm(cosenos_directores):.1f}")
+```
 
 ::: salida
 --- 1. DIRECCIÓN EN 2D (PRESUPUESTO) --- Ángulo (theta): 36.9 grados

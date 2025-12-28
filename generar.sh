@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # =====================================================
-#   GENERADOR WEB v19 (FIX TOKENS ALFANUMÉRICOS)
-#   Corrección: Usa tokens sin símbolos para evitar 
-#   que Pandoc los escape (ej: \[\[ por [[)
+#   GENERADOR WEB v20 (FIX COLORES PYTHON)
+#   Corrección: Preserva 'language=Python' para que
+#   MkDocs coloree la sintaxis del código.
 # =====================================================
 
 # --- 1. CONFIGURACIÓN DE CAPÍTULOS ---
@@ -21,7 +21,7 @@ ORIGEN_IMAGENES="imagenes"
 TEMP_DIR="temp_tex_processing"
 
 echo "========================================"
-echo "   GENERADOR WEB v19: Tokens Seguros"
+echo "   GENERADOR WEB v20: Fix Colores"
 echo "========================================"
 
 # --- 3. PREPARACIÓN DE ARCHIVOS ---
@@ -116,12 +116,10 @@ echo ">> Procesando archivos..."
 cd "$TEMP_DIR" || exit
 
 # =======================================================
-# FASE 1: PRE-PROCESAMIENTO (TOKENS ALFANUMÉRICOS)
-# Usamos solo letras mayúsculas para que Pandoc no toque nada
+# FASE 1: PRE-PROCESAMIENTO (TOKENS)
 # =======================================================
 
 # 1. Alertblock -> TOKENINFO
-# Capturamos el título entre marcadores START y END
 sed -i 's/\\begin{alertblock}{\(.*\)}/TOKENINFOSTART \1 TOKENINFOENDTITLE/g' *.tex
 sed -i 's/\\end{alertblock}/TOKENINFOSTOP/g' *.tex
 
@@ -134,8 +132,15 @@ sed -i 's/\\end{tcolorbox}/TOKENWARNINGSTOP/g' *.tex
 sed -i 's/\\begin{appbox}{\(.*\)}/TOKENEXAMPLESTART \1 TOKENEXAMPLEENDTITLE/g' *.tex
 sed -i 's/\\end{appbox}/TOKENEXAMPLESTOP/g' *.tex
 
-# 4. Limpieza lstlisting
-sed -i 's/\\begin{lstlisting}.*/\\begin{lstlisting}/g' *.tex
+# 4. Limpieza lstlisting (CORREGIDO: PRESERVAR COLORES)
+# Buscamos 'Python' (mayúscula o minúscula) y forzamos la etiqueta correcta
+sed -i 's/\\begin{lstlisting}.*[Pp]ython.*/\\begin{lstlisting}[language=Python]/g' *.tex
+
+# (Opcional) Si tienes bloques 'bash', descomenta esto:
+# sed -i 's/\\begin{lstlisting}.*bash.*/\\begin{lstlisting}[language=bash]/g' *.tex
+
+# Si no detecta nada, deja el default (para que no rompa si hay otros lenguajes)
+# (Ya no usamos el borrado agresivo de antes)
 
 # =======================================================
 # FASE 2: CONVERSIÓN PANDOC
@@ -150,20 +155,15 @@ for archivo in *.tex; do
 
     # =======================================================
     # FASE 3: POST-PROCESAMIENTO (REVELAR HTML)
-    # Reemplazamos los TOKENS por HTML real
     # =======================================================
 
     # --- A. REVELAR CAJAS ---
-
-    # 1. Info (Alertblock)
     sed -i 's/TOKENINFOSTART \(.*\) TOKENINFOENDTITLE/<div class="admonition info"><p class="admonition-title">\1<\/p>/g' "$TARGET"
     sed -i 's/TOKENINFOSTOP/<\/div>/g' "$TARGET"
 
-    # 2. Warning (Tcolorbox)
     sed -i 's/TOKENWARNINGSTART/<div class="admonition warning">/g' "$TARGET"
     sed -i 's/TOKENWARNINGSTOP/<\/div>/g' "$TARGET"
 
-    # 3. Example (Appbox)
     sed -i 's/TOKENEXAMPLESTART \(.*\) TOKENEXAMPLEENDTITLE/<div class="admonition example"><p class="admonition-title">\1<\/p>/g' "$TARGET"
     sed -i 's/TOKENEXAMPLESTOP/<\/div>/g' "$TARGET"
 
@@ -179,4 +179,4 @@ done
 
 cd ..
 rm -rf "$TEMP_DIR"
-echo "✅ ¡Web generada correctamente (v19)!"
+echo "✅ ¡Web generada (v20) - Colores restaurados!"
