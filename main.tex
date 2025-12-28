@@ -13,6 +13,11 @@
 \usepackage{tcolorbox}
 \tcbuselibrary{skins, breakable}
 \usepackage{graphicx}
+\usepackage{newunicodechar}
+% Mapeo de caracteres griegos a comandos LaTeX
+\newunicodechar{θ}{\ensuremath{\theta}}
+\newunicodechar{α}{\ensuremath{\alpha}}
+\newunicodechar{β}{\ensuremath{\beta}}
 \usepackage{csquotes}
 \usepackage{tikz}
 \usetikzlibrary{calc}
@@ -104,6 +109,17 @@
     coltitle=black!80,        
     colbacktitle=gray!15,     
     toptitle=2pt, bottomtitle=2pt, 
+}
+% --- DEFINICIÓN DE ALERTBLOCK PERSONALIZADO ---
+% Creamos un entorno que imita al de Beamer pero para libros
+\newtcolorbox{alertblock}[1]{
+  colback=red!5!white,      % Fondo rojo muy suave
+  colframe=red!75!black,    % Borde rojo oscuro
+  fonttitle=\bfseries,      % Título en negrita
+  title={#1},               % El título que le pases
+  sharp corners=south,      % Esquinas de abajo rectas (opcional)
+  boxrule=0.5mm,            % Grosor del borde
+  arc=3mm                   % Redondeo de esquinas superiores
 }
 \begin{document}
 

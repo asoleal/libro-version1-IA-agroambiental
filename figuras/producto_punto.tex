@@ -1,0 +1,35 @@
+\documentclass[tikz, border=5pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta} % Necesario para >=Stealth
+
+\begin{document}
+\begin{tikzpicture}[scale=1.5, >=Stealth]
+        \coordinate (O) at (0,0);
+        \coordinate (A) at (3,1);    % Vector x
+        \coordinate (B) at (1,2.5);  % Vector y
+        
+        % Proyección
+        \coordinate (P) at ($(O)!(B)!(A)$); % Proyección de B sobre A
+        
+        % Vectores
+        \draw[->, thick, blue] (O) -- (A) node[right] {$\mathbf{x}$};
+        \draw[->, thick, red] (O) -- (B) node[above] {$\mathbf{y}$};
+        
+        % Línea de proyección
+        \draw[dashed, gray] (B) -- (P);
+        \draw[thick, violet] (O) -- (P) node[midway, below] {\scriptsize Proyección};
+        
+        % Ángulo
+        \draw[gray] (0.5, 0.16) arc (18.4:68.2:0.5);
+        \node[gray] at (0.7, 0.6) {$\theta$};
+        
+        % Texto explicativo
+        \node[align=left, anchor=west] at (3.5, 2) {
+            \small \textbf{Interpretación:}\\
+            \scriptsize $\mathbf{x} \cdot \mathbf{y} > 0 \to$ Ángulo agudo ($\theta < 90^\circ$)\\
+            \scriptsize $\mathbf{x} \cdot \mathbf{y} = 0 \to$ Ortogonales ($\theta = 90^\circ$)\\
+            \scriptsize $\mathbf{x} \cdot \mathbf{y} < 0 \to$ Ángulo obtuso ($\theta > 90^\circ$)
+        };
+    \end{tikzpicture}
+\end{document}

@@ -11,12 +11,14 @@ $$\mathbf{x} + \mathbf{y} =
 \begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{pmatrix} = 
 \begin{pmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{pmatrix}.$$
 
-<figure id="fig:suma_vectores">
 
-<figcaption>Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores <span class="math inline">\(\mathbf{x}\)</span> y <span class="math inline">\(\mathbf{y}\)</span>.</figcaption>
+<figure markdown="span">
+  ![Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores $\mathbf{x}$ y $\mathbf{y}$.](imagenes/suma_vectores.svg){#suma_vectores width="80%"}
+  <figcaption class="arithmatex">Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores $\mathbf{x}$ y $\mathbf{y}$.</figcaption>
 </figure>
 
-Geométricamente, esto sigue la **ley del paralelogramo** [1.1](#fig:suma_vectores): si colocamos el inicio de $\mathbf{y}$ en la punta final de $\mathbf{x}$, el vector resultante va desde el origen de $\mathbf{x}$ hasta la punta final de $\mathbf{y}$.
+
+Geométricamente, esto sigue la **ley del paralelogramo** [1.1](#suma_vectores): si colocamos el inicio de $\mathbf{y}$ en la punta final de $\mathbf{x}$, el vector resultante va desde el origen de $\mathbf{x}$ hasta la punta final de $\mathbf{y}$.
 
 > Ejemplo Ambiental: Inventario de Emisiones Supongamos que en una zona industrial existen dos fuentes principales de contaminación: una Termoeléctrica ($\mathbf{e}_T$) y una Fábrica de Cemento ($\mathbf{e}_C$). Los vectores representan la emisión diaria (en toneladas) de tres contaminantes distintos: $[\text{CO}_2, \text{NO}_x, \text{Material Particulado}]$.
 >
@@ -69,10 +71,12 @@ $$\alpha \mathbf{x} =
 
 -   Si $\alpha < 0$, el vector **invierte su sentido** ($180^\circ$), aunque mantiene la misma línea de dirección.
 
-<figure id="fig:escalar_vector">
 
-<figcaption>Efecto geométrico de la multiplicación escalar. Nótese cómo <span class="math inline">\(\alpha=2\)</span> duplica la longitud, mientras que <span class="math inline">\(\alpha=-0.5\)</span> reduce la longitud a la mitad e invierte el sentido.</figcaption>
+<figure markdown="span">
+  ![Efecto geométrico de la multiplicación escalar. Nótese cómo α=2 duplica la longitud, mientras que α=-0.5 reduce la longitud a la mitad e invierte el sentido.](imagenes/escalar_vector.svg){#fig:escalar_vector width="80%"}
+  <figcaption class="arithmatex">Efecto geométrico de la multiplicación escalar. Nótese cómo α=2 duplica la longitud, mientras que α=-0.5 reduce la longitud a la mitad e invierte el sentido.</figcaption>
 </figure>
+
 
 #### Aplicaciones: Escalamiento y Control
 
@@ -96,23 +100,29 @@ $$\cdot : \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}, \quad (\mathbf{x}, \m
 
 #### Interpretación Geométrica y Similitud
 
-Además de la suma algebraica, el producto punto satisface la identidad geométrica:
+Además de la operación algebraica componente a componente, el producto punto satisface una identidad geométrica fundamental, ilustrada en la Figura [1.3](#fig:producto_punto):
 
 $$\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos(\theta),$$
 
-donde $\theta$ es el ángulo entre los vectores. De aquí se deduce la **Similitud Coseno**, métrica clave en IA:
+donde $\theta$ es el ángulo entre los vectores. Esta relación permite aislar el término del coseno para definir la **Similitud Coseno**, una métrica esencial en Inteligencia Artificial para medir qué tan similares son dos vectores independientemente de su magnitud:
+
+
+<figure markdown="span">
+  ![Relación entre magnitudes y ángulo. El producto punto conecta la longitud de los vectores con el coseno del ángulo θ que forman entre sí.](imagenes/producto_punto.svg){#fig:producto_punto width="80%"}
+  <figcaption class="arithmatex">Relación entre magnitudes y ángulo. El producto punto conecta la longitud de los vectores con el coseno del ángulo θ que forman entre sí.</figcaption>
+</figure>
+
 
 $$\cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert}.$$
 
-<figure id="fig:producto_punto">
+Como se observa en la Figura [1.4](#fig:producto_punto_geo), geométricamente esto equivale a evaluar la proyección o \"sombra\" de un vector sobre el otro. Si el ángulo es cero (vectores alineados), la similitud es máxima (1); si son ortogonales (90°), es nula (0).
 
-<figcaption>El producto punto relaciona las magnitudes de dos vectores con el coseno del ángulo que forman. La línea violeta representa la “sombra” o proyección de <span class="math inline">\(\mathbf{y}\)</span> sobre <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
+
+<figure markdown="span">
+  ![Interpretación de la proyección. La línea violeta muestra la componente de y que está "alineada" con x. El producto punto es el resultado de multiplicar esta proyección por la longitud total de x.](imagenes/producto_punto_cos.svg){#fig:producto_punto_geo width="80%"}
+  <figcaption class="arithmatex">Interpretación de la proyección. La línea violeta muestra la componente de y que está "alineada" con x. El producto punto es el resultado de multiplicar esta proyección por la longitud total de x.</figcaption>
 </figure>
 
-<figure id="fig:producto_punto_geo">
-
-<figcaption>Representación geométrica del producto punto. La línea violeta muestra la componente de <span class="math inline">\(\mathbf{y}\)</span> que está “alineada” con <span class="math inline">\(\mathbf{x}\)</span>. El producto punto es el producto de esta proyección por la longitud total de <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
-</figure>
 
 ##### Aplicaciones en Ingeniería y Agro
 
@@ -164,7 +174,7 @@ Esta interpretación geométrica es el primer paso hacia la comprensión de cóm
 
 ##### Dependencia de la Proyección
 
-El concepto más fundamental es la relación con la proyección ortogonal, como se ilustra en la figura [1.5](#fig:producto_punto_geometrico_corregido). El término $\lVert \mathbf{y} \rVert \cos(\theta)$ representa precisamente la longitud de la *componente* del vector $\mathbf{y}$ que está alineada con $\mathbf{x}$ (la proyección, $\mathrm{proj}_{\mathbf{x}} \mathbf{y}$).
+El concepto más fundamental es la relación con la proyección ortogonal, como se ilustra en la figura [1.4](#fig:producto_punto_geo). El término $\lVert \mathbf{y} \rVert \cos(\theta)$ representa precisamente la longitud de la *componente* del vector $\mathbf{y}$ que está alineada con $\mathbf{x}$ (la proyección, $\mathrm{proj}_{\mathbf{x}} \mathbf{y}$).
 
 Por lo tanto, el producto punto puede reescribirse como:
 
@@ -193,11 +203,6 @@ El valor del producto punto está dominado por el coseno del ángulo $\theta$, a
     $$\mathbf{x} \cdot \mathbf{y} = -\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert.$$
 
     El producto punto es *mínimo y negativo*, indicando la máxima disimilitud o incompatibilidad.
-
-<figure id="fig:producto_punto_geometrico_corregido">
-
-<figcaption>Interpretación geométrica del producto punto. El ángulo <span class="math inline">\(\theta\)</span> está dibujado entre los vectores <span class="math inline">\(\mathbf{x}\)</span> e <span class="math inline">\(\mathbf{y}\)</span>. El producto punto es proporcional a la magnitud de la proyección de <span class="math inline">\(\mathbf{y}\)</span> sobre <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
-</figure>
 
 #### Síntesis y Aplicaciones Contextuales del Producto Punto
 
@@ -241,40 +246,36 @@ En esta sección, trasladamos las operaciones de suma, escalamiento y producto p
 
 La suma de vectores requiere que ambos tengan la misma dimensión (*shape*). La multiplicación por un escalar, en cambio, utiliza un mecanismo llamado **Broadcasting**, donde el escalar se "difunde" sobre todos los elementos del vector.
 
-``` {.python language="Python" caption="Suma de vectores y multiplicación por escalar"}
-import numpy as np
-import torch
+    import numpy as np
+    import torch
 
-# 1. Suma de vectores (Agro: Integración de dosis de fertilizante)
-dosis_neta = np.array([50, 20, 10])  # N, P, K inicial
-suplemento = np.array([10,  5,  5])  # Refuerzo aplicado
-dosis_total = dosis_neta + suplemento
-print(f''Dosis Total (Vector): {dosis_total}'')
+    # 1. Suma de vectores (Agro: Integración de dosis de fertilizante)
+    dosis_neta = np.array([50, 20, 10])  # N, P, K inicial
+    suplemento = np.array([10,  5,  5])  # Refuerzo aplicado
+    dosis_total = dosis_neta + suplemento
+    print(f''Dosis Total (Vector): {dosis_total}'')
 
-# 2. Multiplicación por Escalar (Mecatrónica: Control de Ganancia)
-# Escalar una señal de sensor de torque
-torque_raw = torch.tensor([1.2, 0.8, 1.5])
-ganancia = 2.5
-torque_ajustado = ganancia * torque_raw
-print(f''Torque ajustado: {torque_ajustado}'')
-```
+    # 2. Multiplicación por Escalar (Mecatrónica: Control de Ganancia)
+    # Escalar una señal de sensor de torque
+    torque_raw = torch.tensor([1.2, 0.8, 1.5])
+    ganancia = 2.5
+    torque_ajustado = ganancia * torque_raw
+    print(f''Torque ajustado: {torque_ajustado}'')
 
 ### El Producto Punto: Cuantificando la Afinidad
 
 El producto punto es la operación más importante en IA. En Python, podemos ejecutarlo usando el operador `@` (recomendado en versiones modernas) o las funciones específicas de las librerías.
 
-``` {.python language="Python" caption="Cálculo del Producto Punto"}
-# Vectores de ejemplo (Administración: Gastos vs Presupuesto)
-unidades = np.array([10, 5, 20])   # Cantidad de productos comprados
-precios = np.array([1.5, 10.0, 0.5]) # Precio unitario por categoría
+    # Vectores de ejemplo (Administración: Gastos vs Presupuesto)
+    unidades = np.array([10, 5, 20])   # Cantidad de productos comprados
+    precios = np.array([1.5, 10.0, 0.5]) # Precio unitario por categoría
 
-# Producto punto: Suma de (unidades[i] * precios[i])
-gasto_total = np.dot(unidades, precios)
-# Forma alternativa (estándar en álgebra lineal de Python):
-gasto_total_alt = unidades @ precios
+    # Producto punto: Suma de (unidades[i] * precios[i])
+    gasto_total = np.dot(unidades, precios)
+    # Forma alternativa (estándar en álgebra lineal de Python):
+    gasto_total_alt = unidades @ precios
 
-print(f''Gasto total calculado via producto punto: ${gasto_total}'')
-```
+    print(f''Gasto total calculado via producto punto: ${gasto_total}'')
 
 ### Aplicaciones Sectoriales en Código
 
@@ -426,26 +427,28 @@ Este mecanismo permite que una red neuronal transforme datos brutos en conceptos
 
 ## Producto de Matrices
 
-Las matrices son la estructura algebraica central para representar datos tabulares, transformaciones lineales y relaciones entre variables en inteligencia artificial. A continuación, se presentan las operaciones y propiedades más relevantes para el modelado con datos.
+Las matrices constituyen la estructura algebraica fundamental para representar datos tabulares, transformaciones lineales y relaciones entre variables en el contexto de la Inteligencia Artificial. A continuación, se detallan las operaciones y propiedades esenciales para el modelado de datos.
 
-La multiplicación de matrices es el motor computacional de la Inteligencia Artificial. No solo generaliza el producto vector-vector, sino que permite realizar múltiples operaciones simultáneamente (procesamiento en lote o *batch*) y componer transformaciones lineales.
+La multiplicación de matrices actúa como el motor computacional del aprendizaje profundo. Esta operación no solo generaliza el producto punto, sino que permite ejecutar múltiples operaciones simultáneamente (lo que conocemos como procesamiento en lote o *batch*) y realizar la composición de transformaciones lineales.
 
 #### Regla de Dimensiones
 
-Para que el producto $\mathbf{A}\mathbf{B}$ exista, las dimensiones internas deben coincidir ("el ancho de la primera igual al alto de la segunda").
+Para que el producto matricial $\mathbf{A}\mathbf{B}$ esté definido, las dimensiones internas deben coincidir (es decir, el número de columnas de la primera debe igualar al número de filas de la segunda):
 
 $$\underbrace{\mathbf{A}}_{m \times \mathbf{n}} \quad \times \quad \underbrace{\mathbf{B}}_{\mathbf{n} \times p} \quad = \quad \underbrace{\mathbf{C}}_{m \times p}$$
 
-##### Definición formal
+##### Definición Formal
 
-Dadas $\mathbf{A} \in \mathbb{R}^{m \times n}$ y $\mathbf{B} \in \mathbb{R}^{n \times p}$, su producto $\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{m \times p}$ se define elemento a elemento como el producto punto entre la fila $i$ de $\mathbf{A}$ y la columna $j$ de $\mathbf{B}$:
+Dadas $\mathbf{A} \in \mathbb{R}^{m \times n}$ y $\mathbf{B} \in \mathbb{R}^{n \times p}$, su producto $\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{m \times p}$ se define entrada por entrada. Como se ilustra conceptualmente en la Figura [1.5](#fig:mult_matrices), el valor $c_{ij}$ se obtiene mediante el producto punto entre la fila $i$ de $\mathbf{A}$ y la columna $j$ de $\mathbf{B}$:
 
 $$c_{ij} = \mathbf{fila}_i(\mathbf{A}) \cdot \mathbf{columna}_j(\mathbf{B}) = \sum_{k=1}^{n} a_{ik} b_{kj}.$$
 
-<figure id="fig:mult_matrices">
 
-<figcaption>Lógica del producto matricial: El elemento <span class="math inline">\(c_{ij}\)</span> concentra la interacción entre toda la fila <span class="math inline">\(i\)</span> de la primera matriz y toda la columna <span class="math inline">\(j\)</span> de la segunda.</figcaption>
+<figure markdown="span">
+  ![Visualización del producto matricial. El elemento resultante $c_{ij}$ captura la interacción total entre la fila $i$ de la matriz izquierda y la columna $j$ de la matriz derecha.](imagenes/producto_matriz_vector.svg){#fig:mult_matrices width="80%"}
+  <figcaption class="arithmatex">Visualización del producto matricial. El elemento resultante $c_{ij}$ captura la interacción total entre la fila $i$ de la matriz izquierda y la columna $j$ de la matriz derecha.</figcaption>
 </figure>
+
 
 **Propiedades clave:**
 
@@ -524,7 +527,10 @@ En el contexto del análisis de datos, el determinante representa el **factor de
 
 Para una matriz de $\mathbb{R}^{2 \times 2}$, la fórmula es:
 
-$$\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc.$$
+$$\begin{vmatrix} 
+a & b \\ 
+c & d 
+\end{vmatrix} = ad - bc$$
 
 ##### Singularidad e Invertibilidad
 
@@ -584,39 +590,60 @@ Como el determinante es no nulo, la inversa existe y el modelo tiene solución �
 
 $$(\mathbf{X}^\top \mathbf{X})^{-1} = \frac{1}{6} \begin{pmatrix} 2 & -2 \\ -2 & 5 \end{pmatrix}.$$
 
-## Implementación en Python: El operador @
+## Implementación en Python: Operaciones Matriciales
 
-En Python científico (NumPy), **nunca** utilizamos bucles `for` para multiplicar matrices; eso sería extremadamente lento. En su lugar, utilizamos operaciones vectorizadas altamente optimizadas.
+En el ecosistema de Python científico (NumPy), las operaciones matriciales están altamente optimizadas. A diferencia de otros lenguajes donde se requieren bucles, aquí operamos directamente sobre las estructuras de datos.
 
-Desde Python 3.5, el operador estándar para el producto matricial es la arroba (`@`).
+### El Operador Producto (@)
 
-``` {.python language="Python" caption="Cálculo de costos (Lotes x Proveedores)"}
-import numpy as np
+Desde Python 3.5, el estándar para la multiplicación de matrices es el operador arroba (`@`). Este operador verifica automáticamente la consistencia de las dimensiones internas.
 
-# 1. Definimos las matrices del ejemplo anterior
-# Matriz A: Requerimientos (2 lotes, 3 insumos)
-A = np.array([
-    [10, 20, 5],
-    [15, 10, 2]
-])
+### Álgebra Lineal con `numpy.linalg`
 
-# Matriz B: Precios (3 insumos, 2 proveedores)
-B = np.array([
-    [2, 3],
-    [4, 4],
-    [10, 8]
-])
+Para operaciones más avanzadas como determinantes, trazas e inversas, utilizamos el submódulo de álgebra lineal. A continuación, se presenta una implementación completa.
 
-# 2. Realizamos el producto matricial
-# La dimension interna (3) coincide: (2x3) @ (3x2) -> (2x2)
-C = A @ B
+    import numpy as np
 
-print(''Matriz de Costos C:\n'', C)
+    # --- 1. PRODUCTO MATRICIAL (@) ---
+    # Matriz A (2x3) y B (3x2)
+    A = np.array([[10, 20, 5], 
+                  [15, 10, 2]])
+    B = np.array([[2, 3], 
+                  [4, 4], 
+                  [10, 8]])
 
-# --- Salida esperada ---
-# [[150 150]
-#  [ 90 101]]
-```
+    # Producto punto generalizado
+    C = A @ B
+    print(f"Producto C (2x2):\n{C}\n")
+
+    # --- 2. PROPIEDADES ---
+    # Ejemplo A: Matriz 2x2
+    M_2x2 = np.array([[4, 1],
+                      [2, 3]])
+
+    # Traza (suma diagonal) y Determinante
+    traza_2 = np.trace(M_2x2)       
+    det_2   = np.linalg.det(M_2x2)  
+
+    print(f"Matriz 2x2 -> Traza: {traza_2}, Det: {det_2:.2f}")
+
+    # --- 3. INVERSA Y VERIFICACIÓN ---
+    M_3x3 = np.array([[1, 0, 2], [0, 3, 1], [2, 1, 0]])
+    det_3 = np.linalg.det(M_3x3)
+
+    if det_3 != 0:
+        M_inv = np.linalg.inv(M_3x3)
+        
+        # VERIFICACIÓN: A @ A_inv = Identidad
+        # Usamos allclose por precisión flotante
+        identidad_calc = M_3x3 @ M_inv
+        es_identidad = np.allclose(identidad_calc, np.eye(3))
+        
+        print(f"¿Es Identidad? {es_identidad}")
+    else:
+        print("Matriz singular.")
+
+<div class="admonition info"><p class="admonition-title">Nota sobre Punto Flotante</p> Al calcular la inversa, es común obtener números como `0.9999999` en lugar de `1.0` debido a la precisión finita de las computadoras. Por eso, en lugar de comparar con `==`, utilizamos `np.allclose()` para verificar si el resultado es matemáticamente correcto dentro de una tolerancia aceptable. </div>
 
 #### Errores comunes y buenas prácticas
 
@@ -628,21 +655,17 @@ print(''Matriz de Costos C:\n'', C)
 
 2.  **Gestión de dimensiones:** Si intenta multiplicar matrices incompatibles, NumPy arrojará un error. Es vital verificar siempre `.shape`.
 
-    ``` {.python language="Python"}
-    # Intentar multiplicar A por sí misma: (2x3) @ (2x3)
-    try:
-        Error = A @ A 
-    except ValueError as e:
-        print(''Error de dimensión:'', e)
-        
-    # Salida:
-    # ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0...
-    # (size 3 is different from 2)
-    ```
+        # Intentar multiplicar A por sí misma: (2x3) @ (2x3)
+        try:
+            Error = A @ A 
+        except ValueError as e:
+            print(''Error de dimensión:'', e)
+            
+        # Salida:
+        # ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0...
+        # (size 3 is different from 2)
 
-::: tcolorbox
-En el código de redes neuronales (como TensorFlow o PyTorch), la operación `capa_oculta @ pesos` ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo.
-:::
+<div class="admonition warning"> En el código de redes neuronales (como TensorFlow o PyTorch), la operación `capa_oculta @ pesos` ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo. </div>
 
 ## Operaciones con Tensores en Bioingeniería
 
@@ -670,39 +693,35 @@ A diferencia de las matrices, donde el producto punto es la estrella, en los ten
 
 En Python, bibliotecas como `NumPy`, `TensorFlow` o `PyTorch` tratan estas estructuras de forma nativa. Nótese que aquí usamos el término `shape` (forma) para describir las dimensiones del tensor.
 
-``` {.python language="Python" caption="Procesamiento de un tensor volumétrico (MRI Simulado)"}
-import numpy as np
+    import numpy as np
 
-# 1. Simular una MRI cerebral (Tensor 3D)
-# Dimensiones: (Alto, Ancho, Profundidad)
-# Valores aleatorios simulando intensidad de señal
-mri_tensor = np.random.rand(256, 256, 120)
+    # 1. Simular una MRI cerebral (Tensor 3D)
+    # Dimensiones: (Alto, Ancho, Profundidad)
+    # Valores aleatorios simulando intensidad de señal
+    mri_tensor = np.random.rand(256, 256, 120)
 
-print(f''Forma original del tensor: {mri_tensor.shape}'')
-# Salida: (256, 256, 120)
+    print(f''Forma original del tensor: {mri_tensor.shape}'')
+    # Salida: (256, 256, 120)
 
-# 2. Operación de Slicing (Rebanado)
-# El médico quiere ver solo la rebanada central (corte axial)
-corte_central = mri_tensor[:, :, 60] 
+    # 2. Operación de Slicing (Rebanado)
+    # El médico quiere ver solo la rebanada central (corte axial)
+    corte_central = mri_tensor[:, :, 60] 
 
-print(f''Forma del corte 2D: {corte_central.shape}'')
-# Salida: (256, 256) -> Ahora es una matriz clásica
+    print(f''Forma del corte 2D: {corte_central.shape}'')
+    # Salida: (256, 256) -> Ahora es una matriz clásica
 
-# 3. Operación de Máscara (Thresholding)
-# Queremos resaltar solo tejidos con alta intensidad (posibles anomalías)
-# Creamos una máscara booleana (Tensor de True/False)
-mascara_tejido = mri_tensor > 0.8
+    # 3. Operación de Máscara (Thresholding)
+    # Queremos resaltar solo tejidos con alta intensidad (posibles anomalías)
+    # Creamos una máscara booleana (Tensor de True/False)
+    mascara_tejido = mri_tensor > 0.8
 
-# Aplicamos la máscara (Hadamard product implícito)
-tejido_resaltado = mri_tensor * mascara_tejido
+    # Aplicamos la máscara (Hadamard product implícito)
+    tejido_resaltado = mri_tensor * mascara_tejido
 
-# 4. Flattening (Preparar para IA)
-input_vector = mri_tensor.flatten()
+    # 4. Flattening (Preparar para IA)
+    input_vector = mri_tensor.flatten()
 
-print(f''Vector de entrada para la Red Neuronal: {input_vector.shape}'')
-# Salida: (7864320,) -> Un vector gigante
-```
+    print(f''Vector de entrada para la Red Neuronal: {input_vector.shape}'')
+    # Salida: (7864320,) -> Un vector gigante
 
-::: tcolorbox
-El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño ($256^3$) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la **shape** del tensor es crítico.
-:::
+<div class="admonition warning"> El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño ($256^3$) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la **shape** del tensor es crítico. </div>

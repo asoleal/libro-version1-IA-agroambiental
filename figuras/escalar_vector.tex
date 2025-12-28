@@ -1,0 +1,25 @@
+\documentclass[tikz, border=5pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta} % Necesario para >=Stealth
+
+\begin{document}
+\begin{tikzpicture}[scale=1.5, >=Stealth]
+        \coordinate (O) at (0,0);
+        
+        % Eje guía
+        \draw[dotted, gray] (-2, -1) -- (4, 2);
+        
+        % Vector Original
+        \draw[->, very thick, blue] (O) -- (1, 0.5) node[midway, above left] {$\mathbf{x}$};
+        
+        % Vector Escalado (x2) - Desplazado ligeramente para ver mejor
+        \draw[->, thick, violet] (0, -0.2) -- (2, 0.8) node[right] {$\alpha \mathbf{x} \ (\alpha=2)$};
+        
+        % Vector Invertido y Reducido (x -0.5)
+        \draw[->, thick, red] (0, 0.2) -- (-0.5, -0.05) node[left] {$\alpha \mathbf{x} \ (\alpha=-0.5)$};
+        
+        % Punto origen
+        \fill[black] (O) circle (1.5pt) node[below] {$0$};
+    \end{tikzpicture}
+\end{document}

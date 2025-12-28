@@ -1,0 +1,42 @@
+\documentclass[tikz, border=5pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta} % Necesario para >=Stealth
+
+\begin{document}
+    \begin{tikzpicture}[scale=1.2, >=Stealth]
+        % --- Configuración de Coordenadas ---
+        % Usamos valores genéricos para que el dibujo se vea claro
+        % (No usamos los valores de emisiones 140 vs 7 porque la escala quedaría mal)
+        \coordinate (O) at (0,0);      % Origen
+        \coordinate (X) at (4, 1);     % Vector x
+        \coordinate (Y) at (1, 3);     % Vector y
+        \coordinate (R) at (5, 4);     % Resultante (4+1, 1+3)
+        
+        % --- Ejes ---
+        \draw[->, gray!50] (-1,0) -- (6,0) node[right, black] {\small Componente $i$};
+        \draw[->, gray!50] (0,-1) -- (0,5) node[above, black] {\small Componente $j$};
+        
+        % --- Líneas del Paralelogramo (Proyecciones) ---
+        \draw[dashed, gray] (X) -- (R);
+        \draw[dashed, gray] (Y) -- (R);
+        
+        % --- Vectores Principales ---
+        % Vector x (Azul)
+        \draw[->, thick, blue] (O) -- (X) node[midway, below right] {$\mathbf{x}$};
+        
+        % Vector y (Rojo)
+        \draw[->, thick, red!80] (O) -- (Y) node[midway, above left] {$\mathbf{y}$};
+        
+        % Vector Resultante (Morado - Más grueso)
+        \draw[->, very thick, violet] (O) -- (R) node[anchor=south west] {$\mathbf{x} + \mathbf{y}$};
+        
+        % --- Vector ''Fantasma'' (Tip-to-Tail) ---
+        % Esto ayuda a entender que sumamos y a x
+        \draw[->, dashed, red!60] (X) -- (R) node[midway, right] {\scriptsize $\mathbf{y}$ (trasladado)};
+        
+        % --- Decoración de ángulo (Opcional) ---
+        \fill[violet] (R) circle (2pt); % Punto final
+        
+    \end{tikzpicture}
+    \end{document}

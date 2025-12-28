@@ -10,7 +10,7 @@ John Jairo Leal Gómez
 
 Universidad Nacional de Colombia
 
-2025-12-27
+2025-12-28
 :::
 
 # El Motor de la IA: De Escalares a Tensores
@@ -260,52 +260,50 @@ En la práctica de la inteligencia artificial moderna ---dominada por librerías
 
 A continuación, se presentan las formas para definir los datos en sus diferentes presentaciones:
 
-``` {.python language="Python" caption="Implementación y Exploración de Estructuras (NumPy y PyTorch)"}
-import numpy as np
-import torch
+    import numpy as np
+    import torch
 
-print("--- BLOQUE 1: CIENCIA DE DATOS (NumPy) ---")
+    print("--- BLOQUE 1: CIENCIA DE DATOS (NumPy) ---")
 
-# 1. Escalar (Rango 0)
-s = 28.5 
-print(f"Escalar (Humedad): {s} | Tipo: {type(s)}")
+    # 1. Escalar (Rango 0)
+    s = 28.5 
+    print(f"Escalar (Humedad): {s} | Tipo: {type(s)}")
 
-# 2. Vector (Rango 1): Perfil de suelo [N, P, K, pH]
-v = np.array([120, 50, 3, 6.2])
-print(f"Vector: {v} | Forma: {v.shape}")
+    # 2. Vector (Rango 1): Perfil de suelo [N, P, K, pH]
+    v = np.array([120, 50, 3, 6.2])
+    print(f"Vector: {v} | Forma: {v.shape}")
 
-# 3. Matriz (Rango 2): Ensayo con 3 parcelas y 2 variables (Rendimiento, pH)
-M = np.array([[110, 6.1], 
-              [130, 6.3], 
-              [100, 5.9]])
-print(f"Matriz (Parcelas x Vars):\n{M}")
+    # 3. Matriz (Rango 2): Ensayo con 3 parcelas y 2 variables (Rendimiento, pH)
+    M = np.array([[110, 6.1], 
+                  [130, 6.3], 
+                  [100, 5.9]])
+    print(f"Matriz (Parcelas x Vars):\n{M}")
 
-# Operación de Slicing (Acceso a datos):
-# "Deme el pH (columna 1) de la segunda parcela (fila 1)"
-ph_parcela_2 = M[1, 1] 
-print(f"--> pH de la parcela 2: {ph_parcela_2}")
+    # Operación de Slicing (Acceso a datos):
+    # "Deme el pH (columna 1) de la segunda parcela (fila 1)"
+    ph_parcela_2 = M[1, 1] 
+    print(f"--> pH de la parcela 2: {ph_parcela_2}")
 
 
-print("\n--- BLOQUE 2: INTELIGENCIA ARTIFICIAL (PyTorch) ---")
+    print("\n--- BLOQUE 2: INTELIGENCIA ARTIFICIAL (PyTorch) ---")
 
-# 4. Tensor Rango 3: Imagen individual para un robot (Canales, Alto, Ancho)
-# PyTorch prefiere el formato (C, H, W) para procesamiento
-img_robot = torch.rand(3, 128, 128) 
-print(f"Imagen Robot (C,H,W): {img_robot.shape} | Rango: {img_robot.ndim}")
+    # 4. Tensor Rango 3: Imagen individual para un robot (Canales, Alto, Ancho)
+    # PyTorch prefiere el formato (C, H, W) para procesamiento
+    img_robot = torch.rand(3, 128, 128) 
+    print(f"Imagen Robot (C,H,W): {img_robot.shape} | Rango: {img_robot.ndim}")
 
-# 5. Tensor Rango 4: Serie de Tiempo Satelital (Multidimensional)
-# Dimensiones: (Tiempo/Batch, Canales, Alto, Ancho)
-# Ejemplo: 10 fechas, 5 bandas espectrales, resolución 64x64
-serie_satelital = torch.randn(10, 5, 64, 64)
+    # 5. Tensor Rango 4: Serie de Tiempo Satelital (Multidimensional)
+    # Dimensiones: (Tiempo/Batch, Canales, Alto, Ancho)
+    # Ejemplo: 10 fechas, 5 bandas espectrales, resolución 64x64
+    serie_satelital = torch.randn(10, 5, 64, 64)
 
-print(f"Serie Satelital: {serie_satelital.shape}")
+    print(f"Serie Satelital: {serie_satelital.shape}")
 
-# Acceso complejo: 
-# "Valor del pixel central (32,32) en la Banda Roja (índice 0) de la 
-# última fecha (índice -1)"
-pixel_val = serie_satelital[-1, 0, 32, 32]
-print(f"--> Valor pixel específico: {pixel_val:.4f}")
-```
+    # Acceso complejo: 
+    # "Valor del pixel central (32,32) en la Banda Roja (índice 0) de la 
+    # última fecha (índice -1)"
+    pixel_val = serie_satelital[-1, 0, 32, 32]
+    print(f"--> Valor pixel específico: {pixel_val:.4f}")
 
 ### Salida {#salida .unnumbered}
 
@@ -422,42 +420,40 @@ Aunque la definición matemática es estricta, en librerías como `NumPy` o `PyT
 
 A continuación, implementamos estos conceptos y verificamos la propiedad crítica de la inversión del producto $(\mathbf{AB})^\top = \mathbf{B}^\top \mathbf{A}^\top$.
 
-``` {.python language="Python" caption="Transposición y Verificación de Propiedades en PyTorch"}
-import torch
+    import torch
 
-print("--- 1. EL 'ENGAÑO' DE LOS VECTORES 1D ---")
-# Vector plano (común en programación básica)
-v_flat = torch.tensor([1, 2, 3]) 
-print(f"Vector plano: {v_flat.shape}")
-print(f"Transpuesta v.T: {v_flat.T.shape} (¡No cambia!)")
+    print("--- 1. EL 'ENGAÑO' DE LOS VECTORES 1D ---")
+    # Vector plano (común en programación básica)
+    v_flat = torch.tensor([1, 2, 3]) 
+    print(f"Vector plano: {v_flat.shape}")
+    print(f"Transpuesta v.T: {v_flat.T.shape} (¡No cambia!)")
 
-# Vector Matemático (Columna explícita)
-# Usamos .unsqueeze(1) o definimos los corchetes dobles [[...]]
-v_col = v_flat.unsqueeze(1) # Transforma (3) -> (3, 1)
-print(f"Vector Columna:\n{v_col.shape}")
-print(f"Vector Fila (v_col.T):\n{v_col.T.shape}")
+    # Vector Matemático (Columna explícita)
+    # Usamos .unsqueeze(1) o definimos los corchetes dobles [[...]]
+    v_col = v_flat.unsqueeze(1) # Transforma (3) -> (3, 1)
+    print(f"Vector Columna:\n{v_col.shape}")
+    print(f"Vector Fila (v_col.T):\n{v_col.T.shape}")
 
-print("\n--- 2. MATRICES Y PROPIEDAD (AB)^T ---")
-# A: Matriz de datos (2 muestras, 3 variables)
-A = torch.tensor([[1., 2., 3.], 
-                  [4., 5., 6.]]) # Shape (2, 3)
+    print("\n--- 2. MATRICES Y PROPIEDAD (AB)^T ---")
+    # A: Matriz de datos (2 muestras, 3 variables)
+    A = torch.tensor([[1., 2., 3.], 
+                      [4., 5., 6.]]) # Shape (2, 3)
 
-# B: Matriz de transformación (3 entradas, 2 salidas)
-B = torch.tensor([[0.1, 0.2], 
-                  [0.3, 0.4], 
-                  [0.5, 0.6]])   # Shape (3, 2)
+    # B: Matriz de transformación (3 entradas, 2 salidas)
+    B = torch.tensor([[0.1, 0.2], 
+                      [0.3, 0.4], 
+                      [0.5, 0.6]])   # Shape (3, 2)
 
-# Operación: Transpuesta del producto
-lhs = torch.matmul(A, B).T   # (AB)^T
+    # Operación: Transpuesta del producto
+    lhs = torch.matmul(A, B).T   # (AB)^T
 
-# Verificación de la propiedad teórica
-# INCORRECTO: A.T @ B.T (Error de dimensiones o resultado erróneo)
-# CORRECTO: B.T @ A.T (Invirtiendo el orden)
-rhs = torch.matmul(B.T, A.T) 
+    # Verificación de la propiedad teórica
+    # INCORRECTO: A.T @ B.T (Error de dimensiones o resultado erróneo)
+    # CORRECTO: B.T @ A.T (Invirtiendo el orden)
+    rhs = torch.matmul(B.T, A.T) 
 
-print(f"Forma de (AB).T: {lhs.shape}")
-print(f"¿Es igual a B.T @ A.T?: {torch.allclose(lhs, rhs)}")
-```
+    print(f"Forma de (AB).T: {lhs.shape}")
+    print(f"¿Es igual a B.T @ A.T?: {torch.allclose(lhs, rhs)}")
 
 ::: salida
 --- 1. EL 'ENGAÑO' DE LOS VECTORES 1D --- Vector plano: torch.Size(\[3\]) Transpuesta v.T: torch.Size(\[3\]) (¡No cambia!) Vector Columna: torch.Size(\[3, 1\]) Vector Fila (v_col.T): torch.Size(\[1, 3\])
@@ -485,26 +481,24 @@ $$\mathbf{I} =
 \mathbf{I}_{perm} = 
 \left[ \text{Alto}, \text{Ancho}, \text{Canales} \right]$$
 
-``` {.python language="Python" caption="Permutación de Ejes en PyTorch"}
-import torch
+    import torch
 
-# Tensor 3D: Una imagen RGB simulada (3 canales, 4 alto, 4 ancho)
-# Formato PyTorch: (C, H, W)
-imagen_torch = torch.rand(3, 4, 4)
-print(f"Forma original (C, H, W): {imagen_torch.shape}")
+    # Tensor 3D: Una imagen RGB simulada (3 canales, 4 alto, 4 ancho)
+    # Formato PyTorch: (C, H, W)
+    imagen_torch = torch.rand(3, 4, 4)
+    print(f"Forma original (C, H, W): {imagen_torch.shape}")
 
-# PROBLEMA: Las librerías de visualización (matplotlib) esperan (H, W, C)
-# SOLUCIÓN: Permutar los ejes.
-# Índice 0->2 (Canales al final)
-# Índice 1->0 (Alto al principio)
-# Índice 2->1 (Ancho al medio)
-imagen_plot = imagen_torch.permute(1, 2, 0)
+    # PROBLEMA: Las librerías de visualización (matplotlib) esperan (H, W, C)
+    # SOLUCIÓN: Permutar los ejes.
+    # Índice 0->2 (Canales al final)
+    # Índice 1->0 (Alto al principio)
+    # Índice 2->1 (Ancho al medio)
+    imagen_plot = imagen_torch.permute(1, 2, 0)
 
-print(f"Forma permutada (H, W, C): {imagen_plot.shape}")
+    print(f"Forma permutada (H, W, C): {imagen_plot.shape}")
 
-# Cuidado: .T (transpuesta simple) en PyTorch no siempre funciona intuitivamente en tensores > 2D
-# Es preferible ser explícito con .permute()
-```
+    # Cuidado: .T (transpuesta simple) en PyTorch no siempre funciona intuitivamente en tensores > 2D
+    # Es preferible ser explícito con .permute()
 
 ::: salida
 Forma original (C, H, W): torch.Size(\[3, 4, 4\]) Forma permutada (H, W, C): torch.Size(\[4, 4, 3\])
@@ -600,37 +594,35 @@ $$\mathbf{A} \approx \mathbf{B} \iff |a_{ij} - b_{ij}| < \epsilon, \quad \forall
 
 Donde $\epsilon$ (epsilon) suele ser un valor muy pequeño (ej. $10^{-5}$ o $10^{-8}$).
 
-``` {.python language="Python" caption="El peligro de la igualdad estricta y la solución con allclose"}
-import torch
+    import torch
 
-print("--- 1. ELEMENT-WISE VS ESTRUCTURA ---")
-A = torch.tensor([1.0, 2.0])
-B = torch.tensor([1.0, 5.0]) # El segundo elemento difiere
+    print("--- 1. ELEMENT-WISE VS ESTRUCTURA ---")
+    A = torch.tensor([1.0, 2.0])
+    B = torch.tensor([1.0, 5.0]) # El segundo elemento difiere
 
-# Comparación elemento a elemento (Genera máscara)
-print(f"Máscara: {A == B}") 
-# Salida esperada: [True, False]
+    # Comparación elemento a elemento (Genera máscara)
+    print(f"Máscara: {A == B}") 
+    # Salida esperada: [True, False]
 
-print("\n--- 2. EL PROBLEMA DEL PUNTO FLOTANTE ---")
-# Matemáticamente: (Raíz de 2) al cuadrado = 2
-raiz = torch.sqrt(torch.tensor(2.0))
-calculado = raiz * raiz
-teorico   = torch.tensor(2.0)
+    print("\n--- 2. EL PROBLEMA DEL PUNTO FLOTANTE ---")
+    # Matemáticamente: (Raíz de 2) al cuadrado = 2
+    raiz = torch.sqrt(torch.tensor(2.0))
+    calculado = raiz * raiz
+    teorico   = torch.tensor(2.0)
 
-# Mostramos con 10 decimales para revelar el "error fantasma"
-print(f"Valor Teórico:   {teorico.item():.10f}")
-print(f"Valor Calculado: {calculado.item():.10f}")
+    # Mostramos con 10 decimales para revelar el "error fantasma"
+    print(f"Valor Teórico:   {teorico.item():.10f}")
+    print(f"Valor Calculado: {calculado.item():.10f}")
 
-# Intento 1: Igualdad Estricta (==)
-# Falla porque 2.0000000000 != 2.0000002384
-print(f"¿Igualdad Estricta? {calculado == teorico}")
+    # Intento 1: Igualdad Estricta (==)
+    # Falla porque 2.0000000000 != 2.0000002384
+    print(f"¿Igualdad Estricta? {calculado == teorico}")
 
-print("\n--- 3. SOLUCIÓN: TOLERANCIA (ALLCLOSE) ---")
-# Verificamos si la diferencia es despreciable
-# atol = tolerancia absoluta
-es_cercano = torch.allclose(calculado, teorico, atol=1e-05)
-print(f"¿Igualdad con tolerancia (allclose)? {es_cercano}")
-```
+    print("\n--- 3. SOLUCIÓN: TOLERANCIA (ALLCLOSE) ---")
+    # Verificamos si la diferencia es despreciable
+    # atol = tolerancia absoluta
+    es_cercano = torch.allclose(calculado, teorico, atol=1e-05)
+    print(f"¿Igualdad con tolerancia (allclose)? {es_cercano}")
 
 ::: salida
 --- 1. ELEMENT-WISE VS ESTRUCTURA --- Máscara: tensor(\[ True, False\])
@@ -660,8 +652,8 @@ La Figura [1.1](#fig:vector_componentes_norma) ilustra cómo las componentes def
 
 
 <figure markdown="span">
-  ![Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.](imagenes/figura_vector.svg){#fig:vector_componentes_norma width="70%"}
-  <figcaption class="arithmatex">Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.</figcaption>
+  ![Representación geométrica: la norma es la longitud de la hipotenusa y θ determina la orientación.](imagenes/figura_vector.svg){#fig:vector_componentes_norma width="70%"}
+  <figcaption class="arithmatex">Representación geométrica: la norma es la longitud de la hipotenusa y θ determina la orientación.</figcaption>
 </figure>
 
 
@@ -722,24 +714,22 @@ En el ecosistema de Python (NumPy y PyTorch), el cálculo de la magnitud y la di
 
 Aunque la fórmula es $\sqrt{\sum x_i^2}$, en código utilizamos funciones dedicadas como `torch.norm` o `numpy.linalg.norm`. Esto previene errores de desbordamiento numérico (overflow) cuando los números son muy grandes.
 
-``` {.python language="Python" caption="Cálculo de la Magnitud (Norma Euclidiana)"}
-import torch
+    import torch
 
-# Ejemplo Administrativo: Presupuesto [Infra, Capa]
-p = torch.tensor([4.0, 3.0])
+    # Ejemplo Administrativo: Presupuesto [Infra, Capa]
+    p = torch.tensor([4.0, 3.0])
 
-# FORMA 1: Manual (Solo con fines educativos)
-# Paso a paso: Cuadrado -> Suma -> Raíz
-norma_manual = torch.sqrt(torch.sum(p**2))
+    # FORMA 1: Manual (Solo con fines educativos)
+    # Paso a paso: Cuadrado -> Suma -> Raíz
+    norma_manual = torch.sqrt(torch.sum(p**2))
 
-# FORMA 2: Profesional (La que usarás siempre)
-# Es más rápida y numéricamente estable
-norma_pro = torch.norm(p)
+    # FORMA 2: Profesional (La que usarás siempre)
+    # Es más rápida y numéricamente estable
+    norma_pro = torch.norm(p)
 
-print(f"Vector p: {p}")
-print(f"Norma Manual: {norma_manual.item()}") # 5.0
-print(f"Norma Pro:    {norma_pro.item()}")    # 5.0
-```
+    print(f"Vector p: {p}")
+    print(f"Norma Manual: {norma_manual.item()}") # 5.0
+    print(f"Norma Pro:    {norma_pro.item()}")    # 5.0
 
 #### Dirección y Normalización
 
@@ -751,39 +741,37 @@ Aquí distinguimos entre 2D y $N$-Dimensiones:
 
 $$\hat{\mathbf{x}} = \frac{\mathbf{x}}{\lVert \mathbf{x} \rVert} = (\cos \alpha, \cos \beta, \cos \gamma)^\top$$
 
-``` {.python language="Python" caption="De la Orientación a la Normalización"}
-import torch
-import math
+    import torch
+    import math
 
-print("--- 1. DIRECCIÓN EN 2D (PRESUPUESTO) ---")
-p = torch.tensor([4.0, 3.0]) # x=4, y=3
+    print("--- 1. DIRECCIÓN EN 2D (PRESUPUESTO) ---")
+    p = torch.tensor([4.0, 3.0]) # x=4, y=3
 
-# Usamos atan2(y, x). Nota: El orden es (y, x)
-theta_rad = torch.atan2(p[1], p[0])
+    # Usamos atan2(y, x). Nota: El orden es (y, x)
+    theta_rad = torch.atan2(p[1], p[0])
 
-# Convertimos radianes a grados para humanos
-theta_deg = torch.rad2deg(theta_rad)
+    # Convertimos radianes a grados para humanos
+    theta_deg = torch.rad2deg(theta_rad)
 
-print(f"Ángulo (theta): {theta_deg.item():.1f} grados")
+    print(f"Ángulo (theta): {theta_deg.item():.1f} grados")
 
 
-print("\n--- 2. DIRECCIÓN EN 3D (CALIDAD AIRE) ---")
-# Vector: [PM10, NO2, O3]
-a = torch.tensor([40.0, 30.0, 50.0])
+    print("\n--- 2. DIRECCIÓN EN 3D (CALIDAD AIRE) ---")
+    # Vector: [PM10, NO2, O3]
+    a = torch.tensor([40.0, 30.0, 50.0])
 
-# Calculamos la norma
-magnitud = torch.norm(a)
+    # Calculamos la norma
+    magnitud = torch.norm(a)
 
-# Cosenos Directores: Dividimos el vector por su magnitud
-# Esto crea un 'Vector Unitario' (Unit Vector)
-cosenos_directores = a / magnitud
+    # Cosenos Directores: Dividimos el vector por su magnitud
+    # Esto crea un 'Vector Unitario' (Unit Vector)
+    cosenos_directores = a / magnitud
 
-print(f"Magnitud total: {magnitud:.2f}")
-print(f"Cosenos Directores (Dirección):\n{cosenos_directores}")
+    print(f"Magnitud total: {magnitud:.2f}")
+    print(f"Cosenos Directores (Dirección):\n{cosenos_directores}")
 
-# Verificación: La norma de los cosenos directores siempre es 1
-print(f"Comprobación (Norma del unitario): {torch.norm(cosenos_directores):.1f}")
-```
+    # Verificación: La norma de los cosenos directores siempre es 1
+    print(f"Comprobación (Norma del unitario): {torch.norm(cosenos_directores):.1f}")
 
 ::: salida
 --- 1. DIRECCIÓN EN 2D (PRESUPUESTO) --- Ángulo (theta): 36.9 grados
@@ -975,12 +963,14 @@ $$\mathbf{x} + \mathbf{y} =
 \begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{pmatrix} = 
 \begin{pmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{pmatrix}.$$
 
-<figure id="fig:suma_vectores">
 
-<figcaption>Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores <span class="math inline">\(\mathbf{x}\)</span> y <span class="math inline">\(\mathbf{y}\)</span>.</figcaption>
+<figure markdown="span">
+  ![Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores $\mathbf{x}$ y $\mathbf{y}$.](imagenes/suma_vectores.svg){#suma_vectores width="80%"}
+  <figcaption class="arithmatex">Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores $\mathbf{x}$ y $\mathbf{y}$.</figcaption>
 </figure>
 
-Geométricamente, esto sigue la **ley del paralelogramo** [2.1](#fig:suma_vectores): si colocamos el inicio de $\mathbf{y}$ en la punta final de $\mathbf{x}$, el vector resultante va desde el origen de $\mathbf{x}$ hasta la punta final de $\mathbf{y}$.
+
+Geométricamente, esto sigue la **ley del paralelogramo** [2.1](#suma_vectores): si colocamos el inicio de $\mathbf{y}$ en la punta final de $\mathbf{x}$, el vector resultante va desde el origen de $\mathbf{x}$ hasta la punta final de $\mathbf{y}$.
 
 > Ejemplo Ambiental: Inventario de Emisiones Supongamos que en una zona industrial existen dos fuentes principales de contaminación: una Termoeléctrica ($\mathbf{e}_T$) y una Fábrica de Cemento ($\mathbf{e}_C$). Los vectores representan la emisión diaria (en toneladas) de tres contaminantes distintos: $[\text{CO}_2, \text{NO}_x, \text{Material Particulado}]$.
 >
@@ -1033,10 +1023,12 @@ $$\alpha \mathbf{x} =
 
 -   Si $\alpha < 0$, el vector **invierte su sentido** ($180^\circ$), aunque mantiene la misma línea de dirección.
 
-<figure id="fig:escalar_vector">
 
-<figcaption>Efecto geométrico de la multiplicación escalar. Nótese cómo <span class="math inline">\(\alpha=2\)</span> duplica la longitud, mientras que <span class="math inline">\(\alpha=-0.5\)</span> reduce la longitud a la mitad e invierte el sentido.</figcaption>
+<figure markdown="span">
+  ![Efecto geométrico de la multiplicación escalar. Nótese cómo α=2 duplica la longitud, mientras que α=-0.5 reduce la longitud a la mitad e invierte el sentido.](imagenes/escalar_vector.svg){#fig:escalar_vector width="80%"}
+  <figcaption class="arithmatex">Efecto geométrico de la multiplicación escalar. Nótese cómo α=2 duplica la longitud, mientras que α=-0.5 reduce la longitud a la mitad e invierte el sentido.</figcaption>
 </figure>
+
 
 #### Aplicaciones: Escalamiento y Control
 
@@ -1060,23 +1052,29 @@ $$\cdot : \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}, \quad (\mathbf{x}, \m
 
 #### Interpretación Geométrica y Similitud
 
-Además de la suma algebraica, el producto punto satisface la identidad geométrica:
+Además de la operación algebraica componente a componente, el producto punto satisface una identidad geométrica fundamental, ilustrada en la Figura [2.3](#fig:producto_punto):
 
 $$\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos(\theta),$$
 
-donde $\theta$ es el ángulo entre los vectores. De aquí se deduce la **Similitud Coseno**, métrica clave en IA:
+donde $\theta$ es el ángulo entre los vectores. Esta relación permite aislar el término del coseno para definir la **Similitud Coseno**, una métrica esencial en Inteligencia Artificial para medir qué tan similares son dos vectores independientemente de su magnitud:
+
+
+<figure markdown="span">
+  ![Relación entre magnitudes y ángulo. El producto punto conecta la longitud de los vectores con el coseno del ángulo θ que forman entre sí.](imagenes/producto_punto.svg){#fig:producto_punto width="80%"}
+  <figcaption class="arithmatex">Relación entre magnitudes y ángulo. El producto punto conecta la longitud de los vectores con el coseno del ángulo θ que forman entre sí.</figcaption>
+</figure>
+
 
 $$\cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert}.$$
 
-<figure id="fig:producto_punto">
+Como se observa en la Figura [2.4](#fig:producto_punto_geo), geométricamente esto equivale a evaluar la proyección o \"sombra\" de un vector sobre el otro. Si el ángulo es cero (vectores alineados), la similitud es máxima (1); si son ortogonales (90°), es nula (0).
 
-<figcaption>El producto punto relaciona las magnitudes de dos vectores con el coseno del ángulo que forman. La línea violeta representa la “sombra” o proyección de <span class="math inline">\(\mathbf{y}\)</span> sobre <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
+
+<figure markdown="span">
+  ![Interpretación de la proyección. La línea violeta muestra la componente de y que está "alineada" con x. El producto punto es el resultado de multiplicar esta proyección por la longitud total de x.](imagenes/producto_punto_cos.svg){#fig:producto_punto_geo width="80%"}
+  <figcaption class="arithmatex">Interpretación de la proyección. La línea violeta muestra la componente de y que está "alineada" con x. El producto punto es el resultado de multiplicar esta proyección por la longitud total de x.</figcaption>
 </figure>
 
-<figure id="fig:producto_punto_geo">
-
-<figcaption>Representación geométrica del producto punto. La línea violeta muestra la componente de <span class="math inline">\(\mathbf{y}\)</span> que está “alineada” con <span class="math inline">\(\mathbf{x}\)</span>. El producto punto es el producto de esta proyección por la longitud total de <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
-</figure>
 
 ##### Aplicaciones en Ingeniería y Agro
 
@@ -1128,7 +1126,7 @@ Esta interpretación geométrica es el primer paso hacia la comprensión de cóm
 
 ##### Dependencia de la Proyección
 
-El concepto más fundamental es la relación con la proyección ortogonal, como se ilustra en la figura [2.5](#fig:producto_punto_geometrico_corregido). El término $\lVert \mathbf{y} \rVert \cos(\theta)$ representa precisamente la longitud de la *componente* del vector $\mathbf{y}$ que está alineada con $\mathbf{x}$ (la proyección, $\mathrm{proj}_{\mathbf{x}} \mathbf{y}$).
+El concepto más fundamental es la relación con la proyección ortogonal, como se ilustra en la figura [2.4](#fig:producto_punto_geo). El término $\lVert \mathbf{y} \rVert \cos(\theta)$ representa precisamente la longitud de la *componente* del vector $\mathbf{y}$ que está alineada con $\mathbf{x}$ (la proyección, $\mathrm{proj}_{\mathbf{x}} \mathbf{y}$).
 
 Por lo tanto, el producto punto puede reescribirse como:
 
@@ -1157,11 +1155,6 @@ El valor del producto punto está dominado por el coseno del ángulo $\theta$, a
     $$\mathbf{x} \cdot \mathbf{y} = -\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert.$$
 
     El producto punto es *mínimo y negativo*, indicando la máxima disimilitud o incompatibilidad.
-
-<figure id="fig:producto_punto_geometrico_corregido">
-
-<figcaption>Interpretación geométrica del producto punto. El ángulo <span class="math inline">\(\theta\)</span> está dibujado entre los vectores <span class="math inline">\(\mathbf{x}\)</span> e <span class="math inline">\(\mathbf{y}\)</span>. El producto punto es proporcional a la magnitud de la proyección de <span class="math inline">\(\mathbf{y}\)</span> sobre <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
-</figure>
 
 #### Síntesis y Aplicaciones Contextuales del Producto Punto
 
@@ -1205,40 +1198,36 @@ En esta sección, trasladamos las operaciones de suma, escalamiento y producto p
 
 La suma de vectores requiere que ambos tengan la misma dimensión (*shape*). La multiplicación por un escalar, en cambio, utiliza un mecanismo llamado **Broadcasting**, donde el escalar se "difunde" sobre todos los elementos del vector.
 
-``` {.python language="Python" caption="Suma de vectores y multiplicación por escalar"}
-import numpy as np
-import torch
+    import numpy as np
+    import torch
 
-# 1. Suma de vectores (Agro: Integración de dosis de fertilizante)
-dosis_neta = np.array([50, 20, 10])  # N, P, K inicial
-suplemento = np.array([10,  5,  5])  # Refuerzo aplicado
-dosis_total = dosis_neta + suplemento
-print(f''Dosis Total (Vector): {dosis_total}'')
+    # 1. Suma de vectores (Agro: Integración de dosis de fertilizante)
+    dosis_neta = np.array([50, 20, 10])  # N, P, K inicial
+    suplemento = np.array([10,  5,  5])  # Refuerzo aplicado
+    dosis_total = dosis_neta + suplemento
+    print(f''Dosis Total (Vector): {dosis_total}'')
 
-# 2. Multiplicación por Escalar (Mecatrónica: Control de Ganancia)
-# Escalar una señal de sensor de torque
-torque_raw = torch.tensor([1.2, 0.8, 1.5])
-ganancia = 2.5
-torque_ajustado = ganancia * torque_raw
-print(f''Torque ajustado: {torque_ajustado}'')
-```
+    # 2. Multiplicación por Escalar (Mecatrónica: Control de Ganancia)
+    # Escalar una señal de sensor de torque
+    torque_raw = torch.tensor([1.2, 0.8, 1.5])
+    ganancia = 2.5
+    torque_ajustado = ganancia * torque_raw
+    print(f''Torque ajustado: {torque_ajustado}'')
 
 ### El Producto Punto: Cuantificando la Afinidad
 
 El producto punto es la operación más importante en IA. En Python, podemos ejecutarlo usando el operador `@` (recomendado en versiones modernas) o las funciones específicas de las librerías.
 
-``` {.python language="Python" caption="Cálculo del Producto Punto"}
-# Vectores de ejemplo (Administración: Gastos vs Presupuesto)
-unidades = np.array([10, 5, 20])   # Cantidad de productos comprados
-precios = np.array([1.5, 10.0, 0.5]) # Precio unitario por categoría
+    # Vectores de ejemplo (Administración: Gastos vs Presupuesto)
+    unidades = np.array([10, 5, 20])   # Cantidad de productos comprados
+    precios = np.array([1.5, 10.0, 0.5]) # Precio unitario por categoría
 
-# Producto punto: Suma de (unidades[i] * precios[i])
-gasto_total = np.dot(unidades, precios)
-# Forma alternativa (estándar en álgebra lineal de Python):
-gasto_total_alt = unidades @ precios
+    # Producto punto: Suma de (unidades[i] * precios[i])
+    gasto_total = np.dot(unidades, precios)
+    # Forma alternativa (estándar en álgebra lineal de Python):
+    gasto_total_alt = unidades @ precios
 
-print(f''Gasto total calculado via producto punto: ${gasto_total}'')
-```
+    print(f''Gasto total calculado via producto punto: ${gasto_total}'')
 
 ### Aplicaciones Sectoriales en Código
 
@@ -1390,26 +1379,28 @@ Este mecanismo permite que una red neuronal transforme datos brutos en conceptos
 
 ## Producto de Matrices
 
-Las matrices son la estructura algebraica central para representar datos tabulares, transformaciones lineales y relaciones entre variables en inteligencia artificial. A continuación, se presentan las operaciones y propiedades más relevantes para el modelado con datos.
+Las matrices constituyen la estructura algebraica fundamental para representar datos tabulares, transformaciones lineales y relaciones entre variables en el contexto de la Inteligencia Artificial. A continuación, se detallan las operaciones y propiedades esenciales para el modelado de datos.
 
-La multiplicación de matrices es el motor computacional de la Inteligencia Artificial. No solo generaliza el producto vector-vector, sino que permite realizar múltiples operaciones simultáneamente (procesamiento en lote o *batch*) y componer transformaciones lineales.
+La multiplicación de matrices actúa como el motor computacional del aprendizaje profundo. Esta operación no solo generaliza el producto punto, sino que permite ejecutar múltiples operaciones simultáneamente (lo que conocemos como procesamiento en lote o *batch*) y realizar la composición de transformaciones lineales.
 
 #### Regla de Dimensiones
 
-Para que el producto $\mathbf{A}\mathbf{B}$ exista, las dimensiones internas deben coincidir ("el ancho de la primera igual al alto de la segunda").
+Para que el producto matricial $\mathbf{A}\mathbf{B}$ esté definido, las dimensiones internas deben coincidir (es decir, el número de columnas de la primera debe igualar al número de filas de la segunda):
 
 $$\underbrace{\mathbf{A}}_{m \times \mathbf{n}} \quad \times \quad \underbrace{\mathbf{B}}_{\mathbf{n} \times p} \quad = \quad \underbrace{\mathbf{C}}_{m \times p}$$
 
-##### Definición formal
+##### Definición Formal
 
-Dadas $\mathbf{A} \in \mathbb{R}^{m \times n}$ y $\mathbf{B} \in \mathbb{R}^{n \times p}$, su producto $\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{m \times p}$ se define elemento a elemento como el producto punto entre la fila $i$ de $\mathbf{A}$ y la columna $j$ de $\mathbf{B}$:
+Dadas $\mathbf{A} \in \mathbb{R}^{m \times n}$ y $\mathbf{B} \in \mathbb{R}^{n \times p}$, su producto $\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{m \times p}$ se define entrada por entrada. Como se ilustra conceptualmente en la Figura [2.5](#fig:mult_matrices), el valor $c_{ij}$ se obtiene mediante el producto punto entre la fila $i$ de $\mathbf{A}$ y la columna $j$ de $\mathbf{B}$:
 
 $$c_{ij} = \mathbf{fila}_i(\mathbf{A}) \cdot \mathbf{columna}_j(\mathbf{B}) = \sum_{k=1}^{n} a_{ik} b_{kj}.$$
 
-<figure id="fig:mult_matrices">
 
-<figcaption>Lógica del producto matricial: El elemento <span class="math inline">\(c_{ij}\)</span> concentra la interacción entre toda la fila <span class="math inline">\(i\)</span> de la primera matriz y toda la columna <span class="math inline">\(j\)</span> de la segunda.</figcaption>
+<figure markdown="span">
+  ![Visualización del producto matricial. El elemento resultante $c_{ij}$ captura la interacción total entre la fila $i$ de la matriz izquierda y la columna $j$ de la matriz derecha.](imagenes/producto_matriz_vector.svg){#fig:mult_matrices width="80%"}
+  <figcaption class="arithmatex">Visualización del producto matricial. El elemento resultante $c_{ij}$ captura la interacción total entre la fila $i$ de la matriz izquierda y la columna $j$ de la matriz derecha.</figcaption>
 </figure>
+
 
 **Propiedades clave:**
 
@@ -1488,7 +1479,10 @@ En el contexto del análisis de datos, el determinante representa el **factor de
 
 Para una matriz de $\mathbb{R}^{2 \times 2}$, la fórmula es:
 
-$$\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc.$$
+$$\begin{vmatrix} 
+a & b \\ 
+c & d 
+\end{vmatrix} = ad - bc$$
 
 ##### Singularidad e Invertibilidad
 
@@ -1548,39 +1542,60 @@ Como el determinante es no nulo, la inversa existe y el modelo tiene solución �
 
 $$(\mathbf{X}^\top \mathbf{X})^{-1} = \frac{1}{6} \begin{pmatrix} 2 & -2 \\ -2 & 5 \end{pmatrix}.$$
 
-## Implementación en Python: El operador @
+## Implementación en Python: Operaciones Matriciales
 
-En Python científico (NumPy), **nunca** utilizamos bucles `for` para multiplicar matrices; eso sería extremadamente lento. En su lugar, utilizamos operaciones vectorizadas altamente optimizadas.
+En el ecosistema de Python científico (NumPy), las operaciones matriciales están altamente optimizadas. A diferencia de otros lenguajes donde se requieren bucles, aquí operamos directamente sobre las estructuras de datos.
 
-Desde Python 3.5, el operador estándar para el producto matricial es la arroba (`@`).
+### El Operador Producto (@)
 
-``` {.python language="Python" caption="Cálculo de costos (Lotes x Proveedores)"}
-import numpy as np
+Desde Python 3.5, el estándar para la multiplicación de matrices es el operador arroba (`@`). Este operador verifica automáticamente la consistencia de las dimensiones internas.
 
-# 1. Definimos las matrices del ejemplo anterior
-# Matriz A: Requerimientos (2 lotes, 3 insumos)
-A = np.array([
-    [10, 20, 5],
-    [15, 10, 2]
-])
+### Álgebra Lineal con `numpy.linalg`
 
-# Matriz B: Precios (3 insumos, 2 proveedores)
-B = np.array([
-    [2, 3],
-    [4, 4],
-    [10, 8]
-])
+Para operaciones más avanzadas como determinantes, trazas e inversas, utilizamos el submódulo de álgebra lineal. A continuación, se presenta una implementación completa.
 
-# 2. Realizamos el producto matricial
-# La dimension interna (3) coincide: (2x3) @ (3x2) -> (2x2)
-C = A @ B
+    import numpy as np
 
-print(''Matriz de Costos C:\n'', C)
+    # --- 1. PRODUCTO MATRICIAL (@) ---
+    # Matriz A (2x3) y B (3x2)
+    A = np.array([[10, 20, 5], 
+                  [15, 10, 2]])
+    B = np.array([[2, 3], 
+                  [4, 4], 
+                  [10, 8]])
 
-# --- Salida esperada ---
-# [[150 150]
-#  [ 90 101]]
-```
+    # Producto punto generalizado
+    C = A @ B
+    print(f"Producto C (2x2):\n{C}\n")
+
+    # --- 2. PROPIEDADES ---
+    # Ejemplo A: Matriz 2x2
+    M_2x2 = np.array([[4, 1],
+                      [2, 3]])
+
+    # Traza (suma diagonal) y Determinante
+    traza_2 = np.trace(M_2x2)       
+    det_2   = np.linalg.det(M_2x2)  
+
+    print(f"Matriz 2x2 -> Traza: {traza_2}, Det: {det_2:.2f}")
+
+    # --- 3. INVERSA Y VERIFICACIÓN ---
+    M_3x3 = np.array([[1, 0, 2], [0, 3, 1], [2, 1, 0]])
+    det_3 = np.linalg.det(M_3x3)
+
+    if det_3 != 0:
+        M_inv = np.linalg.inv(M_3x3)
+        
+        # VERIFICACIÓN: A @ A_inv = Identidad
+        # Usamos allclose por precisión flotante
+        identidad_calc = M_3x3 @ M_inv
+        es_identidad = np.allclose(identidad_calc, np.eye(3))
+        
+        print(f"¿Es Identidad? {es_identidad}")
+    else:
+        print("Matriz singular.")
+
+<div class="admonition info"><p class="admonition-title">Nota sobre Punto Flotante</p> Al calcular la inversa, es común obtener números como `0.9999999` en lugar de `1.0` debido a la precisión finita de las computadoras. Por eso, en lugar de comparar con `==`, utilizamos `np.allclose()` para verificar si el resultado es matemáticamente correcto dentro de una tolerancia aceptable. </div>
 
 #### Errores comunes y buenas prácticas
 
@@ -1592,21 +1607,17 @@ print(''Matriz de Costos C:\n'', C)
 
 2.  **Gestión de dimensiones:** Si intenta multiplicar matrices incompatibles, NumPy arrojará un error. Es vital verificar siempre `.shape`.
 
-    ``` {.python language="Python"}
-    # Intentar multiplicar A por sí misma: (2x3) @ (2x3)
-    try:
-        Error = A @ A 
-    except ValueError as e:
-        print(''Error de dimensión:'', e)
-        
-    # Salida:
-    # ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0...
-    # (size 3 is different from 2)
-    ```
+        # Intentar multiplicar A por sí misma: (2x3) @ (2x3)
+        try:
+            Error = A @ A 
+        except ValueError as e:
+            print(''Error de dimensión:'', e)
+            
+        # Salida:
+        # ValueError: matmul: Input operand 1 has a mismatch in its core dimension 0...
+        # (size 3 is different from 2)
 
-::: tcolorbox
-En el código de redes neuronales (como TensorFlow o PyTorch), la operación `capa_oculta @ pesos` ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo.
-:::
+<div class="admonition warning"> En el código de redes neuronales (como TensorFlow o PyTorch), la operación `capa_oculta @ pesos` ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo. </div>
 
 ## Operaciones con Tensores en Bioingeniería
 
@@ -1634,42 +1645,38 @@ A diferencia de las matrices, donde el producto punto es la estrella, en los ten
 
 En Python, bibliotecas como `NumPy`, `TensorFlow` o `PyTorch` tratan estas estructuras de forma nativa. Nótese que aquí usamos el término `shape` (forma) para describir las dimensiones del tensor.
 
-``` {.python language="Python" caption="Procesamiento de un tensor volumétrico (MRI Simulado)"}
-import numpy as np
+    import numpy as np
 
-# 1. Simular una MRI cerebral (Tensor 3D)
-# Dimensiones: (Alto, Ancho, Profundidad)
-# Valores aleatorios simulando intensidad de señal
-mri_tensor = np.random.rand(256, 256, 120)
+    # 1. Simular una MRI cerebral (Tensor 3D)
+    # Dimensiones: (Alto, Ancho, Profundidad)
+    # Valores aleatorios simulando intensidad de señal
+    mri_tensor = np.random.rand(256, 256, 120)
 
-print(f''Forma original del tensor: {mri_tensor.shape}'')
-# Salida: (256, 256, 120)
+    print(f''Forma original del tensor: {mri_tensor.shape}'')
+    # Salida: (256, 256, 120)
 
-# 2. Operación de Slicing (Rebanado)
-# El médico quiere ver solo la rebanada central (corte axial)
-corte_central = mri_tensor[:, :, 60] 
+    # 2. Operación de Slicing (Rebanado)
+    # El médico quiere ver solo la rebanada central (corte axial)
+    corte_central = mri_tensor[:, :, 60] 
 
-print(f''Forma del corte 2D: {corte_central.shape}'')
-# Salida: (256, 256) -> Ahora es una matriz clásica
+    print(f''Forma del corte 2D: {corte_central.shape}'')
+    # Salida: (256, 256) -> Ahora es una matriz clásica
 
-# 3. Operación de Máscara (Thresholding)
-# Queremos resaltar solo tejidos con alta intensidad (posibles anomalías)
-# Creamos una máscara booleana (Tensor de True/False)
-mascara_tejido = mri_tensor > 0.8
+    # 3. Operación de Máscara (Thresholding)
+    # Queremos resaltar solo tejidos con alta intensidad (posibles anomalías)
+    # Creamos una máscara booleana (Tensor de True/False)
+    mascara_tejido = mri_tensor > 0.8
 
-# Aplicamos la máscara (Hadamard product implícito)
-tejido_resaltado = mri_tensor * mascara_tejido
+    # Aplicamos la máscara (Hadamard product implícito)
+    tejido_resaltado = mri_tensor * mascara_tejido
 
-# 4. Flattening (Preparar para IA)
-input_vector = mri_tensor.flatten()
+    # 4. Flattening (Preparar para IA)
+    input_vector = mri_tensor.flatten()
 
-print(f''Vector de entrada para la Red Neuronal: {input_vector.shape}'')
-# Salida: (7864320,) -> Un vector gigante
-```
+    print(f''Vector de entrada para la Red Neuronal: {input_vector.shape}'')
+    # Salida: (7864320,) -> Un vector gigante
 
-::: tcolorbox
-El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño ($256^3$) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la **shape** del tensor es crítico.
-:::
+<div class="admonition warning"> El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño ($256^3$) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la **shape** del tensor es crítico. </div>
 
 # Matrices especiales
 

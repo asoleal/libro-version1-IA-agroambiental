@@ -3,7 +3,7 @@ window.MathJax = {
   tex: {
     packages: {'[+]': ['boldsymbol', 'ams']},
     inlineMath: [["\(", "\)"], ["$", "$"]],
-    displayMath: [["\[", "\]"], ["1160123", "1160123"]],
+    displayMath: [["\[", "\]"], ["663988", "663988"]],
     processEscapes: true
   },
   options: {

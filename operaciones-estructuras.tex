@@ -15,46 +15,12 @@ La suma combina dos vectores componente a componente. En términos de datos, est
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[scale=1.2, >=Stealth]
-        % --- Configuración de Coordenadas ---
-        % Usamos valores genéricos para que el dibujo se vea claro
-        % (No usamos los valores de emisiones 140 vs 7 porque la escala quedaría mal)
-        \coordinate (O) at (0,0);      % Origen
-        \coordinate (X) at (4, 1);     % Vector x
-        \coordinate (Y) at (1, 3);     % Vector y
-        \coordinate (R) at (5, 4);     % Resultante (4+1, 1+3)
-        
-        % --- Ejes ---
-        \draw[->, gray!50] (-1,0) -- (6,0) node[right, black] {\small Componente $i$};
-        \draw[->, gray!50] (0,-1) -- (0,5) node[above, black] {\small Componente $j$};
-        
-        % --- Líneas del Paralelogramo (Proyecciones) ---
-        \draw[dashed, gray] (X) -- (R);
-        \draw[dashed, gray] (Y) -- (R);
-        
-        % --- Vectores Principales ---
-        % Vector x (Azul)
-        \draw[->, thick, blue] (O) -- (X) node[midway, below right] {$\mathbf{x}$};
-        
-        % Vector y (Rojo)
-        \draw[->, thick, red!80] (O) -- (Y) node[midway, above left] {$\mathbf{y}$};
-        
-        % Vector Resultante (Morado - Más grueso)
-        \draw[->, very thick, violet] (O) -- (R) node[anchor=south west] {$\mathbf{x} + \mathbf{y}$};
-        
-        % --- Vector ''Fantasma'' (Tip-to-Tail) ---
-        % Esto ayuda a entender que sumamos y a x
-        \draw[->, dashed, red!60] (X) -- (R) node[midway, right] {\scriptsize $\mathbf{y}$ (trasladado)};
-        
-        % --- Decoración de ángulo (Opcional) ---
-        \fill[violet] (R) circle (2pt); % Punto final
-        
-    \end{tikzpicture}
+    \includegraphics[width=0.8\textwidth]{imagenes/suma_vectores}
     \caption{Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores $\mathbf{x}$ y $\mathbf{y}$.}
-    \label{fig:suma_vectores}
+    \label{suma_vectores}
 \end{figure}
 
-Geométricamente, esto sigue la \textbf{ley del paralelogramo} \ref{fig:suma_vectores}: si colocamos el inicio de $\mathbf{y}$ en la punta final de $\mathbf{x}$, el vector resultante va desde el origen de $\mathbf{x}$ hasta la punta final de $\mathbf{y}$.
+Geométricamente, esto sigue la \textbf{ley del paralelogramo} \ref{suma_vectores}: si colocamos el inicio de $\mathbf{y}$ en la punta final de $\mathbf{x}$, el vector resultante va desde el origen de $\mathbf{x}$ hasta la punta final de $\mathbf{y}$.
 
 \begin{quote}{Ejemplo Ambiental: Inventario de Emisiones}
 Supongamos que en una zona industrial existen dos fuentes principales de contaminación: una Termoeléctrica ($\mathbf{e}_T$) y una Fábrica de Cemento ($\mathbf{e}_C$).
@@ -129,25 +95,8 @@ El efecto del escalar $\alpha$ sobre el vector original $\mathbf{x}$ depende de 
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[scale=1.5, >=Stealth]
-        \coordinate (O) at (0,0);
-        
-        % Eje guía
-        \draw[dotted, gray] (-2, -1) -- (4, 2);
-        
-        % Vector Original
-        \draw[->, very thick, blue] (O) -- (1, 0.5) node[midway, above left] {$\mathbf{x}$};
-        
-        % Vector Escalado (x2) - Desplazado ligeramente para ver mejor
-        \draw[->, thick, violet] (0, -0.2) -- (2, 0.8) node[right] {$\alpha \mathbf{x} \ (\alpha=2)$};
-        
-        % Vector Invertido y Reducido (x -0.5)
-        \draw[->, thick, red] (0, 0.2) -- (-0.5, -0.05) node[left] {$\alpha \mathbf{x} \ (\alpha=-0.5)$};
-        
-        % Punto origen
-        \fill[black] (O) circle (1.5pt) node[below] {$0$};
-    \end{tikzpicture}
-    \caption{Efecto geométrico de la multiplicación escalar. Nótese cómo $\alpha=2$ duplica la longitud, mientras que $\alpha=-0.5$ reduce la longitud a la mitad e invierte el sentido.}
+    \includegraphics[width=0.8\textwidth]{imagenes/escalar_vector}
+    \caption{Efecto geométrico de la multiplicación escalar. Nótese cómo α=2 duplica la longitud, mientras que α=-0.5 reduce la longitud a la mitad e invierte el sentido.}
     \label{fig:escalar_vector}
 \end{figure}
 
@@ -184,103 +133,35 @@ El \textbf{producto punto} es la operación fundamental para conectar la geometr
 
 \subsubsection{Interpretación Geométrica y Similitud}
 
-Además de la suma algebraica, el producto punto satisface la identidad geométrica:
+Además de la operación algebraica componente a componente, el producto punto satisface una identidad geométrica fundamental, ilustrada en la Figura \ref{fig:producto_punto}:
 
 \[
 \mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos(\theta),
 \]
 
-donde $\theta$ es el ángulo entre los vectores. De aquí se deduce la \textbf{Similitud Coseno}, métrica clave en IA:
+donde $\theta$ es el ángulo entre los vectores. Esta relación permite aislar el término del coseno para definir la \textbf{Similitud Coseno}, una métrica esencial en Inteligencia Artificial para medir qué tan similares son dos vectores independientemente de su magnitud:
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{imagenes/producto_punto}
+    \caption{Relación entre magnitudes y ángulo. El producto punto conecta la longitud de los vectores con el coseno del ángulo θ que forman entre sí.}
+    \label{fig:producto_punto}
+\end{figure}
 
 \[
 \cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert}.
 \]
 
-\begin{figure}[ht]
-    \centering
-    \begin{tikzpicture}[scale=1.5, >=Stealth]
-        \coordinate (O) at (0,0);
-        \coordinate (A) at (3,1);    % Vector x
-        \coordinate (B) at (1,2.5);  % Vector y
-        
-        % Proyección
-        \coordinate (P) at ($(O)!(B)!(A)$); % Proyección de B sobre A
-        
-        % Vectores
-        \draw[->, thick, blue] (O) -- (A) node[right] {$\mathbf{x}$};
-        \draw[->, thick, red] (O) -- (B) node[above] {$\mathbf{y}$};
-        
-        % Línea de proyección
-        \draw[dashed, gray] (B) -- (P);
-        \draw[thick, violet] (O) -- (P) node[midway, below] {\scriptsize Proyección};
-        
-        % Ángulo
-        \draw[gray] (0.5, 0.16) arc (18.4:68.2:0.5);
-        \node[gray] at (0.7, 0.6) {$\theta$};
-        
-        % Texto explicativo
-        \node[align=left, anchor=west] at (3.5, 2) {
-            \small \textbf{Interpretación:}\\
-            \scriptsize $\mathbf{x} \cdot \mathbf{y} > 0 \to$ Ángulo agudo ($\theta < 90^\circ$)\\
-            \scriptsize $\mathbf{x} \cdot \mathbf{y} = 0 \to$ Ortogonales ($\theta = 90^\circ$)\\
-            \scriptsize $\mathbf{x} \cdot \mathbf{y} < 0 \to$ Ángulo obtuso ($\theta > 90^\circ$)
-        };
-    \end{tikzpicture}
-    \caption{El producto punto relaciona las magnitudes de dos vectores con el coseno del ángulo que forman. La línea violeta representa la ``sombra'' o proyección de $\mathbf{y}$ sobre $\mathbf{x}$.}
-    \label{fig:producto_punto}
-\end{figure}
+Como se observa en la Figura \ref{fig:producto_punto_geo}, geométricamente esto equivale a evaluar la proyección o "sombra" de un vector sobre el otro. Si el ángulo es cero (vectores alineados), la similitud es máxima (1); si son ortogonales (90°), es nula (0).
+
 
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[scale=1.5, >=Stealth]
-        % Definir coordenadas
-        \coordinate (O) at (0,0);
-        \coordinate (X) at (4,0);    % Vector x a lo largo del eje
-        \coordinate (Y) at (2,2.5);  % Vector y formando un ángulo
-        
-        % Calcular la proyección de Y sobre X
-        % Proyección escalar = |y| * cos(theta) = (x.y) / |x|
-        % x=(4,0), y=(2,2.5). x.y = 8. |x|=4. Proyección = 8/4 = 2.
-        \coordinate (P) at (2,0);    % Punto de proyección
-        
-        % --- Vectores Principales ---
-        \draw[->, very thick, blue] (O) -- (X) node[right] {$\mathbf{x}$};
-        \draw[->, very thick, red] (O) -- (Y) node[above] {$\mathbf{y}$};
-        
-        % --- Elementos de la Proyección ---
-        % Línea punteada perpendicular
-        \draw[dashed, gray, thick] (Y) -- (P);
-        % Vector proyección (sombra)
-        \draw[->, very thick, violet] (O) -- (P);
-        
-        % Marca de ángulo recto
-        \draw[gray] (P) -- ++(0,0.2) -- ++(-0.2,0) -- ++(0,-0.2);
-        
-        % --- Ángulo theta ---
-        \draw[thick, gray] (0.6,0) arc (0:51.34:0.6); % atan(2.5/2) approx 51.34 deg
-        \node[gray] at (0.9, 0.4) {$\theta$};
-        
-        % --- Etiquetas de Magnitud ---
-        % Etiqueta para la proyección
-        \draw[<->, violet, thick] (0,-0.3) -- (2,-0.3) node[midway, below] {$\lVert \mathbf{y} \rVert \cos(\theta)$};
-        % Etiqueta para la norma de x
-        \draw[<->, blue, thick] (0,-0.8) -- (4,-0.8) node[midway, below] {$\lVert \mathbf{x} \rVert$};
-        
-        % --- Texto Explicativo ---
-        \node[anchor=north west, align=left, draw, fill=gray!10, rounded corners] at (3.5, 3.5) {
-            \textbf{Interpretación Geométrica:}\\
-            El producto punto es la magnitud de un vector\\
-            multiplicada por la proyección del otro sobre él.\\[0.5em]
-            $\mathbf{x} \cdot \mathbf{y} = \underbrace{\lVert \mathbf{x} \rVert}_{\text{Longitud de } \mathbf{x}} \cdot \underbrace{(\lVert \mathbf{y} \rVert \cos \theta)}_{\text{Proyección de } \mathbf{y} \text{ en } \mathbf{x}}$
-        };
-        
-    \end{tikzpicture}
-    \caption{Representación geométrica del producto punto. La línea violeta muestra la componente de $\mathbf{y}$ que está ``alineada'' con $\mathbf{x}$. El producto punto es el producto de esta proyección por la longitud total de $\mathbf{x}$.}
+    \includegraphics[width=0.8\textwidth]{imagenes/producto_punto_cos}
+    \caption{Interpretación de la proyección. La línea violeta muestra la componente de y que está ``alineada'' con x. El producto punto es el resultado de multiplicar esta proyección por la longitud total de x.}
     \label{fig:producto_punto_geo}
-\end{figure}
-
-\paragraph{Aplicaciones en Ingeniería y Agro}
+\end{figure}\paragraph{Aplicaciones en Ingeniería y Agro}
 
 \begin{enumerate}
     \item \textbf{Agro (Firmas Espectrales):} 
@@ -336,9 +217,9 @@ En el análisis de datos, el producto punto permite:
     \item Calcular la similitud coseno (normalizando las magnitudes): $\frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert} = \cos(\theta)$, que mide \textit{solo} la alineación, ignorando la escala.
 \end{itemize}
 
-Esta interpretación geométrica es el primer paso hacia la comprensión de cómo los algoritmos de IA “ven” y comparan datos en espacios multidimensionales.
+Esta interpretación geométrica es el primer paso hacia la comprensión de cómo los algoritmos de IA ``ven'' y comparan datos en espacios multidimensionales.
 \paragraph{Dependencia de la Proyección}
-El concepto más fundamental es la relación con la proyección ortogonal, como se ilustra en la figura \ref{fig:producto_punto_geometrico_corregido}. El término $\lVert \mathbf{y} \rVert \cos(\theta)$ representa precisamente la longitud de la \textit{componente} del vector $\mathbf{y}$ que está alineada con $\mathbf{x}$ (la proyección, $\mathrm{proj}_{\mathbf{x}} \mathbf{y}$).
+El concepto más fundamental es la relación con la proyección ortogonal, como se ilustra en la figura \ref{fig:producto_punto_geo}. El término $\lVert \mathbf{y} \rVert \cos(\theta)$ representa precisamente la longitud de la \textit{componente} del vector $\mathbf{y}$ que está alineada con $\mathbf{x}$ (la proyección, $\mathrm{proj}_{\mathbf{x}} \mathbf{y}$).
 
 Por lo tanto, el producto punto puede reescribirse como:
 
@@ -381,60 +262,59 @@ El valor del producto punto está dominado por el coseno del ángulo $\theta$, a
 \end{enumerate}
     
 
+% \begin{figure}[ht]
+% \centering
+% \begin{tikzpicture}[scale=1.4]
 
-\begin{figure}[ht]
-\centering
-\begin{tikzpicture}[scale=1.4]
+%     % Origen
+%     \coordinate (O) at (0,0);
+%     \coordinate (X) at (3.5, 1.5);
+%     \coordinate (Y) at (1.0, 3.5);
 
-    % Origen
-    \coordinate (O) at (0,0);
-    \coordinate (X) at (3.5, 1.5);
-    \coordinate (Y) at (1.0, 3.5);
+%     % Cálculo del ángulo entre X y Y
+%     \pgfmathsetmacro{\angleX}{atan2(1.5, 3.5)} % ángulo de x respecto al eje x1
+%     \pgfmathsetmacro{\angleY}{atan2(3.5, 1.0)} % ángulo de y respecto al eje x1
+%     \pgfmathsetmacro{\angleTheta}{\angleY - \angleX}
 
-    % Cálculo del ángulo entre X y Y
-    \pgfmathsetmacro{\angleX}{atan2(1.5, 3.5)} % ángulo de x respecto al eje x1
-    \pgfmathsetmacro{\angleY}{atan2(3.5, 1.0)} % ángulo de y respecto al eje x1
-    \pgfmathsetmacro{\angleTheta}{\angleY - \angleX}
+%     % Ejes
+%     \draw[->, gray!50] (-0.5,0) -- (4,0) node[right] {$x_1$};
+%     \draw[->, gray!50] (0,-0.5) -- (0,4) node[above] {$x_2$};
 
-    % Ejes
-    \draw[->, gray!50] (-0.5,0) -- (4,0) node[right] {$x_1$};
-    \draw[->, gray!50] (0,-0.5) -- (0,4) node[above] {$x_2$};
+%     % Vectores
+%     \draw[->, blue, very thick] (O) -- (X)
+%         node[midway, below right] {$\mathbf{x}$};
+%     \draw[->, red, very thick] (O) -- (Y)
+%         node[midway, above left] {$\mathbf{y}$};
 
-    % Vectores
-    \draw[->, blue, very thick] (O) -- (X)
-        node[midway, below right] {$\mathbf{x}$};
-    \draw[->, red, very thick] (O) -- (Y)
-        node[midway, above left] {$\mathbf{y}$};
+%     % Proyección de y sobre x
+%     \pgfmathsetmacro{\scale}{
+%         ((3.5)*(1.0) + (1.5)*(3.5)) /
+%         ((3.5)*(3.5) + (1.5)*(1.5))
+%     }
+%     \coordinate (P) at ({\scale*3.5}, {\scale*1.5});
+%     \draw[dashed, red!70] (Y) -- (P);
+%     \draw[->, red!70, thick] (O) -- (P)
+%         node[midway, below] {$\mathrm{proj}_{\mathbf{x}} \mathbf{y}$};
 
-    % Proyección de y sobre x
-    \pgfmathsetmacro{\scale}{
-        ((3.5)*(1.0) + (1.5)*(3.5)) /
-        ((3.5)*(3.5) + (1.5)*(1.5))
-    }
-    \coordinate (P) at ({\scale*3.5}, {\scale*1.5});
-    \draw[dashed, red!70] (Y) -- (P);
-    \draw[->, red!70, thick] (O) -- (P)
-        node[midway, below] {$\mathrm{proj}_{\mathbf{x}} \mathbf{y}$};
+%     % Ángulo theta CON FLECHAS EN AMBOS EXTREMOS
+%     \draw[
+%         purple,
+%         thick,
+%         ->
+%     ]
+%     (O) ++({\angleX}:1.0)
+%     arc[
+%         start angle=\angleX,
+%         end angle=\angleY,
+%         radius=1.0
+%     ];
 
-    % Ángulo theta CON FLECHAS EN AMBOS EXTREMOS
-    \draw[
-        purple,
-        thick,
-        ->
-    ]
-    (O) ++({\angleX}:1.0)
-    arc[
-        start angle=\angleX,
-        end angle=\angleY,
-        radius=1.0
-    ];
+%     \node[purple] at ({\angleX + 0.5*\angleTheta}:1.3) {$\theta$};
 
-    \node[purple] at ({\angleX + 0.5*\angleTheta}:1.3) {$\theta$};
-
-\end{tikzpicture}
-\caption{Interpretación geométrica del producto punto. El ángulo $\theta$ está dibujado entre los vectores $\mathbf{x}$ e $\mathbf{y}$. El producto punto es proporcional a la magnitud de la proyección de $\mathbf{y}$ sobre $\mathbf{x}$.}
-\label{fig:producto_punto_geometrico_corregido}
-\end{figure}
+% \end{tikzpicture}
+% \caption{Interpretación geométrica del producto punto. El ángulo $\theta$ está dibujado entre los vectores $\mathbf{x}$ e $\mathbf{y}$. El producto punto es proporcional a la magnitud de la proyección de $\mathbf{y}$ sobre $\mathbf{x}$.}
+% \label{fig:producto_punto_geometrico_corregido}
+% \end{figure}
 
 \subsubsection{Síntesis y Aplicaciones Contextuales del Producto Punto}
 
@@ -708,19 +588,19 @@ Este mecanismo permite que una red neuronal transforme datos brutos en conceptos
 
 \section{Producto de Matrices}
 
-Las matrices son la estructura algebraica central para representar datos tabulares, transformaciones lineales y relaciones entre variables en inteligencia artificial. A continuación, se presentan las operaciones y propiedades más relevantes para el modelado con datos.
+Las matrices constituyen la estructura algebraica fundamental para representar datos tabulares, transformaciones lineales y relaciones entre variables en el contexto de la Inteligencia Artificial. A continuación, se detallan las operaciones y propiedades esenciales para el modelado de datos.
 
-La multiplicación de matrices es el motor computacional de la Inteligencia Artificial. No solo generaliza el producto vector-vector, sino que permite realizar múltiples operaciones simultáneamente (procesamiento en lote o \textit{batch}) y componer transformaciones lineales.
+La multiplicación de matrices actúa como el motor computacional del aprendizaje profundo. Esta operación no solo generaliza el producto punto, sino que permite ejecutar múltiples operaciones simultáneamente (lo que conocemos como procesamiento en lote o \textit{batch}) y realizar la composición de transformaciones lineales.
 
 \subsubsection{Regla de Dimensiones}
-Para que el producto $\mathbf{A}\mathbf{B}$ exista, las dimensiones internas deben coincidir (``el ancho de la primera igual al alto de la segunda'').
+Para que el producto matricial $\mathbf{A}\mathbf{B}$ esté definido, las dimensiones internas deben coincidir (es decir, el número de columnas de la primera debe igualar al número de filas de la segunda):
 
 \[
 \underbrace{\mathbf{A}}_{m \times \mathbf{n}} \quad \times \quad \underbrace{\mathbf{B}}_{\mathbf{n} \times p} \quad = \quad \underbrace{\mathbf{C}}_{m \times p}
 \]
 
-\paragraph{Definición formal}
-Dadas $\mathbf{A} \in \mathbb{R}^{m \times n}$ y $\mathbf{B} \in \mathbb{R}^{n \times p}$, su producto $\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{m \times p}$ se define elemento a elemento como el producto punto entre la fila $i$ de $\mathbf{A}$ y la columna $j$ de $\mathbf{B}$:
+\paragraph{Definición Formal}
+Dadas $\mathbf{A} \in \mathbb{R}^{m \times n}$ y $\mathbf{B} \in \mathbb{R}^{n \times p}$, su producto $\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{m \times p}$ se define entrada por entrada. Como se ilustra conceptualmente en la Figura \ref{fig:mult_matrices}, el valor $c_{ij}$ se obtiene mediante el producto punto entre la fila $i$ de $\mathbf{A}$ y la columna $j$ de $\mathbf{B}$:
 
 \[
 c_{ij} = \mathbf{fila}_i(\mathbf{A}) \cdot \mathbf{columna}_j(\mathbf{B}) = \sum_{k=1}^{n} a_{ik} b_{kj}.
@@ -728,46 +608,10 @@ c_{ij} = \mathbf{fila}_i(\mathbf{A}) \cdot \mathbf{columna}_j(\mathbf{B}) = \sum
 
 \begin{figure}[ht]
     \centering
-    \begin{tikzpicture}[scale=0.8]
-        % Matriz A
-        \draw[thick] (0,0) rectangle (3,4);
-        \node at (1.5, 4.3) {$\mathbf{A} \ (m \times n)$};
-        % Fila i resaltada
-        \fill[blue!20] (0, 2.5) rectangle (3, 3);
-        \draw[thick, blue] (0, 2.5) rectangle (3, 3);
-        \node[blue, right] at (0, 2.75) {\tiny Fila $i$};
-        
-        % Signo multiplicacion
-        \node at (3.5, 2) {$\times$};
-        
-        % Matriz B
-        \draw[thick] (4,1) rectangle (7,4); % (n x p) -> ponemos algo cuadrado visualmente
-        \node at (5.5, 4.3) {$\mathbf{B} \ (n \times p)$};
-        % Columna j resaltada
-        \fill[red!20] (5.5, 1) rectangle (6, 4);
-        \draw[thick, red] (5.5, 1) rectangle (6, 4);
-        \node[red, below] at (5.75, 1) {\tiny Col $j$};
-        
-        % Signo igual
-        \node at (7.5, 2) {$=$};
-        
-        % Matriz C
-        \draw[thick] (8,0) rectangle (11,3); % (m x p)
-        \node at (9.5, 3.3) {$\mathbf{C} \ (m \times p)$};
-        % Celda ij resultante
-        \fill[violet!40] (9.5, 1.5) rectangle (10, 2); % intersección visual relativa
-        \draw[thick, violet] (9.5, 1.5) rectangle (10, 2);
-        \node[violet, right] at (10, 1.75) {\tiny $c_{ij}$};
-        
-        % Flechas de flujo
-        \draw[->, dashed, blue] (3, 2.75) -- (9.5, 1.75);
-        \draw[->, dashed, red] (5.75, 1) -- (9.75, 1.5);
-        
-    \end{tikzpicture}
-    \caption{Lógica del producto matricial: El elemento $c_{ij}$ concentra la interacción entre toda la fila $i$ de la primera matriz y toda la columna $j$ de la segunda.}
+    \includegraphics[width=0.8\linewidth]{imagenes/producto_matriz_vector}
+    \caption{Visualización del producto matricial. El elemento resultante $c_{ij}$ captura la interacción total entre la fila $i$ de la matriz izquierda y la columna $j$ de la matriz derecha.}
     \label{fig:mult_matrices}
 \end{figure}
-
 \textbf{Propiedades clave:}
 \begin{itemize}
     \item \textbf{No Conmutatividad:} En general, $\mathbf{A}\mathbf{B} \neq \mathbf{B}\mathbf{A}$. El orden importa: rotar y luego trasladar no es lo mismo que trasladar y luego rotar.
@@ -850,7 +694,10 @@ En el contexto del análisis de datos, el determinante representa el \textbf{fac
 Para una matriz de $\mathbb{R}^{2 \times 2}$, la fórmula es:
 
 \[
-\det \begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc.
+\begin{vmatrix} 
+a & b \\ 
+c & d 
+\end{vmatrix} = ad - bc
 \]
 
 \paragraph{Singularidad e Invertibilidad}
@@ -921,39 +768,64 @@ Como el determinante es no nulo, la inversa existe y el modelo tiene solución �
 \]
 
 
-\section{Implementación en Python: El operador @}
+\section{Implementación en Python: Operaciones Matriciales}
 
-En Python científico (NumPy), \textbf{nunca} utilizamos bucles \texttt{for} para multiplicar matrices; eso sería extremadamente lento. En su lugar, utilizamos operaciones vectorizadas altamente optimizadas.
+En el ecosistema de Python científico (NumPy), las operaciones matriciales están altamente optimizadas. A diferencia de otros lenguajes donde se requieren bucles, aquí operamos directamente sobre las estructuras de datos.
 
-Desde Python 3.5, el operador estándar para el producto matricial es la arroba (\texttt{@}).
+\subsection{El Operador Producto (@)}
+Desde Python 3.5, el estándar para la multiplicación de matrices es el operador arroba (\texttt{@}). Este operador verifica automáticamente la consistencia de las dimensiones internas.
 
-\begin{lstlisting}[language=Python, caption=Cálculo de costos (Lotes x Proveedores)]
+\subsection{Álgebra Lineal con \texttt{numpy.linalg}}
+Para operaciones más avanzadas como determinantes, trazas e inversas, utilizamos el submódulo de álgebra lineal. A continuación, se presenta una implementación completa.
+
+% Usamos lstlisting. El script se encargará de colorearlo.
+\begin{lstlisting}[language=Python, caption=Operaciones matriciales en NumPy]
 import numpy as np
 
-# 1. Definimos las matrices del ejemplo anterior
-# Matriz A: Requerimientos (2 lotes, 3 insumos)
-A = np.array([
-    [10, 20, 5],
-    [15, 10, 2]
-])
+# --- 1. PRODUCTO MATRICIAL (@) ---
+# Matriz A (2x3) y B (3x2)
+A = np.array([[10, 20, 5], 
+              [15, 10, 2]])
+B = np.array([[2, 3], 
+              [4, 4], 
+              [10, 8]])
 
-# Matriz B: Precios (3 insumos, 2 proveedores)
-B = np.array([
-    [2, 3],
-    [4, 4],
-    [10, 8]
-])
-
-# 2. Realizamos el producto matricial
-# La dimension interna (3) coincide: (2x3) @ (3x2) -> (2x2)
+# Producto punto generalizado
 C = A @ B
+print(f"Producto C (2x2):\n{C}\n")
 
-print(''Matriz de Costos C:\n'', C)
+# --- 2. PROPIEDADES ---
+# Ejemplo A: Matriz 2x2
+M_2x2 = np.array([[4, 1],
+                  [2, 3]])
 
-# --- Salida esperada ---
-# [[150 150]
-#  [ 90 101]]
+# Traza (suma diagonal) y Determinante
+traza_2 = np.trace(M_2x2)       
+det_2   = np.linalg.det(M_2x2)  
+
+print(f"Matriz 2x2 -> Traza: {traza_2}, Det: {det_2:.2f}")
+
+# --- 3. INVERSA Y VERIFICACIÓN ---
+M_3x3 = np.array([[1, 0, 2], [0, 3, 1], [2, 1, 0]])
+det_3 = np.linalg.det(M_3x3)
+
+if det_3 != 0:
+    M_inv = np.linalg.inv(M_3x3)
+    
+    # VERIFICACIÓN: A @ A_inv = Identidad
+    # Usamos allclose por precisión flotante
+    identidad_calc = M_3x3 @ M_inv
+    es_identidad = np.allclose(identidad_calc, np.eye(3))
+    
+    print(f"¿Es Identidad? {es_identidad}")
+else:
+    print("Matriz singular.")
 \end{lstlisting}
+
+% Usamos alertblock. El script lo convertirá en una nota visual.
+\begin{alertblock}{Nota sobre Punto Flotante}
+Al calcular la inversa, es común obtener números como \texttt{0.9999999} en lugar de \texttt{1.0} debido a la precisión finita de las computadoras. Por eso, en lugar de comparar con \texttt{==}, utilizamos \texttt{np.allclose()} para verificar si el resultado es matemáticamente correcto dentro de una tolerancia aceptable.
+\end{alertblock}
 
 \subsubsection{Errores comunes y buenas prácticas}
 

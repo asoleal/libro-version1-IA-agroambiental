@@ -1,0 +1,50 @@
+\documentclass[tikz, border=5pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta} % Necesario para >=Stealth
+
+\begin{document}
+\begin{tikzpicture}[scale=1.5, >=Stealth]
+        % Definir coordenadas
+        \coordinate (O) at (0,0);
+        \coordinate (X) at (4,0);    % Vector x a lo largo del eje
+        \coordinate (Y) at (2,2.5);  % Vector y formando un ángulo
+        
+        % Calcular la proyección de Y sobre X
+        % Proyección escalar = |y| * cos(theta) = (x.y) / |x|
+        % x=(4,0), y=(2,2.5). x.y = 8. |x|=4. Proyección = 8/4 = 2.
+        \coordinate (P) at (2,0);    % Punto de proyección
+        
+        % --- Vectores Principales ---
+        \draw[->, very thick, blue] (O) -- (X) node[right] {$\mathbf{x}$};
+        \draw[->, very thick, red] (O) -- (Y) node[above] {$\mathbf{y}$};
+        
+        % --- Elementos de la Proyección ---
+        % Línea punteada perpendicular
+        \draw[dashed, gray, thick] (Y) -- (P);
+        % Vector proyección (sombra)
+        \draw[->, very thick, violet] (O) -- (P);
+        
+        % Marca de ángulo recto
+        \draw[gray] (P) -- ++(0,0.2) -- ++(-0.2,0) -- ++(0,-0.2);
+        
+        % --- Ángulo theta ---
+        \draw[thick, gray] (0.6,0) arc (0:51.34:0.6); % atan(2.5/2) approx 51.34 deg
+        \node[gray] at (0.9, 0.4) {$\theta$};
+        
+        % --- Etiquetas de Magnitud ---
+        % Etiqueta para la proyección
+        \draw[<->, violet, thick] (0,-0.3) -- (2,-0.3) node[midway, below] {$\lVert \mathbf{y} \rVert \cos(\theta)$};
+        % Etiqueta para la norma de x
+        \draw[<->, blue, thick] (0,-0.8) -- (4,-0.8) node[midway, below] {$\lVert \mathbf{x} \rVert$};
+        
+        % --- Texto Explicativo ---
+        \node[anchor=north west, align=left, draw, fill=gray!10, rounded corners] at (3.5, 3.5) {
+            \textbf{Interpretación Geométrica:}\\
+            El producto punto es la magnitud de un vector\\
+            multiplicada por la proyección del otro sobre él.\\[0.5em]
+            $\mathbf{x} \cdot \mathbf{y} = \underbrace{\lVert \mathbf{x} \rVert}_{\text{Longitud de } \mathbf{x}} \cdot \underbrace{(\lVert \mathbf{y} \rVert \cos \theta)}_{\text{Proyección de } \mathbf{y} \text{ en } \mathbf{x}}$
+        };
+        
+    \end{tikzpicture}
+\end{document}

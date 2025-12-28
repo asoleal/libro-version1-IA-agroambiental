@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # =====================================================
-#   GENERADOR WEB v16 (FIX IMÁGENES + MATHJAX)
-#   Corrección crítica: Rutas de imágenes sin extensión
+#   GENERADOR WEB v19 (FIX TOKENS ALFANUMÉRICOS)
+#   Corrección: Usa tokens sin símbolos para evitar 
+#   que Pandoc los escape (ej: \[\[ por [[)
 # =====================================================
 
 # --- 1. CONFIGURACIÓN DE CAPÍTULOS ---
@@ -10,7 +11,7 @@ declare -a ORDEN_CAPITULOS=(
     "estructura-datos"
     "operaciones-estructuras"
     "matrices-especiales"
-    # Agrega el resto aquí...
+    # Añade tus archivos aquí...
 )
 
 # --- 2. CONFIGURACIÓN GENERAL ---
@@ -20,14 +21,14 @@ ORIGEN_IMAGENES="imagenes"
 TEMP_DIR="temp_tex_processing"
 
 echo "========================================"
-echo "   GENERADOR WEB v16: Image Path Fix"
+echo "   GENERADOR WEB v19: Tokens Seguros"
 echo "========================================"
 
 # --- 3. PREPARACIÓN DE ARCHIVOS ---
 echo ">> Recolectando archivos .tex..."
 rm -rf "$TEMP_DIR"
 mkdir -p "$TEMP_DIR"
-find . -type f -name "*.tex" -exec cp {} "$TEMP_DIR/" \;
+find . -maxdepth 1 -type f -name "*.tex" -exec cp {} "$TEMP_DIR/" \;
 
 # --- 4. ESTRUCTURA Y ESTILOS ---
 mkdir -p "$DOCS/javascripts" "$DOCS/stylesheets"
@@ -35,7 +36,6 @@ mkdir -p "$DOCS/javascripts" "$DOCS/stylesheets"
 cat > "$DOCS/stylesheets/extra.css" <<EOF
 /* Estilos Generales */
 body { font-size: 18px; line-height: 1.6; color: #333; }
-
 /* Imágenes Responsivas */
 figure { display: block; margin: 40px auto; text-align: center; width: 100%; }
 figure img {
@@ -48,20 +48,16 @@ figcaption {
     font-style: italic; font-size: 0.95em; color: #555;
     margin-top: 15px; max-width: 800px; margin-left: auto; margin-right: auto;
 }
-/* Arreglo fórmulas y tablas */
 .md-typeset .arithmatex { overflow-x: auto; }
 .admonition.example { margin-bottom: 2em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 EOF
 
-# Copiar imágenes
 echo ">> Copiando imágenes SVG..."
 rm -rf "$DOCS/$ORIGEN_IMAGENES"
 mkdir -p "$DOCS/$ORIGEN_IMAGENES"
 find "$ORIGEN_IMAGENES" -name "*.svg" -exec cp {} "$DOCS/$ORIGEN_IMAGENES/" \; 2>/dev/null
 
 # --- 5. CONFIGURACIÓN MKDOCS ---
-echo ">> Generando mkdocs.yml..."
-
 cat > "$CARPETA_SALIDA/mkdocs.yml" <<EOF
 site_name: Libro IA Agroambiental
 theme:
@@ -93,16 +89,13 @@ nav:
   - Inicio: index.md
 EOF
 
-# Bucle para añadir capítulos encontrados
 for cap in "${ORDEN_CAPITULOS[@]}"; do
     if [ -f "$TEMP_DIR/$cap.tex" ]; then
        echo "  - $cap.md" >> "$CARPETA_SALIDA/mkdocs.yml"
-    else
-       echo "   ⚠️ ERROR: No encuentro '$cap.tex' (ignorado del menú)."
     fi
 done
 
-# --- 6. CONFIGURACIÓN MATHJAX (SOLUCIÓN BOLDSYMBOL) ---
+# --- 6. CONFIGURACIÓN MATHJAX ---
 cat > "$DOCS/javascripts/mathjax-config.js" <<EOF
 window.MathJax = {
   loader: {load: ['[tex]/boldsymbol', '[tex]/ams']},
@@ -118,47 +111,72 @@ window.MathJax = {
 };
 EOF
 
-# --- 7. CONVERSIÓN Y LIMPIEZA ---
+# --- 7. PROCESAMIENTO Y CONVERSIÓN ---
 echo ">> Procesando archivos..."
-
 cd "$TEMP_DIR" || exit
 
-# 1. Cajas de texto (Antes de Pandoc)
-sed -i 's/\\begin{appbox}{\(.*\)}/\n\n<div class="admonition example"><p class="admonition-title">\1<\/p>\n\n/g' *.tex
-sed -i 's/\\end{appbox}/\n\n<\/div>\n\n/g' *.tex
+# =======================================================
+# FASE 1: PRE-PROCESAMIENTO (TOKENS ALFANUMÉRICOS)
+# Usamos solo letras mayúsculas para que Pandoc no toque nada
+# =======================================================
+
+# 1. Alertblock -> TOKENINFO
+# Capturamos el título entre marcadores START y END
+sed -i 's/\\begin{alertblock}{\(.*\)}/TOKENINFOSTART \1 TOKENINFOENDTITLE/g' *.tex
+sed -i 's/\\end{alertblock}/TOKENINFOSTOP/g' *.tex
+
+# 2. Tcolorbox -> TOKENWARNING
+sed -i 's/\\begin{tcolorbox}/TOKENWARNINGSTART/g' *.tex
+sed -i 's/TOKENWARNINGSTART\[.*\]/TOKENWARNINGSTART/g' *.tex
+sed -i 's/\\end{tcolorbox}/TOKENWARNINGSTOP/g' *.tex
+
+# 3. Appbox -> TOKENEXAMPLE
+sed -i 's/\\begin{appbox}{\(.*\)}/TOKENEXAMPLESTART \1 TOKENEXAMPLEENDTITLE/g' *.tex
+sed -i 's/\\end{appbox}/TOKENEXAMPLESTOP/g' *.tex
+
+# 4. Limpieza lstlisting
+sed -i 's/\\begin{lstlisting}.*/\\begin{lstlisting}/g' *.tex
+
+# =======================================================
+# FASE 2: CONVERSIÓN PANDOC
+# =======================================================
 
 for archivo in *.tex; do
     nombre=$(basename "$archivo" .tex)
     if [ "$nombre" == "main" ]; then TARGET="../$DOCS/index.md"; else TARGET="../$DOCS/$nombre.md"; fi
-
-    echo "   ... Procesando $nombre"
-
-    # 2. Conversión Pandoc
+    
+    echo "   ... Convirtiendo $nombre"
     pandoc "$archivo" -f latex -t markdown --mathjax --wrap=none -o "$TARGET"
 
-    # 3. LIMPIEZA Y CORRECCIONES (En orden estricto)
+    # =======================================================
+    # FASE 3: POST-PROCESAMIENTO (REVELAR HTML)
+    # Reemplazamos los TOKENS por HTML real
+    # =======================================================
 
-    # --- FIX 1: Rutas de imágenes sin extensión (CRÍTICO) ---
-    # Busca 'imagenes/nombre' sin punto y agrega '.svg'
-    # Esto debe ocurrir ANTES de convertir a <figure> HTML
+    # --- A. REVELAR CAJAS ---
+
+    # 1. Info (Alertblock)
+    sed -i 's/TOKENINFOSTART \(.*\) TOKENINFOENDTITLE/<div class="admonition info"><p class="admonition-title">\1<\/p>/g' "$TARGET"
+    sed -i 's/TOKENINFOSTOP/<\/div>/g' "$TARGET"
+
+    # 2. Warning (Tcolorbox)
+    sed -i 's/TOKENWARNINGSTART/<div class="admonition warning">/g' "$TARGET"
+    sed -i 's/TOKENWARNINGSTOP/<\/div>/g' "$TARGET"
+
+    # 3. Example (Appbox)
+    sed -i 's/TOKENEXAMPLESTART \(.*\) TOKENEXAMPLEENDTITLE/<div class="admonition example"><p class="admonition-title">\1<\/p>/g' "$TARGET"
+    sed -i 's/TOKENEXAMPLESTOP/<\/div>/g' "$TARGET"
+
+    # --- B. ARREGLAR IMÁGENES ---
     sed -i -E 's/]\((imagenes\/[^).]+)\)/](\1.svg)/g' "$TARGET"
-
-    # --- FIX 2: Cambiar .pdf por .svg si existe ---
     sed -i 's/\.pdf)/.svg)/g' "$TARGET"
-
-    # --- FIX 3: Quitar titlepage ---
-    sed -i '/::: titlepage/d' "$TARGET"
-
-    # --- FIX 4: Convertir Figuras a HTML (Estilo Material) ---
-    # Ahora que la ruta tiene .svg, envolvemos en <figure>
     perl -0777 -i -pe 's/!\[(.*?)\]\((.*?)\)\s*(\{.*?\})?/\n<figure markdown="span">\n  ![\1](\2)\3\n  <figcaption class="arithmatex">\1<\/figcaption>\n<\/figure>\n/gs' "$TARGET"
-    # --- FIX 5: Eliminar basura de referencias de Pandoc ---
-    sed -i 's/{reference-type="[^"]*" reference="[^"]*"}//g' "$TARGET"
 
+    # --- C. LIMPIEZA FINAL ---
+    sed -i '/::: titlepage/d' "$TARGET"
+    sed -i 's/{reference-type="[^"]*" reference="[^"]*"}//g' "$TARGET"
 done
 
 cd ..
 rm -rf "$TEMP_DIR"
-
-echo "✅ ¡Web generada (v16)!"
-echo "👉 Ejecuta: mkdocs serve -f web_agroambiental/mkdocs.yml"
+echo "✅ ¡Web generada correctamente (v19)!"
