@@ -53,11 +53,16 @@ figcaption {
 EOF
 
 # --- COPIA DE IMÁGENES ---
-echo ">> Copiando imágenes..."
+echo ">> Copiando imágenes desde '$ORIGEN_IMAGENES'..."
 rm -rf "$DOCS/$ORIGEN_IMAGENES"
-mkdir -p "$DOCS/$ORIGEN_IMAGENES"
-# Copiamos todo lo que haya en la carpeta imagenes
-cp -r "$ORIGEN_IMAGENES/"* "$DOCS/$ORIGEN_IMAGENES/" 2>/dev/null || :
+mkdir -p "$DOCS"
+if [ -d "$ORIGEN_IMAGENES" ]; then
+    cp -r "$ORIGEN_IMAGENES" "$DOCS/"
+    echo "   ... $(find "$DOCS/$ORIGEN_IMAGENES" -type f | wc -l) archivos copiados."
+else
+    echo "   ⚠️ Advertencia: Carpeta '$ORIGEN_IMAGENES' no existe."
+fi
+
 
 # --- 5. CONFIGURACIÓN MKDOCS ---
 cat > "$CARPETA_SALIDA/mkdocs.yml" <<EOF
