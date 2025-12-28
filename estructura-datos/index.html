@@ -791,9 +791,9 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
 <p>El uso de tensores de rango 4 permite modelar la <strong>dispersión espaciotemporal</strong> de contaminantes. Los ejes representan: (1) Tiempo, (2) Latitud, (3) Longitud y (4) Tipo de contaminante (<span class="arithmatex">\(\mathrm{PM}_{2.5}, \mathrm{O}_3\)</span>, etc.). Esta estructura es la entrada para redes neuronales recurrentes-convolucionales (ConvLSTM).</p>
 </blockquote>
 <figure>
-  <img alt="Visualización del Tensor" src="imagenes/tensor_diagrama" width="80%" />
+  <img alt="Visualización del Tensor" src="../imagenes/tensor_diagrama.svg" width="80%" />
 <br />
-<figcaption>Visualización del Tensor</figcaption>
+<figcaption class="arithmatex">Visualización del Tensor</figcaption>
 </figure>
 <h2 class="unnumbered" id="ejemplo-explícito-tensor-de-rango-4-en-teledetección-agrícola">Ejemplo explícito: tensor de rango 4 en teledetección agrícola</h2>
 <p>Considere un estudio de monitoreo de cultivos en una región agrícola mediante imágenes multiespectrales tomadas por un dron a lo largo de una temporada de crecimiento. Los datos se organizan naturalmente en un <strong>tensor de rango 4</strong>:</p>
@@ -1249,9 +1249,9 @@ Forma original (C, H, W): torch.Size([3, 4, 4]) Forma permutada (H, W, C): torch
 </ol>
 <p>La Figura <a href="#fig:vector_componentes_norma">1</a> ilustra cómo las componentes definen tanto la posición final como la orientación del vector.</p>
 <figure>
-  <img alt="Representación geométrica: la norma es la longitud de la hipotenusa y \(\theta\) determina la orientación." id="fig:vector_componentes_norma" src="imagenes/figura_vector" width="70%" />
+  <img alt="Representación geométrica: la norma es la longitud de la hipotenusa y θ determina la orientación." id="fig:vector_componentes_norma" src="../imagenes/figura_vector.svg" width="70%" />
 <br />
-<figcaption>Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.</figcaption>
+<figcaption class="arithmatex">Representación geométrica: la norma es la longitud de la hipotenusa y θ determina la orientación.</figcaption>
 </figure>
 <blockquote>
 <p>Ejemplo Administrativo: Presupuesto Vectorial</p>
