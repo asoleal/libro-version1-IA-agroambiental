@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # =====================================================
-#   GENERADOR WEB v20 (FIX COLORES PYTHON)
-#   Corrección: Preserva 'language=Python' para que
-#   MkDocs coloree la sintaxis del código.
+#   GENERADOR WEB v22 (FIX EXTENSIONES SVG)
+#   Corrección: Fuerza a que TODOS los enlaces apunten
+#   a .svg, corrigiendo si en LaTeX tenías .png/.jpg
 # =====================================================
 
 # --- 1. CONFIGURACIÓN DE CAPÍTULOS ---
@@ -21,7 +21,7 @@ ORIGEN_IMAGENES="imagenes"
 TEMP_DIR="temp_tex_processing"
 
 echo "========================================"
-echo "   GENERADOR WEB v20: Fix Colores"
+echo "   GENERADOR WEB v22: Fix Extensiones"
 echo "========================================"
 
 # --- 3. PREPARACIÓN DE ARCHIVOS ---
@@ -52,10 +52,12 @@ figcaption {
 .admonition.example { margin-bottom: 2em; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 EOF
 
-echo ">> Copiando imágenes SVG..."
+# --- COPIA DE IMÁGENES ---
+echo ">> Copiando imágenes..."
 rm -rf "$DOCS/$ORIGEN_IMAGENES"
 mkdir -p "$DOCS/$ORIGEN_IMAGENES"
-find "$ORIGEN_IMAGENES" -name "*.svg" -exec cp {} "$DOCS/$ORIGEN_IMAGENES/" \; 2>/dev/null
+# Copiamos todo lo que haya en la carpeta imagenes
+cp -r "$ORIGEN_IMAGENES/"* "$DOCS/$ORIGEN_IMAGENES/" 2>/dev/null || :
 
 # --- 5. CONFIGURACIÓN MKDOCS ---
 cat > "$CARPETA_SALIDA/mkdocs.yml" <<EOF
@@ -119,28 +121,14 @@ cd "$TEMP_DIR" || exit
 # FASE 1: PRE-PROCESAMIENTO (TOKENS)
 # =======================================================
 
-# 1. Alertblock -> TOKENINFO
 sed -i 's/\\begin{alertblock}{\(.*\)}/TOKENINFOSTART \1 TOKENINFOENDTITLE/g' *.tex
 sed -i 's/\\end{alertblock}/TOKENINFOSTOP/g' *.tex
-
-# 2. Tcolorbox -> TOKENWARNING
 sed -i 's/\\begin{tcolorbox}/TOKENWARNINGSTART/g' *.tex
 sed -i 's/TOKENWARNINGSTART\[.*\]/TOKENWARNINGSTART/g' *.tex
 sed -i 's/\\end{tcolorbox}/TOKENWARNINGSTOP/g' *.tex
-
-# 3. Appbox -> TOKENEXAMPLE
 sed -i 's/\\begin{appbox}{\(.*\)}/TOKENEXAMPLESTART \1 TOKENEXAMPLEENDTITLE/g' *.tex
 sed -i 's/\\end{appbox}/TOKENEXAMPLESTOP/g' *.tex
-
-# 4. Limpieza lstlisting (CORREGIDO: PRESERVAR COLORES)
-# Buscamos 'Python' (mayúscula o minúscula) y forzamos la etiqueta correcta
 sed -i 's/\\begin{lstlisting}.*[Pp]ython.*/\\begin{lstlisting}[language=Python]/g' *.tex
-
-# (Opcional) Si tienes bloques 'bash', descomenta esto:
-# sed -i 's/\\begin{lstlisting}.*bash.*/\\begin{lstlisting}[language=bash]/g' *.tex
-
-# Si no detecta nada, deja el default (para que no rompa si hay otros lenguajes)
-# (Ya no usamos el borrado agresivo de antes)
 
 # =======================================================
 # FASE 2: CONVERSIÓN PANDOC
@@ -154,22 +142,29 @@ for archivo in *.tex; do
     pandoc "$archivo" -f latex -t markdown --mathjax --wrap=none -o "$TARGET"
 
     # =======================================================
-    # FASE 3: POST-PROCESAMIENTO (REVELAR HTML)
+    # FASE 3: POST-PROCESAMIENTO
     # =======================================================
 
     # --- A. REVELAR CAJAS ---
     sed -i 's/TOKENINFOSTART \(.*\) TOKENINFOENDTITLE/<div class="admonition info"><p class="admonition-title">\1<\/p>/g' "$TARGET"
     sed -i 's/TOKENINFOSTOP/<\/div>/g' "$TARGET"
-
     sed -i 's/TOKENWARNINGSTART/<div class="admonition warning">/g' "$TARGET"
     sed -i 's/TOKENWARNINGSTOP/<\/div>/g' "$TARGET"
-
     sed -i 's/TOKENEXAMPLESTART \(.*\) TOKENEXAMPLEENDTITLE/<div class="admonition example"><p class="admonition-title">\1<\/p>/g' "$TARGET"
     sed -i 's/TOKENEXAMPLESTOP/<\/div>/g' "$TARGET"
 
-    # --- B. ARREGLAR IMÁGENES ---
+    # --- B. ARREGLAR EXTENSIONES DE IMÁGENES (NUEVO) ---
+    
+    # 1. Si no tiene extensión (imagenes/algo), ponle .svg
     sed -i -E 's/]\((imagenes\/[^).]+)\)/](\1.svg)/g' "$TARGET"
+    
+    # 2. Reemplazo forzoso de extensiones comunes a .svg
     sed -i 's/\.pdf)/.svg)/g' "$TARGET"
+    sed -i 's/\.png)/.svg)/g' "$TARGET"
+    sed -i 's/\.jpg)/.svg)/g' "$TARGET"
+    sed -i 's/\.jpeg)/.svg)/g' "$TARGET"
+
+    # 3. Convertir a HTML <figure>
     perl -0777 -i -pe 's/!\[(.*?)\]\((.*?)\)\s*(\{.*?\})?/\n<figure markdown="span">\n  ![\1](\2)\3\n  <figcaption class="arithmatex">\1<\/figcaption>\n<\/figure>\n/gs' "$TARGET"
 
     # --- C. LIMPIEZA FINAL ---
@@ -179,4 +174,4 @@ done
 
 cd ..
 rm -rf "$TEMP_DIR"
-echo "✅ ¡Web generada (v20) - Colores restaurados!"
+echo "✅ ¡Web generada (v22) - Enlaces forzados a SVG!"

@@ -1329,7 +1329,7 @@
 <p><strong>Autor:</strong></p>
 <p>John Jairo Leal Gómez</p>
 <p>Universidad Nacional de Colombia</p>
-<p>2025-12-25
+<p>2025-12-28
 :::</p>
 <h1 id="el-motor-de-la-ia-de-escalares-a-tensores">El Motor de la IA: De Escalares a Tensores</h1>
 <p>En este capítulo se presentan los conceptos preliminares de álgebra lineal necesarios para el desarrollo de modelos de inteligencia artificial en contextos agro-ambientales, industriales y administrativos.</p>
@@ -1469,9 +1469,9 @@ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
 <p>El uso de tensores de rango 4 permite modelar la <strong>dispersión espaciotemporal</strong> de contaminantes. Los ejes representan: (1) Tiempo, (2) Latitud, (3) Longitud y (4) Tipo de contaminante (<span class="arithmatex">\(\mathrm{PM}_{2.5}, \mathrm{O}_3\)</span>, etc.). Esta estructura es la entrada para redes neuronales recurrentes-convolucionales (ConvLSTM).</p>
 </blockquote>
 <figure>
-  <img alt="Visualización del Tensor" src="imagenes/tensor_diagrama" width="80%" />
+  <img alt="Visualización del Tensor" src="imagenes/tensor_diagrama.svg" width="80%" />
 <br />
-<figcaption>Visualización del Tensor</figcaption>
+<figcaption class="arithmatex">Visualización del Tensor</figcaption>
 </figure>
 <h3 class="unnumbered" id="ejemplo-explícito-tensor-de-rango-4-en-teledetección-agrícola">Ejemplo explícito: tensor de rango 4 en teledetección agrícola</h3>
 <p>Considere un estudio de monitoreo de cultivos en una región agrícola mediante imágenes multiespectrales tomadas por un dron a lo largo de una temporada de crecimiento. Los datos se organizan naturalmente en un <strong>tensor de rango 4</strong>:</p>
@@ -1927,9 +1927,9 @@ Forma original (C, H, W): torch.Size([3, 4, 4]) Forma permutada (H, W, C): torch
 </ol>
 <p>La Figura <a href="#fig:vector_componentes_norma">1.1</a> ilustra cómo las componentes definen tanto la posición final como la orientación del vector.</p>
 <figure>
-  <img alt="Representación geométrica: la norma es la longitud de la hipotenusa y \(\theta\) determina la orientación." id="fig:vector_componentes_norma" src="imagenes/figura_vector" width="70%" />
+  <img alt="Representación geométrica: la norma es la longitud de la hipotenusa y θ determina la orientación." id="fig:vector_componentes_norma" src="imagenes/figura_vector.svg" width="70%" />
 <br />
-<figcaption>Representación geométrica: la norma es la longitud de la hipotenusa y $\theta$ determina la orientación.</figcaption>
+<figcaption class="arithmatex">Representación geométrica: la norma es la longitud de la hipotenusa y θ determina la orientación.</figcaption>
 </figure>
 <blockquote>
 <p>Ejemplo Administrativo: Presupuesto Vectorial</p>
@@ -2303,12 +2303,12 @@ Forma original (C, H, W): torch.Size([3, 4, 4]) Forma permutada (H, W, C): torch
 \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix} + 
 \begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{pmatrix} = 
 \begin{pmatrix} x_1 + y_1 \\ x_2 + y_2 \\ \vdots \\ x_n + y_n \end{pmatrix}.\]</div>
-<figure id="fig:suma_vectores">
-
-<figcaption>Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores <span class="math inline">\(\mathbf{x}\)</span> y <span class="math inline">\(\mathbf{y}\)</span>.</figcaption>
+<figure>
+  <img alt="Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores \(\mathbf{x}\) y \(\mathbf{y}\)." id="suma_vectores" src="imagenes/suma_vectores.svg" width="80%" />
+<br />
+<figcaption class="arithmatex">Representación geométrica de la suma vectorial (Ley del Paralelogramo). El vector resultante conecta el origen con la esquina opuesta formada por la proyección de los vectores $\mathbf{x}$ y $\mathbf{y}$.</figcaption>
 </figure>
-
-<p>Geométricamente, esto sigue la <strong>ley del paralelogramo</strong> <a href="#fig:suma_vectores">2.1</a>: si colocamos el inicio de <span class="arithmatex">\(\mathbf{y}\)</span> en la punta final de <span class="arithmatex">\(\mathbf{x}\)</span>, el vector resultante va desde el origen de <span class="arithmatex">\(\mathbf{x}\)</span> hasta la punta final de <span class="arithmatex">\(\mathbf{y}\)</span>.</p>
+<p>Geométricamente, esto sigue la <strong>ley del paralelogramo</strong> <a href="#suma_vectores">2.1</a>: si colocamos el inicio de <span class="arithmatex">\(\mathbf{y}\)</span> en la punta final de <span class="arithmatex">\(\mathbf{x}\)</span>, el vector resultante va desde el origen de <span class="arithmatex">\(\mathbf{x}\)</span> hasta la punta final de <span class="arithmatex">\(\mathbf{y}\)</span>.</p>
 <blockquote>
 <p>Ejemplo Ambiental: Inventario de Emisiones Supongamos que en una zona industrial existen dos fuentes principales de contaminación: una Termoeléctrica (<span class="arithmatex">\(\mathbf{e}_T\)</span>) y una Fábrica de Cemento (<span class="arithmatex">\(\mathbf{e}_C\)</span>). Los vectores representan la emisión diaria (en toneladas) de tres contaminantes distintos: <span class="arithmatex">\([\text{CO}_2, \text{NO}_x, \text{Material Particulado}]\)</span>.</p>
 <div class="arithmatex">\[\mathbf{e}_T = \begin{pmatrix} 100 \\ 5 \\ 0.5 \end{pmatrix}, \quad
@@ -2357,11 +2357,11 @@ Forma original (C, H, W): torch.Size([3, 4, 4]) Forma permutada (H, W, C): torch
 <p>Si <span class="arithmatex">\(\alpha &lt; 0\)</span>, el vector <strong>invierte su sentido</strong> (<span class="arithmatex">\(180^\circ\)</span>), aunque mantiene la misma línea de dirección.</p>
 </li>
 </ul>
-<figure id="fig:escalar_vector">
-
-<figcaption>Efecto geométrico de la multiplicación escalar. Nótese cómo <span class="math inline">\(\alpha=2\)</span> duplica la longitud, mientras que <span class="math inline">\(\alpha=-0.5\)</span> reduce la longitud a la mitad e invierte el sentido.</figcaption>
+<figure>
+  <img alt="Efecto geométrico de la multiplicación escalar. Nótese cómo α=2 duplica la longitud, mientras que α=-0.5 reduce la longitud a la mitad e invierte el sentido." id="fig:escalar_vector" src="imagenes/escalar_vector.svg" width="80%" />
+<br />
+<figcaption class="arithmatex">Efecto geométrico de la multiplicación escalar. Nótese cómo α=2 duplica la longitud, mientras que α=-0.5 reduce la longitud a la mitad e invierte el sentido.</figcaption>
 </figure>
-
 <h4 id="aplicaciones-escalamiento-y-control">Aplicaciones: Escalamiento y Control</h4>
 <ol>
 <li>
@@ -2379,20 +2379,21 @@ Forma original (C, H, W): torch.Size([3, 4, 4]) Forma permutada (H, W, C): torch
 <p><strong>Definición formal.</strong></p>
 <div class="arithmatex">\[\cdot : \mathbb{R}^n \times \mathbb{R}^n \to \mathbb{R}, \quad (\mathbf{x}, \mathbf{y}) \mapsto \mathbf{x} \cdot \mathbf{y} = \sum_{i=1}^{n} x_i y_i.\]</div>
 <h4 id="interpretacion-geometrica-y-similitud">Interpretación Geométrica y Similitud</h4>
-<p>Además de la suma algebraica, el producto punto satisface la identidad geométrica:</p>
+<p>Además de la operación algebraica componente a componente, el producto punto satisface una identidad geométrica fundamental, ilustrada en la Figura <a href="#fig:producto_punto">2.3</a>:</p>
 <div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert \cos(\theta),\]</div>
-<p>donde <span class="arithmatex">\(\theta\)</span> es el ángulo entre los vectores. De aquí se deduce la <strong>Similitud Coseno</strong>, métrica clave en IA:</p>
+<p>donde <span class="arithmatex">\(\theta\)</span> es el ángulo entre los vectores. Esta relación permite aislar el término del coseno para definir la <strong>Similitud Coseno</strong>, una métrica esencial en Inteligencia Artificial para medir qué tan similares son dos vectores independientemente de su magnitud:</p>
+<figure>
+  <img alt="Relación entre magnitudes y ángulo. El producto punto conecta la longitud de los vectores con el coseno del ángulo θ que forman entre sí." id="fig:producto_punto" src="imagenes/producto_punto.svg" width="80%" />
+<br />
+<figcaption class="arithmatex">Relación entre magnitudes y ángulo. El producto punto conecta la longitud de los vectores con el coseno del ángulo θ que forman entre sí.</figcaption>
+</figure>
 <div class="arithmatex">\[\cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert}.\]</div>
-<figure id="fig:producto_punto">
-
-<figcaption>El producto punto relaciona las magnitudes de dos vectores con el coseno del ángulo que forman. La línea violeta representa la “sombra” o proyección de <span class="math inline">\(\mathbf{y}\)</span> sobre <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
+<p>Como se observa en la Figura <a href="#fig:producto_punto_geo">2.4</a>, geométricamente esto equivale a evaluar la proyección o \"sombra\" de un vector sobre el otro. Si el ángulo es cero (vectores alineados), la similitud es máxima (1); si son ortogonales (90°), es nula (0).</p>
+<figure>
+  <img alt="Interpretación de la proyección. La línea violeta muestra la componente de y que está &quot;alineada&quot; con x. El producto punto es el resultado de multiplicar esta proyección por la longitud total de x." id="fig:producto_punto_geo" src="imagenes/producto_punto_cos.svg" width="80%" />
+<br />
+<figcaption class="arithmatex">Interpretación de la proyección. La línea violeta muestra la componente de y que está "alineada" con x. El producto punto es el resultado de multiplicar esta proyección por la longitud total de x.</figcaption>
 </figure>
-
-<figure id="fig:producto_punto_geo">
-
-<figcaption>Representación geométrica del producto punto. La línea violeta muestra la componente de <span class="math inline">\(\mathbf{y}\)</span> que está “alineada” con <span class="math inline">\(\mathbf{x}\)</span>. El producto punto es el producto de esta proyección por la longitud total de <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
-</figure>
-
 <h5 id="aplicaciones-en-ingenieria-y-agro">Aplicaciones en Ingeniería y Agro</h5>
 <ol>
 <li>
@@ -2448,7 +2449,7 @@ Forma original (C, H, W): torch.Size([3, 4, 4]) Forma permutada (H, W, C): torch
 </ul>
 <p>Esta interpretación geométrica es el primer paso hacia la comprensión de cómo los algoritmos de IA "ven" y comparan datos en espacios multidimensionales.</p>
 <h5 id="dependencia-de-la-proyeccion">Dependencia de la Proyección</h5>
-<p>El concepto más fundamental es la relación con la proyección ortogonal, como se ilustra en la figura <a href="#fig:producto_punto_geometrico_corregido">2.5</a>. El término <span class="arithmatex">\(\lVert \mathbf{y} \rVert \cos(\theta)\)</span> representa precisamente la longitud de la <em>componente</em> del vector <span class="arithmatex">\(\mathbf{y}\)</span> que está alineada con <span class="arithmatex">\(\mathbf{x}\)</span> (la proyección, <span class="arithmatex">\(\mathrm{proj}_{\mathbf{x}} \mathbf{y}\)</span>).</p>
+<p>El concepto más fundamental es la relación con la proyección ortogonal, como se ilustra en la figura <a href="#fig:producto_punto_geo">2.4</a>. El término <span class="arithmatex">\(\lVert \mathbf{y} \rVert \cos(\theta)\)</span> representa precisamente la longitud de la <em>componente</em> del vector <span class="arithmatex">\(\mathbf{y}\)</span> que está alineada con <span class="arithmatex">\(\mathbf{x}\)</span> (la proyección, <span class="arithmatex">\(\mathrm{proj}_{\mathbf{x}} \mathbf{y}\)</span>).</p>
 <p>Por lo tanto, el producto punto puede reescribirse como:</p>
 <div class="arithmatex">\[\mathbf{x} \cdot \mathbf{y} = \lVert \mathbf{x} \rVert \cdot \left( \lVert \mathbf{y} \rVert \cos(\theta) \right) = \lVert \mathbf{x} \rVert \cdot \lVert \mathrm{proj}_{\mathbf{x}} \mathbf{y} \rVert.\]</div>
 <p>El producto punto es, en esencia, la magnitud de <span class="arithmatex">\(\mathbf{x}\)</span> multiplicada por la longitud de la "sombra" que <span class="arithmatex">\(\mathbf{y}\)</span> proyecta sobre <span class="arithmatex">\(\mathbf{x}\)</span>. El signo de <span class="arithmatex">\(\mathbf{x} \cdot \mathbf{y}\)</span> depende únicamente del <span class="arithmatex">\(\cos(\theta)\)</span>.</p>
@@ -2471,11 +2472,6 @@ Forma original (C, H, W): torch.Size([3, 4, 4]) Forma permutada (H, W, C): torch
 <p>El producto punto es <em>mínimo y negativo</em>, indicando la máxima disimilitud o incompatibilidad.</p>
 </li>
 </ol>
-<figure id="fig:producto_punto_geometrico_corregido">
-
-<figcaption>Interpretación geométrica del producto punto. El ángulo <span class="math inline">\(\theta\)</span> está dibujado entre los vectores <span class="math inline">\(\mathbf{x}\)</span> e <span class="math inline">\(\mathbf{y}\)</span>. El producto punto es proporcional a la magnitud de la proyección de <span class="math inline">\(\mathbf{y}\)</span> sobre <span class="math inline">\(\mathbf{x}\)</span>.</figcaption>
-</figure>
-
 <h4 id="sintesis-y-aplicaciones-contextuales-del-producto-punto">Síntesis y Aplicaciones Contextuales del Producto Punto</h4>
 <p>La utilidad del producto punto (<span class="arithmatex">\(\mathbf{x} \cdot \mathbf{y}\)</span>) radica en su capacidad para actuar como una medida de <em>alineación multidimensional</em> o <em>similitud</em> entre vectores. Su valor es grande cuando las magnitudes y la alineación son altas, reflejando perfiles compatibles. Este concepto es la base de la <strong>similitud coseno</strong> (<span class="arithmatex">\(\cos(\theta) = \frac{\mathbf{x} \cdot \mathbf{y}}{\lVert \mathbf{x} \rVert \lVert \mathbf{y} \rVert}\)</span>), ampliamente usada en motores de recomendación y clustering.</p>
 <h5 id="ejemplos-en-contextos-de-modelado-hibrido-agronomico-y-zootecnico">Ejemplos en Contextos de Modelado Híbrido (Agronómico y Zootécnico)</h5>
@@ -2668,19 +2664,19 @@ Forma original (C, H, W): torch.Size([3, 4, 4]) Forma permutada (H, W, C): torch
 <h5 id="por-que-esto-es-fundamental">Por qué esto es fundamental</h5>
 <p>Este mecanismo permite que una red neuronal transforme datos brutos en conceptos abstractos. En este ejemplo, pasamos de "dinero en rubros" (espacio de entrada <span class="arithmatex">\(\mathbb{R}^4\)</span>) a "calidad estratégica" (espacio de características <span class="arithmatex">\(\mathbb{R}^2\)</span>). Durante el entrenamiento, el algoritmo de <em>backpropagation</em> ajusta los valores de la matriz <span class="arithmatex">\(\mathbf{W}\)</span> para minimizar el error en la evaluación, "aprendiendo" así los pesos ideales para clasificar proyectos correctamente.</p>
 <h2 id="producto-de-matrices">Producto de Matrices</h2>
-<p>Las matrices son la estructura algebraica central para representar datos tabulares, transformaciones lineales y relaciones entre variables en inteligencia artificial. A continuación, se presentan las operaciones y propiedades más relevantes para el modelado con datos.</p>
-<p>La multiplicación de matrices es el motor computacional de la Inteligencia Artificial. No solo generaliza el producto vector-vector, sino que permite realizar múltiples operaciones simultáneamente (procesamiento en lote o <em>batch</em>) y componer transformaciones lineales.</p>
+<p>Las matrices constituyen la estructura algebraica fundamental para representar datos tabulares, transformaciones lineales y relaciones entre variables en el contexto de la Inteligencia Artificial. A continuación, se detallan las operaciones y propiedades esenciales para el modelado de datos.</p>
+<p>La multiplicación de matrices actúa como el motor computacional del aprendizaje profundo. Esta operación no solo generaliza el producto punto, sino que permite ejecutar múltiples operaciones simultáneamente (lo que conocemos como procesamiento en lote o <em>batch</em>) y realizar la composición de transformaciones lineales.</p>
 <h4 id="regla-de-dimensiones">Regla de Dimensiones</h4>
-<p>Para que el producto <span class="arithmatex">\(\mathbf{A}\mathbf{B}\)</span> exista, las dimensiones internas deben coincidir ("el ancho de la primera igual al alto de la segunda").</p>
+<p>Para que el producto matricial <span class="arithmatex">\(\mathbf{A}\mathbf{B}\)</span> esté definido, las dimensiones internas deben coincidir (es decir, el número de columnas de la primera debe igualar al número de filas de la segunda):</p>
 <div class="arithmatex">\[\underbrace{\mathbf{A}}_{m \times \mathbf{n}} \quad \times \quad \underbrace{\mathbf{B}}_{\mathbf{n} \times p} \quad = \quad \underbrace{\mathbf{C}}_{m \times p}\]</div>
-<h5 id="definicion-formal_2">Definición formal</h5>
-<p>Dadas <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> y <span class="arithmatex">\(\mathbf{B} \in \mathbb{R}^{n \times p}\)</span>, su producto <span class="arithmatex">\(\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{m \times p}\)</span> se define elemento a elemento como el producto punto entre la fila <span class="arithmatex">\(i\)</span> de <span class="arithmatex">\(\mathbf{A}\)</span> y la columna <span class="arithmatex">\(j\)</span> de <span class="arithmatex">\(\mathbf{B}\)</span>:</p>
+<h5 id="definicion-formal_2">Definición Formal</h5>
+<p>Dadas <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{m \times n}\)</span> y <span class="arithmatex">\(\mathbf{B} \in \mathbb{R}^{n \times p}\)</span>, su producto <span class="arithmatex">\(\mathbf{C} = \mathbf{A}\mathbf{B} \in \mathbb{R}^{m \times p}\)</span> se define entrada por entrada. Como se ilustra conceptualmente en la Figura <a href="#fig:mult_matrices">2.5</a>, el valor <span class="arithmatex">\(c_{ij}\)</span> se obtiene mediante el producto punto entre la fila <span class="arithmatex">\(i\)</span> de <span class="arithmatex">\(\mathbf{A}\)</span> y la columna <span class="arithmatex">\(j\)</span> de <span class="arithmatex">\(\mathbf{B}\)</span>:</p>
 <div class="arithmatex">\[c_{ij} = \mathbf{fila}_i(\mathbf{A}) \cdot \mathbf{columna}_j(\mathbf{B}) = \sum_{k=1}^{n} a_{ik} b_{kj}.\]</div>
-<figure id="fig:mult_matrices">
-
-<figcaption>Lógica del producto matricial: El elemento <span class="math inline">\(c_{ij}\)</span> concentra la interacción entre toda la fila <span class="math inline">\(i\)</span> de la primera matriz y toda la columna <span class="math inline">\(j\)</span> de la segunda.</figcaption>
+<figure>
+  <img alt="Visualización del producto matricial. El elemento resultante \(c_{ij}\) captura la interacción total entre la fila \(i\) de la matriz izquierda y la columna \(j\) de la matriz derecha." id="fig:mult_matrices" src="imagenes/producto_matriz_vector.svg" width="80%" />
+<br />
+<figcaption class="arithmatex">Visualización del producto matricial. El elemento resultante $c_{ij}$ captura la interacción total entre la fila $i$ de la matriz izquierda y la columna $j$ de la matriz derecha.</figcaption>
 </figure>
-
 <p><strong>Propiedades clave:</strong></p>
 <ul>
 <li>
@@ -2765,7 +2761,10 @@ c_{22} &amp;= (15\cdot 3) + (10 \cdot 4) + (2 \cdot 8) = 45 + 40 + 16 = 101
 </ul>
 <h5 id="calculo-en-2-times-2">Cálculo en <span class="arithmatex">\(2 \times 2\)</span></h5>
 <p>Para una matriz de <span class="arithmatex">\(\mathbb{R}^{2 \times 2}\)</span>, la fórmula es:</p>
-<div class="arithmatex">\[\det \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} = ad - bc.\]</div>
+<div class="arithmatex">\[\begin{vmatrix} 
+a &amp; b \\ 
+c &amp; d 
+\end{vmatrix} = ad - bc\]</div>
 <h5 id="singularidad-e-invertibilidad">Singularidad e Invertibilidad</h5>
 <p>La propiedad más importante para la inteligencia artificial es su relación con la inversión de matrices:</p>
 <div class="arithmatex">\[\mathbf{A} \text{ es invertible} \iff \det(\mathbf{A}) \neq 0.\]</div>
@@ -2798,42 +2797,68 @@ c_{22} &amp;= (15\cdot 3) + (10 \cdot 4) + (2 \cdot 8) = 45 + 40 + 16 = 101
 <p>Sus columnas son linealmente independientes (no hay redundancia perfecta entre variables).</p>
 </li>
 </ul>
-<p><strong>Relevancia en IA</strong>\
-<span class="arithmatex">\(\bullet\)</span> <strong>Regresión Lineal:</strong> Los coeficientes óptimos se estiman como <span class="arithmatex">\(\boldsymbol{\beta} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}\)</span>.\
-<span class="arithmatex">\(\bullet\)</span> <strong>Distancia de Mahalanobis:</strong> <span class="arithmatex">\(\sqrt{(\mathbf{x}-\boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu})}\)</span>. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).</p>
+<h5 id="relevancia-en-ia">Relevancia en IA</h5>
+<ul>
+<li>
+<p><strong>Regresión Lineal:</strong> Los coeficientes óptimos se estiman como <span class="arithmatex">\(\boldsymbol{\beta} = (\mathbf{X}^\top \mathbf{X})^{-1} \mathbf{X}^\top \mathbf{y}\)</span>.</p>
+</li>
+<li>
+<p><strong>Distancia de Mahalanobis:</strong> <span class="arithmatex">\(\sqrt{(\mathbf{x}-\boldsymbol{\mu})^\top \mathbf{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu})}\)</span>. Usada para detectar outliers multivariados (ej. animales enfermos con patrones fisiológicos atípicos).</p>
+</li>
+</ul>
 <p><strong>Ejemplo agronómico.</strong> Para predecir rendimiento (<span class="arithmatex">\(y\)</span>) a partir de N y P (<span class="arithmatex">\(\mathbf{X}\)</span>), necesitamos calcular <span class="arithmatex">\((\mathbf{X}^\top \mathbf{X})^{-1}\)</span>. Si</p>
 <div class="arithmatex">\[\mathbf{X}^\top \mathbf{X} = \begin{pmatrix} 5 &amp; 2 \\ 2 &amp; 2 \end{pmatrix} \implies \det = 10 - 4 = 6 \neq 0.\]</div>
 <p>Como el determinante es no nulo, la inversa existe y el modelo tiene solución única:</p>
 <div class="arithmatex">\[(\mathbf{X}^\top \mathbf{X})^{-1} = \frac{1}{6} \begin{pmatrix} 2 &amp; -2 \\ -2 &amp; 5 \end{pmatrix}.\]</div>
-<h2 id="implementacion-en-python-el-operador">Implementación en Python: El operador @</h2>
-<p>En Python científico (NumPy), <strong>nunca</strong> utilizamos bucles <code>for</code> para multiplicar matrices; eso sería extremadamente lento. En su lugar, utilizamos operaciones vectorizadas altamente optimizadas.</p>
-<p>Desde Python 3.5, el operador estándar para el producto matricial es la arroba (<code>@</code>).</p>
+<h2 id="implementacion-en-python-operaciones-matriciales">Implementación en Python: Operaciones Matriciales</h2>
+<p>En el ecosistema de Python científico (NumPy), las operaciones matriciales están altamente optimizadas. A diferencia de otros lenguajes donde se requieren bucles, aquí operamos directamente sobre las estructuras de datos.</p>
+<h3 id="el-operador-producto">El Operador Producto (@)</h3>
+<p>Desde Python 3.5, el estándar para la multiplicación de matrices es el operador arroba (<code>@</code>). Este operador verifica automáticamente la consistencia de las dimensiones internas.</p>
+<h3 id="algebra-lineal-con-numpylinalg">Álgebra Lineal con <code>numpy.linalg</code></h3>
+<p>Para operaciones más avanzadas como determinantes, trazas e inversas, utilizamos el submódulo de álgebra lineal. A continuación, se presenta una implementación completa.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="c1"># 1. Definimos las matrices del ejemplo anterior</span>
-<span class="c1"># Matriz A: Requerimientos (2 lotes, 3 insumos)</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
-<span class="p">])</span>
+<span class="c1"># --- 1. PRODUCTO MATRICIAL (@) ---</span>
+<span class="c1"># Matriz A (2x3) y B (3x2)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> 
+              <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">]])</span>
 
-<span class="c1"># Matriz B: Precios (3 insumos, 2 proveedores)</span>
-<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span>
-    <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
-    <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
-<span class="p">])</span>
-
-<span class="c1"># 2. Realizamos el producto matricial</span>
-<span class="c1"># La dimension interna (3) coincide: (2x3) @ (3x2) -&gt; (2x2)</span>
+<span class="c1"># Producto punto generalizado</span>
 <span class="n">C</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">B</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Producto C (2x2):</span><span class="se">\n</span><span class="si">{</span><span class="n">C</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="n">Matriz</span> <span class="n">de</span> <span class="n">Costos</span> <span class="n">C</span><span class="p">:</span>\<span class="n">n</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+<span class="c1"># --- 2. PROPIEDADES ---</span>
+<span class="c1"># Ejemplo A: Matriz 2x2</span>
+<span class="n">M_2x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                  <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]])</span>
 
-<span class="c1"># --- Salida esperada ---</span>
-<span class="c1"># [[150 150]</span>
-<span class="c1">#  [ 90 101]]</span>
+<span class="c1"># Traza (suma diagonal) y Determinante</span>
+<span class="n">traza_2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">trace</span><span class="p">(</span><span class="n">M_2x2</span><span class="p">)</span>       
+<span class="n">det_2</span>   <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">M_2x2</span><span class="p">)</span>  
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Matriz 2x2 -&gt; Traza: </span><span class="si">{</span><span class="n">traza_2</span><span class="si">}</span><span class="s2">, Det: </span><span class="si">{</span><span class="n">det_2</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># --- 3. INVERSA Y VERIFICACIÓN ---</span>
+<span class="n">M_3x3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
+<span class="n">det_3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">det</span><span class="p">(</span><span class="n">M_3x3</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">det_3</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">M_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">M_3x3</span><span class="p">)</span>
+
+    <span class="c1"># VERIFICACIÓN: A @ A_inv = Identidad</span>
+    <span class="c1"># Usamos allclose por precisión flotante</span>
+    <span class="n">identidad_calc</span> <span class="o">=</span> <span class="n">M_3x3</span> <span class="o">@</span> <span class="n">M_inv</span>
+    <span class="n">es_identidad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">identidad_calc</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;¿Es Identidad? </span><span class="si">{</span><span class="n">es_identidad</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Matriz singular.&quot;</span><span class="p">)</span>
 </code></pre></div>
+<div class="admonition info"><p class="admonition-title">Nota sobre Punto Flotante</p> Al calcular la inversa, es común obtener números como `0.9999999` en lugar de `1.0` debido a la precisión finita de las computadoras. Por eso, en lugar de comparar con `==`, utilizamos `np.allclose()` para verificar si el resultado es matemáticamente correcto dentro de una tolerancia aceptable. </div>
+
 <h4 id="errores-comunes-y-buenas-practicas">Errores comunes y buenas prácticas</h4>
 <ol>
 <li>
@@ -2861,9 +2886,8 @@ c_{22} &amp;= (15\cdot 3) + (10 \cdot 4) + (2 \cdot 8) = 45 + 40 + 16 = 101
 </code></pre></div>
 </li>
 </ol>
-<p>::: tcolorbox
-En el código de redes neuronales (como TensorFlow o PyTorch), la operación <code>capa_oculta @ pesos</code> ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo.
-:::</p>
+<div class="admonition warning"> En el código de redes neuronales (como TensorFlow o PyTorch), la operación `capa_oculta @ pesos` ocurre millones de veces por segundo. La eficiencia de esta operación es la razón por la que usamos GPUs (Tarjetas Gráficas), ya que están diseñadas por hardware para realizar multiplicaciones de matrices en paralelo masivo. </div>
+
 <h2 id="operaciones-con-tensores-en-bioingenieria">Operaciones con Tensores en Bioingeniería</h2>
 <p>A diferencia de las matrices, donde el producto punto es la estrella, en los tensores operamos frecuentemente con <strong>filtrado (convolución)</strong>, <strong>operaciones elemento a elemento</strong> (Hadamard) y <strong>re-dimensionamiento</strong> (Reshaping).</p>
 <blockquote>
@@ -2916,9 +2940,8 @@ En el código de redes neuronales (como TensorFlow o PyTorch), la operación <co
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&#39;</span><span class="n">Vector</span> <span class="n">de</span> <span class="n">entrada</span> <span class="n">para</span> <span class="n">la</span> <span class="n">Red</span> <span class="n">Neuronal</span><span class="p">:</span> <span class="p">{</span><span class="n">input_vector</span><span class="o">.</span><span class="n">shape</span><span class="p">}</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="c1"># Salida: (7864320,) -&gt; Un vector gigante</span>
 </code></pre></div>
-<p>::: tcolorbox
-El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño (<span class="arithmatex">\(256^3\)</span>) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la <strong>shape</strong> del tensor es crítico.
-:::</p>
+<div class="admonition warning"> El peligro de los tensores es la explosión combinatoria. Un tensor 3D pequeño ($256^3$) consume pocos MB, pero añadir una dimensión más (ej. tiempo en un video 4K) puede desbordar la memoria RAM de cualquier computadora estándar. Por eso, en IA, el diseño eficiente de la **shape** del tensor es crítico. </div>
+
 <h1 id="matrices-especiales">Matrices especiales</h1>
 <h2 id="matrices-simetricas-y-definidas-positivas">Matrices simétricas y definidas positivas</h2>
 <p>Una matriz <span class="arithmatex">\(\mathbf{A} \in \mathbb{R}^{n \times n}\)</span> es:</p>
